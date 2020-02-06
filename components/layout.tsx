@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Link from 'next/link';
-import Head from 'next/head';
+import * as React from "react";
+import Link from "next/link";
+import Head from "next/head";
 
 export interface LayoutProps {
   title?: string;
@@ -8,7 +8,7 @@ export interface LayoutProps {
 
 const Layout: React.SFC<LayoutProps> = ({
   children,
-  title = 'Nextjs Typescript Boilerplate',
+  title = "Nextjs Typescript Boilerplate"
 }) => (
   <div>
     <Head>
