@@ -1,7 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import { Container, Image, Menu } from "semantic-ui-react";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
 import styles from "./layout.scss";
 
@@ -20,7 +21,7 @@ const Layout: React.SFC<LayoutProps> = ({
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link
         rel="stylesheet"
-        href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       />
       <link
         rel="shortcut icon"
@@ -29,39 +30,39 @@ const Layout: React.SFC<LayoutProps> = ({
       />
     </Head>
     <header>
-      <Menu fixed="top" inverted>
-        <Container>
-          <Menu.Item as={"a"} header>
-            <Image
-              size="mini"
-              src="/logo.png"
-              style={{ marginRight: "1.5em" }}
-            />
-            Project Name
-          </Menu.Item>
-          <Menu.Item as="a" position="right">
-            About Us
-          </Menu.Item>
-          <Menu.Item as="a">The Catalogue</Menu.Item>
-          <Menu.Item as="a">Blog</Menu.Item>
-          <Menu.Item as="a">The App</Menu.Item>
-          <Menu.Item as="a">Sign In</Menu.Item>
-          <Menu.Item as="a">Sign Up</Menu.Item>
-        </Container>
-      </Menu>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        <span>/</span>
-        <Link href="/a">
-          <a>a</a>
-        </Link>
-        <span>/</span>
-        <Link href="/b">
-          <a>b</a>
-        </Link>
-      </nav>
+      <Navbar sticky="top">
+        <Navbar.Brand as={"a"} header>
+          Project Name
+        </Navbar.Brand>
+        <Nav className="justify-content-end">
+          <Nav.Item>
+            <Nav.Link as="a">The Catalogue</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as="a">Blog</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as="a">The App</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as="a">Sign In</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as="a">Sign Up</Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </Navbar>
+      <Link href="/">
+        <a>Home</a>
+      </Link>
+      <span>/</span>
+      <Link href="/a">
+        <a>a</a>
+      </Link>
+      <span>/</span>
+      <Link href="/b">
+        <a>b</a>
+      </Link>
     </header>
     {children}
     <div className={styles["meta-tags"]}>hello world</div>

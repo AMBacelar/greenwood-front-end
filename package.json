@@ -13,11 +13,12 @@
   "dependencies": {
     "@zeit/next-css": "1.0.1",
     "@zeit/next-sass": "1.0.1",
+    "bootstrap": "4.4.1",
     "next": "9.2.0",
     "node-sass": "4.13.1",
     "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "semantic-ui-react": "0.88.2"
+    "react-bootstrap": "1.0.0-beta.17",
+    "react-dom": "16.8.6"
   },
   "devDependencies": {
     "@types/next": "8.0.5",
