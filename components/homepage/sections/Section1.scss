@@ -1,0 +1,21 @@
+.wrapper {
+  position: relative;
+  background-image: url(/static/images/section1BackgroundImage.png);
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.header {
+  position: relative;
+  top: 30vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+}
+.latest-businesses {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

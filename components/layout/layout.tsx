@@ -31,7 +31,7 @@ const Layout: React.SFC<LayoutProps> = ({
       />
     </Head>
     <header>
-      <Navbar expand="lg" sticky="top">
+      <Navbar fixed="top">
         <Container>
           <Link passHref href="/">
             <Navbar.Brand as={"a"} header>
