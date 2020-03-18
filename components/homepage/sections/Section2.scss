@@ -1,0 +1,37 @@
+.wrapper {
+  position: relative;
+  background-image: url(/static/images/section2BackgroundImage.png);
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin-top: 300px;
+}
+
+.content {
+  background-color: #e2f0e6;
+  margin-top: -100px;
+  max-height: 500px;
+  overflow: hidden;
+  box-shadow: 10px 10px 30px 1px rgba(0, 0, 0, 0.3);
+}
+
+.blog-text-wrapper {
+  padding: 20px 80px;
+  position: relative;
+}
+.blog-text-date-created {
+  text-align: end;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.blog-text-blog-title {
+  margin-bottom: 20px;
+}
+.blog-text-button {
+  display: block;
+  margin: 0 0 0 auto;
+}
+img.blog-image {
+  width: 475px;
+}
