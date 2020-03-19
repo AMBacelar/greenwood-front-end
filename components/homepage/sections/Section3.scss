@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+  height: 100vh;
+  margin-top: 80px;
+}
+.header {
+  text-align: center;
+  font-size: 25px;
+}
+.text {
+  margin: 0 auto 20px;
+  width: 670px;
+  text-align: center;
+  font-size: 16px;
+}
+.featured-business-container {
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+  overflow: hidden;
+}
+.featured-business-image {
+  width: 32%;
+  margin: 1%;
+  cursor: pointer;
+}

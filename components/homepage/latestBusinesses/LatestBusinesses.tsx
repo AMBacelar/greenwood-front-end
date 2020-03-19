@@ -16,6 +16,7 @@ export default ({ businesses }: LatestBusinesses) => {
       thumbnailImage={business.thumbnailImage}
       displayName={business.displayName}
       shortDescription={business.shortDescription}
+      businessUrl={business.businessUrl}
     />
   ));
 
