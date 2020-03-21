@@ -3,27 +3,32 @@ import Row from "react-bootstrap/Row";
 
 import styles from "./BusinessItem.scss";
 import Link from "next/link";
+import imageUrl from "../../../utils/imageUrl";
 
-export type Business = {
+interface Props {
   thumbnailImage: string;
   displayName: string;
   shortDescription: string;
-  businessUrl: string;
-};
+  slug: string;
+}
 
 export default ({
   thumbnailImage,
   displayName,
   shortDescription,
-  businessUrl
-}: Business) => {
+  slug
+}: Props) => {
   return (
     <Col xs={12} md={4}>
-      <Link href={businessUrl}>
+      <Link href={`/business/${slug}`}>
         <div className={styles.wrapper}>
           <Row>
             <Col xs={4}>
-              <img className={styles.thumb} src={thumbnailImage} alt="" />
+              <img
+                className={styles.thumb}
+                src={imageUrl(thumbnailImage)}
+                alt=""
+              />
             </Col>
             <Col xs={8}>
               <div className={styles.info}>

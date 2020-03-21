@@ -4,21 +4,22 @@ import Col from "react-bootstrap/Col";
 
 import styles from "./Section3.scss";
 import Link from "next/link";
+import imageUrl from "../../../utils/imageUrl";
 
-type Props = {
+interface Props {
   featuredBusinesses: Array<{
     ariaLabel: string;
     businessImage: string;
-    businessUrl: string;
+    slug: string;
   }>;
-};
+}
 
 export default ({ featuredBusinesses }: Props) => {
   const renderImages = featuredBusinesses.map((business, index) => (
-    <Link key={index} href={business.businessUrl}>
+    <Link key={index} href={`/business/${business.slug}`}>
       <img
         aria-label={business.ariaLabel}
-        src={business.businessImage}
+        src={imageUrl(business.businessImage)}
         className={styles["featured-business-image"]}
       />
     </Link>

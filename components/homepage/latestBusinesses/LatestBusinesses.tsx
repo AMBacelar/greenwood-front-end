@@ -3,20 +3,25 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import styles from "./LatestBusinesses.scss";
-import BusinessItem, { Business } from "./BusinessItem";
+import BusinessItem from "./BusinessItem";
 
-type LatestBusinesses = {
-  businesses: Array<Business>;
-};
+interface Props {
+  businesses: Array<{
+    thumbnailImage: string;
+    displayName: string;
+    shortDescription: string;
+    slug: string;
+  }>;
+}
 
-export default ({ businesses }: LatestBusinesses) => {
+export default ({ businesses }: Props) => {
   const renderedBusinesses = businesses.map((business, index) => (
     <BusinessItem
       key={index}
       thumbnailImage={business.thumbnailImage}
       displayName={business.displayName}
       shortDescription={business.shortDescription}
-      businessUrl={business.businessUrl}
+      slug={business.slug}
     />
   ));
 

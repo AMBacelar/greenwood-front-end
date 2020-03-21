@@ -4,13 +4,8 @@ import Col from "react-bootstrap/Col";
 
 import styles from "./Section1.scss";
 import LatestBusinesses from "../latestBusinesses/LatestBusinesses";
-import { Business } from "../latestBusinesses/BusinessItem";
 
-type Props = {
-  businesses: Array<Business>;
-};
-
-export default ({ businesses }: Props) => {
+export default ({ businesses }: any) => {
   return (
     <div className={styles.wrapper}>
       <Container>

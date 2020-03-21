@@ -1,0 +1,43 @@
+.wrapper {
+  position: relative;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.header {
+  position: relative;
+  top: 30vh;
+  color: white;
+  text-align: center;
+  &-wrapper {
+    background-color: rgba(0, 0, 0, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+.summary {
+  background-color: rgba($color: #ffffff, $alpha: 0.9);
+  box-shadow: 10px 10px 30px 1px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: -120px;
+  .avatar {
+    margin: -120px auto 0;
+  }
+  .verified-status {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .business-description {
+    font-size: 20px;
+  }
+  &-wrapper {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+  }
+}

@@ -1,10 +1,11 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import imageUrl from "../../../utils/imageUrl";
 
 import styles from "./Section2.scss";
 
-type Props = {
+interface Props {
   featuredBlog: {
     bgImage: string;
     dateCreated: number;
@@ -12,7 +13,7 @@ type Props = {
     title: string;
     blogText: string;
   };
-};
+}
 
 export default ({ featuredBlog }: Props) => {
   const articleText = featuredBlog.blogText
@@ -32,7 +33,7 @@ export default ({ featuredBlog }: Props) => {
                 <Col md={5}>
                   <img
                     className={styles["blog-image"]}
-                    src={featuredBlog.bgImage}
+                    src={imageUrl(featuredBlog.bgImage)}
                   />
                 </Col>
                 <Col md={7}>

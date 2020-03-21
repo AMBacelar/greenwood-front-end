@@ -34,9 +34,7 @@ const Layout: React.SFC<LayoutProps> = ({
       <Navbar fixed="top">
         <Container>
           <Link passHref href="/">
-            <Navbar.Brand as={"a"} header>
-              Project Name
-            </Navbar.Brand>
+            <Navbar.Brand as={"a"}>Project Name</Navbar.Brand>
           </Link>
           <Nav className={styles["nav-right"]}>
             <Nav.Item>
@@ -50,7 +48,7 @@ const Layout: React.SFC<LayoutProps> = ({
               </Link>
             </Nav.Item>
             <Nav.Item>
-              <Link passHref href="/b">
+              <Link passHref href="/">
                 <Nav.Link>The App</Nav.Link>
               </Link>
             </Nav.Item>
