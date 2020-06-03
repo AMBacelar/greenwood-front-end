@@ -10,9 +10,11 @@
 .header {
   position: relative;
   top: 30vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  -webkit-backdrop-filter: blur(10px);
+}
+.content {
+  backdrop-filter: blur(10px);
   color: white;
+  padding: 20px;
 }
 .latest-businesses {
   position: absolute;
