@@ -10,8 +10,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "NODE_ENV=production node dist/index.js",
-    "start:prod": "NODE_ENV=production node dist/index.js"
+    "start": "NODE_ENV=production node dist/index.js"
   },
   "author": "ambacelar",
   "license": "ISC",

@@ -3,6 +3,7 @@ import Layout from '../components/layout/layout';
 import Section1 from '../components/homepage/sections/Section1';
 import Section2 from '../components/homepage/sections/Section2';
 import Section3 from '../components/homepage/sections/Section3';
+import Section4 from '../components/homepage/sections/Section4';
 
 const latestBusinesses = [
   {
@@ -51,13 +52,45 @@ const featuredBusinesses = [
     slug: 'fine-trims',
   },
 ];
+const featuredVideos = [
+  {
+    thumbnail: 'https://i.ytimg.com/vi/g0aHTvZXChI/hqdefault.jpg',
+    ariaLabel: 'HIGH FADE HAIRCUT TUTORIAL: LEARN THIS SELF CUT IN 5 MINS',
+    url: 'https://www.youtube.com/watch?v=g0aHTvZXChI',
+  },
+  {
+    thumbnail: 'https://i.ytimg.com/vi/g0aHTvZXChI/hqdefault.jpg',
+    ariaLabel: 'HIGH FADE HAIRCUT TUTORIAL: LEARN THIS SELF CUT IN 5 MINS',
+    url: 'https://www.youtube.com/watch?v=g0aHTvZXChI',
+  },
+  {
+    thumbnail: 'https://i.ytimg.com/vi/g0aHTvZXChI/hqdefault.jpg',
+    ariaLabel: 'HIGH FADE HAIRCUT TUTORIAL: LEARN THIS SELF CUT IN 5 MINS',
+    url: 'https://www.youtube.com/watch?v=g0aHTvZXChI',
+  },
+  {
+    thumbnail: 'https://i.ytimg.com/vi/g0aHTvZXChI/hqdefault.jpg',
+    ariaLabel: 'HIGH FADE HAIRCUT TUTORIAL: LEARN THIS SELF CUT IN 5 MINS',
+    url: 'https://www.youtube.com/watch?v=g0aHTvZXChI',
+  },
+  {
+    thumbnail: 'https://i.ytimg.com/vi/g0aHTvZXChI/hqdefault.jpg',
+    ariaLabel: 'HIGH FADE HAIRCUT TUTORIAL: LEARN THIS SELF CUT IN 5 MINS',
+    url: 'https://www.youtube.com/watch?v=g0aHTvZXChI',
+  },
+  {
+    thumbnail: 'https://i.ytimg.com/vi/g0aHTvZXChI/hqdefault.jpg',
+    ariaLabel: 'HIGH FADE HAIRCUT TUTORIAL: LEARN THIS SELF CUT IN 5 MINS',
+    url: 'https://www.youtube.com/watch?v=g0aHTvZXChI',
+  },
+];
 
 const HomePage = () => (
   <Layout>
     <Section1 businesses={latestBusinesses} />
     <Section2 featuredBlog={featuredBlog} />
     <Section3 featuredBusinesses={featuredBusinesses} />
-    <div>Section 4</div>
+    <Section4 featuredVideos={featuredVideos} />
   </Layout>
 );
 

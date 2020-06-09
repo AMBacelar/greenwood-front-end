@@ -1,6 +1,6 @@
 .wrapper {
   position: relative;
-  height: 650px;
+  height: 100vh;
   margin-top: 80px;
 }
 .header {
@@ -20,7 +20,8 @@
   overflow: hidden;
 }
 .featured-business-image {
-  width: 32%;
-  margin: 1%;
+  margin: 5px;
+  width: 250px;
   cursor: pointer;
+  border-radius: 8px;
 }
