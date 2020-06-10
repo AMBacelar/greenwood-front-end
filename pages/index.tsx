@@ -4,6 +4,7 @@ import Section1 from '../components/homepage/sections/Section1';
 import Section2 from '../components/homepage/sections/Section2';
 import Section3 from '../components/homepage/sections/Section3';
 import Section4 from '../components/homepage/sections/Section4';
+import MailingListBanner from '../components/mailingListBanner/MailingListBanner';
 
 const latestBusinesses = [
   {
@@ -91,6 +92,7 @@ const HomePage = () => (
     <Section2 featuredBlog={featuredBlog} />
     <Section3 featuredBusinesses={featuredBusinesses} />
     <Section4 featuredVideos={featuredVideos} />
+    <MailingListBanner />
   </Layout>
 );
 

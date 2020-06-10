@@ -1,0 +1,24 @@
+.wrapper {
+  position: relative;
+  background-image: url(/static/images/mailingListGraphic.png);
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  padding: 40px;
+  margin-top: 80px;
+}
+.header {
+  color: white;
+  text-align: left;
+  font-size: 25px;
+  font-weight: 600;
+}
+.mailingListInput {
+  margin-top: 20px;
+}
+.subscribe {
+  color: white;
+  background-color: rgb(106, 139, 117);
+  border-color: rgb(106, 139, 117);
+}
