@@ -8,21 +8,21 @@ import MailingListBanner from '../components/mailingListBanner/MailingListBanner
 
 const latestBusinesses = [
   {
-    thumbnailImage: '/static/images/johns-bakery-thumb.png',
+    thumbnailImage: '/static/images/johns-bakery-thumb.jpeg',
     displayName: "John's Bakery",
     slug: 'johns-bakery',
     shortDescription:
       "Located in the heart of East London. John's bakery bakes the freshest bread and pastries",
   },
   {
-    thumbnailImage: '/static/images/fine-trims-thumb.png',
+    thumbnailImage: '/static/images/fine-trims-thumb.jpeg',
     displayName: 'Fine Trims',
     slug: 'fine-trims',
     shortDescription:
       'A barbershop like no other. We provide high-quality haircuts for all hair types. Our barbers are all qualified.',
   },
   {
-    thumbnailImage: '/static/images/dagenham-greens-thumb.png',
+    thumbnailImage: '/static/images/dagenham-greens-thumb.jpeg',
     displayName: 'Dagenham Greens',
     slug: 'dagenham-greens',
     shortDescription:
@@ -30,7 +30,7 @@ const latestBusinesses = [
   },
 ];
 const featuredBlog = {
-  bgImage: '/static/images/blogPostImage.png',
+  bgImage: '/static/images/blogPostImage.jpeg',
   dateCreated: 12345,
   url: '/a',
   title: 'Fresh Stock on Aisle 5',
@@ -39,16 +39,16 @@ const featuredBlog = {
 const featuredBusinesses = [
   {
     ariaLabel: "John's Bakery",
-    businessImage: '/static/images/johns-bakery.png',
+    businessImage: '/static/images/johns-bakery.jpeg',
     slug: 'johns-bakery',
   },
   {
-    businessImage: '/static/images/dagenham-greens.png',
+    businessImage: '/static/images/dagenham-greens.jpeg',
     ariaLabel: 'Dagenham Greens',
     slug: 'dagenham-greens',
   },
   {
-    businessImage: '/static/images/fine-trims.png',
+    businessImage: '/static/images/fine-trims.jpeg',
     ariaLabel: 'Fine Trims',
     slug: 'fine-trims',
   },
