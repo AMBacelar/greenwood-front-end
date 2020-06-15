@@ -40,42 +40,44 @@ const Layout: React.SFC<LayoutProps> = ({
       <header>
         <Navbar fixed="top">
           <Container>
-            <Link passHref href="/">
-              <Navbar.Brand as={'a'}>
-                <img
-                  alt="Greenwood branding"
-                  className={styles.logo}
-                  src={imageUrl('/static/images/logo_white.png')}
-                />
-              </Navbar.Brand>
-            </Link>
-            <Nav className={styles['nav-right']}>
-              <Nav.Item>
-                <Link passHref href="/">
-                  <Nav.Link>The Catalogue</Nav.Link>
-                </Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link passHref href="/a">
-                  <Nav.Link>Blog</Nav.Link>
-                </Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link passHref href="/">
-                  <Nav.Link>The App</Nav.Link>
-                </Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link passHref href="/">
-                  <Nav.Link>Sign In</Nav.Link>
-                </Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link passHref href="/">
-                  <Nav.Link>Sign Up</Nav.Link>
-                </Link>
-              </Nav.Item>
-            </Nav>
+            <div className={styles.headerStyles}>
+              <Link passHref href="/">
+                <Navbar.Brand as={'a'}>
+                  <img
+                    alt="Greenwood branding"
+                    className={styles.logo}
+                    src={imageUrl('/static/images/logo_white.png')}
+                  />
+                </Navbar.Brand>
+              </Link>
+              <Nav className={styles['nav-right']}>
+                <Nav.Item>
+                  <Link passHref href="/">
+                    <Nav.Link>The Catalogue</Nav.Link>
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link passHref href="/a">
+                    <Nav.Link>Blog</Nav.Link>
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link passHref href="/">
+                    <Nav.Link>The App</Nav.Link>
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link passHref href="/">
+                    <Nav.Link>Sign In</Nav.Link>
+                  </Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Link passHref href="/">
+                    <Nav.Link>Sign Up</Nav.Link>
+                  </Link>
+                </Nav.Item>
+              </Nav>
+            </div>
           </Container>
         </Navbar>
       </header>
