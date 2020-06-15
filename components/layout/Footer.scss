@@ -1,0 +1,63 @@
+.wrapper {
+  padding: 20px 0;
+}
+.baseBar {
+  background-color: rgb(106, 139, 117);
+  color: rgb(179, 188, 182);
+  margin-top: 40px;
+  padding: 10px;
+}
+.header {
+  font-weight: 600;
+  color: rgb(106, 139, 117);
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+.contactText {
+  margin-bottom: 20px;
+}
+.email {
+  color: rgb(106, 139, 117);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.phoneNumber {
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.footerList {
+  padding-left: 20px;
+  li {
+    list-style: none;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+  li::before {
+    background-color: rgb(106, 139, 117);
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    height: 6px;
+    margin-bottom: 2px;
+    margin-left: -20px;
+    margin-right: 10px;
+    width: 6px;
+  }
+}
+.meta {
+  text-align: right;
+  a {
+    margin: 0 5px;
+  }
+}
+.branding {
+  text-align: center;
+}
+.footerLogo {
+  width: 250px;
+}
+.mission {
+  font-size: 0.8rem;
+  color: rgb(106, 139, 117);
+}
