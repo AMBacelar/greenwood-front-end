@@ -15,9 +15,23 @@
   backdrop-filter: blur(10px);
   color: white;
   padding: 20px;
+  margin-bottom: 30px;
+  p {
+    font-weight: 600;
+  }
+  h1 {
+    font-weight: 600;
+  }
 }
 .latest-businesses {
   position: absolute;
   right: 0;
   bottom: 0;
+}
+.cta {
+  background-color: white;
+  border-radius: 50px;
+  color: rgb(106, 139, 117);
+  font-size: 1.3rem;
+  padding: 8px 16px;
 }

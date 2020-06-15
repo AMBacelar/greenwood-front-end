@@ -1,9 +1,9 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import imageUrl from "../../../utils/imageUrl";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import imageUrl from '../../../utils/imageUrl';
 
-import styles from "./Section2.scss";
+import styles from './Section2.scss';
 
 interface Props {
   featuredBlog: {
@@ -17,9 +17,9 @@ interface Props {
 
 export default ({ featuredBlog }: Props) => {
   const articleText = featuredBlog.blogText
-    .split("\n")
+    .split('\n')
     .map((substring, index) => (
-      <p className={styles["blog-text-body"]} key={index}>
+      <p className={styles['blog-text-body']} key={index}>
         {substring}
       </p>
     ));
@@ -32,22 +32,25 @@ export default ({ featuredBlog }: Props) => {
               <Row>
                 <Col md={5}>
                   <img
-                    className={styles["blog-image"]}
+                    className={styles['blog-image']}
                     src={imageUrl(featuredBlog.bgImage)}
                   />
                 </Col>
                 <Col md={7}>
-                  <div className={styles["blog-text-wrapper"]}>
-                    <p className={styles["blog-text-date-created"]}>
+                  <div className={styles['blog-text-wrapper']}>
+                    <p className={styles['blog-text-date-created']}>
                       {featuredBlog.dateCreated}
                     </p>
-                    <h2 className={styles["blog-text-blog-title"]}>
+                    <h2 className={styles['blog-text-blog-title']}>
                       {featuredBlog.title}
                     </h2>
                     <article>{articleText}</article>
-                    <button className={styles["blog-text-button"]}>
+                    <a
+                      href={featuredBlog.url}
+                      className={styles['blog-text-button']}
+                    >
                       Read More
-                    </button>
+                    </a>
                   </div>
                 </Col>
               </Row>
