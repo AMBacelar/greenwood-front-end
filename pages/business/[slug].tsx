@@ -3,6 +3,7 @@ import { NextPage, NextPageContext } from 'next';
 
 import Layout from '../../components/layout/layout';
 import Header from '../../components/businessDetailsPage/Header';
+import Contact from '../../components/businessDetailsPage/Contact';
 
 const businesses = [
   {
@@ -84,6 +85,7 @@ const Page: NextPage<Props, any> = (business) => {
         thumbnailImage={business.thumbnailImage}
         verified={business.verified}
       />
+      <Contact address={business.address} contacts={business.contacts} />
     </Layout>
   );
 };
