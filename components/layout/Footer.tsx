@@ -48,7 +48,7 @@ export const Footer = () => (
               Feel free to get in touch with us via phone or send us a message
             </p>
             <p className={styles.phoneNumber}>+4479 000 0000</p>
-            <p className={styles.email}>info@greenwoodapp.net</p>
+            <p className={styles.email}>info@thegreenwoodapp.com</p>
           </Col>
         </Row>
       </Container>
