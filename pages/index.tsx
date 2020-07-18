@@ -1,10 +1,13 @@
 import React from 'react';
+import { NextPage, NextPageContext } from 'next';
 import Layout from '../components/layout/layout';
 import Section1 from '../components/homepage/sections/Section1';
 import Section2 from '../components/homepage/sections/Section2';
 import Section3 from '../components/homepage/sections/Section3';
 import Section4 from '../components/homepage/sections/Section4';
 import MailingListBanner from '../components/mailingListBanner/MailingListBanner';
+
+import imageUrl from 'utils/imageUrl';
 
 const latestBusinesses = [
   {
@@ -86,8 +89,17 @@ const featuredVideos = [
   },
 ];
 
-const HomePage = () => (
-  <Layout>
+interface Props {
+  hostname?: string;
+}
+
+const HomePage: NextPage<Props, any> = ({ hostname }) => (
+  <Layout
+    title={'The Greenwood Network'}
+    description={'Black Owned Businesses all in one palce'}
+    image={`${hostname}${imageUrl('/static/images/logo_white.png')}`}
+    hostname={hostname}
+  >
     <Section1 businesses={latestBusinesses} />
     <Section2 featuredBlog={featuredBlog} />
     <Section3 featuredBusinesses={featuredBusinesses} />
@@ -95,5 +107,13 @@ const HomePage = () => (
     <MailingListBanner />
   </Layout>
 );
+
+HomePage.getInitialProps = async ({ req }: NextPageContext) => {
+  let hostname;
+  if (req) {
+    hostname = `${req.headers.host}`;
+  }
+  return { hostname };
+};
 
 export default HomePage;

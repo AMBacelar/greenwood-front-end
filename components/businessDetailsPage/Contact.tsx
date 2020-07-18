@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import styles from './Contact.scss';
-import type { Contact } from '../../pages/business/[slug]';
+import { Contact } from '../../pages/business/[slug]';
 
 export type Props = { address: string; contacts: Contact };
 

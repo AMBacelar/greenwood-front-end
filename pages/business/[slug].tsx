@@ -53,27 +53,35 @@ export type Review = {
 };
 
 interface Props {
-  address: string;
-  ariaLabel: string;
-  avatarImage: string;
-  businessImage: string;
-  contacts: Contact;
-  coordinates: string;
-  descriptionShort: string;
-  descriptionLong: string;
-  displayName: string;
-  featuredReview: Review;
-  headerColour: string;
-  headerImage: string;
-  rating: number;
-  slug: string;
-  thumbnailImage: string;
-  verified: boolean;
+  business: {
+    address: string;
+    ariaLabel: string;
+    avatarImage: string;
+    businessImage: string;
+    contacts: Contact;
+    coordinates: string;
+    descriptionShort: string;
+    descriptionLong: string;
+    displayName: string;
+    featuredReview: Review;
+    headerColour: string;
+    headerImage: string;
+    rating: number;
+    slug: string;
+    thumbnailImage: string;
+    verified: boolean;
+  };
+  hostname: any;
 }
 
-const Page: NextPage<Props, any> = (business) => {
+const Page: NextPage<Props, any> = ({ business, hostname }) => {
   return (
-    <Layout>
+    <Layout
+      title={business.displayName}
+      description={business.descriptionShort}
+      image={business.businessImage}
+      hostname={hostname}
+    >
       <Header
         avatarImage={business.avatarImage}
         businessImage={business.businessImage}
@@ -90,11 +98,16 @@ const Page: NextPage<Props, any> = (business) => {
   );
 };
 
-Page.getInitialProps = async ({ query }: NextPageContext) => {
+Page.getInitialProps = async ({ query, req }: NextPageContext) => {
   const businessIndex = businesses.findIndex(
     (business) => business.slug === query.slug
   );
-  return businesses[businessIndex];
+  let hostname;
+
+  if (req) {
+    hostname = `${req.headers.host}`;
+  }
+  return { business: businesses[businessIndex], hostname };
 };
 
 export default Page;
