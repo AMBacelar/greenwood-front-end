@@ -79,7 +79,7 @@ const Page: NextPage<Props, any> = ({ business, hostname }) => {
     <Layout
       title={business.displayName}
       description={business.descriptionShort}
-      image={`${hostname}${business.businessImage}`} // TODO set up image CDN
+      image={`https://${hostname}${business.businessImage}`} // TODO set up image CDN
       hostname={hostname}
     >
       <Header

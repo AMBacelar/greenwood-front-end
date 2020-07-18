@@ -97,7 +97,7 @@ const HomePage: NextPage<Props, any> = ({ hostname }) => (
   <Layout
     title={'The Greenwood Network'}
     description={'Black Owned Businesses all in one palce'}
-    image={`${hostname}${imageUrl('/static/images/logo_white.png')}`}
+    image={`https://${hostname}${imageUrl('/static/images/logo_white.png')}`}
     hostname={hostname}
   >
     <Section1 businesses={latestBusinesses} />
