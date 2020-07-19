@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
+import 'dotenv/config';
 
 import styles from './layout.scss';
 import Footer from './Footer';
@@ -15,11 +16,11 @@ export interface Props {
   description?: string;
   children?: React.ReactNode;
   image?: string;
-  hostname?: string;
 }
 
 const Layout = (props: Props) => {
-  const { title, description, image, hostname } = props;
+  const { title, description, image } = props;
+  const hostname = process.env.ORIGIN;
   const router = useRouter();
   return (
     <div>

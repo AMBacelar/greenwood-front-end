@@ -1,5 +1,7 @@
 import React from 'react';
 import { NextPage, NextPageContext } from 'next';
+import 'dotenv/config';
+
 import Layout from '../components/layout/layout';
 import Section1 from '../components/homepage/sections/Section1';
 import Section2 from '../components/homepage/sections/Section2';
@@ -89,24 +91,24 @@ const featuredVideos = [
   },
 ];
 
-interface Props {
-  hostname?: string;
-}
+interface Props {}
 
-const HomePage: NextPage<Props, any> = ({ hostname }) => (
-  <Layout
-    title={'The Greenwood Network'}
-    description={'Black Owned Businesses all in one palce'}
-    image={`https://${hostname}${imageUrl('/static/images/logo_white.png')}`}
-    hostname={hostname}
-  >
-    <Section1 businesses={latestBusinesses} />
-    <Section2 featuredBlog={featuredBlog} />
-    <Section3 featuredBusinesses={featuredBusinesses} />
-    <Section4 featuredVideos={featuredVideos} />
-    <MailingListBanner />
-  </Layout>
-);
+const HomePage: NextPage<Props, any> = () => {
+  const hostname = process.env.ORIGIN;
+  return (
+    <Layout
+      title={'The Greenwood Network'}
+      description={'Black Owned Businesses all in one palce'}
+      image={`${hostname}${imageUrl('/static/images/logo_white.png')}`}
+    >
+      <Section1 businesses={latestBusinesses} />
+      <Section2 featuredBlog={featuredBlog} />
+      <Section3 featuredBusinesses={featuredBusinesses} />
+      <Section4 featuredVideos={featuredVideos} />
+      <MailingListBanner />
+    </Layout>
+  );
+};
 
 HomePage.getInitialProps = async ({ req }: NextPageContext) => {
   let hostname;

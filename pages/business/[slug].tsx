@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage, NextPageContext } from 'next';
+import 'dotenv/config';
 
 import Layout from '../../components/layout/layout';
 import Header from '../../components/businessDetailsPage/Header';
@@ -71,16 +72,15 @@ interface Props {
     thumbnailImage: string;
     verified: boolean;
   };
-  hostname: any;
 }
 
-const Page: NextPage<Props, any> = ({ business, hostname }) => {
+const Page: NextPage<Props, any> = ({ business }) => {
+  const hostname = process.env.ORIGIN;
   return (
     <Layout
       title={business.displayName}
       description={business.descriptionShort}
-      image={`https://${hostname}${business.businessImage}`} // TODO set up image CDN
-      hostname={hostname}
+      image={`${hostname}${business.businessImage}`} // TODO set up image CDN
     >
       <Header
         avatarImage={business.avatarImage}
