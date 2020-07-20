@@ -15,7 +15,7 @@ export const Footer = () => (
               <img
                 alt="Greenwood branding"
                 className={styles.footerLogo}
-                src={imageUrl('/static/images/logo_dark.png')}
+                src={imageUrl('/logo_dark.png')}
               />
               <p className={styles.mission}>
                 Changing the narrative of Black Businesses as a whole. Shining a

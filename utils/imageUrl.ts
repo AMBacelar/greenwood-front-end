@@ -1,3 +1,3 @@
 export default (imageUrl: string) => {
-  return imageUrl;
+  return `${process.env.NEXT_PUBLIC_IMAGE_ROOT_URL}${imageUrl}`;
 };

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
-import 'dotenv/config';
 
 import styles from './layout.scss';
 import Footer from './Footer';
@@ -66,7 +65,7 @@ const Layout = (props: Props) => {
                     <img
                       alt="Greenwood branding"
                       className={styles.logo}
-                      src={imageUrl('/static/images/logo_white.png')}
+                      src={imageUrl('/logo_white.png')}
                     />
                   </Navbar.Brand>
                 </Link>

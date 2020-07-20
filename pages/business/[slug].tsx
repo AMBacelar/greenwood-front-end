@@ -1,6 +1,7 @@
 import React from 'react';
 import { NextPage, NextPageContext } from 'next';
-import 'dotenv/config';
+
+import imageUrl from 'utils/imageUrl';
 
 import Layout from '../../components/layout/layout';
 import Header from '../../components/businessDetailsPage/Header';
@@ -10,8 +11,8 @@ const businesses = [
   {
     address: 'New House, Nebo Estate, Ystrad CF41 7QP',
     ariaLabel: 'Dagenham Greens',
-    avatarImage: '/static/images/dagenham-greens-avatar.jpeg',
-    businessImage: '/static/images/dagenham-greens.jpeg',
+    avatarImage: '/dagenham-greens-avatar.jpeg',
+    businessImage: '/dagenham-greens.jpeg',
     contacts: {
       telephone: ['+44 4837 827283'],
       fax: ['+44 8239 398398'],
@@ -27,14 +28,14 @@ const businesses = [
       rating: 4.5,
       datePosted: 1234567890,
       helpfulCount: 6500,
-      authorAvatar: '/static/images/dagenham-greens-thumb.jpeg',
+      authorAvatar: '/dagenham-greens-thumb.jpeg',
       reviewBody:
         "Absolutely delicious fruits and vegetables. I'm also very impressed with the customer service. The staff really do well to help you figure out what you want and for an affordable price. I'm very happy, I'll be recommending this to all my friends.",
     },
-    headerImage: '/static/images/dagenham-greens-header.jpeg',
+    headerImage: '/dagenham-greens-header.jpeg',
     rating: 4.7,
     slug: 'dagenham-greens',
-    thumbnailImage: '/static/images/dagenham-greens-thumb.jpeg',
+    thumbnailImage: '/dagenham-greens-thumb.jpeg',
     verified: true,
   },
 ];
@@ -75,22 +76,21 @@ interface Props {
 }
 
 const Page: NextPage<Props, any> = ({ business }) => {
-  const hostname = process.env.ORIGIN;
   return (
     <Layout
       title={business.displayName}
       description={business.descriptionShort}
-      image={`${hostname}${business.businessImage}`} // TODO set up image CDN
+      image={imageUrl(business.businessImage)}
     >
       <Header
-        avatarImage={business.avatarImage}
-        businessImage={business.businessImage}
+        avatarImage={imageUrl(business.avatarImage)}
+        businessImage={imageUrl(business.businessImage)}
         descriptionLong={business.descriptionLong}
         displayName={business.displayName}
         headerColour={business.headerColour}
-        headerImage={business.headerImage}
+        headerImage={imageUrl(business.headerImage)}
         rating={business.rating}
-        thumbnailImage={business.thumbnailImage}
+        thumbnailImage={imageUrl(business.thumbnailImage)}
         verified={business.verified}
       />
       <Contact address={business.address} contacts={business.contacts} />

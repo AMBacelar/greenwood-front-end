@@ -1,6 +1,5 @@
 import React from 'react';
 import { NextPage, NextPageContext } from 'next';
-import 'dotenv/config';
 
 import Layout from '../components/layout/layout';
 import Section1 from '../components/homepage/sections/Section1';
@@ -13,21 +12,21 @@ import imageUrl from 'utils/imageUrl';
 
 const latestBusinesses = [
   {
-    thumbnailImage: '/static/images/johns-bakery-thumb.jpeg',
+    thumbnailImage: '/johns-bakery-thumb.jpeg',
     displayName: "John's Bakery",
     slug: 'johns-bakery',
     shortDescription:
       "Located in the heart of East London. John's bakery bakes the freshest bread and pastries",
   },
   {
-    thumbnailImage: '/static/images/fine-trims-thumb.jpeg',
+    thumbnailImage: '/fine-trims-thumb.jpeg',
     displayName: 'Fine Trims',
     slug: 'fine-trims',
     shortDescription:
       'A barbershop like no other. We provide high-quality haircuts for all hair types. Our barbers are all qualified.',
   },
   {
-    thumbnailImage: '/static/images/dagenham-greens-thumb.jpeg',
+    thumbnailImage: '/dagenham-greens-thumb.jpeg',
     displayName: 'Dagenham Greens',
     slug: 'dagenham-greens',
     shortDescription:
@@ -35,7 +34,7 @@ const latestBusinesses = [
   },
 ];
 const featuredBlog = {
-  bgImage: '/static/images/blogPostImage.jpeg',
+  bgImage: '/blogPostImage.jpeg',
   dateCreated: 12345,
   url: '#',
   title: 'Fresh Stock on Aisle 5',
@@ -44,16 +43,16 @@ const featuredBlog = {
 const featuredBusinesses = [
   {
     ariaLabel: "John's Bakery",
-    businessImage: '/static/images/johns-bakery.jpeg',
+    businessImage: '/johns-bakery.jpeg',
     slug: 'johns-bakery',
   },
   {
-    businessImage: '/static/images/dagenham-greens.jpeg',
+    businessImage: '/dagenham-greens.jpeg',
     ariaLabel: 'Dagenham Greens',
     slug: 'dagenham-greens',
   },
   {
-    businessImage: '/static/images/fine-trims.jpeg',
+    businessImage: '/fine-trims.jpeg',
     ariaLabel: 'Fine Trims',
     slug: 'fine-trims',
   },
@@ -94,12 +93,11 @@ const featuredVideos = [
 interface Props {}
 
 const HomePage: NextPage<Props, any> = () => {
-  const hostname = process.env.ORIGIN;
   return (
     <Layout
       title={'The Greenwood Network'}
       description={'Black Owned Businesses all in one palce'}
-      image={`${hostname}${imageUrl('/static/images/logo_white.png')}`}
+      image={imageUrl('/logo_white.png')}
     >
       <Section1 businesses={latestBusinesses} />
       <Section2 featuredBlog={featuredBlog} />

@@ -35,9 +35,7 @@ const BusinessDetailsPageHeader = ({
     if (headerWrapper.current !== null) {
       if (!!headerImage) {
         //@ts-ignore
-        headerWrapper.current.style['background-image'] = `url(${imageUrl(
-          headerImage
-        )})`;
+        headerWrapper.current.style['background-image'] = `url(${headerImage})`;
       } else {
         //@ts-ignore
         headerWrapper.current.style['background-color'] = headerColour;
@@ -63,7 +61,7 @@ const BusinessDetailsPageHeader = ({
           <Row>
             <Col>
               <div className={styles.summary}>
-                <img className={styles.avatar} src={imageUrl(avatarImage)} />
+                <img className={styles.avatar} src={avatarImage} />
                 {verified && <p className={styles.verifiedStatus}>Verified</p>}
                 <p className={styles.businessDescription}>{descriptionLong}</p>
               </div>
