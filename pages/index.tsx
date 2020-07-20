@@ -97,7 +97,7 @@ const HomePage: NextPage<Props, any> = () => {
     <Layout
       title={'The Greenwood Network'}
       description={'Black Owned Businesses all in one palce'}
-      image={imageUrl('/logo_white.png')}
+      image={imageUrl('/logo_dark.png')}
     >
       <Section1 businesses={latestBusinesses} />
       <Section2 featuredBlog={featuredBlog} />

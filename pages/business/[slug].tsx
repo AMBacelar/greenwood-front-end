@@ -80,7 +80,7 @@ const Page: NextPage<Props, any> = ({ business }) => {
     <Layout
       title={business.displayName}
       description={business.descriptionShort}
-      image={imageUrl(business.businessImage)}
+      image={imageUrl(business.thumbnailImage)}
     >
       <Header
         avatarImage={imageUrl(business.avatarImage)}
