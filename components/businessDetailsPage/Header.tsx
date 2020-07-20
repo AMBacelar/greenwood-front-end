@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import styles from './Header.scss';
-import imageUrl from '../../utils/imageUrl';
 
 export type Props = {
   avatarImage: string;
