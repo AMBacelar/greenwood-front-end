@@ -1,9 +1,11 @@
 import React from 'react';
-import { NextPage, NextPageContext } from 'next';
+import { NextPage, GetServerSideProps } from 'next';
+import { gql } from '@apollo/client';
 
 import imageUrl from 'utils/imageUrl';
+import { initializeApollo } from '../../lib/apolloClient';
 
-import Layout from '../../components/layout/layout';
+import Layout from '../../components/layout/Layout';
 import Header from '../../components/businessDetailsPage/Header';
 import Contact from '../../components/businessDetailsPage/Contact';
 
@@ -40,6 +42,19 @@ const businesses = [
   },
 ];
 
+export const GET_BUSINESS_QUERY = gql`
+  query getBusiness {
+    Business {
+      businessId
+      bannerImage
+      bannerColour
+      name
+      description
+      gallery
+    }
+  }
+`;
+
 export type Contact = {
   telephone: string[];
   fax: string[];
@@ -75,7 +90,8 @@ interface Props {
   };
 }
 
-const Page: NextPage<Props, any> = ({ business }) => {
+const Page: NextPage<Props, any> = (props) => {
+  const { business } = props;
   return (
     <Layout
       title={business.displayName}
@@ -98,16 +114,21 @@ const Page: NextPage<Props, any> = ({ business }) => {
   );
 };
 
-Page.getInitialProps = async ({ query, req }: NextPageContext) => {
-  const businessIndex = businesses.findIndex(
-    (business) => business.slug === query.slug
-  );
-  let hostname;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const apolloClient = initializeApollo();
 
-  if (req) {
-    hostname = `${req.headers.host}`;
-  }
-  return { business: businesses[businessIndex], hostname };
+  const result = await apolloClient.query({
+    query: GET_BUSINESS_QUERY,
+    variables: {},
+  });
+
+  // Pass data to the page via props
+  return {
+    props: {
+      business: businesses[0],
+      initialApolloState: apolloClient.cache.extract(),
+    },
+  };
 };
 
 export default Page;
