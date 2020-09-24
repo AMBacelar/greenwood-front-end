@@ -2,7 +2,7 @@
   "name": "nextjs-typescript-boilerplate",
   "engines": {
     "node": "10.13.0",
-    "npm": "6.4.1"
+    "npm": "6.14.8"
   },
   "version": "1.0.0",
   "description": "The boilerplate of nextjs with typescript.",
