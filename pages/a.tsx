@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/layout/Layout';
+import Layout from '../components/Layout/Layout';
 import { NextPage, GetServerSideProps } from 'next';
 
 const Page: NextPage<any, any> = () => {
@@ -14,7 +14,7 @@ const Page: NextPage<any, any> = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (_context) => {
   // console.log(context);
 
   // Pass data to the page via props

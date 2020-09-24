@@ -3,9 +3,9 @@ import { NextPage, GetServerSideProps } from 'next';
 import { gql } from '@apollo/client';
 
 import imageUrl from 'utils/imageUrl';
-import { initializeApollo } from '../../lib/apolloClient';
+// import { initializeApollo } from '../../lib/apolloClient';
 
-import Layout from '../../components/layout/Layout';
+import Layout from '../../components/Layout/Layout';
 import Header from '../../components/businessDetailsPage/Header';
 import Contact from '../../components/businessDetailsPage/Contact';
 
@@ -114,19 +114,19 @@ const Page: NextPage<Props, any> = (props) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const apolloClient = initializeApollo();
+export const getServerSideProps: GetServerSideProps = async (_context) => {
+  // const apolloClient = initializeApollo();
 
-  const result = await apolloClient.query({
-    query: GET_BUSINESS_QUERY,
-    variables: {},
-  });
+  // const result = await apolloClient.query({
+  //   query: GET_BUSINESS_QUERY,
+  //   variables: {},
+  // });
 
   // Pass data to the page via props
   return {
     props: {
       business: businesses[0],
-      initialApolloState: apolloClient.cache.extract(),
+      // initialApolloState: apolloClient.cache.extract(),
     },
   };
 };
