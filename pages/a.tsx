@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/layout/layout';
 import { NextPage, GetServerSideProps } from 'next';
 
 const Page: NextPage<any, any> = () => {
