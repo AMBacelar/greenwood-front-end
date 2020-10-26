@@ -114,7 +114,6 @@ const Page: NextPage<Props, any> = (props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  console.log('slug headers',ctx.req.headers)
   const apolloClient = initializeApollo();
   await apolloClient.query({
     query: GET_BUSINESS_QUERY,
