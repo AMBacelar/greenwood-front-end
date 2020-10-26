@@ -1,0 +1,22 @@
+query Authenticate(
+  $fieldName: String!
+  $id: String!
+  $displayName: String!
+  $email: String!
+) {
+  authenticate(
+    fieldName: $fieldName
+    id: $id
+    displayName: $displayName
+    email: $email
+  ) {
+    accessToken
+    user {
+      displayName
+      userId
+      contact {
+        email
+      }
+    }
+  }
+}

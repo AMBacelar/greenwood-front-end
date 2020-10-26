@@ -1,0 +1,28 @@
+mutation UserCreateBusiness(
+  $userId: ID!
+  $name: String!
+  $description: String!
+  $displayImage: String!
+  $gallery: [String]!
+  $bannerImage: String!
+) {
+  userCreateBusiness(
+    input: {
+      userId: $userId
+      name: $name
+      description: $description
+      displayImage: $displayImage
+      gallery: $gallery
+      bannerImage: $bannerImage
+    }
+  ) {
+    businessId
+    name
+    dateCreated
+    bannerColour
+    slug
+    managedBy {
+      displayName
+    }
+  }
+}

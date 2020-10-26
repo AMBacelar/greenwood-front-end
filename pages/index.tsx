@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextPage, NextPageContext } from 'next';
 
-import Layout from '../components/layout/layout';
+import { Layout } from '../components/layout/Layout';
 import Section1 from '../components/homepage/sections/Section1';
 import Section2 from '../components/homepage/sections/Section2';
 import Section3 from '../components/homepage/sections/Section3';

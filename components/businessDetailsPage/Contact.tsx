@@ -3,11 +3,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import styles from './Contact.scss';
-import { Contact } from '../../pages/business/[slug]';
+
+type Contact = {
+  telephone: string[];
+  fax: string[];
+  email: string[];
+}
 
 export type Props = { address: string; contacts: Contact };
 
-const BusinessDetailsPageHeader = ({ address, contacts }: Props) => {
+export const BusinessDetailsPageContact = ({ address, contacts }: Props) => {
   return (
     <div className={styles.wrapper}>
       <Container>
@@ -34,4 +39,3 @@ const BusinessDetailsPageHeader = ({ address, contacts }: Props) => {
   );
 };
 
-export default BusinessDetailsPageHeader;

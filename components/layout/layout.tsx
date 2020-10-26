@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container';
 import styles from './layout.scss';
 import Footer from './Footer';
 import imageUrl from 'utils/imageUrl';
+import { useGetTokensQuery } from 'generated/graphql';
 
 export interface Props {
   title?: string;
@@ -17,10 +18,23 @@ export interface Props {
   image?: string;
 }
 
-const Layout = (props: Props) => {
+export const Layout = (props: Props) => {
   const { title, description, image } = props;
   const hostname = process.env.ORIGIN;
   const router = useRouter();
+
+  const {data, loading, error} = useGetTokensQuery();
+
+  if(loading) {
+    console.log('query is loading');
+  }
+  if(error) {
+    console.log('i messed up');
+  }
+  if (data) {
+    console.log(data);
+  }
+
   return (
     <div>
       <Head>
@@ -86,7 +100,7 @@ const Layout = (props: Props) => {
                     </Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Link passHref href="/">
+                    <Link passHref href="/api/auth/google">
                       <Nav.Link>Sign In</Nav.Link>
                     </Link>
                   </Nav.Item>
@@ -107,4 +121,3 @@ const Layout = (props: Props) => {
   );
 };
 
-export default Layout;

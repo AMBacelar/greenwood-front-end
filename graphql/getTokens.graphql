@@ -1,0 +1,12 @@
+query GetTokens {
+  getTokens {
+    accessToken
+    user {
+      displayName
+      userId
+      contact {
+        email
+      }
+    }
+  }
+}

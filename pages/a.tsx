@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/layout/layout';
+import {Layout} from '../components/layout/Layout';
 import { NextPage, GetServerSideProps } from 'next';
 
 const Page: NextPage<any, any> = () => {
@@ -9,14 +9,12 @@ const Page: NextPage<any, any> = () => {
       description={'Black Owned Businesses all in one palce'}
     >
       <div style={{ marginBottom: 200 }}>a.</div>
-      <a href={`/auth/google`}>click me!</a>
+      <a href={`/api/auth/google`}>click me!</a>
     </Layout>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (_context) => {
-  // console.log(context);
-
+export const getServerSideProps: GetServerSideProps = async (context) => {
   // Pass data to the page via props
   return {
     props: {},

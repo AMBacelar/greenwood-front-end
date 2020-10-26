@@ -18,7 +18,7 @@ export type Props = {
   verified: boolean;
 };
 
-const BusinessDetailsPageHeader = ({
+export const Header = ({
   avatarImage,
   // businessImage,
   descriptionLong,
@@ -71,5 +71,3 @@ const BusinessDetailsPageHeader = ({
     </div>
   );
 };
-
-export default BusinessDetailsPageHeader;

@@ -1,0 +1,263 @@
+type User {
+  userId: ID!
+  displayImage: String
+  forename: String!
+  familyName: String!
+  displayName: String!
+  googleId: String
+  about: String
+  contact: Contact! @relation(name: "HAS_CONTACT", direction: "OUT")
+  reviews: [Review]! @relation(name: "WROTE", direction: "OUT")
+  references: [ContentMeta]! @relation(name: "META_REFERENCE", direction: "IN")
+  manages: [Ownable]! @relation(name: "MANAGES", direction: "OUT")
+  appearsIn: [MixedMedia]! @relation(name: "APPEARS_IN", direction: "OUT")
+  numReviews: Int
+    @cypher(statement: "MATCH (this)-[:WROTE]->(r:Review) RETURN COUNT(r)")
+  recommendations(first: Int = 3): [Business]
+    @cypher(
+      statement: "MATCH (this)-[:WROTE]->(r:Review)-[:REVIEWS]->(:Business)<-[:REVIEWS]-(:Review)<-[:WROTE]-(:User)-[:WROTE]->(:Review)-[:REVIEWS]->(rec:Business) WHERE NOT EXISTS( (this)-[:WROTE]->(:Review)-[:REVIEWS]->(rec) ) WITH rec, COUNT(*) AS num ORDER BY num DESC LIMIT $first RETURN rec"
+    )
+}
+
+type Address {
+  addressId: ID!
+  name: String
+  addressLine1: String!
+  addressLine2: String
+  postCode: String!
+  location: Point
+  showAddress: Boolean!
+  contact: Contact! @relation(name: "HAS_ADDRESS", direction: "IN")
+}
+
+union Contactable = User | Business | Venue
+
+type Contact {
+  contactId: ID!
+  address: [Address]! @relation(name: "HAS_ADDRESS", direction: "OUT")
+  telephone: [String]!
+  email: [String]!
+  socials: [SocialLink]! @relation(name: "HAS_SOCIAL", direction: "OUT")
+  referencedBy: Contactable! @relation(name: "HAS_CONTACT", direction: "IN")
+}
+
+type SocialLink {
+  socialLinkId: ID!
+  platform: String!
+  account: String!
+  contact: Contact! @relation(name: "HAS_SOCIAL", direction: "IN")
+}
+
+union Ownable = Series | Event | Content | Venue | Business
+
+union MixedMedia = Series | Event | Content
+
+type Business {
+  businessId: ID!
+  name: String!
+  contact: Contact! @relation(name: "HAS_CONTACT", direction: "OUT")
+  description: String
+  displayImage: String
+  gallery: [String]
+  bannerImage: String
+  bannerColour: String
+  dateCreated: Float
+  slug: String
+  avgStars: Float
+    @cypher(
+      statement: "MATCH (this)<-[:REVIEWS]-(r:Review) RETURN coalesce(avg(r.stars),0.0)"
+    )
+  managedBy: [User] @relation(name: "MANAGES", direction: "IN")
+  reviews: [Review] @relation(name: "REVIEWS", direction: "IN")
+  references: [ContentMeta]! @relation(name: "META_REFERENCE", direction: "IN")
+  categories: [BusinessCategory]
+    @relation(name: "IN_BUSINESS_CATEGORY", direction: "OUT")
+}
+
+type Series {
+  seriesId: ID!
+  name: String!
+  description: String
+  displayImage: String
+  managedBy: [User] @relation(name: "MANAGES", direction: "IN")
+  events: [Event] @relation(name: "PART_OF", direction: "IN")
+  content: [Content] @relation(name: "PART_OF", direction: "IN")
+  reviews: [Review] @relation(name: "REVIEWS", direction: "IN")
+  avgStars: Float
+    @cypher(
+      statement: "MATCH (this)<-[:REVIEWS]-(r:Review) RETURN coalesce(avg(r.stars),0.0)"
+    )
+}
+
+type Content {
+  contentId: ID!
+  title: String!
+  displayImage: String
+  hosts: [User] @relation(name: "MANAGES", direction: "IN")
+  guests: [User] @relation(name: "APPEARS_IN", direction: "IN")
+  url: String
+  release: DateTime
+  summary: String
+  series: [Series] @relation(name: "PART_OF", direction: "OUT")
+  reviews: [Review] @relation(name: "REVIEWS", direction: "IN")
+  avgStars: Float
+    @cypher(
+      statement: "MATCH (this)<-[:REVIEWS]-(r:Review) RETURN coalesce(avg(r.stars),0.0)"
+    )
+  meta: [ContentMeta]! @relation(name: "HAS_META", direction: "OUT")
+}
+
+union ContentMetaReference = Business | User
+
+type ContentMeta {
+  contentMetaId: ID!
+  role: String!
+  reference: ContentMetaReference!
+    @relation(name: "META_REFERENCE", direction: "OUT")
+  content: Content! @relation(name: "HAS_META", direction: "IN")
+}
+
+type Event {
+  eventId: ID!
+  name: String!
+  venue: Venue @relation(name: "LOCATED_AT", direction: "OUT")
+  displayImage: String
+  gallery: [String]!
+  managedBy: [User] @relation(name: "MANAGES", direction: "IN")
+  guests: [User] @relation(name: "APPEARS_IN", direction: "IN")
+  start: DateTime
+  end: DateTime
+  url: String
+  series: [Series] @relation(name: "PART_OF", direction: "OUT")
+  reviews: [Review] @relation(name: "REVIEWS", direction: "IN")
+  avgStars: Float
+    @cypher(
+      statement: "MATCH (this)<-[:REVIEWS]-(r:Review) RETURN coalesce(avg(r.stars),0.0)"
+    )
+}
+
+type Venue {
+  venueId: ID!
+  name: String!
+  displayImage: String
+  gallery: [String]!
+  managedBy: [User] @relation(name: "MANAGES", direction: "IN")
+  events: [Event]! @relation(name: "LOCATED_AT", direction: "IN")
+  reviews: [Review] @relation(name: "REVIEWS", direction: "IN")
+  contact: Contact! @relation(name: "HAS_CONTACT", direction: "OUT")
+}
+
+type Review {
+  reviewId: ID!
+  stars: Float!
+  text: String
+  date: DateTime
+  item: Ownable @relation(name: "REVIEWS", direction: "OUT")
+  user: User @relation(name: "WROTE", direction: "IN")
+}
+
+type BusinessCategory {
+  businessCategoryId: ID!
+  name: String!
+  businesses: [Business]
+    @relation(name: "IN_BUSINESS_CATEGORY", direction: "IN")
+}
+
+type RatingCount {
+  stars: Float!
+  count: Int!
+}
+
+input BusinessInput {
+  userId: ID!
+  name: String!
+  description: String
+  displayImage: String
+  gallery: [String]
+  bannerImage: String
+  contact: ContactInput
+}
+
+input ContactInput {
+  address: [AddressInput]
+  telephone: [String]!
+  email: [String]!
+  socials: [SocialLinkInput]!
+}
+
+input AddressInput {
+  name: String
+  addressLine1: String!
+  addressLine2: String
+  postCode: String!
+  location: Point
+  showAddress: Boolean!
+}
+
+input SocialLinkInput {
+  platform: String!
+  account: String!
+}
+
+type Mutation {
+  authenticate(
+    fieldName: String!
+    id: String!
+    displayName: String!
+    email: String!
+  ): LoginResponse
+  refreshToken: RefreshTokenResponse!
+  userCreateBusiness(input: BusinessInput): Business
+  userCreateReview(
+    stars: Float!
+    text: String
+    targetId: ID!
+    userId: ID!
+    nodeName: String!
+  ): Review
+    @cypher(
+      statement: """
+      CALL db.index.fulltext.queryNodes($nodeName, $targetId) YIELD node
+      match (u:User {userId: $userId})
+      create (u)-[x:WROTE]->(r:Review)-[:REVIEWS]->(node)
+      set r.stars = $stars
+      set r.text = $text
+      set r.reviewId = apoc.create.uuid()
+      return r
+      """
+    )
+}
+
+type LoginResponse {
+  accessToken: String
+  user: User
+}
+
+type RefreshTokenResponse {
+  accessToken: String
+  user: User
+  ok: Boolean
+}
+
+type HomePageResponse {
+  latestBusinesses: [Business]!
+  featuredBlog: Ownable
+  featuredBusinesses: [Business]!
+  featuredVideos: [Ownable]!
+}
+
+type Query {
+  authenticate(
+    fieldName: String!
+    id: String!
+    displayName: String!
+    email: String!
+  ): LoginResponse
+  refreshToken: RefreshTokenResponse!
+  getTokens: LoginResponse!
+  userCount: Int! @cypher(statement: "MATCH (u:User) RETURN COUNT(u)")
+  ratingsCount: [RatingCount]
+    @cypher(
+      statement: "MATCH (r:Review) WITH r.stars AS stars, COUNT(*) AS count ORDER BY stars RETURN {stars: stars, count: count}"
+    )
+}

@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { NextPage, GetServerSideProps } from 'next';
 import { gql } from '@apollo/client';
 
 import imageUrl from 'utils/imageUrl';
-// import { initializeApollo } from '../../lib/apolloClient';
+import { initializeApollo } from '../../lib/apolloClient';
 
-import Layout from '../../components/layout/layout';
-import Header from '../../components/businessDetailsPage/Header';
-import Contact from '../../components/businessDetailsPage/Contact';
+import { Layout } from '../../components/layout/Layout';
+import { Header } from '../../components/businessDetailsPage/Header';
+import { BusinessDetailsPageContact as Contact } from '../../components/businessDetailsPage/Contact';
 
 const businesses = [
   {
@@ -43,23 +43,16 @@ const businesses = [
 ];
 
 export const GET_BUSINESS_QUERY = gql`
-  query getBusiness {
-    Business {
+  query getBusinessBySlug($slug: String!) {
+    Business(slug: $slug) {
       businessId
-      bannerImage
       bannerColour
       name
-      description
-      gallery
+      slug
+      dateCreated
     }
   }
 `;
-
-export type Contact = {
-  telephone: string[];
-  fax: string[];
-  email: string[];
-};
 
 export type Review = {
   rating: number;
@@ -75,7 +68,11 @@ interface Props {
     ariaLabel: string;
     avatarImage: string;
     businessImage: string;
-    contacts: Contact;
+    contacts: {
+      telephone: string[];
+      fax: string[];
+      email: string[];
+    };
     coordinates: string;
     descriptionShort: string;
     descriptionLong: string;
@@ -91,7 +88,9 @@ interface Props {
 }
 
 const Page: NextPage<Props, any> = (props) => {
+
   const { business } = props;
+  // console.log('props:',props);
   return (
     <Layout
       title={business.displayName}
@@ -114,19 +113,20 @@ const Page: NextPage<Props, any> = (props) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (_context) => {
-  // const apolloClient = initializeApollo();
-
-  // const result = await apolloClient.query({
-  //   query: GET_BUSINESS_QUERY,
-  //   variables: {},
-  // });
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  console.log('slug headers',ctx.req.headers)
+  const apolloClient = initializeApollo();
+  await apolloClient.query({
+    query: GET_BUSINESS_QUERY,
+    variables: { slug: ctx.query.slug },
+  });
+  // console.log('slug result', apolloClient.cache.extract());
 
   // Pass data to the page via props
   return {
     props: {
       business: businesses[0],
-      // initialApolloState: apolloClient.cache.extract(),
+      initialApolloState: apolloClient.cache.extract(),
     },
   };
 };

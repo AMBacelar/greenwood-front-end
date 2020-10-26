@@ -1,0 +1,9 @@
+query getBusinessBySlug($slug: String!) {
+  Business(slug: $slug) {
+    businessId
+    bannerColour
+    name
+    slug
+    dateCreated
+  }
+}

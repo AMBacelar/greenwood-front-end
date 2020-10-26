@@ -15,10 +15,6 @@ const app = next({ dev });
   const handle = app.getRequestHandler();
 
   const server = express();
-  require('./googleStrategy');
-
-  passport.serializeUser((user, done) => done(null, user));
-  passport.deserializeUser((user, done) => done(null, user));
 
   server.use(
     cookieSession({
@@ -32,7 +28,7 @@ const app = next({ dev });
   server.get(
     '/auth/google',
     (req, _res, next) => {
-      if (null === req.session) {
+      if (!!req.session || null === req.session) {
         req.session = {};
       }
       req.session.redirect = req.get('Referrer');
@@ -48,48 +44,9 @@ const app = next({ dev });
       if (null === req.session) {
         req.session = {};
       }
-
-      fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL || '', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          query: `
-        mutation Authenticate(
-          $fieldName: String!
-          $id: String!
-          $displayName: String!
-        ) {
-          authenticate(
-            fieldName: $fieldName
-            id: $id
-            displayName: $displayName
-          ) {
-            accessToken
-            user {
-              displayName
-              userId
-            }
-          }
-        }
-      `,
-          variables: {
-            fieldName: 'googleId',
-            displayName: req.user.displayName,
-            id: req.user.id,
-          },
-        }),
-      })
-        .then((r) => r.json())
-        .then((data) => console.log('data returned:', data.data));
-
-      // query for User where googleId === req.user.id
-      // if found, return User
-      // else create User with this googleid and populate display name
-      // return User
-      res.redirect(req.session.redirect || '/');
+      const destination = req.session.redirect || '/';
+      req.session.redirect = null;
+      res.redirect(destination);
     }
   );
 
