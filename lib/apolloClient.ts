@@ -10,7 +10,7 @@ function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
     link: createHttpLink({
-      uri: `${process.env.VERCEL_URL}/api/graphql`,
+      uri: `/api/graphql`,
     }),
     cache: new InMemoryCache().restore(initialState),
   });

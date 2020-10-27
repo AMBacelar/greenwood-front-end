@@ -18,7 +18,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `${process.env.VERCEL_URL}/api/auth/google_callback`,
+      callbackURL: `/api/auth/google_callback`,
       accessType: 'offline',
       userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
     },
