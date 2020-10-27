@@ -5,7 +5,7 @@ import { gql } from '@apollo/client';
 import imageUrl from 'utils/imageUrl';
 import { initializeApollo } from '../../lib/apolloClient';
 
-import { Layout } from '../../components/layout/layout';
+import { Layout } from '../../components/layout/Layout';
 import { Header } from '../../components/businessDetailsPage/Header';
 import { BusinessDetailsPageContact as Contact } from '../../components/businessDetailsPage/Contact';
 
