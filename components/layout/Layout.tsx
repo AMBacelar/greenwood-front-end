@@ -25,13 +25,13 @@ export const Layout = (props: Props) => {
 
   const {data, loading, error} = useGetTokensQuery();
 
-  console.log(process.env.ORIGIN)
+  console.log(process.env.NEXT_PUBLIC_VERCEL_URL)
 
   if(loading) {
     console.log('query is loading');
   }
   if(error) {
-    console.log('i messed up');
+    console.log('i messed up', error);
   }
   if (data) {
     console.log(data);
