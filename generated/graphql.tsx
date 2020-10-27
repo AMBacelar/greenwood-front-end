@@ -2349,6 +2349,8 @@ export type _LoginResponseInput = {
 export enum _LoginResponseOrdering {
   AccessTokenAsc = 'accessToken_asc',
   AccessTokenDesc = 'accessToken_desc',
+  OkAsc = 'ok_asc',
+  OkDesc = 'ok_desc',
   IdAsc = '_id_asc',
   IdDesc = '_id_desc'
 }
@@ -2366,12 +2368,15 @@ export type _LoginResponseFilter = {
   accessToken_not_starts_with?: Maybe<Scalars['String']>;
   accessToken_ends_with?: Maybe<Scalars['String']>;
   accessToken_not_ends_with?: Maybe<Scalars['String']>;
+  ok?: Maybe<Scalars['Boolean']>;
+  ok_not?: Maybe<Scalars['Boolean']>;
 };
 
 export type LoginResponse = {
   __typename?: 'LoginResponse';
   accessToken?: Maybe<Scalars['String']>;
   user?: Maybe<User>;
+  ok?: Maybe<Scalars['Boolean']>;
   /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
   _id?: Maybe<Scalars['String']>;
 };
@@ -2937,6 +2942,8 @@ export type Mutation = {
   MergeBusinessCategory?: Maybe<BusinessCategory>;
   /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a LoginResponse node. */
   CreateLoginResponse?: Maybe<LoginResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a LoginResponse node. */
+  UpdateLoginResponse?: Maybe<LoginResponse>;
   /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a LoginResponse node. */
   DeleteLoginResponse?: Maybe<LoginResponse>;
   /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a LoginResponse node. */
@@ -3948,6 +3955,13 @@ export type MutationMergeBusinessCategoryArgs = {
 
 export type MutationCreateLoginResponseArgs = {
   accessToken?: Maybe<Scalars['String']>;
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateLoginResponseArgs = {
+  accessToken: Scalars['String'];
+  ok?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -3958,6 +3972,7 @@ export type MutationDeleteLoginResponseArgs = {
 
 export type MutationMergeLoginResponseArgs = {
   accessToken: Scalars['String'];
+  ok?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -4242,6 +4257,7 @@ export type QueryBusinessCategoryArgs = {
 
 export type QueryLoginResponseArgs = {
   accessToken?: Maybe<Scalars['String']>;
+  ok?: Maybe<Scalars['Boolean']>;
   _id?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -4313,7 +4329,7 @@ export type GetTokensQuery = (
   { __typename?: 'Query' }
   & { getTokens: (
     { __typename?: 'LoginResponse' }
-    & Pick<LoginResponse, 'accessToken'>
+    & Pick<LoginResponse, 'accessToken' | 'ok'>
     & { user?: Maybe<(
       { __typename?: 'User' }
       & Pick<User, 'displayName' | 'userId'>
@@ -4443,6 +4459,7 @@ export const GetTokensDocument = gql`
     query GetTokens {
   getTokens {
     accessToken
+    ok
     user {
       displayName
       userId

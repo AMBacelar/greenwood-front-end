@@ -25,8 +25,6 @@ export const Layout = (props: Props) => {
 
   const {data, loading, error} = useGetTokensQuery();
 
-  console.log(process.env.NEXT_PUBLIC_VERCEL_URL)
-
   if(loading) {
     console.log('query is loading');
   }
@@ -101,16 +99,15 @@ export const Layout = (props: Props) => {
                       <Nav.Link>The App</Nav.Link>
                     </Link>
                   </Nav.Item>
-                  <Nav.Item>
+                  {data?.getTokens.ok ? <Nav.Item>
+                    <Link passHref href="/">
+                      <Nav.Link>Profile</Nav.Link>
+                    </Link>
+                  </Nav.Item> : <Nav.Item>
                     <Link passHref href="/api/auth/google">
                       <Nav.Link>Sign In</Nav.Link>
                     </Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Link passHref href="/">
-                      <Nav.Link>Sign Up</Nav.Link>
-                    </Link>
-                  </Nav.Item>
+                  </Nav.Item>}
                 </Nav>
               </div>
             </Container>

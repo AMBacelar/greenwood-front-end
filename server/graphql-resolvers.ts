@@ -80,6 +80,7 @@ const authFunctions = {
       sendRefreshToken(context.res, createRefreshToken(user));
       return {
         accessToken: createAccessToken(user),
+        ok: true,
         user,
       };
     }
@@ -136,7 +137,7 @@ export const resolvers = {
     ) => {
       const token = context.req.cookies['sessionCookie'];
       if (!token) {
-        return context.res.send({ ok: false, accessToken: '' });
+        return context.res.send({ ok: false, accessToken: '', user: {} });
       }
       const findUser = `
       MATCH (user: User { userId: "${context.req.session.passport.user.userId}"})
@@ -147,7 +148,7 @@ export const resolvers = {
         user = await runQuery(findUser, context, resolveInfo, false);
       } catch (error) {
         if (!user) {
-          return context.res.send({ ok: false, accessToken: '' });
+          return context.res.send({ ok: false, accessToken: '', user: {} });
         }
         console.log(error);
       } finally {
@@ -155,6 +156,7 @@ export const resolvers = {
         return {
           accessToken: createAccessToken(user),
           user,
+          ok: true,
         };
       }
     },

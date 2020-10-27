@@ -1,6 +1,7 @@
 query GetTokens {
   getTokens {
     accessToken
+    ok
     user {
       displayName
       userId
