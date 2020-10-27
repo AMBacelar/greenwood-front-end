@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { NextPage, GetServerSideProps } from 'next';
 import { gql } from '@apollo/client';
 
 import imageUrl from 'utils/imageUrl';
 import { initializeApollo } from '../../lib/apolloClient';
 
-import { Layout } from '../../components/layout/Layout';
+import { Layout } from '../../components/layout/layout';
 import { Header } from '../../components/businessDetailsPage/Header';
 import { BusinessDetailsPageContact as Contact } from '../../components/businessDetailsPage/Contact';
 
