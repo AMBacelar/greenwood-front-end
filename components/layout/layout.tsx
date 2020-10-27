@@ -25,7 +25,7 @@ export const Layout = (props: Props) => {
 
   const {data, loading, error} = useGetTokensQuery();
 
-  console.log(process.env.VERCEL_URL)
+  console.log(process.env.ORIGIN)
 
   if(loading) {
     console.log('query is loading');
