@@ -7,7 +7,6 @@ import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
 function createApolloClient(initialState = {}) {
-  console.log(process.env.NEXT_PUBLIC_VERCEL_URL);
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
     link: createHttpLink({
