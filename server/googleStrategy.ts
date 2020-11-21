@@ -55,7 +55,6 @@ passport.use(
       } finally {
         const singleRecord = result.records[0];
         node = singleRecord.get(0);
-        console.log(node);
         cb(null, node);
         session.close();
       }

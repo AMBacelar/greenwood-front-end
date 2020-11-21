@@ -1,0 +1,197 @@
+@import '../../../styles/utils';
+
+$transition-speed: 0.1s;
+
+.input {
+  position: relative;
+  padding: 16px;
+  background-color: color(white);
+  border: 1px solid color(off-white);
+  border-radius: $border-radius;
+  transition: $transition-speed ease-out padding-top,
+    $transition-speed ease-out padding-bottom,
+    $transition-speed ease-out margin-bottom, 0.3s ease-out border-color,
+    0.3s ease-out box-shadow;
+
+  &__validation-error {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    z-index: 1;
+  }
+
+  &__meta-text {
+    color: color(brown-grey);
+    font-size: rem(12);
+    text-align: right;
+    cursor: default;
+    user-select: none;
+    transition: 0.3s ease-out color;
+    padding-top: 8px;
+  }
+
+  &__label {
+    line-height: 1;
+    cursor: text;
+    user-select: none;
+    color: color(brown-grey);
+    z-index: 1;
+    transition: $transition-speed ease-out font-size,
+      $transition-speed ease-out top, $transition-speed ease-out transform,
+      $transition-speed ease-out opacity;
+    position: absolute;
+    pointer-events: none;
+
+    &--expanded {
+      opacity: 1;
+      font-size: rem(16);
+      top: 50%;
+      transform: translateY(-50%);
+
+      &-ellipsified {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 90%;
+      }
+    }
+
+    &--shrunk {
+      opacity: 0;
+      font-size: rem(12);
+      top: 10px;
+      transform: translateY(0);
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 93%;
+    }
+  }
+  input,
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='password'] {
+    @include hocus {
+      outline: none;
+      box-shadow: none;
+    }
+    border: none;
+    border-color: transparent;
+    padding: 0;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    box-shadow: 0 0 0px 1000px #fff inset;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    cursor: default;
+
+    &--tooltip {
+      pointer-events: none;
+
+      button {
+        pointer-events: auto;
+      }
+
+      width: 448px;
+      max-width: calc(100vw - 32px);
+      position: absolute;
+      z-index: 2;
+      right: -16px;
+      bottom: 38px;
+
+      @include mq($from: tablet) {
+        max-width: unset;
+        width: auto;
+      }
+    }
+
+    &--error {
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+
+        path {
+          fill: color(bittersweet);
+        }
+      }
+    }
+  }
+
+  &__input {
+    outline: none;
+    box-shadow: none;
+    color: color(brown-grey);
+    padding: 0;
+    display: block;
+    width: 100%;
+    height: 20px;
+    position: relative;
+    resize: none;
+    overflow: hidden;
+    font-size: rem(16);
+
+    &--hidden {
+      visibility: hidden;
+      pointer-events: none;
+      padding: 0 16px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 20px;
+    }
+  }
+
+  &--focused {
+    @include focus-outline($applyDirectly: true);
+  }
+  &--reduced {
+    padding-top: 24px;
+    padding-bottom: 8px;
+
+    .input {
+      &__label--expanded {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+
+      &__label--shrunk {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--invalid {
+    border-color: color(bittersweet);
+    margin-bottom: 48px;
+
+    @include mq($from: tablet) {
+      margin-bottom: 40px;
+    }
+
+    &-small-margin-bottom {
+      margin-bottom: 8px;
+    }
+
+    &.input--focused {
+      border-color: color(bittersweet);
+      box-shadow: 0 0 4px 0 color(bittersweet);
+    }
+
+    .input__meta-text {
+      color: color(bittersweet);
+    }
+  }
+}

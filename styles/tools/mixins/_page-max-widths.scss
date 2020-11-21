@@ -1,0 +1,15 @@
+@mixin page-max-widths() {
+  max-width: dim($page-max-widths, mobile);
+
+  @include mq($from: tablet) {
+    max-width: dim($page-max-widths, tablet);
+  }
+
+  @include mq($from: wide) {
+    max-width: dim($page-max-widths, wide);
+  }
+
+  @include mq($from: extra-wide) {
+    max-width: dim($page-max-widths, extra-wide);
+  }
+}

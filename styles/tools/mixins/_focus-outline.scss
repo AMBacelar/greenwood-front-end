@@ -1,0 +1,13 @@
+@import '../functions/color';
+
+@mixin focus-outline($color: color(dark-cupcake), $applyDirectly: false) {
+  @if $applyDirectly {
+    outline: $color solid 2px;
+    outline-offset: 3px;
+  } @else {
+    &:focus {
+      outline: $color solid 2px;
+      outline-offset: 3px;
+    }
+  }
+}

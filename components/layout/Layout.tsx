@@ -23,12 +23,12 @@ export const Layout = (props: Props) => {
   const hostname = process.env.ORIGIN;
   const router = useRouter();
 
-  const {data, loading, error} = useGetTokensQuery();
+  const { data, loading, error } = useGetTokensQuery();
 
-  if(loading) {
+  if (loading) {
     console.log('query is loading');
   }
-  if(error) {
+  if (error) {
     console.log('i messed up', error);
   }
   if (data) {
@@ -100,14 +100,14 @@ export const Layout = (props: Props) => {
                     </Link>
                   </Nav.Item>
                   {data?.getTokens.ok ? <Nav.Item>
-                    <Link passHref href="/">
+                    <Link passHref href="/dashboard">
                       <Nav.Link>Profile</Nav.Link>
                     </Link>
                   </Nav.Item> : <Nav.Item>
-                    <Link passHref href="/api/auth/google">
-                      <Nav.Link>Sign In</Nav.Link>
-                    </Link>
-                  </Nav.Item>}
+                      <Link passHref href="/api/auth/google">
+                        <Nav.Link>Sign In</Nav.Link>
+                      </Link>
+                    </Nav.Item>}
                 </Nav>
               </div>
             </Container>

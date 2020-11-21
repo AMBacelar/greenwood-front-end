@@ -1,0 +1,29 @@
+//  Create classes from breakpoints
+//
+// For example:
+// .ribbon {
+//   @include responsivize() {
+//     width: 100px;
+//   }
+// }
+// would create classes of .ribbon@mobile, .ribbon@tablet etc.
+
+@mixin responsivize($breakpoints: $mq-breakpoints) {
+  @at-root #{&} {
+    @content;
+  }
+
+  @each $alias, $bp in $breakpoints {
+    @if map-has-key($mq-breakpoints, $alias) {
+      @include mq($from: map-get($mq-breakpoints, $alias)) {
+        @at-root #{&}\@#{$alias} {
+          @content;
+        }
+      }
+    }
+
+    @else {
+      @warn "Unrecognised breakpoint - `#{$alias}` does not match any of the keys in the $mq-breakpoints map";
+    }
+  }
+}

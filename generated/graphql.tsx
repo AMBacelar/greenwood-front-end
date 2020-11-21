@@ -207,8 +207,8 @@ export type User = {
   __typename?: 'User';
   userId: Scalars['ID'];
   displayImage?: Maybe<Scalars['String']>;
-  forename: Scalars['String'];
-  familyName: Scalars['String'];
+  forename?: Maybe<Scalars['String']>;
+  familyName?: Maybe<Scalars['String']>;
   displayName: Scalars['String'];
   googleId?: Maybe<Scalars['String']>;
   about?: Maybe<Scalars['String']>;
@@ -3044,8 +3044,8 @@ export type MutationMergeUserReferencesArgs = {
 export type MutationCreateUserArgs = {
   userId?: Maybe<Scalars['ID']>;
   displayImage?: Maybe<Scalars['String']>;
-  forename: Scalars['String'];
-  familyName: Scalars['String'];
+  forename?: Maybe<Scalars['String']>;
+  familyName?: Maybe<Scalars['String']>;
   displayName: Scalars['String'];
   googleId?: Maybe<Scalars['String']>;
   about?: Maybe<Scalars['String']>;
@@ -4309,6 +4309,34 @@ export type AuthenticateQuery = (
   )> }
 );
 
+export type GetAdminUserProfileQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetAdminUserProfileQuery = (
+  { __typename?: 'Query' }
+  & { User?: Maybe<Array<Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'displayName' | 'displayImage' | 'forename' | 'familyName' | 'userId'>
+    & { contact: (
+      { __typename?: 'Contact' }
+      & Pick<Contact, 'email' | 'telephone'>
+      & { address: Array<Maybe<(
+        { __typename?: 'Address' }
+        & Pick<Address, 'showAddress' | 'addressLine1' | 'addressLine2' | 'postCode'>
+        & { location?: Maybe<(
+          { __typename?: '_Neo4jPoint' }
+          & Pick<_Neo4jPoint, 'longitude' | 'latitude'>
+        )> }
+      )>>, socials: Array<Maybe<(
+        { __typename?: 'SocialLink' }
+        & Pick<SocialLink, 'platform' | 'account'>
+      )>> }
+    ) }
+  )>>> }
+);
+
 export type GetBusinessBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -4350,6 +4378,23 @@ export type RefreshTokenQuery = (
     { __typename?: 'RefreshTokenResponse' }
     & Pick<RefreshTokenResponse, 'accessToken' | 'ok'>
   ) }
+);
+
+export type UpdateUserProfileMutationVariables = Exact<{
+  id: Scalars['ID'];
+  displayName: Scalars['String'];
+  forename: Scalars['String'];
+  familyName: Scalars['String'];
+  about: Scalars['String'];
+}>;
+
+
+export type UpdateUserProfileMutation = (
+  { __typename?: 'Mutation' }
+  & { UpdateUser?: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'userId' | 'displayName' | 'forename' | 'familyName' | 'about'>
+  )> }
 );
 
 export type UserCreateBusinessMutationVariables = Exact<{
@@ -4418,6 +4463,61 @@ export function useAuthenticateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type AuthenticateQueryHookResult = ReturnType<typeof useAuthenticateQuery>;
 export type AuthenticateLazyQueryHookResult = ReturnType<typeof useAuthenticateLazyQuery>;
 export type AuthenticateQueryResult = Apollo.QueryResult<AuthenticateQuery, AuthenticateQueryVariables>;
+export const GetAdminUserProfileDocument = gql`
+    query getAdminUserProfile($id: ID!) {
+  User(userId: $id) {
+    displayName
+    displayImage
+    forename
+    familyName
+    userId
+    contact {
+      email
+      telephone
+      address {
+        showAddress
+        addressLine1
+        addressLine2
+        postCode
+        location {
+          longitude
+          latitude
+        }
+      }
+      socials {
+        platform
+        account
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAdminUserProfileQuery__
+ *
+ * To run a query within a React component, call `useGetAdminUserProfileQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAdminUserProfileQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAdminUserProfileQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetAdminUserProfileQuery(baseOptions?: Apollo.QueryHookOptions<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>) {
+        return Apollo.useQuery<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>(GetAdminUserProfileDocument, baseOptions);
+      }
+export function useGetAdminUserProfileLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>) {
+          return Apollo.useLazyQuery<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>(GetAdminUserProfileDocument, baseOptions);
+        }
+export type GetAdminUserProfileQueryHookResult = ReturnType<typeof useGetAdminUserProfileQuery>;
+export type GetAdminUserProfileLazyQueryHookResult = ReturnType<typeof useGetAdminUserProfileLazyQuery>;
+export type GetAdminUserProfileQueryResult = Apollo.QueryResult<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>;
 export const GetBusinessBySlugDocument = gql`
     query getBusinessBySlug($slug: String!) {
   Business(slug: $slug) {
@@ -4528,6 +4628,46 @@ export function useRefreshTokenLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type RefreshTokenQueryHookResult = ReturnType<typeof useRefreshTokenQuery>;
 export type RefreshTokenLazyQueryHookResult = ReturnType<typeof useRefreshTokenLazyQuery>;
 export type RefreshTokenQueryResult = Apollo.QueryResult<RefreshTokenQuery, RefreshTokenQueryVariables>;
+export const UpdateUserProfileDocument = gql`
+    mutation UpdateUserProfile($id: ID!, $displayName: String!, $forename: String!, $familyName: String!, $about: String!) {
+  UpdateUser(userId: $id, displayName: $displayName, forename: $forename, familyName: $familyName, about: $about) {
+    userId
+    displayName
+    forename
+    familyName
+    about
+  }
+}
+    `;
+export type UpdateUserProfileMutationFn = Apollo.MutationFunction<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>;
+
+/**
+ * __useUpdateUserProfileMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserProfileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserProfileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserProfileMutation, { data, loading, error }] = useUpdateUserProfileMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      displayName: // value for 'displayName'
+ *      forename: // value for 'forename'
+ *      familyName: // value for 'familyName'
+ *      about: // value for 'about'
+ *   },
+ * });
+ */
+export function useUpdateUserProfileMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>) {
+        return Apollo.useMutation<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>(UpdateUserProfileDocument, baseOptions);
+      }
+export type UpdateUserProfileMutationHookResult = ReturnType<typeof useUpdateUserProfileMutation>;
+export type UpdateUserProfileMutationResult = Apollo.MutationResult<UpdateUserProfileMutation>;
+export type UpdateUserProfileMutationOptions = Apollo.BaseMutationOptions<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>;
 export const UserCreateBusinessDocument = gql`
     mutation UserCreateBusiness($userId: ID!, $name: String!, $description: String!, $displayImage: String!, $gallery: [String]!, $bannerImage: String!) {
   userCreateBusiness(input: {userId: $userId, name: $name, description: $description, displayImage: $displayImage, gallery: $gallery, bannerImage: $bannerImage}) {

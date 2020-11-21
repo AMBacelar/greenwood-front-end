@@ -1,0 +1,63 @@
+@import '../../../styles/utils';
+
+.checkbox {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+
+  &__input {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+  }
+
+  &__checkmark {
+    border-radius: 5px;
+    border: 1px solid color(medium-grey);
+    background-image: none;
+    height: 22px;
+    width: 22px;
+    flex-shrink: 0;
+
+    &:focus-within {
+      @include focus-outline($applyDirectly: true);
+    }
+
+    &--checked {
+      background-image: url('/static/images/icn-checkbox-checked.svg');
+      background-size: 100% 100%;
+    }
+  }
+
+  &__title {
+    vertical-align: middle;
+    font-size: rem(14);
+    height: 20px;
+    color: color(off-black);
+    transition: 0.3s ease-out color;
+  }
+
+  &__subtitle {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: calc(100% - 32px);
+    font-size: rem(14);
+    color: color(brown-grey);
+  }
+
+  &__label {
+    padding-left: 12px;
+    display: inline-flex;
+    align-items: center;
+
+    &--checked {
+      .checkbox__title {
+        color: color(nemo);
+      }
+    }
+
+    &--subtitle {
+      display: unset;
+    }
+  }
+}

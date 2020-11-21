@@ -1,0 +1,70 @@
+// List of colors
+
+// Before adding a color: STOP
+// Does your colour already exist? Is it incredibly similar to an
+// existing color? If so, please convince your friendly neighbour
+// designer to use on of the excessive colors we already have!
+
+$colors: (
+  white:           #fff, // negative, textColorNegative, headerBg, widgetBg, white
+  g02:             #fbfbfb,
+  cream-white:     #f5f5f5, // primaryBg, primaryBgLight, secondaryBg, activeBg, greyBg, lightBg, lightGrey, secondaryLightBg, navbarBgHover, selectVisible
+  off-white:       #dedede, // dividerColor, dividerColorLight, formBorderColorLight, secondBorderColor, thirdBorderColor, textColorLight, walletGrey
+  black:           #000,
+  off-black:       #212121, // negativeBg, textColor, heroBackgroundColor
+  brown-grey:      #6b6b6b, // greyishBrownBg, textColorSecondary, textGrey, wellnessGrey2
+  dark-grey:       #4d4d4d, // negativeBgLight, wellnessGrey
+  light-grey:      #636363, // accent, greyCta, formBorderColor, textColorSecondaryLight, textColorNegativeLight, textColorSilver, textColorTime, cinemasLightGrey, selectHovered
+  medium-grey:     #a6a6a6,
+  very-light-grey: #e8e8e8, // secondary, secondaryBgLight, thirdBg, thirdBgLight, navbarBgActive, wellnessLightGrey, wellnessBorderColor, wellnessGreyBg
+  silver:          #b7bdc0, // silver
+  dark-navy:       #002767, // uiBlueDarker, mobileMenuBg
+  navy:            #003790, // darkPrimary, eapBanner2
+  dark-blue:       #004dca, // link, textLinkColor
+  blue:            #0055de, // primary
+  light-blue:      #2979fb, // eapBanner1, eapBlue, darkSkyBlue
+  nemo:            #0055DE, // Nemo*, primary
+  sky-blue:        #6da2f5, // primaryDisabled, walletPurple, eapBorderBlue
+  light-sky-blue:  #b6d2ff, // lightPrimary, navbarBgHoverLight, searchHighlight, walkThrought, eapIconBubble, eapButtonColour, wellnessBlue
+  dull-green:      #68a611, // successLight
+  green:           #00cc00, // success
+  light-green:     #4ee96d, // lightGreen
+  light-mint:      #59ba73,
+  teal:            #2bd2c3, // walletGreen
+  muted-teal:      #2ebdb1, // lightGreen
+  bright-teal:     #38e6d7, // eapGreen
+  light-cupcake:   #a8f0ea,
+  dark-cupcake:    #18958A, // Dark Cupcake*
+  bronze:          #d17d35, // bronze
+  gold:            #e9b725, // gold, walletYellow
+  pastel-green:    #268740, // valid, textColorValid, cinemasGreen, cinemasTurquoise, wellnessGreen
+  army-green:      #50800d, // formValidationSuccess
+  bright-red:      #D0021B, // error, errorLight, validationError, formValidationError, textHighlight, textColorRed, walletFailed, ribbonColor
+  alert-light:     #ff364d, // wellbeingOrange, uiRed
+  light-salmon:    #ff8989,
+  dark-salmon:     #A64F4F, // Dark Salmon*, text-color-deep-red
+  medium-salmon:   #D26262, // Medium Salmon*
+  bright-orange:   #ffa35a, // eapOrange
+  caramel:         #E57315, // Caramel*
+  golden-yellow:   #ffcf39, // eapYellow
+  light-cheese:    #ffebb9,
+  tertiary-light:  #ffebb2,
+  dark-cheese:     #A68524, // Dark Cheese*
+  light-yellow:    #fff3d0,
+  sapphire:        #3023ae,
+  orchid:          #c86dd7,
+  light-peach:     #ffc6c6,
+  bittersweet:     #ff6564,
+) !default;
+
+// * UI Colour palette with AA standards contrast ratios
+
+// create a separate map for tier colours so that we don't have to rely on the colour name to match the tier
+$tier-colors: (
+  bronze: color(bronze),
+  silver: color(silver),
+  gold: color(gold),
+  platinum: color(off-white)
+);
+
+$drop-shadow: 0 3px 7px rgba(color(off-black), .1);

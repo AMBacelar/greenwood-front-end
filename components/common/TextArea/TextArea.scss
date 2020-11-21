@@ -1,0 +1,132 @@
+@import '../../../styles/utils';
+
+$transition-speed: 0.1s;
+
+.text-area {
+  position: relative;
+  padding: 21px 16px;
+  background-color: color(white);
+  border: 1px solid color(off-white);
+  border-radius: $border-radius;
+  transition: $transition-speed ease-out padding-top,
+    $transition-speed ease-out padding-bottom, 0.3s ease-out border-color,
+    0.3s ease-out box-shadow;
+
+  &__answer-text {
+    @include hide-visually();
+  }
+
+  &__validation-error {
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    right: -1px;
+  }
+
+  &__meta-text {
+    color: color(brown-grey);
+    font-size: rem(12);
+    text-align: right;
+    cursor: default;
+    user-select: none;
+    transition: 0.3s ease-out color;
+    padding-top: 8px;
+  }
+
+  &__label {
+    line-height: 1;
+    cursor: text;
+    user-select: none;
+    color: color(brown-grey);
+    z-index: 10;
+    transition: $transition-speed ease-out font-size,
+      $transition-speed ease-out top, $transition-speed ease-out transform,
+      $transition-speed ease-out opacity;
+    position: absolute;
+    pointer-events: none;
+
+    &--expanded {
+      opacity: 1;
+      font-size: rem(16);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--shrunk {
+      opacity: 0;
+      font-size: rem(12);
+      top: 10px;
+      transform: translateY(0);
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 93%;
+    }
+  }
+
+  textarea {
+    @include hocus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  &__input {
+    outline: none;
+    box-shadow: none;
+    color: color(brown-grey);
+    padding: 0;
+    display: block;
+    width: 100%;
+    height: 20px;
+    position: relative;
+    resize: none;
+    overflow: hidden;
+    border: none;
+    font-size: rem(16);
+
+    &--hidden {
+      visibility: hidden;
+      pointer-events: none;
+      padding: 0 16px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 20px;
+    }
+  }
+
+  &--focused {
+    @include focus-outline($applyDirectly: true);
+  }
+  &--reduced {
+    padding-top: 28px;
+    padding-bottom: 14px;
+
+    .text-area {
+      &__label--expanded {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+
+      &__label--shrunk {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--invalid {
+    border-color: color(bittersweet);
+
+    &.text-area--focused {
+      border-color: color(bittersweet);
+      box-shadow: 0 0 4px 0 color(bittersweet);
+    }
+
+    .text-area__meta-text {
+      color: color(bittersweet);
+    }
+  }
+}

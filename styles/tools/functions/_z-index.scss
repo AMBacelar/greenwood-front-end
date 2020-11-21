@@ -1,0 +1,9 @@
+// Function to get z-index from `$z-index`
+// Usage:
+// .foo {
+//   z-index: zIndex(<key>);
+// }
+
+@function zIndex($key) {
+  @return map-get($z-index, $key);
+}

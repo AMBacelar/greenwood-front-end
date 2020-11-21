@@ -1,0 +1,15 @@
+.sidebar {
+  background-color: pink;
+  border-width: 0 1px 0 0;
+  left: 0;
+  transition: all 0.4s ease;
+  z-index: 1050;
+  max-width: 250px;
+  width: 50px;
+  height: 100vh;
+  display: inline-block;
+}
+
+.open {
+  width: 250px;
+}

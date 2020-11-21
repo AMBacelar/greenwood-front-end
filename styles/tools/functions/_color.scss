@@ -1,0 +1,13 @@
+// Function to get color from `$colors`
+// Usage:
+// .foo {
+//   color: color(<key>);
+// }
+
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+@function tier-color($key) {
+  @return map-get($tier-colors, $key);
+}

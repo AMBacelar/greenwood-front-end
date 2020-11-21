@@ -69,7 +69,7 @@ const authFunctions = {
     MATCH (user: User {${fieldName}: "${id}"})
     RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user`;
     const createUser = `
-    CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), ${fieldName}: "${id}", displayName: "${displayName}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), email: ["${email}"]})
+    CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), ${fieldName}: "${id}", displayName: "${displayName}", forename: "", familyName: "" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), email: ["${email}"], telephone: []})
     RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user`;
     let user;
     try {

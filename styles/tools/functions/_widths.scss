@@ -1,0 +1,11 @@
+/** function to get dimensions
+  usage example to get `tablet` value from `$page-max-widths`
+  .class {
+    max-width: dim($page-max-widths, tablet);
+  }
+
+ */
+
+@function dim($prop, $key) {
+  @return map-get($prop, $key);
+}

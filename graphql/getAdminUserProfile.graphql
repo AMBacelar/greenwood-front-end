@@ -1,0 +1,30 @@
+query getAdminUserProfile($id: ID!) {
+  User(userId: $id) {
+    displayName
+    displayImage
+    forename
+    familyName
+    userId
+    about
+    contact {
+      contactId
+      email
+      telephone
+      address {
+        addressId
+        showAddress
+        addressLine1
+        addressLine2
+        postCode
+        location {
+          longitude
+          latitude
+        }
+      }
+      socials {
+        platform
+        account
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  flex: 1 1 30ch;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.page {
+  flex-grow: 999;
+}

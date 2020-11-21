@@ -1,0 +1,18 @@
+// List of breakpoints
+$mq-breakpoints: (
+  mobile:     375px,
+  tablet:     768px,
+  wide:       1024px,
+  extra-wide: 1600px
+);
+
+// Usage:
+//
+//.foo {
+//  @include mq($from: mobile, $until: tablet) {
+//    background: red;
+//  }
+//  @include mq($from: tablet) {
+//    background: green;
+//  }
+//}

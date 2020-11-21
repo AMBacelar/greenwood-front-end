@@ -1,8 +1,8 @@
 type User {
   userId: ID!
   displayImage: String
-  forename: String!
-  familyName: String!
+  forename: String
+  familyName: String
   displayName: String!
   googleId: String
   about: String
