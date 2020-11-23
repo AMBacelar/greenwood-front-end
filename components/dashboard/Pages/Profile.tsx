@@ -77,7 +77,7 @@ const ProfileForm = (props: any) => {
     console.log(data);
   }
 
-  console.log(props.user)
+  console.log(props.user);
 
   return (
     <>

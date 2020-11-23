@@ -4,7 +4,25 @@ import url from 'url';
 import redirect from 'micro-redirect';
 import { initializeNeo4j } from './neo4j';
 export { default as passport } from 'passport';
+import Cors from 'cors';
+import { Request, Response } from 'express';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+const allowedOrigins = JSON.parse(process.env.NEXT_PUBLIC_ALLOWED_ORIGINS!);
+
+const cors = Cors({
+  origin: (origin, callback) => {
+    // allow requests with no origin
+    // (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+});
 
 passport.serializeUser((user, done) => {
   return done(null, user);
@@ -18,7 +36,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `/api/auth/google_callback`,
+      callbackURL: process.env.GOOGLE_CLIENT_CALLBACK_URL,
       accessType: 'offline',
       userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
     },
@@ -62,7 +80,20 @@ passport.use(
   )
 );
 
-export default (fn) => (req, res) => {
+const runMiddleware = (req: Request, res: Response, fn: Function) => {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+};
+
+type MiddlewareResponse = Omit<Response, 'redirect'> & { redirect: any };
+
+export default (fn: Function) => (req: Request, res: MiddlewareResponse) => {
   if (!res.redirect) {
     // passport.js needs res.redirect:
     // https://github.com/jaredhanson/passport/blob/1c8ede/lib/middleware/authenticate.js#L261
@@ -71,6 +102,8 @@ export default (fn) => (req, res) => {
     // as it is in express. https://expressjs.com/en/api.html#res.redirect
     res.redirect = (location: string) => redirect(res, 302, location);
   }
+
+  runMiddleware(req, res, cors);
 
   // Initialize Passport and restore authentication state, if any, from the
   // session. This nesting of middleware handlers basically does what app.use(passport.initialize())

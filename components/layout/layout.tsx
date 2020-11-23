@@ -20,7 +20,7 @@ export interface Props {
 
 export const Layout = (props: Props) => {
   const { title, description, image } = props;
-  const hostname = process.env.ORIGIN;
+  const hostname = process.env.NEXT_PUBLIC_ORIGIN;
   const router = useRouter();
 
   const { data, loading, error } = useGetTokensQuery();
@@ -119,4 +119,3 @@ export const Layout = (props: Props) => {
     </div>
   );
 };
-
