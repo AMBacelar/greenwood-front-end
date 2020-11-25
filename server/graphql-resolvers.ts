@@ -93,14 +93,14 @@ const authFunctions = {
   ) => {
     const token = context.req.cookies['grnwood-network-refresh'];
     if (!token) {
-      return context.res.send({ ok: false, accessToken: '' });
+      return { ok: false, accessToken: '' };
     }
 
     let payload = null;
     try {
       payload = <any>verify(token, process.env.REFRESH_TOKEN_SECRET!);
     } catch (err) {
-      return context.res.send({ ok: false, accessToken: '' });
+      return { ok: false, accessToken: '' };
     }
 
     const findUser = `
@@ -112,11 +112,10 @@ const authFunctions = {
       user = await runQuery(findUser, context, resolveInfo, false);
     } catch (error) {
       if (!user) {
-        return context.res.send({ ok: false, accessToken: '' });
+        return { ok: false, accessToken: '' };
       }
       console.log(error);
     } finally {
-      console.log('response:', user);
       sendRefreshToken(context.res, createRefreshToken(user));
       return {
         accessToken: createAccessToken(user),
@@ -152,6 +151,7 @@ export const resolvers = {
         }
         console.log('testing stuff out', error);
       } finally {
+        console.log(user);
         sendRefreshToken(context.res, createRefreshToken(user));
         return {
           accessToken: createAccessToken(user),
