@@ -10,23 +10,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const allowedOrigins = JSON.parse(process.env.NEXT_PUBLIC_ALLOWED_ORIGINS!);
 
-const cors = Cors({
-  origin: (origin, callback) => {
-    console.log(origin, allowedOrigins, allowedOrigins.indexOf(origin));
-    // allow requests with no origin
-    // (like mobile apps or curl requests)
-    if (!origin) {
-      return callback(null, true);
-    }
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true,
-});
-
 passport.serializeUser((user, done) => {
   return done(null, user);
 });
@@ -83,20 +66,47 @@ passport.use(
   )
 );
 
-const runMiddleware = (req: Request, res: Response, fn: Function) => {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result: any) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
+const initMiddleware = (middleware) => {
+  return (req, res) =>
+    new Promise((resolve, reject) => {
+      middleware(req, res, (result) => {
+        if (result instanceof Error) {
+          return reject(result);
+        }
+        return resolve(result);
+      });
     });
-  });
 };
+
+const cors = initMiddleware(
+  Cors({
+    origin: (origin, callback) => {
+      // allow requests with no origin
+      // (like mobile apps or curl requests)
+      if (!origin) {
+        console.log('CORS: okay');
+        return callback(null, true);
+      }
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
+        console.log('CORS: not okay');
+        return callback(new Error(msg), false);
+      }
+      console.log('CORS: okay');
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
 
 type MiddlewareResponse = Omit<Response, 'redirect'> & { redirect: any };
 
-export default (fn: Function) => (req: Request, res: MiddlewareResponse) => {
+export default (fn: Function) => async (
+  req: Request,
+  res: MiddlewareResponse
+) => {
+  await cors(req, res);
+
   if (!res.redirect) {
     // passport.js needs res.redirect:
     // https://github.com/jaredhanson/passport/blob/1c8ede/lib/middleware/authenticate.js#L261
@@ -105,8 +115,6 @@ export default (fn: Function) => (req: Request, res: MiddlewareResponse) => {
     // as it is in express. https://expressjs.com/en/api.html#res.redirect
     res.redirect = (location: string) => redirect(res, 302, location);
   }
-
-  runMiddleware(req, res, cors);
 
   // Initialize Passport and restore authentication state, if any, from the
   // session. This nesting of middleware handlers basically does what app.use(passport.initialize())
