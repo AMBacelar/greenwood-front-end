@@ -5,7 +5,7 @@ import redirect from 'micro-redirect';
 import { initializeNeo4j } from './neo4j';
 export { default as passport } from 'passport';
 import Cors from 'cors';
-import { Request, Response } from 'express';
+import { Request, RequestHandler, Response } from 'express';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const allowedOrigins = JSON.parse(process.env.NEXT_PUBLIC_ALLOWED_ORIGINS!);
@@ -66,18 +66,18 @@ passport.use(
   )
 );
 
-const initMiddleware = (middleware) => {
-  return (req, res) =>
-    new Promise((resolve, reject) => {
-      middleware(req, res, (result) => {
-        if (result instanceof Error) {
-          return reject(result);
-        }
-        return resolve(result);
-      });
+const initMiddleware = (middleware: RequestHandler) => (
+  req: Request,
+  res: Response
+) =>
+  new Promise((resolve, reject) => {
+    middleware(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
     });
-};
-
+  });
 const cors = initMiddleware(
   Cors({
     origin: (origin, callback) => {
@@ -85,15 +85,15 @@ const cors = initMiddleware(
       // (like mobile apps or curl requests)
       if (!origin) {
         console.log('CORS: okay');
-        return callback(null, true);
+        callback(null, true);
       }
       if (allowedOrigins.indexOf(origin) === -1) {
         const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
         console.log('CORS: not okay');
-        return callback(new Error(msg), false);
+        callback(new Error(msg), false);
       }
       console.log('CORS: okay');
-      return callback(null, true);
+      callback(null, true);
     },
     credentials: true,
   })
