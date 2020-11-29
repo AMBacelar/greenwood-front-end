@@ -3,11 +3,12 @@ import withPassport, { passport } from '../../../server/googleStrategy';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   passport.authenticate('google')(req, res, () => {
+    console.log('test?', req.session.redirect);
     const destination = req.session.redirect || '/';
     req.session.redirect = null;
-    res.redirect(destination);
+    res.redirector(destination);
   });
-  return { props: true };
+  return;
 };
 
 export default withPassport(handler);

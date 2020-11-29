@@ -135,9 +135,18 @@ export const resolvers = {
       resolveInfo: GraphQLResolveInfo
     ) => {
       const token = context.req.cookies['sessionCookie'];
+
+      const emptyUser = {
+        displayName: '',
+        userId: '',
+        contact: {
+          email: [''],
+        },
+      };
       if (!token) {
-        return { ok: false, accessToken: '', user: {} };
+        return { ok: false, accessToken: '', user: emptyUser };
       }
+
       const findUser = `
       MATCH (user: User { userId: "${context.req.session.passport.user.userId}"})
       RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user`;
@@ -147,11 +156,9 @@ export const resolvers = {
         user = await runQuery(findUser, context, resolveInfo, false);
       } catch (error) {
         if (!user) {
-          return { ok: false, accessToken: '', user: {} };
+          return { ok: false, accessToken: '', user: emptyUser };
         }
-        console.log('testing stuff out', error);
       } finally {
-        console.log(user);
         sendRefreshToken(context.res, createRefreshToken(user));
         return {
           accessToken: createAccessToken(user),

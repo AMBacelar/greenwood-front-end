@@ -4318,13 +4318,13 @@ export type GetAdminUserProfileQuery = (
   { __typename?: 'Query' }
   & { User?: Maybe<Array<Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'displayName' | 'displayImage' | 'forename' | 'familyName' | 'userId'>
+    & Pick<User, 'displayName' | 'displayImage' | 'forename' | 'familyName' | 'userId' | 'about'>
     & { contact: (
       { __typename?: 'Contact' }
-      & Pick<Contact, 'email' | 'telephone'>
+      & Pick<Contact, 'contactId' | 'email' | 'telephone'>
       & { address: Array<Maybe<(
         { __typename?: 'Address' }
-        & Pick<Address, 'showAddress' | 'addressLine1' | 'addressLine2' | 'postCode'>
+        & Pick<Address, 'addressId' | 'showAddress' | 'addressLine1' | 'addressLine2' | 'postCode'>
         & { location?: Maybe<(
           { __typename?: '_Neo4jPoint' }
           & Pick<_Neo4jPoint, 'longitude' | 'latitude'>
@@ -4471,10 +4471,13 @@ export const GetAdminUserProfileDocument = gql`
     forename
     familyName
     userId
+    about
     contact {
+      contactId
       email
       telephone
       address {
+        addressId
         showAddress
         addressLine1
         addressLine2
