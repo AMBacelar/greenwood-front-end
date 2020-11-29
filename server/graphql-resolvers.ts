@@ -114,7 +114,7 @@ const authFunctions = {
       if (!user) {
         return { ok: false, accessToken: '' };
       }
-      console.log(error);
+      console.log('RefreshToken: find user error', error);
     } finally {
       sendRefreshToken(context.res, createRefreshToken(user));
       return {
@@ -136,7 +136,7 @@ export const resolvers = {
     ) => {
       const token = context.req.cookies['sessionCookie'];
 
-      console.log(token);
+      console.log('getTokens, 1:', token);
 
       const emptyUser = {
         displayName: '',
@@ -155,10 +155,11 @@ export const resolvers = {
 
       let user;
       try {
+        console.log('we gonna try real quick');
         user = await runQuery(findUser, context, resolveInfo, false);
-        console.log(user);
+        console.log('woop!', user);
       } catch (error) {
-        console.log(error);
+        console.log('GetTokens: find user error', error);
         if (!user) {
           return { ok: false, accessToken: '', user: emptyUser };
         }
