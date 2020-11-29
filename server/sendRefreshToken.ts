@@ -6,7 +6,7 @@ export const sendRefreshToken = (res: Response, token: string) => {
     'Set-Cookie',
     serialize('grnwood-network-refresh', token, {
       httpOnly: true,
-      sameSite: 'strict',
+      sameSite: 'none',
     })
   );
 };
