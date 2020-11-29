@@ -17,6 +17,9 @@ function createApolloClient(initialState = {}) {
 }
 
 export function initializeApollo(initialState: any = null) {
+  console.log(
+    `the graphQL path is: ${process.env.NEXT_PUBLIC_ORIGIN}${process.env.NEXT_PUBLIC_GRAPHQL_URL}`
+  );
   const _apolloClient = apolloClient ? apolloClient : createApolloClient();
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state

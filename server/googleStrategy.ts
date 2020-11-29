@@ -47,7 +47,7 @@ passport.use(
         variables,
       });
 
-      console.log('apollo result', payload, apolloClient.cache.extract());
+      console.log('apollo result', payload.data.authenticate);
 
       cb(null, profile);
     }
