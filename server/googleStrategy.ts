@@ -5,6 +5,7 @@ import { initializeNeo4j } from './neo4j';
 export { default as passport } from 'passport';
 import Cors from 'cors';
 import { Request, RequestHandler, Response } from 'express';
+import { useAuthenticateQuery } from 'generated/graphql';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const allowedOrigins = JSON.parse(process.env.NEXT_PUBLIC_ALLOWED_ORIGINS!);
@@ -38,28 +39,17 @@ passport.use(
         email: profile.emails[0].value,
         fieldName: 'googleId',
       };
-      const driver = initializeNeo4j();
-      const session = driver.session();
 
-      const findUser = `
-        MATCH (user: User {googleId: "${variables.id}"})
-        RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user
-      `;
-      const createUser = `
-        CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), googleId: "${variables.id}", displayName: "${variables.displayName}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), email: ["${variables.email}"]})
-        RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user
-      `;
-      let result;
-      let node;
-      try {
-        result = await session.run(findUser);
-      } catch (error) {
-        result = await session.run(createUser);
-      } finally {
-        const singleRecord = result.records[0];
-        node = singleRecord.get(0);
-        cb(null, node);
-        session.close();
+      const { data, error } = useAuthenticateQuery(variables);
+
+      if (error) {
+        console.log(error);
+        cb(error, null);
+      }
+
+      if (data) {
+        console.log(data);
+        cb(null, data);
       }
     }
   )
