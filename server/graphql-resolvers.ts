@@ -75,8 +75,10 @@ const authFunctions = {
     try {
       user = await runQuery(findUser, context, resolveInfo, false);
     } catch (error) {
+      console.log('authenticate error', error);
       user = await runQuery(createUser, context, resolveInfo, false);
     } finally {
+      console.log(user);
       sendRefreshToken(context.res, createRefreshToken(user));
       return {
         accessToken: createAccessToken(user),
