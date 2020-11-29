@@ -1,14 +1,16 @@
 import passport from 'passport';
 import cookieSession from 'cookie-session';
 import redirect from 'micro-redirect';
-import { initializeNeo4j } from './neo4j';
 export { default as passport } from 'passport';
 import Cors from 'cors';
 import { Request, RequestHandler, Response } from 'express';
-import { useAuthenticateQuery } from 'generated/graphql';
+import { initializeApollo } from 'lib/apolloClient';
+import { AuthenticateDocument } from 'generated/graphql';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const allowedOrigins = JSON.parse(process.env.NEXT_PUBLIC_ALLOWED_ORIGINS!);
+
+const apolloClient = initializeApollo();
 
 passport.serializeUser((user, done) => {
   return done(null, user);
@@ -40,17 +42,14 @@ passport.use(
         fieldName: 'googleId',
       };
 
-      const { data, error } = useAuthenticateQuery(variables);
+      const payload = await apolloClient.query({
+        query: AuthenticateDocument,
+        variables,
+      });
 
-      if (error) {
-        console.log(error);
-        cb(error, null);
-      }
+      console.log('apollo result', payload, apolloClient.cache.extract());
 
-      if (data) {
-        console.log(data);
-        cb(null, data);
-      }
+      cb(null, profile);
     }
   )
 );
