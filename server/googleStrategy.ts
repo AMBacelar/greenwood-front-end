@@ -58,6 +58,10 @@ passport.use(
       } finally {
         const singleRecord = result.records[0];
         node = singleRecord.get(0);
+        console.log(
+          'this is the user object that should get serialized:',
+          node
+        );
         cb(null, node);
         session.close();
       }
