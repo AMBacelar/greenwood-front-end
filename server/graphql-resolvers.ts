@@ -136,6 +136,8 @@ export const resolvers = {
     ) => {
       const token = context.req.cookies['sessionCookie'];
 
+      console.log(token);
+
       const emptyUser = {
         displayName: '',
         userId: '',
@@ -154,7 +156,9 @@ export const resolvers = {
       let user;
       try {
         user = await runQuery(findUser, context, resolveInfo, false);
+        console.log(user);
       } catch (error) {
+        console.log(error);
         if (!user) {
           return { ok: false, accessToken: '', user: emptyUser };
         }
