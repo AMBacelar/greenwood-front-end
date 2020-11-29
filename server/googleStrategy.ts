@@ -104,7 +104,7 @@ const cSession = initMiddleware(
     signed: true,
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
     secret: process.env.COOKIE_SESSION_KEY!,
-    secure: process.env.IS_LOCAL ? false : true,
+    secure: false,
   })
 );
 
