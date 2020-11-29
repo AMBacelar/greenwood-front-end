@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout} from '../components/layout/Layout';
+import { Layout } from '../components/layout/Layout';
 import { NextPage, GetServerSideProps } from 'next';
 
 const Page: NextPage<any, any> = () => {
@@ -9,6 +9,7 @@ const Page: NextPage<any, any> = () => {
       description={'Black Owned Businesses all in one palce'}
     >
       <div style={{ marginBottom: 200 }}>a.</div>
+      <p>I love it here!</p>
       <a href={`/api/auth/google`}>click me!</a>
     </Layout>
   );
