@@ -7,6 +7,7 @@ export const sendRefreshToken = (res: Response, token: string) => {
     serialize('grnwood-network-refresh', token, {
       httpOnly: true,
       sameSite: 'none',
+      secure: true,
     })
   );
 };
