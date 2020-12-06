@@ -1503,6 +1503,169 @@ export type ContentMetaArgs = {
   filter?: Maybe<_ContentMetaFilter>;
 };
 
+export type _ArticleCategoryInput = {
+  key: Scalars['String'];
+};
+
+export enum _ArticleCategoryOrdering {
+  KeyAsc = 'key_asc',
+  KeyDesc = 'key_desc',
+  ValueAsc = 'value_asc',
+  ValueDesc = 'value_desc',
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc'
+}
+
+export type _ArticleCategoryFilter = {
+  AND?: Maybe<Array<_ArticleCategoryFilter>>;
+  OR?: Maybe<Array<_ArticleCategoryFilter>>;
+  key?: Maybe<Scalars['String']>;
+  key_not?: Maybe<Scalars['String']>;
+  key_in?: Maybe<Array<Scalars['String']>>;
+  key_not_in?: Maybe<Array<Scalars['String']>>;
+  key_contains?: Maybe<Scalars['String']>;
+  key_not_contains?: Maybe<Scalars['String']>;
+  key_starts_with?: Maybe<Scalars['String']>;
+  key_not_starts_with?: Maybe<Scalars['String']>;
+  key_ends_with?: Maybe<Scalars['String']>;
+  key_not_ends_with?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  value_not?: Maybe<Scalars['String']>;
+  value_in?: Maybe<Array<Scalars['String']>>;
+  value_not_in?: Maybe<Array<Scalars['String']>>;
+  value_contains?: Maybe<Scalars['String']>;
+  value_not_contains?: Maybe<Scalars['String']>;
+  value_starts_with?: Maybe<Scalars['String']>;
+  value_not_starts_with?: Maybe<Scalars['String']>;
+  value_ends_with?: Maybe<Scalars['String']>;
+  value_not_ends_with?: Maybe<Scalars['String']>;
+};
+
+export type ArticleCategory = {
+  __typename?: 'ArticleCategory';
+  key: Scalars['String'];
+  value: Scalars['String'];
+  parentCategory?: Maybe<ArticleCategory>;
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+};
+
+
+export type ArticleCategoryParentCategoryArgs = {
+  filter?: Maybe<_ArticleCategoryFilter>;
+};
+
+export type _ArticleInput = {
+  articleId: Scalars['ID'];
+};
+
+export enum _ArticleOrdering {
+  BodyAsc = 'body_asc',
+  BodyDesc = 'body_desc',
+  DisplayImageAsc = 'displayImage_asc',
+  DisplayImageDesc = 'displayImage_desc',
+  DateCreatedAsc = 'dateCreated_asc',
+  DateCreatedDesc = 'dateCreated_desc',
+  ArticleIdAsc = 'articleId_asc',
+  ArticleIdDesc = 'articleId_desc',
+  TitleAsc = 'title_asc',
+  TitleDesc = 'title_desc',
+  UrlAsc = 'url_asc',
+  UrlDesc = 'url_desc',
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc'
+}
+
+export type _ArticleFilter = {
+  AND?: Maybe<Array<_ArticleFilter>>;
+  OR?: Maybe<Array<_ArticleFilter>>;
+  body?: Maybe<Scalars['String']>;
+  body_not?: Maybe<Scalars['String']>;
+  body_in?: Maybe<Array<Scalars['String']>>;
+  body_not_in?: Maybe<Array<Scalars['String']>>;
+  body_contains?: Maybe<Scalars['String']>;
+  body_not_contains?: Maybe<Scalars['String']>;
+  body_starts_with?: Maybe<Scalars['String']>;
+  body_not_starts_with?: Maybe<Scalars['String']>;
+  body_ends_with?: Maybe<Scalars['String']>;
+  body_not_ends_with?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayImage_not?: Maybe<Scalars['String']>;
+  displayImage_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_contains?: Maybe<Scalars['String']>;
+  displayImage_not_contains?: Maybe<Scalars['String']>;
+  displayImage_starts_with?: Maybe<Scalars['String']>;
+  displayImage_not_starts_with?: Maybe<Scalars['String']>;
+  displayImage_ends_with?: Maybe<Scalars['String']>;
+  displayImage_not_ends_with?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  dateCreated_not?: Maybe<Scalars['Float']>;
+  dateCreated_in?: Maybe<Array<Scalars['Float']>>;
+  dateCreated_not_in?: Maybe<Array<Scalars['Float']>>;
+  dateCreated_lt?: Maybe<Scalars['Float']>;
+  dateCreated_lte?: Maybe<Scalars['Float']>;
+  dateCreated_gt?: Maybe<Scalars['Float']>;
+  dateCreated_gte?: Maybe<Scalars['Float']>;
+  articleId?: Maybe<Scalars['ID']>;
+  articleId_not?: Maybe<Scalars['ID']>;
+  articleId_in?: Maybe<Array<Scalars['ID']>>;
+  articleId_not_in?: Maybe<Array<Scalars['ID']>>;
+  articleId_contains?: Maybe<Scalars['ID']>;
+  articleId_not_contains?: Maybe<Scalars['ID']>;
+  articleId_starts_with?: Maybe<Scalars['ID']>;
+  articleId_not_starts_with?: Maybe<Scalars['ID']>;
+  articleId_ends_with?: Maybe<Scalars['ID']>;
+  articleId_not_ends_with?: Maybe<Scalars['ID']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Scalars['String']>>;
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  title_starts_with?: Maybe<Scalars['String']>;
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  title_ends_with?: Maybe<Scalars['String']>;
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  url_not?: Maybe<Scalars['String']>;
+  url_in?: Maybe<Array<Scalars['String']>>;
+  url_not_in?: Maybe<Array<Scalars['String']>>;
+  url_contains?: Maybe<Scalars['String']>;
+  url_not_contains?: Maybe<Scalars['String']>;
+  url_starts_with?: Maybe<Scalars['String']>;
+  url_not_starts_with?: Maybe<Scalars['String']>;
+  url_ends_with?: Maybe<Scalars['String']>;
+  url_not_ends_with?: Maybe<Scalars['String']>;
+};
+
+export type Article = {
+  __typename?: 'Article';
+  author: User;
+  body: Scalars['String'];
+  displayImage?: Maybe<Scalars['String']>;
+  categories?: Maybe<Array<Maybe<ArticleCategory>>>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  articleId: Scalars['ID'];
+  title: Scalars['String'];
+  url: Scalars['String'];
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+};
+
+
+export type ArticleAuthorArgs = {
+  filter?: Maybe<_UserFilter>;
+};
+
+
+export type ArticleCategoriesArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ArticleCategoryOrdering>>>;
+  filter?: Maybe<_ArticleCategoryFilter>;
+};
+
 export type ContentMetaReference = Business | User;
 
 export type _AddContentMetaContentPayload = {
@@ -2830,6 +2993,22 @@ export type Mutation = {
   DeleteContent?: Maybe<Content>;
   /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Content node. */
   MergeContent?: Maybe<Content>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a ArticleCategory node. */
+  CreateArticleCategory?: Maybe<ArticleCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a ArticleCategory node. */
+  UpdateArticleCategory?: Maybe<ArticleCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a ArticleCategory node. */
+  DeleteArticleCategory?: Maybe<ArticleCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a ArticleCategory node. */
+  MergeArticleCategory?: Maybe<ArticleCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Article node. */
+  CreateArticle?: Maybe<Article>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Article node. */
+  UpdateArticle?: Maybe<Article>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Article node. */
+  DeleteArticle?: Maybe<Article>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Article node. */
+  MergeArticle?: Maybe<Article>;
   /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_META relationship. */
   AddContentMetaContent?: Maybe<_AddContentMetaContentPayload>;
   /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_META relationship. */
@@ -3601,6 +3780,64 @@ export type MutationMergeContentArgs = {
 };
 
 
+export type MutationCreateArticleCategoryArgs = {
+  key: Scalars['String'];
+  value: Scalars['String'];
+};
+
+
+export type MutationUpdateArticleCategoryArgs = {
+  key: Scalars['String'];
+  value?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationDeleteArticleCategoryArgs = {
+  key: Scalars['String'];
+};
+
+
+export type MutationMergeArticleCategoryArgs = {
+  key: Scalars['String'];
+  value?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationCreateArticleArgs = {
+  body: Scalars['String'];
+  displayImage?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  articleId?: Maybe<Scalars['ID']>;
+  title: Scalars['String'];
+  url: Scalars['String'];
+};
+
+
+export type MutationUpdateArticleArgs = {
+  body?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  articleId: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationDeleteArticleArgs = {
+  articleId: Scalars['ID'];
+};
+
+
+export type MutationMergeArticleArgs = {
+  body?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  articleId: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
 export type MutationAddContentMetaContentArgs = {
   from: _ContentInput;
   to: _ContentMetaInput;
@@ -4025,6 +4262,10 @@ export type Query = {
   Series?: Maybe<Array<Maybe<Series>>>;
   /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Content type nodes. */
   Content?: Maybe<Array<Maybe<Content>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for ArticleCategory type nodes. */
+  ArticleCategory?: Maybe<Array<Maybe<ArticleCategory>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Article type nodes. */
+  Article?: Maybe<Array<Maybe<Article>>>;
   /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for ContentMetaReference type nodes. */
   ContentMetaReference?: Maybe<Array<Maybe<ContentMetaReference>>>;
   /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for ContentMeta type nodes. */
@@ -4182,6 +4423,32 @@ export type QueryContentArgs = {
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_ContentOrdering>>>;
   filter?: Maybe<_ContentFilter>;
+};
+
+
+export type QueryArticleCategoryArgs = {
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  _id?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ArticleCategoryOrdering>>>;
+  filter?: Maybe<_ArticleCategoryFilter>;
+};
+
+
+export type QueryArticleArgs = {
+  body?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  articleId?: Maybe<Scalars['ID']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  _id?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ArticleOrdering>>>;
+  filter?: Maybe<_ArticleFilter>;
 };
 
 

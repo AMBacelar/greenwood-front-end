@@ -10,12 +10,21 @@ import styles from './Layout.scss';
 import Footer from './Footer';
 import imageUrl from 'utils/imageUrl';
 import { useGetTokensQuery } from 'generated/graphql';
+import classNames from 'classnames'
 
 export interface Props {
   title?: string;
   description?: string;
   children?: React.ReactNode;
   image?: string;
+  isHomePage?: boolean
+}
+
+const HeaderBar = (props: Props) => {
+  if (props.isHomePage) {
+  return <Navbar sticky='top'>{props.children}</Navbar>
+  }
+  return <Navbar>{props.children}</Navbar>
 }
 
 export const Layout = (props: Props) => {
@@ -70,8 +79,9 @@ export const Layout = (props: Props) => {
         />
       </Head>
       <div className={styles.base}>
+        <div className={classNames(!props.isHomePage && styles.banner)}>
         <header>
-          <Navbar fixed="top">
+          <HeaderBar>
             <Container>
               <div className={styles.headerStyles}>
                 <Link passHref href="/">
@@ -111,8 +121,9 @@ export const Layout = (props: Props) => {
                 </Nav>
               </div>
             </Container>
-          </Navbar>
+          </HeaderBar>
         </header>
+        </div>
         {props.children}
         <Footer />
       </div>

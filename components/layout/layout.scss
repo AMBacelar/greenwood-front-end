@@ -1,6 +1,15 @@
 .base {
   font-family: 'Raleway', sans-serif;
 }
+.banner {
+  background-color: rgb(106, 139, 117);
+  height: 200px;
+}
+.banner__homepage {
+  position: sticky;
+  top: 0;
+}
+
 .nav-right {
   float: right;
   backdrop-filter: blur(10px);

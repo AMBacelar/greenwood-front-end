@@ -107,6 +107,23 @@ type Content {
   meta: [ContentMeta]! @relation(name: "HAS_META", direction: "OUT")
 }
 
+type ArticleCategory {
+  key: String!
+  value: String!
+  parentCategory: ArticleCategory
+}
+
+type Article {
+  author: User!
+  body: String!
+  displayImage: String
+  categories: [ArticleCategory]
+  dateCreated: Float
+  articleId: ID!
+  title: String!
+  url: String!
+}
+
 union ContentMetaReference = Business | User
 
 type ContentMeta {
