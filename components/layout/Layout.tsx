@@ -10,12 +10,21 @@ import styles from './Layout.scss';
 import Footer from './Footer';
 import imageUrl from 'utils/imageUrl';
 import { useGetTokensQuery } from 'generated/graphql';
+import classNames from 'classnames'
 
 export interface Props {
   title?: string;
   description?: string;
   children?: React.ReactNode;
   image?: string;
+  isHomePage?: boolean
+}
+
+const HeaderBar = (props: Props) => {
+  if (props.isHomePage) {
+    return <Navbar sticky='top'>{props.children}</Navbar>
+  }
+  return <Navbar>{props.children}</Navbar>
 }
 
 export const Layout = (props: Props) => {
@@ -70,49 +79,51 @@ export const Layout = (props: Props) => {
         />
       </Head>
       <div className={styles.base}>
-        <header>
-          <Navbar fixed="top">
-            <Container>
-              <div className={styles.headerStyles}>
-                <Link passHref href="/">
-                  <Navbar.Brand as={'a'}>
-                    <img
-                      alt="Greenwood branding"
-                      className={styles.logo}
-                      src={imageUrl('/logo_white.png')}
-                    />
-                  </Navbar.Brand>
-                </Link>
-                <Nav className={styles['nav-right']}>
-                  <Nav.Item>
-                    <Link passHref href="/">
-                      <Nav.Link>The Catalogue</Nav.Link>
-                    </Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Link passHref href="/a">
-                      <Nav.Link>Blog</Nav.Link>
-                    </Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Link passHref href="/">
-                      <Nav.Link>The App</Nav.Link>
-                    </Link>
-                  </Nav.Item>
-                  {data?.getTokens.ok ? <Nav.Item>
-                    <Link passHref href="/dashboard">
-                      <Nav.Link>Profile</Nav.Link>
-                    </Link>
-                  </Nav.Item> : <Nav.Item>
-                      <Link passHref href="/api/auth/google">
-                        <Nav.Link>Sign In</Nav.Link>
+        <div className={classNames(!props.isHomePage && styles.banner)}>
+          <header>
+            <HeaderBar>
+              <Container>
+                <div className={styles.headerStyles}>
+                  <Link passHref href="/">
+                    <Navbar.Brand as={'a'}>
+                      <img
+                        alt="Greenwood branding"
+                        className={styles.logo}
+                        src={imageUrl('/logo_white.png')}
+                      />
+                    </Navbar.Brand>
+                  </Link>
+                  <Nav className={styles['nav-right']}>
+                    <Nav.Item>
+                      <Link passHref href="/">
+                        <Nav.Link>The Catalogue</Nav.Link>
                       </Link>
-                    </Nav.Item>}
-                </Nav>
-              </div>
-            </Container>
-          </Navbar>
-        </header>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Link passHref href="/a">
+                        <Nav.Link>Blog</Nav.Link>
+                      </Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Link passHref href="/">
+                        <Nav.Link>The App</Nav.Link>
+                      </Link>
+                    </Nav.Item>
+                    {data?.getTokens.ok ? <Nav.Item>
+                      <Link passHref href="/dashboard">
+                        <Nav.Link>Profile</Nav.Link>
+                      </Link>
+                    </Nav.Item> : <Nav.Item>
+                        <Link passHref href="/api/auth/google">
+                          <Nav.Link>Sign In</Nav.Link>
+                        </Link>
+                      </Nav.Item>}
+                  </Nav>
+                </div>
+              </Container>
+            </HeaderBar>
+          </header>
+        </div>
         {props.children}
         <Footer />
       </div>
