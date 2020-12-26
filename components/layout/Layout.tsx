@@ -100,7 +100,7 @@ export const Layout = (props: Props) => {
                       </Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Link passHref href="/a">
+                      <Link passHref href="/article">
                         <Nav.Link>Blog</Nav.Link>
                       </Link>
                     </Nav.Item>

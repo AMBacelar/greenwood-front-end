@@ -1,0 +1,15 @@
+<svg id="ic_keyboard_arrow_right_48px" xmlns="http://www.w3.org/2000/svg" width="16" height="12.415" viewBox="0 0 16 12.415">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #04151f;
+      }
+
+      .cls-1 {
+        opacity: 0.26;
+      }
+    </style>
+  </defs>
+  <path id="Path_13" data-name="Path 13" class="cls-1" d="M17.17,22.7l4.744-4.744L17.17,13.214l1.464-1.464,6.208,6.208-6.208,6.208Z" transform="translate(-17.17 -11.75)"/>
+  <path id="Path_14" data-name="Path 14" class="cls-2" d="M17.17,22.7l4.744-4.744L17.17,13.214l1.464-1.464,6.208,6.208-6.208,6.208Z" transform="translate(-8.842 -11.75)"/>
+</svg>

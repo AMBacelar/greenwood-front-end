@@ -56,7 +56,7 @@ export const Footer = () => (
     <div className={styles.baseBar}>
       <Container>
         <Row>
-          <Col sm={6}>&copy; 2020 AMBacelar. All Rights reserved</Col>
+          <Col sm={6}>&copy; 2020 Greenwood Network. All Rights reserved</Col>
           <Col sm={6} className={styles.meta}>
             <a>Privacy Policy</a>
             <a>Terms and Conditions</a>

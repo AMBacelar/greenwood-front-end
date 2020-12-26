@@ -36,7 +36,7 @@ const latestBusinesses = [
 const featuredBlog = {
   bgImage: '/blogPostImage.jpeg',
   dateCreated: 12345,
-  url: '#',
+  url: '/article/1',
   title: 'Fresh Stock on Aisle 5',
   blogText: `How many black owned supermarkets have you seen at the end of your road? Not many? Well say hello to Shade's Hypermarket! A brand new supermarket chain bringing you fresh delicious groceries for a family affordable price. \nCEO and founder, Shade Okumaya has spent the last 3 years researching, planning and developing her new business. "There were a lot of sleepless nights. I had to build everything from scratch. I've always taken a keen interest in the food industry market, and realised there weren't many black owned markets in my city. Seeing this gap in the market gave be the push to pursue". \nShade's Hypermarket is based in Tottenham Hale, right in the heart of the borough. With a fresh....`,
 };
