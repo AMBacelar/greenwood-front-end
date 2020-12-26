@@ -20,7 +20,7 @@ export default ({ businesses }: any) => {
                   organisations.
                 </p>
               </div>
-              <button className={styles.cta} href="#">
+              <button className={styles.cta}>
                 CHECK IT OUT
               </button>
             </div>
