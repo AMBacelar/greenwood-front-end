@@ -1,5 +1,9 @@
 .base {
   font-family: 'Raleway', sans-serif;
+  
+  navbar{
+    top: 0;
+  }
 }
 .banner {
   background-color: rgb(106, 139, 117);
@@ -16,9 +20,25 @@
   padding: 10px;
 }
 .logo {
-  width: 200px;
+  width: 85px;
 }
 .headerStyles {
   width: 100%;
   align-items: start;
+}
+
+.Navbar {
+  background-color: rgba($color: #ffffff, $alpha: 0.9);
+  box-shadow: 10px 10px 30px 1px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+@media screen and (max-width: 768px){
+  .Navbar {
+    background-color: #ffffff;
+    height: 68px;
+  }
+  .logo {
+    width: 85px;
+  }
 }

@@ -6,8 +6,8 @@ const Page: NextPage<any, any> = () => {
   return (
     <Layout
       title={'The Greenwood Network'}
-      description={'Black Owned Businesses all in one palce'}
-    >
+      description={'Black Owned Businesses all in one place'}
+    ><div>HELLOO</div>
         {/** Area to wrtie code */}
     </Layout>
   );

@@ -96,7 +96,7 @@ const HomePage: NextPage<Props, any> = () => {
   return (
     <Layout
       title={'The Greenwood Network'}
-      description={'Black Owned Businesses all in one palce'}
+      description={'Black Owned Businesses all in one place'}
       image={imageUrl('/logo_dark.png')}
       isHomePage
     >

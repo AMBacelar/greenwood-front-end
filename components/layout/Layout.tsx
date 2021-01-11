@@ -17,12 +17,13 @@ export interface Props {
   description?: string;
   children?: React.ReactNode;
   image?: string;
-  isHomePage?: boolean
+  isHomePage?: boolean;
 }
 
-const HeaderBar = (props: Props) => {
+const HeaderBar = (props: Props) => {console.log(props.isHomePage);
   if (props.isHomePage) {
-    return <Navbar sticky='top'>{props.children}</Navbar>
+    return <Navbar fixed ='top'>{props.children}</Navbar>
+    
   }
   return <Navbar>{props.children}</Navbar>
 }
@@ -79,9 +80,9 @@ export const Layout = (props: Props) => {
         />
       </Head>
       <div className={styles.base}>
-        <div className={classNames(!props.isHomePage && styles.banner)}>
+        <div>
           <header>
-            <HeaderBar>
+            <Navbar className={styles.Navbar}>
               <Container>
                 <div className={styles.headerStyles}>
                   <Link passHref href="/">
@@ -89,7 +90,7 @@ export const Layout = (props: Props) => {
                       <img
                         alt="Greenwood branding"
                         className={styles.logo}
-                        src={imageUrl('/logo_white.png')}
+                        src="/static/images/logo_navbar.svg"
                       />
                     </Navbar.Brand>
                   </Link>
@@ -109,6 +110,11 @@ export const Layout = (props: Props) => {
                         <Nav.Link>The App</Nav.Link>
                       </Link>
                     </Nav.Item>
+                    <Nav.Item>
+                      <Link passHref href="/aboutus">
+                        <Nav.Link>About Us</Nav.Link>
+                      </Link>
+                    </Nav.Item>
                     {data?.getTokens.ok ? <Nav.Item>
                       <Link passHref href="/dashboard">
                         <Nav.Link>Profile</Nav.Link>
@@ -121,7 +127,7 @@ export const Layout = (props: Props) => {
                   </Nav>
                 </div>
               </Container>
-            </HeaderBar>
+            </Navbar>
           </header>
         </div>
         {props.children}

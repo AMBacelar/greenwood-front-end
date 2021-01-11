@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Link from 'next/link';
 
 import styles from './Footer.scss';
 import imageUrl from 'utils/imageUrl';
@@ -27,10 +28,10 @@ export const Footer = () => (
           <Col md={2}>
             <h4 className={styles.header}>Quick Links</h4>
             <ul className={styles.footerList}>
-              <li>Home</li>
-              <li>About Us</li>
+              <li><Link passHref href="/">Home</Link></li>
+              <li><Link passHref href="/aboutus">About Us</Link></li>
               <li>The Catalogue</li>
-              <li>Blogs</li>
+              <li><Link passHref href="/article">Blogs</Link></li>
               <li>The App</li>
             </ul>
           </Col>
@@ -48,7 +49,7 @@ export const Footer = () => (
               Feel free to get in touch with us via phone or send us a message
             </p>
             <p className={styles.phoneNumber}>+4479 000 0000</p>
-            <p className={styles.email}>info@thegreenwoodapp.com</p>
+            <p className={styles.email}><a href="mailto:info@thegreenwoodapp.com">info@thegreenwoodapp.com</a></p>
           </Col>
         </Row>
       </Container>
