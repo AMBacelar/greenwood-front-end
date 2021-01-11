@@ -8,7 +8,7 @@ const Page: NextPage<any, any> = () => {
   return (
     <Layout
       title={'The Greenwood Network'}
-      description={'Black Owned Businesses all in one palce'}
+      description={'Black Owned Businesses all in one place'}
     >
       <BasicPageLayout>
       <About/>

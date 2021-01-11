@@ -3,6 +3,7 @@ import {Layout} from '../../components/layout/Layout';
 import { NextPage, GetServerSideProps } from 'next';
 import { Article } from 'generated/graphql';
 import { ArticleCard } from 'components/article/Article';
+import MailingListBanner from 'components/mailingListBanner/MailingListBanner';
 
 const atricles = [
   {
@@ -40,9 +41,10 @@ const Page: NextPage<Props, any> = (props) => {
   return (
     <Layout
       title={'The Greenwood Network'}
-      description={'Black Owned Businesses all in one palce'}
+      description={'Black Owned Businesses all in one place'}
     >
       <ArticleCard article={props.article}/>
+      <MailingListBanner/>
     </Layout>
   );
 };

@@ -15,7 +15,8 @@ export default ({}: Props) => {
       <Container>
         <Row>
           <Col>
-            <h2 className={styles.header}>Subscribe to our mailing list</h2>
+            <h2 className={styles.header}>SUBSCRIBE TO OUR MAILING LIST</h2>
+            <p>We'll keep you up to date with the up and coming businesses, blogs, reviews and interviews of business owners</p>
             <InputGroup className={styles.mailingListInput}>
               <FormControl
                 placeholder="Enter e-mail address..."
