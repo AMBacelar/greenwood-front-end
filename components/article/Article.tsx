@@ -17,7 +17,7 @@ export const ArticleCard = ({ article }: Props) => {
           <div className={styles.card}>
             <div className={styles.content}>
               <h2>{article.title}</h2>
-              <div>{article.body}</div>
+              <div className={styles.content}>{article.body}</div>
             </div>
             </div>
           </Col>

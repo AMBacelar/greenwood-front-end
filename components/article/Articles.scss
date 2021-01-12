@@ -1,0 +1,85 @@
+.header {
+  background-color: #618d73;
+  background-position: top;
+  background-size: cover;
+  height: 250px;
+}
+.pageInfo {
+  padding: 30px 400px;
+  text-align: center;
+}
+.container {
+  max-width: fit-content;
+  margin: -100px auto 0;
+}
+.card {
+  background-color: #E2F0E6;
+  padding: 30px;
+  box-shadow: 5px 10px 10px #888888;
+  max-width: 492px;
+  min-width: 350px;
+}
+h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.title {
+  font-size: 16px;
+  text-align: center;
+}
+.content {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 14px;
+  text-align: justify;
+}
+.blog {
+  font-size: 12px;
+  display: inline-block;
+}
+.blogData {
+  font-size: 12px;
+  float: right;
+}
+.cta {
+  background-color: #618d73;
+  border: none;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  color: rgb(106, 139, 117);
+  font-size: 0.8rem;
+  padding: 14px 22px;
+  margin-left: 14px;
+  &:hover {
+    background-color: rgb(79, 104, 87);
+  }
+  &:focus {
+    outline: none;
+  }
+  &:after {
+    content: url(/static/images/ic_keyboard_arrow_right_24px.svg);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    margin-right: -50%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    margin-bottom: 120px;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  .content {
+    font-size: 12px;
+  }
+  .pageInfo {
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 768px) {
+}

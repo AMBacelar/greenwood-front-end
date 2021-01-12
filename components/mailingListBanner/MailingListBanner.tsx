@@ -7,9 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 import styles from './MailingListBanner.scss';
 
-interface Props {}
-
-export default ({}: Props) => {
+export const MailingListBanner = () => {
   return (
     <div className={styles.wrapper}>
       <Container>
@@ -32,3 +30,5 @@ export default ({}: Props) => {
     </div>
   );
 };
+
+export default MailingListBanner;

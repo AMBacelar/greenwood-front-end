@@ -94,7 +94,9 @@ export const Layout = (props: Props) => {
                       />
                     </Navbar.Brand>
                   </Link>
+                  <Navbar.Toggle aria-controls="responsive-navbar-nav" className={styles['nav-button']}/>
                   <Nav className={styles['nav-right']}>
+                    <div className={styles.navCollapsable}>
                     <Nav.Item>
                       <Link passHref href="/">
                         <Nav.Link>The Catalogue</Nav.Link>
@@ -115,6 +117,7 @@ export const Layout = (props: Props) => {
                         <Nav.Link>About Us</Nav.Link>
                       </Link>
                     </Nav.Item>
+                    </div>
                     {data?.getTokens.ok ? <Nav.Item>
                       <Link passHref href="/dashboard">
                         <Nav.Link>Profile</Nav.Link>

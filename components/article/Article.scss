@@ -1,20 +1,28 @@
-.wrapper {
-  
-}
 .header {
   background-color: #618D73;
   background-position: top;
   background-size: cover;
-  height: 400px;
+  height: 250px;
 }
 .card {
   background-color: white;
-  margin: -30px auto 0;
-  width: 1000px;
+  margin: -100px auto 0;
   padding: 30px;
   box-shadow: 5px 10px 10px #888888;
 }
 h2{
   text-transform: uppercase;
   font-weight: 800;
+}
+
+@media screen and (max-width: 1024px) {
+  h2{
+    font-size: 1.4rem;
+  }
+  .content{
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 768px) {
+
 }
