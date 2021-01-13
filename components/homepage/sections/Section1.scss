@@ -48,4 +48,13 @@
     margin-left: 8px;
   }
 }
- 
+@media screen and (max-width: 600px) {
+  .latest-businesses{
+    position: inherit;
+  }
+  .content {
+    h1 {
+      font-size: 1.2em;
+    }
+  }
+}

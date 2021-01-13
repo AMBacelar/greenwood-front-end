@@ -35,3 +35,31 @@
 img.blog-image {
   width: 475px;
 }
+
+@media screen and (max-width: 1024px) {
+  img.blog-image {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  img.blog-image {
+    width: 310px;
+  }
+  .blog-text-wrapper {
+    padding: 20px 20px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  img.blog-image {
+    display: none;
+  }
+  .blog-text-wrapper {
+    padding: 20px 20px;
+    font-size: 10px;
+  }
+  .content{
+    margin-top: 100px;
+  }
+}
