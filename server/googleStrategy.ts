@@ -46,7 +46,7 @@ passport.use(
         RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user
       `;
       const createUser = `
-        CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), googleId: "${variables.id}", displayName: "${variables.displayName}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), email: ["${variables.email}"]})
+        CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), googleId: "${variables.id}", displayName: "${variables.displayName}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), telephone: [], email: ["${variables.email}"]})
         RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user
       `;
       let result;
@@ -64,6 +64,7 @@ passport.use(
         if (result.records.length > 0) {
           // user created
           node = singleRecord.get(0);
+          console.log(node);
           cb(null, node);
           session.close();
         } else {

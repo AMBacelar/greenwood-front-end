@@ -6,7 +6,21 @@ import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
+const fetchHost = () => {
+  fetch(`${process.env.NEXT_PUBLIC_ORIGIN}/api/get_domain`)
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.log('error', error);
+      return { host: '' };
+    });
+};
+
+const host = fetchHost();
+
 function createApolloClient(initialState = {}) {
+  console.log('host is:', host);
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
     link: createHttpLink({

@@ -7,9 +7,7 @@ const driver = initializeNeo4j();
 
 const apolloServer = new ApolloServer({
   schema,
-  context: (ctx) => {
-    return { req: ctx.req, res: ctx.res, driver };
-  },
+  context: ({ req, res }) => ({ req, res, driver }),
 });
 
 export const config = {

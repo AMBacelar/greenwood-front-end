@@ -168,7 +168,19 @@ type RatingCount {
   count: Int!
 }
 
+input UserInput {
+  userId: ID
+  displayImage: String
+  forename: String
+  familyName: String
+  displayName: String!
+  googleId: String
+  about: String
+  contact: ContactInput
+}
+
 input BusinessInput {
+  businuessId: ID
   userId: ID!
   name: String!
   description: String
@@ -179,6 +191,7 @@ input BusinessInput {
 }
 
 input ContactInput {
+  contactId: ID
   address: [AddressInput]
   telephone: [String]!
   email: [String]!
@@ -186,6 +199,7 @@ input ContactInput {
 }
 
 input AddressInput {
+  addressId: ID
   name: String
   addressLine1: String!
   addressLine2: String
@@ -226,6 +240,7 @@ type Mutation {
       return r
       """
     )
+  updateUserProfile(userInput: UserInput): User
 }
 
 type LoginResponse {

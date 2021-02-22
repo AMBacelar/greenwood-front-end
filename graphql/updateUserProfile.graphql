@@ -1,17 +1,5 @@
-mutation UpdateUserProfile(
-  $id: ID!
-  $displayName: String!
-  $forename: String!
-  $familyName: String!
-  $about: String!
-) {
-  UpdateUser(
-    userId: $id
-    displayName: $displayName
-    forename: $forename
-    familyName: $familyName
-    about: $about
-  ) {
+mutation UpdateUserProfile($userInput: UserInput) {
+  updateUserProfile(userInput: $userInput) {
     userId
     displayName
     forename

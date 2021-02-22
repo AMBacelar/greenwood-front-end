@@ -61,11 +61,13 @@ const ProfileForm = (props: any) => {
 
   const [updateUserProfileMutation, { data, loading, error }] = useUpdateUserProfileMutation({
     variables: {
-      id: props.user.userId,
-      displayName: formik.values.displayName,
-      forename: formik.values.forename,
-      familyName: formik.values.familyName,
-      about: formik.values.about,
+      userInput: {
+        userId: props.user.userId,
+        displayName: formik.values.displayName,
+        forename: formik.values.forename,
+        familyName: formik.values.familyName,
+        about: formik.values.about,
+      }
     },
   });
 
@@ -76,8 +78,6 @@ const ProfileForm = (props: any) => {
   if (data) {
     console.log(data);
   }
-
-  console.log(props.user);
 
   return (
     <>
