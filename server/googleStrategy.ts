@@ -1,10 +1,13 @@
 import passport from 'passport';
 import cookieSession from 'cookie-session';
-import url from 'url';
 import redirect from 'micro-redirect';
 import { initializeNeo4j } from './neo4j';
 export { default as passport } from 'passport';
+import Cors from 'cors';
+import { Request, RequestHandler, Response } from 'express';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+const allowedOrigins = JSON.parse(process.env.NEXT_PUBLIC_ALLOWED_ORIGINS!);
 
 passport.serializeUser((user, done) => {
   return done(null, user);
@@ -18,7 +21,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `/api/auth/google_callback`,
+      callbackURL: process.env.GOOGLE_CLIENT_CALLBACK_URL,
       accessType: 'offline',
       userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
     },
@@ -43,49 +46,111 @@ passport.use(
         RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user
       `;
       const createUser = `
-        CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), googleId: "${variables.id}", displayName: "${variables.displayName}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), email: ["${variables.email}"]})
+        CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), googleId: "${variables.id}", displayName: "${variables.displayName}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), telephone: [], email: ["${variables.email}"]})
         RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user
       `;
       let result;
       let node;
-      try {
-        result = await session.run(findUser);
-      } catch (error) {
+      let singleRecord;
+
+      result = await session.run(findUser);
+      if (result.records.length > 0) {
+        // user found
+        singleRecord = result.records[0];
+        if (result.records.length > 0) {
+          // user created
+          node = singleRecord.get(0);
+          cb(null, node);
+          session.close();
+        } else {
+          // user not created
+          console.log('failed to create user');
+        }
+      } else {
+        // user not found
         result = await session.run(createUser);
-      } finally {
-        const singleRecord = result.records[0];
-        node = singleRecord.get(0);
-        cb(null, node);
-        session.close();
+        singleRecord = result.records[0];
+        if (result.records.length > 0) {
+          // user created
+          node = singleRecord.get(0);
+          cb(null, node);
+          session.close();
+        } else {
+          // user not created
+          console.log('failed to create user');
+        }
       }
     }
   )
 );
 
-export default (fn) => (req, res) => {
-  if (!res.redirect) {
+const initMiddleware = (middleware: RequestHandler) => (
+  req: Request,
+  res: Response
+) =>
+  new Promise((resolve, reject) => {
+    middleware(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+const cors = initMiddleware(
+  Cors({
+    origin: (origin, callback) => {
+      // allow requests with no origin
+      // (like mobile apps or curl requests)
+      if (!origin) {
+        callback(null, true);
+        return;
+      }
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
+        callback(new Error(msg), false);
+        return;
+      }
+      callback(null, true);
+      return;
+    },
+    credentials: true,
+  })
+);
+
+const cSession = initMiddleware(
+  cookieSession({
+    name: 'sessionCookie',
+    signed: true,
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    secret: process.env.COOKIE_SESSION_KEY!,
+    secure: false,
+  })
+);
+
+const passportInit = initMiddleware(passport.initialize());
+const passportSession = initMiddleware(passport.session());
+
+type MiddlewareResponse = Omit<Response, 'redirector'> & { redirector: any };
+
+export default (fn: Function) => async (
+  req: Request,
+  res: MiddlewareResponse
+) => {
+  if (!res.redirector) {
     // passport.js needs res.redirect:
     // https://github.com/jaredhanson/passport/blob/1c8ede/lib/middleware/authenticate.js#L261
     // Monkey-patch res.redirect to emulate express.js's res.redirect,
     // since it doesn't exist in micro. default redirect status is 302
     // as it is in express. https://expressjs.com/en/api.html#res.redirect
-    res.redirect = (location: string) => redirect(res, 302, location);
+
+    // nextJs indeed has its own res.redirect, but it is currently not behaving as one would expect.
+    res.redirector = (location: string) => redirect(res, 302, location);
   }
 
-  // Initialize Passport and restore authentication state, if any, from the
-  // session. This nesting of middleware handlers basically does what app.use(passport.initialize())
-  // does in express.
-  cookieSession({
-    name: 'sessionCookie',
-    signed: false,
-    domain: url.parse(req.url).host || '',
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-  })(req, res, () =>
-    passport.initialize()(req, res, () =>
-      passport.session()(req, res, () =>
-        // call wrapped api route as innermost handler
-        fn(req, res)
-      )
-    )
-  );
+  await cors(req, res);
+  await cSession(req, res);
+  await passportInit(req, res);
+  await passportSession(req, res);
+
+  fn(req, res);
 };

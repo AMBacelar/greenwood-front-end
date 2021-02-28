@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import { randomColor } from 'utils/randomColour';
 import { slugify } from 'utils/createSlug';
 import { createAccessToken, createRefreshToken } from './auth';
@@ -51,7 +49,7 @@ const runQuery = async (
 
   let result;
 
-  result = await session.writeTransaction((tx: any) => tx.run(query));
+  result = await session.run(query);
   result = result.records[0].get(0);
   session.close();
   return built ? result.properties : result;
@@ -59,7 +57,7 @@ const runQuery = async (
 
 const authFunctions = {
   authenticate: async (
-    _obj: any,
+    _root: any,
     args: any,
     context: any,
     resolveInfo: GraphQLResolveInfo
@@ -75,8 +73,10 @@ const authFunctions = {
     try {
       user = await runQuery(findUser, context, resolveInfo, false);
     } catch (error) {
+      console.log('authenticate error', error);
       user = await runQuery(createUser, context, resolveInfo, false);
     } finally {
+      console.log(user);
       sendRefreshToken(context.res, createRefreshToken(user));
       return {
         accessToken: createAccessToken(user),
@@ -86,21 +86,21 @@ const authFunctions = {
     }
   },
   refreshToken: async (
-    _obj: any,
+    _root: any,
     _args: any,
     context: any,
     resolveInfo: GraphQLResolveInfo
   ) => {
     const token = context.req.cookies['grnwood-network-refresh'];
     if (!token) {
-      return context.res.send({ ok: false, accessToken: '' });
+      return { ok: false, accessToken: '' };
     }
 
     let payload = null;
     try {
       payload = <any>verify(token, process.env.REFRESH_TOKEN_SECRET!);
     } catch (err) {
-      return context.res.send({ ok: false, accessToken: '' });
+      return { ok: false, accessToken: '' };
     }
 
     const findUser = `
@@ -112,11 +112,10 @@ const authFunctions = {
       user = await runQuery(findUser, context, resolveInfo, false);
     } catch (error) {
       if (!user) {
-        return context.res.send({ ok: false, accessToken: '' });
+        return { ok: false, accessToken: '' };
       }
-      console.log(error);
+      console.log('RefreshToken: find user error', error);
     } finally {
-      console.log('response:', user);
       sendRefreshToken(context.res, createRefreshToken(user));
       return {
         accessToken: createAccessToken(user),
@@ -130,15 +129,26 @@ export const resolvers = {
   Query: {
     ...authFunctions,
     getTokens: async (
-      _obj: any,
+      _root: any,
       _args: any,
       context: any,
       resolveInfo: GraphQLResolveInfo
     ) => {
       const token = context.req.cookies['sessionCookie'];
+
+      console.log('getTokens, 1:', token);
+
+      const emptyUser = {
+        displayName: '',
+        userId: '',
+        contact: {
+          email: [''],
+        },
+      };
       if (!token) {
-        return context.res.send({ ok: false, accessToken: '', user: {} });
+        return { ok: false, accessToken: '', user: emptyUser };
       }
+
       const findUser = `
       MATCH (user: User { userId: "${context.req.session.passport.user.userId}"})
       RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user`;
@@ -147,10 +157,10 @@ export const resolvers = {
       try {
         user = await runQuery(findUser, context, resolveInfo, false);
       } catch (error) {
+        console.log('GetTokens: find user error', error);
         if (!user) {
-          return context.res.send({ ok: false, accessToken: '', user: {} });
+          return { ok: false, accessToken: '', user: emptyUser };
         }
-        console.log(error);
       } finally {
         sendRefreshToken(context.res, createRefreshToken(user));
         return {
@@ -163,8 +173,29 @@ export const resolvers = {
   },
   Mutation: {
     ...authFunctions,
+    updateUserProfile: async (
+      _root: any,
+      args: any,
+      context: any,
+      resolveInfo: GraphQLResolveInfo
+    ) => {
+      const userId = context.req.session.passport
+        ? context.req.session.passport.user.userId
+        : args.userInput.userId;
+
+      const updateUser = `match (u: User {userId: "${userId}"})-[r]->(c:Contact {contactId: "${args.userInput.contact.contactId}"})
+      set u.forename = "${args.userInput.forename}"
+      set u.familyName = "${args.userInput.familyName}"
+      set u.displayName = "${args.userInput.displayName}"
+      set u.about = "${args.userInput.about}"
+      set c.telephone = ["${args.userInput.contact.telephone[0]}"]
+      set c.email = ["${args.userInput.contact.email[0]}"]
+      set c.socials = []
+      return u{ .*, contact: c{ .* }} as user`;
+      return await runQuery(updateUser, context, resolveInfo, false);
+    },
     userCreateBusiness: async (
-      _obj: any,
+      _root: any,
       args: any,
       context: any,
       resolveInfo: GraphQLResolveInfo

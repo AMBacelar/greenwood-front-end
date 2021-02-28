@@ -5,9 +5,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   passport.authenticate('google')(req, res, () => {
     const destination = req.session.redirect || '/';
     req.session.redirect = null;
-    res.redirect(destination);
+    res.redirector(destination);
   });
-  return { props: true };
+  return;
 };
 
 export default withPassport(handler);

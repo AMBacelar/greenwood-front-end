@@ -20,7 +20,7 @@ export interface Props {
 
 export const Layout = (props: Props) => {
   const { title, description, image } = props;
-  const hostname = process.env.ORIGIN;
+  const hostname = process.env.NEXT_PUBLIC_ORIGIN;
   const router = useRouter();
 
   const { data, loading, error } = useGetTokensQuery();
@@ -29,10 +29,10 @@ export const Layout = (props: Props) => {
     console.log('query is loading');
   }
   if (error) {
-    console.log('i messed up', error);
+    console.log('unauthorized:', error);
   }
   if (data) {
-    console.log(data);
+    console.log('Layout result is:', data);
   }
 
   return (
@@ -119,4 +119,3 @@ export const Layout = (props: Props) => {
     </div>
   );
 };
-
