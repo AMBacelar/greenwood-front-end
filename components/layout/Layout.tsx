@@ -39,10 +39,10 @@ export const Layout = (props: Props) => {
     console.log('query is loading');
   }
   if (error) {
-    console.log('i messed up', error);
+    console.log('unauthorized:', error);
   }
   if (data) {
-    console.log(data);
+    console.log('Layout result is:', data);
   }
 
   return (

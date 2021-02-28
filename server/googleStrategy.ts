@@ -46,20 +46,39 @@ passport.use(
         RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user
       `;
       const createUser = `
-        CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), googleId: "${variables.id}", displayName: "${variables.displayName}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), email: ["${variables.email}"]})
+        CREATE (user:User:Contactable:ContentMetaReference { userId: apoc.create.uuid(), googleId: "${variables.id}", displayName: "${variables.displayName}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid(), telephone: [], email: ["${variables.email}"]})
         RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user
       `;
       let result;
       let node;
-      try {
-        result = await session.run(findUser);
-      } catch (error) {
+      let singleRecord;
+
+      result = await session.run(findUser);
+      if (result.records.length > 0) {
+        // user found
+        singleRecord = result.records[0];
+        if (result.records.length > 0) {
+          // user created
+          node = singleRecord.get(0);
+          cb(null, node);
+          session.close();
+        } else {
+          // user not created
+          console.log('failed to create user');
+        }
+      } else {
+        // user not found
         result = await session.run(createUser);
-      } finally {
-        const singleRecord = result.records[0];
-        node = singleRecord.get(0);
-        cb(null, node);
-        session.close();
+        singleRecord = result.records[0];
+        if (result.records.length > 0) {
+          // user created
+          node = singleRecord.get(0);
+          cb(null, node);
+          session.close();
+        } else {
+          // user not created
+          console.log('failed to create user');
+        }
       }
     }
   )

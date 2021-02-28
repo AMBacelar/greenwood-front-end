@@ -59,7 +59,7 @@ const runQuery = async (
 
 const authFunctions = {
   authenticate: async (
-    _obj: any,
+    _root: any,
     args: any,
     context: any,
     resolveInfo: GraphQLResolveInfo
@@ -88,7 +88,7 @@ const authFunctions = {
     }
   },
   refreshToken: async (
-    _obj: any,
+    _root: any,
     _args: any,
     context: any,
     resolveInfo: GraphQLResolveInfo
@@ -131,7 +131,7 @@ export const resolvers = {
   Query: {
     ...authFunctions,
     getTokens: async (
-      _obj: any,
+      _root: any,
       _args: any,
       context: any,
       resolveInfo: GraphQLResolveInfo
@@ -157,9 +157,7 @@ export const resolvers = {
 
       let user;
       try {
-        console.log('we gonna try real quick');
         user = await runQuery(findUser, context, resolveInfo, false);
-        console.log('woop!', user);
       } catch (error) {
         console.log('GetTokens: find user error', error);
         if (!user) {
@@ -177,8 +175,17 @@ export const resolvers = {
   },
   Mutation: {
     ...authFunctions,
+    updateUserProfile: async (
+      _root: any,
+      args: any,
+      context: any,
+      _resolveInfo: GraphQLResolveInfo
+    ) => {
+      console.log('get user Id:', context.req.session.passport.user.userId);
+      console.log('arguments', args.userInput);
+    },
     userCreateBusiness: async (
-      _obj: any,
+      _root: any,
       args: any,
       context: any,
       resolveInfo: GraphQLResolveInfo

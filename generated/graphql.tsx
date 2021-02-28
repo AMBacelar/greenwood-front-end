@@ -2474,7 +2474,19 @@ export type RatingCount = {
   count: Scalars['Int'];
 };
 
+export type UserInput = {
+  userId?: Maybe<Scalars['ID']>;
+  displayImage?: Maybe<Scalars['String']>;
+  forename?: Maybe<Scalars['String']>;
+  familyName?: Maybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  googleId?: Maybe<Scalars['String']>;
+  about?: Maybe<Scalars['String']>;
+  contact?: Maybe<ContactInput>;
+};
+
 export type BusinessInput = {
+  businuessId?: Maybe<Scalars['ID']>;
   userId: Scalars['ID'];
   name: Scalars['String'];
   description?: Maybe<Scalars['String']>;
@@ -2485,6 +2497,7 @@ export type BusinessInput = {
 };
 
 export type ContactInput = {
+  contactId?: Maybe<Scalars['ID']>;
   address?: Maybe<Array<Maybe<AddressInput>>>;
   telephone: Array<Maybe<Scalars['String']>>;
   email: Array<Maybe<Scalars['String']>>;
@@ -2492,6 +2505,7 @@ export type ContactInput = {
 };
 
 export type AddressInput = {
+  addressId?: Maybe<Scalars['ID']>;
   name?: Maybe<Scalars['String']>;
   addressLine1: Scalars['String'];
   addressLine2?: Maybe<Scalars['String']>;
@@ -2811,6 +2825,7 @@ export type Mutation = {
   refreshToken: RefreshTokenResponse;
   userCreateBusiness?: Maybe<Business>;
   userCreateReview?: Maybe<Review>;
+  updateUserProfile?: Maybe<User>;
   /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_CONTACT relationship. */
   AddUserContact?: Maybe<_AddUserContactPayload>;
   /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_CONTACT relationship. */
@@ -3163,6 +3178,11 @@ export type MutationUserCreateReviewArgs = {
   targetId: Scalars['ID'];
   userId: Scalars['ID'];
   nodeName: Scalars['String'];
+};
+
+
+export type MutationUpdateUserProfileArgs = {
+  userInput?: Maybe<UserInput>;
 };
 
 
@@ -4648,17 +4668,13 @@ export type RefreshTokenQuery = (
 );
 
 export type UpdateUserProfileMutationVariables = Exact<{
-  id: Scalars['ID'];
-  displayName: Scalars['String'];
-  forename: Scalars['String'];
-  familyName: Scalars['String'];
-  about: Scalars['String'];
+  userInput?: Maybe<UserInput>;
 }>;
 
 
 export type UpdateUserProfileMutation = (
   { __typename?: 'Mutation' }
-  & { UpdateUser?: Maybe<(
+  & { updateUserProfile?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'userId' | 'displayName' | 'forename' | 'familyName' | 'about'>
   )> }
@@ -4899,8 +4915,8 @@ export type RefreshTokenQueryHookResult = ReturnType<typeof useRefreshTokenQuery
 export type RefreshTokenLazyQueryHookResult = ReturnType<typeof useRefreshTokenLazyQuery>;
 export type RefreshTokenQueryResult = Apollo.QueryResult<RefreshTokenQuery, RefreshTokenQueryVariables>;
 export const UpdateUserProfileDocument = gql`
-    mutation UpdateUserProfile($id: ID!, $displayName: String!, $forename: String!, $familyName: String!, $about: String!) {
-  UpdateUser(userId: $id, displayName: $displayName, forename: $forename, familyName: $familyName, about: $about) {
+    mutation UpdateUserProfile($userInput: UserInput) {
+  updateUserProfile(userInput: $userInput) {
     userId
     displayName
     forename
@@ -4924,11 +4940,7 @@ export type UpdateUserProfileMutationFn = Apollo.MutationFunction<UpdateUserProf
  * @example
  * const [updateUserProfileMutation, { data, loading, error }] = useUpdateUserProfileMutation({
  *   variables: {
- *      id: // value for 'id'
- *      displayName: // value for 'displayName'
- *      forename: // value for 'forename'
- *      familyName: // value for 'familyName'
- *      about: // value for 'about'
+ *      userInput: // value for 'userInput'
  *   },
  * });
  */
