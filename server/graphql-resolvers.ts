@@ -157,9 +157,7 @@ export const resolvers = {
 
       let user;
       try {
-        console.log('we gonna try real quick');
         user = await runQuery(findUser, context, resolveInfo, false);
-        console.log('woop!', user);
       } catch (error) {
         console.log('GetTokens: find user error', error);
         if (!user) {
@@ -183,11 +181,8 @@ export const resolvers = {
       context: any,
       _resolveInfo: GraphQLResolveInfo
     ) => {
-      const token = context.req.cookies['sessionCookie'];
-
-      console.log('getTokens, 1:', token);
-      console.log('arguments', args);
-      const { forename, familyName, displayName, about } = args;
+      console.log('get user Id:', context.req.session.passport.user.userId);
+      console.log('arguments', args.userInput);
     },
     userCreateBusiness: async (
       _root: any,

@@ -60,7 +60,6 @@ passport.use(
         if (result.records.length > 0) {
           // user created
           node = singleRecord.get(0);
-          console.log('googleStrategy, found user:', node);
           cb(null, node);
           session.close();
         } else {
@@ -74,7 +73,6 @@ passport.use(
         if (result.records.length > 0) {
           // user created
           node = singleRecord.get(0);
-          console.log('googleStrategy, created user:', node);
           cb(null, node);
           session.close();
         } else {

@@ -32,9 +32,6 @@ export const Profile = ({ user }: Props) => {
 }
 
 const ProfileForm = (props: any) => {
-
-  console.log(props.data);
-
   const formik = useFormik({
     initialValues: {
       displayName: props.data.displayName,
@@ -55,18 +52,22 @@ const ProfileForm = (props: any) => {
     },
     onSubmit: values => {
       updateUserProfileMutation()
-      console.log(values)
     }
   });
 
   const [updateUserProfileMutation, { data, loading, error }] = useUpdateUserProfileMutation({
     variables: {
       userInput: {
-        userId: props.user.userId,
         displayName: formik.values.displayName,
         forename: formik.values.forename,
         familyName: formik.values.familyName,
         about: formik.values.about,
+        contact: {
+          contactId: props.data.contact.contactId,
+          socials: [],
+          email: [formik.values.email],
+          telephone: [formik.values.telephone]
+        }
       }
     },
   });
