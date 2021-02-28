@@ -10,19 +10,19 @@ type Props = {
 
 export const Articles = ({ article }: Props) => {
   const listOfArticles = article.map((a) => (
-    <Col>
-      <div className={styles.container}>
-        <div className={styles.card}>
+    <Col className={styles.container}>
+      <div className={styles.card}>
+        <div className={styles.cardInfo}>
           <h2 className={styles.title}>{a.title}</h2>
           <p className={styles.content}>{a.body}</p>
-          <div className={styles.blogContent}>
-            <div className={styles.blog}>Blog #{a.articleId}</div>
-            <div className={styles.blogData}>
-              <b>READ MORE</b>
-              <Link passHref href={a.url}>
-                <button className={styles.cta}></button>
-              </Link>
-            </div>
+        </div>
+        <div className={styles.blogContent}>
+          <div className={styles.blog}>Blog #{a.articleId}</div>
+          <div className={styles.blogData}>
+            <b>READ MORE</b>
+            <Link passHref href={a.url}>
+              <button className={styles.cta}></button>
+            </Link>
           </div>
         </div>
       </div>
@@ -42,9 +42,7 @@ export const Articles = ({ article }: Props) => {
       </div>
       <Container>
         <Row>{listOfArticles}</Row>
-        <div>
-            
-        </div>
+        <div></div>
       </Container>
     </div>
   );
