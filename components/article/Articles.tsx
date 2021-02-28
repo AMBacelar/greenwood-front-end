@@ -42,6 +42,9 @@ export const Articles = ({ article }: Props) => {
       </div>
       <Container>
         <Row>{listOfArticles}</Row>
+        <div>
+            
+        </div>
       </Container>
     </div>
   );
