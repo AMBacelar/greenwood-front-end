@@ -6,21 +6,23 @@ import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-const fetchHost = () => {
-  fetch(`${process.env.NEXT_PUBLIC_ORIGIN}/api/get_domain`)
-    .then((response) => {
-      return response.json();
-    })
-    .catch((error) => {
-      console.log('error', error);
-      return { host: '' };
-    });
-};
+// const fetchHost = async () => {
+//   try {
+//     const response = await fetch(
+//       `${process.env.NEXT_PUBLIC_ORIGIN}/api/get_domain`
+//     );
+//     return await response.json();
+//   } catch (error) {
+//     console.log('error', error);
+//     return { host: '' };
+//   }
+// };
 
-const host = fetchHost();
-
-function createApolloClient(initialState = {}) {
-  console.log('host is:', host);
+const createApolloClient = (initialState = {}) => {
+  // console.log('test0');
+  // const host = await fetchHost();
+  // console.log('uri is:', `${host.host}${process.env.NEXT_PUBLIC_GRAPHQL_URL}`);
+  // console.log('test1');
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
     link: createHttpLink({
@@ -28,7 +30,7 @@ function createApolloClient(initialState = {}) {
     }),
     cache: new InMemoryCache().restore(initialState),
   });
-}
+};
 
 export function initializeApollo(initialState: any = null) {
   const _apolloClient = apolloClient ? apolloClient : createApolloClient();

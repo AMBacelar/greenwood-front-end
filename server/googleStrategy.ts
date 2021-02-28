@@ -57,6 +57,16 @@ passport.use(
       if (result.records.length > 0) {
         // user found
         singleRecord = result.records[0];
+        if (result.records.length > 0) {
+          // user created
+          node = singleRecord.get(0);
+          console.log('googleStrategy, found user:', node);
+          cb(null, node);
+          session.close();
+        } else {
+          // user not created
+          console.log('failed to create user');
+        }
       } else {
         // user not found
         result = await session.run(createUser);
@@ -64,7 +74,7 @@ passport.use(
         if (result.records.length > 0) {
           // user created
           node = singleRecord.get(0);
-          console.log(node);
+          console.log('googleStrategy, created user:', node);
           cb(null, node);
           session.close();
         } else {
@@ -143,8 +153,6 @@ export default (fn: Function) => async (
   await cSession(req, res);
   await passportInit(req, res);
   await passportSession(req, res);
-
-  console.log('we got here');
 
   fn(req, res);
 };

@@ -65,7 +65,6 @@ const authFunctions = {
     resolveInfo: GraphQLResolveInfo
   ) => {
     const { fieldName, id, displayName, email } = args;
-    console.log('looking for this user', fieldName, id);
     const findUser = `
     MATCH (user: User {${fieldName}: "${id}"})
     RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user`;
@@ -75,19 +74,17 @@ const authFunctions = {
     let user;
     try {
       user = await runQuery(findUser, context, resolveInfo, false);
-      console.log('we found the user');
     } catch (error) {
       console.log('authenticate error', error);
       user = await runQuery(createUser, context, resolveInfo, false);
     } finally {
-      console.log('the user is', user);
+      console.log(user);
       sendRefreshToken(context.res, createRefreshToken(user));
-      context.res.send({
+      return {
         accessToken: createAccessToken(user),
         ok: true,
         user,
-      });
-      return;
+      };
     }
   },
   refreshToken: async (
@@ -138,54 +135,45 @@ export const resolvers = {
       _args: any,
       context: any,
       resolveInfo: GraphQLResolveInfo
-    ) =>
-      new Promise(async (resolve, reject) => {
-        const token = context.req.cookies['sessionCookie'];
+    ) => {
+      const token = context.req.cookies['sessionCookie'];
 
-        console.log('getTokens, 1:', token);
+      console.log('getTokens, 1:', token);
 
-        const emptyUser = {
-          displayName: '',
-          userId: '',
-          contact: {
-            email: [''],
-          },
-        };
-        if (!token) {
-          console.log('no token');
-          reject({ ok: false, accessToken: '', user: emptyUser });
-        }
+      const emptyUser = {
+        displayName: '',
+        userId: '',
+        contact: {
+          email: [''],
+        },
+      };
+      if (!token) {
+        return { ok: false, accessToken: '', user: emptyUser };
+      }
 
-        console.log(context.req.session);
-
-        console.log(
-          'GetToken: user id is',
-          context.req.session.passport.user.userId
-        );
-
-        const findUser = `
+      const findUser = `
       MATCH (user: User { userId: "${context.req.session.passport.user.userId}"})
       RETURN user { .userId, .displayName, contact: head([(user)-[:HAS_CONTACT]->(user_contact:Contact) | user_contact { .email }]) } AS user`;
 
-        let user;
-        try {
-          console.log('we gonna try real quick');
-          user = await runQuery(findUser, context, resolveInfo, false);
-          console.log('woop!', user);
-        } catch (error) {
-          console.log('GetTokens: find user error', error);
-          if (!user) {
-            resolve({ ok: false, accessToken: '', user: emptyUser });
-          }
-        } finally {
-          sendRefreshToken(context.res, createRefreshToken(user));
-          resolve({
-            accessToken: createAccessToken(user),
-            user,
-            ok: true,
-          });
+      let user;
+      try {
+        console.log('we gonna try real quick');
+        user = await runQuery(findUser, context, resolveInfo, false);
+        console.log('woop!', user);
+      } catch (error) {
+        console.log('GetTokens: find user error', error);
+        if (!user) {
+          return { ok: false, accessToken: '', user: emptyUser };
         }
-      }),
+      } finally {
+        sendRefreshToken(context.res, createRefreshToken(user));
+        return {
+          accessToken: createAccessToken(user),
+          user,
+          ok: true,
+        };
+      }
+    },
   },
   Mutation: {
     ...authFunctions,
