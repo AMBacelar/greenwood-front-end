@@ -16,8 +16,8 @@ export const Articles = ({ article }: Props) => {
           <h2 className={styles.title}>{a.title}</h2>
           <p className={styles.content}>{a.body}</p>
         </div>
-        <div className={styles.blogContent}>
-          <div className={styles.blog}>Blog #{a.articleId}</div>
+        <div className={styles.blogLink}>
+          <p className={styles.blog}>Blog #{a.articleId}</p>
           <div className={styles.blogData}>
             <b>READ MORE</b>
             <Link passHref href={a.url}>

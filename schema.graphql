@@ -116,7 +116,6 @@ type ArticleCategory {
 type Article {
   author: User!
   body: String!
-  displayImage: String
   articleImage: String
   summary: String
   categories: [ArticleCategory]

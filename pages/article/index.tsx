@@ -8,7 +8,7 @@ import { Articles } from 'components/article/Articles';
 const atricles = [
   {
     author: {
-      thumbnail: '/johns-bakery-thumb.jpeg',
+      displayImage: '/johns-bakery-thumb.jpeg',
       displayName: 'John Jacob',
       userId: 'user1'
     },
@@ -27,6 +27,7 @@ const atricles = [
         value: 'Retail'
       }
     ],
+    articleImage: '/static/images/adobestock281020160.jpeg',
     dateCreated: 3456789876543,
     articleId: 1,
     title: 'The new Supermarket on the block of Tottenham has the people going crazy',
@@ -34,7 +35,7 @@ const atricles = [
   },
   {
     author: {
-      thumbnail: '/johns-bakery-thumb.jpeg',
+      displayImage: '/johns-bakery-thumb.jpeg',
       displayName: 'Paul Pinker',
       userId: 'user2'
     },
@@ -51,6 +52,7 @@ Quis magna est occaecat tempor minim ut voluptate adipisicing Lorem Lorem ullamc
         value: 'Retail'
       }
     ],
+    articleImage: '/static/images/adobestock231500081.jpeg',
     dateCreated: 3456789876543,
     articleId: 2,
     title: 'Mr wave and trim',
@@ -58,7 +60,7 @@ Quis magna est occaecat tempor minim ut voluptate adipisicing Lorem Lorem ullamc
   },
   {
     author: {
-      thumbnail: '/johns-bakery-thumb.jpeg',
+      displayImage: '/johns-bakery-thumb.jpeg',
       displayName: 'Paul Pinker',
       userId: 'user2'
     },
@@ -75,6 +77,7 @@ Quis magna est occaecat tempor minim ut voluptate adipisicing Lorem Lorem ullamc
         value: 'Retail'
       }
     ],
+    articleImage: '/static/images/AdobeStock_260736334.jpeg',
     dateCreated: 3456789876543,
     articleId: 3,
     title: 'cereal for lunch & dinner',
