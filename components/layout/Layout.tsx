@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
-import styles from './Layout.scss';
+import styles from './Layout.module.scss';
 import Footer from './Footer';
 import imageUrl from 'utils/imageUrl';
 import { useGetTokensQuery } from 'generated/graphql';
@@ -104,10 +104,10 @@ export const Layout = (props: Props) => {
                       <Nav.Link>Profile</Nav.Link>
                     </Link>
                   </Nav.Item> : <Nav.Item>
-                      <Link passHref href="/api/auth/google">
-                        <Nav.Link>Sign In</Nav.Link>
-                      </Link>
-                    </Nav.Item>}
+                    <Link passHref href="/api/auth/google">
+                      <Nav.Link>Sign In</Nav.Link>
+                    </Link>
+                  </Nav.Item>}
                 </Nav>
               </div>
             </Container>

@@ -2,10 +2,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import styles from './Section1.scss';
+import styles from './Section1.module.scss';
 import LatestBusinesses from '../latestBusinesses/LatestBusinesses';
 
-export default ({ businesses }: any) => {
+const Section1 = ({ businesses }: any) => {
   return (
     <div className={styles.wrapper}>
       <Container>
@@ -33,3 +33,5 @@ export default ({ businesses }: any) => {
     </div>
   );
 };
+
+export default Section1;

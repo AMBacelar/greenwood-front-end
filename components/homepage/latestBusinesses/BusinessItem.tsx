@@ -1,7 +1,7 @@
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import styles from "./BusinessItem.scss";
+import styles from "./BusinessItem.module.scss";
 import Link from "next/link";
 import imageUrl from "../../../utils/imageUrl";
 

@@ -1,9 +1,10 @@
 import CheckboxComp from "components/common/Checkbox/Checkbox";
+import ImageUpload from "components/common/ImageUpload/ImageUpload";
 import TextArea from "components/common/TextArea/TextArea";
 import TextInputField from "components/common/TextInput/TextInput";
 import { useFormik } from "formik";
 import { useGetAdminUserProfileQuery, User, useUpdateUserProfileMutation } from "generated/graphql"
-import styles from './Profile.scss'
+import styles from './Profile.module.scss'
 
 type Props = {
   user: User
@@ -84,7 +85,7 @@ const ProfileForm = (props: any) => {
     <>
       <form onSubmit={formik.handleSubmit}>
         Profile Image
-        <button>Upload Image</button>
+        <ImageUpload />
 
         <TextInputField
           id='displayName'

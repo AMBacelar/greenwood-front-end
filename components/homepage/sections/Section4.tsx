@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import styles from './Section4.scss';
+import styles from './Section4.module.scss';
 
 interface Props {
   featuredVideos: Array<{
@@ -12,7 +12,7 @@ interface Props {
   }>;
 }
 
-export default ({ featuredVideos }: Props) => {
+const Section4 = ({ featuredVideos }: Props) => {
   const renderImages = featuredVideos.map((video, index) => (
     <a key={index} href={video.url} title={video.ariaLabel} target="_blank">
       <img
@@ -37,3 +37,5 @@ export default ({ featuredVideos }: Props) => {
     </div>
   );
 };
+
+export default Section4;

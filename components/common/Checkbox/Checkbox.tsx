@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import noop from 'lodash/noop';
-import styles from './Checkbox.scss';
+import styles from './Checkbox.module.scss';
 
 type Props = {
   handleChange?: (

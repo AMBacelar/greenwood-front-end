@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import styles from './Footer.scss';
+import styles from './Footer.module.scss';
 import imageUrl from 'utils/imageUrl';
 
 export const Footer = () => (

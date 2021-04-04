@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import styles from "./Section3.scss";
+import styles from "./Section3.module.scss";
 import Link from "next/link";
 import imageUrl from "../../../utils/imageUrl";
 
@@ -14,7 +14,7 @@ interface Props {
   }>;
 }
 
-export default ({ featuredBusinesses }: Props) => {
+const Section3 = ({ featuredBusinesses }: Props) => {
   const renderImages = featuredBusinesses.map((business, index) => (
     <Link key={index} href={`/business/${business.slug}`}>
       <img
@@ -47,3 +47,5 @@ export default ({ featuredBusinesses }: Props) => {
     </div>
   );
 };
+
+export default Section3;

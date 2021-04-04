@@ -1,9 +1,9 @@
 // import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 import classnames from "classnames";
-import styles from './AdminNavBar.scss';
+import styles from './AdminNavBar.module.scss';
 
 type Props = {
-  
+
   // routes: Array<Object>,
 }
 

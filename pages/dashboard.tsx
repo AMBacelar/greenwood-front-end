@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NextPage, GetServerSideProps } from 'next';
 import { Sidebar } from 'components/dashboard/Sidebar';
-import styles from 'components/dashboard/wrapper.scss';
+import styles from 'components/dashboard/wrapper.module.scss';
 import { AdminNavBar } from 'components/dashboard/AdminNavBar';
 import { Profile } from 'components/dashboard/Pages/Profile';
 import { useGetTokensQuery } from 'generated/graphql';
