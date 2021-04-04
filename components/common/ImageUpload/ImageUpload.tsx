@@ -3,7 +3,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import Modal from 'react-modal';
 import ReactCrop from 'react-image-crop';
 import styles from './ImageUpload.module.scss';
-// import 'react-image-crop/dist/ReactCrop.css';
+import 'react-image-crop/dist/ReactCrop.css';
 
 const customStyles = {
   content: {
