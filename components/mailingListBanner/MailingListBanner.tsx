@@ -9,7 +9,7 @@ import styles from './MailingListBanner.module.scss';
 
 interface Props { }
 
-export default ({ }: Props) => {
+const MailingListBanner = ({ }: Props) => {
   return (
     <div className={styles.wrapper}>
       <Container>
@@ -31,3 +31,5 @@ export default ({ }: Props) => {
     </div>
   );
 };
+
+export default MailingListBanner;

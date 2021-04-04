@@ -12,12 +12,14 @@ interface Props {
   slug: string;
 }
 
-export default ({
-  thumbnailImage,
-  displayName,
-  shortDescription,
-  slug
-}: Props) => {
+const BusinessItem = (
+  {
+    thumbnailImage,
+    displayName,
+    shortDescription,
+    slug
+  }: Props
+) => {
   return (
     <Col xs={12} md={4}>
       <Link href={`/business/${slug}`}>
@@ -42,3 +44,5 @@ export default ({
     </Col>
   );
 };
+
+export default BusinessItem;

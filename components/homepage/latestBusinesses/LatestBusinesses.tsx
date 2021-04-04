@@ -14,7 +14,7 @@ interface Props {
   }>;
 }
 
-export default ({ businesses }: Props) => {
+const LatestBusinesses = ({ businesses }: Props) => {
   const renderedBusinesses = businesses.map((business, index) => (
     <BusinessItem
       key={index}
@@ -38,3 +38,5 @@ export default ({ businesses }: Props) => {
     </div>
   );
 };
+
+export default LatestBusinesses;
