@@ -187,6 +187,7 @@ export const resolvers = {
       set u.forename = "${args.userInput.forename}"
       set u.familyName = "${args.userInput.familyName}"
       set u.displayName = "${args.userInput.displayName}"
+      set u.displayImage = "${args.userInput.displayImage}"
       set u.about = "${args.userInput.about}"
       set c.telephone = ["${args.userInput.contact.telephone[0]}"]
       set c.email = ["${args.userInput.contact.email[0]}"]

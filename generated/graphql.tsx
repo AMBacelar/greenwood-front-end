@@ -19,14 +19,6 @@ export type _AddUserContactPayload = {
   to?: Maybe<Contact>;
 };
 
-export type _RemoveUserContactPayload = {
-  __typename?: '_RemoveUserContactPayload';
-  /** Field for the User node this HAS_CONTACT [relationship](https://grandstack.io/docs/graphql-relationship-types) is coming from. */
-  from?: Maybe<User>;
-  /** Field for the Contact node this HAS_CONTACT [relationship](https://grandstack.io/docs/graphql-relationship-types) is going to. */
-  to?: Maybe<Contact>;
-};
-
 export type _MergeUserContactPayload = {
   __typename?: '_MergeUserContactPayload';
   /** Field for the User node this HAS_CONTACT [relationship](https://grandstack.io/docs/graphql-relationship-types) is coming from. */
@@ -1513,12 +1505,12 @@ export type _AddContentMetaContentPayload = {
   to?: Maybe<ContentMeta>;
 };
 
-export type _RemoveContentMetaContentPayload = {
-  __typename?: '_RemoveContentMetaContentPayload';
-  /** Field for the Content node this HAS_META [relationship](https://grandstack.io/docs/graphql-relationship-types) is coming from. */
-  from?: Maybe<Content>;
-  /** Field for the ContentMeta node this HAS_META [relationship](https://grandstack.io/docs/graphql-relationship-types) is going to. */
-  to?: Maybe<ContentMeta>;
+export type _RemoveUserContactPayload = {
+  __typename?: '_RemoveUserContactPayload';
+  /** Field for the User node this HAS_CONTACT [relationship](https://grandstack.io/docs/graphql-relationship-types) is coming from. */
+  from?: Maybe<User>;
+  /** Field for the Contact node this HAS_CONTACT [relationship](https://grandstack.io/docs/graphql-relationship-types) is going to. */
+  to?: Maybe<Contact>;
 };
 
 export type _MergeContentMetaContentPayload = {
@@ -4305,6 +4297,14 @@ export type QueryHomePageResponseArgs = {
   filter?: Maybe<_HomePageResponseFilter>;
 };
 
+export type _RemoveContentMetaContentPayload = {
+  __typename?: '_RemoveContentMetaContentPayload';
+  /** Field for the Content node this HAS_META [relationship](https://grandstack.io/docs/graphql-relationship-types) is coming from. */
+  from?: Maybe<Content>;
+  /** Field for the ContentMeta node this HAS_META [relationship](https://grandstack.io/docs/graphql-relationship-types) is going to. */
+  to?: Maybe<ContentMeta>;
+};
+
 export type AuthenticateQueryVariables = Exact<{
   fieldName: Scalars['String'];
   id: Scalars['String'];
@@ -4315,18 +4315,24 @@ export type AuthenticateQueryVariables = Exact<{
 
 export type AuthenticateQuery = (
   { __typename?: 'Query' }
-  & { authenticate?: Maybe<(
-    { __typename?: 'LoginResponse' }
-    & Pick<LoginResponse, 'accessToken'>
-    & { user?: Maybe<(
-      { __typename?: 'User' }
-      & Pick<User, 'displayName' | 'userId'>
-      & { contact: (
-        { __typename?: 'Contact' }
-        & Pick<Contact, 'email'>
-      ) }
-    )> }
-  )> }
+  & {
+    authenticate?: Maybe<(
+      { __typename?: 'LoginResponse' }
+      & Pick<LoginResponse, 'accessToken'>
+      & {
+        user?: Maybe<(
+          { __typename?: 'User' }
+          & Pick<User, 'displayName' | 'userId'>
+          & {
+            contact: (
+              { __typename?: 'Contact' }
+              & Pick<Contact, 'email'>
+            )
+          }
+        )>
+      }
+    )>
+  }
 );
 
 export type GetAdminUserProfileQueryVariables = Exact<{
@@ -4336,25 +4342,33 @@ export type GetAdminUserProfileQueryVariables = Exact<{
 
 export type GetAdminUserProfileQuery = (
   { __typename?: 'Query' }
-  & { User?: Maybe<Array<Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'displayName' | 'displayImage' | 'forename' | 'familyName' | 'userId' | 'about'>
-    & { contact: (
-      { __typename?: 'Contact' }
-      & Pick<Contact, 'contactId' | 'email' | 'telephone'>
-      & { address: Array<Maybe<(
-        { __typename?: 'Address' }
-        & Pick<Address, 'addressId' | 'showAddress' | 'addressLine1' | 'addressLine2' | 'postCode'>
-        & { location?: Maybe<(
-          { __typename?: '_Neo4jPoint' }
-          & Pick<_Neo4jPoint, 'longitude' | 'latitude'>
-        )> }
-      )>>, socials: Array<Maybe<(
-        { __typename?: 'SocialLink' }
-        & Pick<SocialLink, 'platform' | 'account'>
-      )>> }
-    ) }
-  )>>> }
+  & {
+    User?: Maybe<Array<Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'displayName' | 'displayImage' | 'forename' | 'familyName' | 'userId' | 'about'>
+      & {
+        contact: (
+          { __typename?: 'Contact' }
+          & Pick<Contact, 'contactId' | 'email' | 'telephone'>
+          & {
+            address: Array<Maybe<(
+              { __typename?: 'Address' }
+              & Pick<Address, 'addressId' | 'showAddress' | 'addressLine1' | 'addressLine2' | 'postCode'>
+              & {
+                location?: Maybe<(
+                  { __typename?: '_Neo4jPoint' }
+                  & Pick<_Neo4jPoint, 'longitude' | 'latitude'>
+                )>
+              }
+            )>>, socials: Array<Maybe<(
+              { __typename?: 'SocialLink' }
+              & Pick<SocialLink, 'platform' | 'account'>
+            )>>
+          }
+        )
+      }
+    )>>>
+  }
 );
 
 export type GetBusinessBySlugQueryVariables = Exact<{
@@ -4364,10 +4378,12 @@ export type GetBusinessBySlugQueryVariables = Exact<{
 
 export type GetBusinessBySlugQuery = (
   { __typename?: 'Query' }
-  & { Business?: Maybe<Array<Maybe<(
-    { __typename?: 'Business' }
-    & Pick<Business, 'businessId' | 'bannerColour' | 'name' | 'slug' | 'dateCreated'>
-  )>>> }
+  & {
+    Business?: Maybe<Array<Maybe<(
+      { __typename?: 'Business' }
+      & Pick<Business, 'businessId' | 'bannerColour' | 'name' | 'slug' | 'dateCreated'>
+    )>>>
+  }
 );
 
 export type GetTokensQueryVariables = Exact<{ [key: string]: never; }>;
@@ -4375,18 +4391,24 @@ export type GetTokensQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetTokensQuery = (
   { __typename?: 'Query' }
-  & { getTokens: (
-    { __typename?: 'LoginResponse' }
-    & Pick<LoginResponse, 'accessToken' | 'ok'>
-    & { user?: Maybe<(
-      { __typename?: 'User' }
-      & Pick<User, 'displayName' | 'userId'>
-      & { contact: (
-        { __typename?: 'Contact' }
-        & Pick<Contact, 'email'>
-      ) }
-    )> }
-  ) }
+  & {
+    getTokens: (
+      { __typename?: 'LoginResponse' }
+      & Pick<LoginResponse, 'accessToken' | 'ok'>
+      & {
+        user?: Maybe<(
+          { __typename?: 'User' }
+          & Pick<User, 'displayName' | 'userId'>
+          & {
+            contact: (
+              { __typename?: 'Contact' }
+              & Pick<Contact, 'email'>
+            )
+          }
+        )>
+      }
+    )
+  }
 );
 
 export type RefreshTokenQueryVariables = Exact<{ [key: string]: never; }>;
@@ -4394,10 +4416,12 @@ export type RefreshTokenQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type RefreshTokenQuery = (
   { __typename?: 'Query' }
-  & { refreshToken: (
-    { __typename?: 'RefreshTokenResponse' }
-    & Pick<RefreshTokenResponse, 'accessToken' | 'ok'>
-  ) }
+  & {
+    refreshToken: (
+      { __typename?: 'RefreshTokenResponse' }
+      & Pick<RefreshTokenResponse, 'accessToken' | 'ok'>
+    )
+  }
 );
 
 export type UpdateUserProfileMutationVariables = Exact<{
@@ -4407,14 +4431,18 @@ export type UpdateUserProfileMutationVariables = Exact<{
 
 export type UpdateUserProfileMutation = (
   { __typename?: 'Mutation' }
-  & { updateUserProfile?: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'userId' | 'displayName' | 'forename' | 'familyName' | 'about'>
-    & { contact: (
-      { __typename?: 'Contact' }
-      & Pick<Contact, 'contactId'>
-    ) }
-  )> }
+  & {
+    updateUserProfile?: Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'userId' | 'displayName' | 'forename' | 'familyName' | 'about'>
+      & {
+        contact: (
+          { __typename?: 'Contact' }
+          & Pick<Contact, 'contactId'>
+        )
+      }
+    )>
+  }
 );
 
 export type UserCreateBusinessMutationVariables = Exact<{
@@ -4429,14 +4457,18 @@ export type UserCreateBusinessMutationVariables = Exact<{
 
 export type UserCreateBusinessMutation = (
   { __typename?: 'Mutation' }
-  & { userCreateBusiness?: Maybe<(
-    { __typename?: 'Business' }
-    & Pick<Business, 'businessId' | 'name' | 'dateCreated' | 'bannerColour' | 'slug'>
-    & { managedBy?: Maybe<Array<Maybe<(
-      { __typename?: 'User' }
-      & Pick<User, 'displayName'>
-    )>>> }
-  )> }
+  & {
+    userCreateBusiness?: Maybe<(
+      { __typename?: 'Business' }
+      & Pick<Business, 'businessId' | 'name' | 'dateCreated' | 'bannerColour' | 'slug'>
+      & {
+        managedBy?: Maybe<Array<Maybe<(
+          { __typename?: 'User' }
+          & Pick<User, 'displayName'>
+        )>>>
+      }
+    )>
+  }
 );
 
 
@@ -4475,11 +4507,11 @@ export const AuthenticateDocument = gql`
  * });
  */
 export function useAuthenticateQuery(baseOptions?: Apollo.QueryHookOptions<AuthenticateQuery, AuthenticateQueryVariables>) {
-        return Apollo.useQuery<AuthenticateQuery, AuthenticateQueryVariables>(AuthenticateDocument, baseOptions);
-      }
+  return Apollo.useQuery<AuthenticateQuery, AuthenticateQueryVariables>(AuthenticateDocument, baseOptions);
+}
 export function useAuthenticateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AuthenticateQuery, AuthenticateQueryVariables>) {
-          return Apollo.useLazyQuery<AuthenticateQuery, AuthenticateQueryVariables>(AuthenticateDocument, baseOptions);
-        }
+  return Apollo.useLazyQuery<AuthenticateQuery, AuthenticateQueryVariables>(AuthenticateDocument, baseOptions);
+}
 export type AuthenticateQueryHookResult = ReturnType<typeof useAuthenticateQuery>;
 export type AuthenticateLazyQueryHookResult = ReturnType<typeof useAuthenticateLazyQuery>;
 export type AuthenticateQueryResult = Apollo.QueryResult<AuthenticateQuery, AuthenticateQueryVariables>;
@@ -4533,11 +4565,11 @@ export const GetAdminUserProfileDocument = gql`
  * });
  */
 export function useGetAdminUserProfileQuery(baseOptions?: Apollo.QueryHookOptions<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>) {
-        return Apollo.useQuery<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>(GetAdminUserProfileDocument, baseOptions);
-      }
+  return Apollo.useQuery<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>(GetAdminUserProfileDocument, baseOptions);
+}
 export function useGetAdminUserProfileLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>) {
-          return Apollo.useLazyQuery<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>(GetAdminUserProfileDocument, baseOptions);
-        }
+  return Apollo.useLazyQuery<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>(GetAdminUserProfileDocument, baseOptions);
+}
 export type GetAdminUserProfileQueryHookResult = ReturnType<typeof useGetAdminUserProfileQuery>;
 export type GetAdminUserProfileLazyQueryHookResult = ReturnType<typeof useGetAdminUserProfileLazyQuery>;
 export type GetAdminUserProfileQueryResult = Apollo.QueryResult<GetAdminUserProfileQuery, GetAdminUserProfileQueryVariables>;
@@ -4570,11 +4602,11 @@ export const GetBusinessBySlugDocument = gql`
  * });
  */
 export function useGetBusinessBySlugQuery(baseOptions?: Apollo.QueryHookOptions<GetBusinessBySlugQuery, GetBusinessBySlugQueryVariables>) {
-        return Apollo.useQuery<GetBusinessBySlugQuery, GetBusinessBySlugQueryVariables>(GetBusinessBySlugDocument, baseOptions);
-      }
+  return Apollo.useQuery<GetBusinessBySlugQuery, GetBusinessBySlugQueryVariables>(GetBusinessBySlugDocument, baseOptions);
+}
 export function useGetBusinessBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetBusinessBySlugQuery, GetBusinessBySlugQueryVariables>) {
-          return Apollo.useLazyQuery<GetBusinessBySlugQuery, GetBusinessBySlugQueryVariables>(GetBusinessBySlugDocument, baseOptions);
-        }
+  return Apollo.useLazyQuery<GetBusinessBySlugQuery, GetBusinessBySlugQueryVariables>(GetBusinessBySlugDocument, baseOptions);
+}
 export type GetBusinessBySlugQueryHookResult = ReturnType<typeof useGetBusinessBySlugQuery>;
 export type GetBusinessBySlugLazyQueryHookResult = ReturnType<typeof useGetBusinessBySlugLazyQuery>;
 export type GetBusinessBySlugQueryResult = Apollo.QueryResult<GetBusinessBySlugQuery, GetBusinessBySlugQueryVariables>;
@@ -4610,11 +4642,11 @@ export const GetTokensDocument = gql`
  * });
  */
 export function useGetTokensQuery(baseOptions?: Apollo.QueryHookOptions<GetTokensQuery, GetTokensQueryVariables>) {
-        return Apollo.useQuery<GetTokensQuery, GetTokensQueryVariables>(GetTokensDocument, baseOptions);
-      }
+  return Apollo.useQuery<GetTokensQuery, GetTokensQueryVariables>(GetTokensDocument, baseOptions);
+}
 export function useGetTokensLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTokensQuery, GetTokensQueryVariables>) {
-          return Apollo.useLazyQuery<GetTokensQuery, GetTokensQueryVariables>(GetTokensDocument, baseOptions);
-        }
+  return Apollo.useLazyQuery<GetTokensQuery, GetTokensQueryVariables>(GetTokensDocument, baseOptions);
+}
 export type GetTokensQueryHookResult = ReturnType<typeof useGetTokensQuery>;
 export type GetTokensLazyQueryHookResult = ReturnType<typeof useGetTokensLazyQuery>;
 export type GetTokensQueryResult = Apollo.QueryResult<GetTokensQuery, GetTokensQueryVariables>;
@@ -4643,11 +4675,11 @@ export const RefreshTokenDocument = gql`
  * });
  */
 export function useRefreshTokenQuery(baseOptions?: Apollo.QueryHookOptions<RefreshTokenQuery, RefreshTokenQueryVariables>) {
-        return Apollo.useQuery<RefreshTokenQuery, RefreshTokenQueryVariables>(RefreshTokenDocument, baseOptions);
-      }
+  return Apollo.useQuery<RefreshTokenQuery, RefreshTokenQueryVariables>(RefreshTokenDocument, baseOptions);
+}
 export function useRefreshTokenLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RefreshTokenQuery, RefreshTokenQueryVariables>) {
-          return Apollo.useLazyQuery<RefreshTokenQuery, RefreshTokenQueryVariables>(RefreshTokenDocument, baseOptions);
-        }
+  return Apollo.useLazyQuery<RefreshTokenQuery, RefreshTokenQueryVariables>(RefreshTokenDocument, baseOptions);
+}
 export type RefreshTokenQueryHookResult = ReturnType<typeof useRefreshTokenQuery>;
 export type RefreshTokenLazyQueryHookResult = ReturnType<typeof useRefreshTokenLazyQuery>;
 export type RefreshTokenQueryResult = Apollo.QueryResult<RefreshTokenQuery, RefreshTokenQueryVariables>;
@@ -4656,6 +4688,7 @@ export const UpdateUserProfileDocument = gql`
   updateUserProfile(userInput: $userInput) {
     userId
     displayName
+    displayImage
     forename
     familyName
     about
@@ -4685,8 +4718,8 @@ export type UpdateUserProfileMutationFn = Apollo.MutationFunction<UpdateUserProf
  * });
  */
 export function useUpdateUserProfileMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>) {
-        return Apollo.useMutation<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>(UpdateUserProfileDocument, baseOptions);
-      }
+  return Apollo.useMutation<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>(UpdateUserProfileDocument, baseOptions);
+}
 export type UpdateUserProfileMutationHookResult = ReturnType<typeof useUpdateUserProfileMutation>;
 export type UpdateUserProfileMutationResult = Apollo.MutationResult<UpdateUserProfileMutation>;
 export type UpdateUserProfileMutationOptions = Apollo.BaseMutationOptions<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>;
@@ -4729,8 +4762,8 @@ export type UserCreateBusinessMutationFn = Apollo.MutationFunction<UserCreateBus
  * });
  */
 export function useUserCreateBusinessMutation(baseOptions?: Apollo.MutationHookOptions<UserCreateBusinessMutation, UserCreateBusinessMutationVariables>) {
-        return Apollo.useMutation<UserCreateBusinessMutation, UserCreateBusinessMutationVariables>(UserCreateBusinessDocument, baseOptions);
-      }
+  return Apollo.useMutation<UserCreateBusinessMutation, UserCreateBusinessMutationVariables>(UserCreateBusinessDocument, baseOptions);
+}
 export type UserCreateBusinessMutationHookResult = ReturnType<typeof useUserCreateBusinessMutation>;
 export type UserCreateBusinessMutationResult = Apollo.MutationResult<UserCreateBusinessMutation>;
 export type UserCreateBusinessMutationOptions = Apollo.BaseMutationOptions<UserCreateBusinessMutation, UserCreateBusinessMutationVariables>;

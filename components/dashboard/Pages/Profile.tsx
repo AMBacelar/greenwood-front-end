@@ -4,6 +4,8 @@ import TextArea from "components/common/TextArea/TextArea";
 import TextInputField from "components/common/TextInput/TextInput";
 import { useFormik } from "formik";
 import { useGetAdminUserProfileQuery, User, useUpdateUserProfileMutation } from "generated/graphql"
+import { useState } from "react";
+import { imageUpload } from "utils/imageUpload";
 import styles from './Profile.module.scss'
 
 type Props = {
@@ -33,6 +35,8 @@ export const Profile = ({ user }: Props) => {
 }
 
 const ProfileForm = (props: any) => {
+  const [imageBlob, setImageBlob] = useState(null);
+  const [imageValue, setImageValue] = useState(props.data.displayImage);
   const formik = useFormik({
     initialValues: {
       displayName: props.data.displayName,
@@ -51,8 +55,17 @@ const ProfileForm = (props: any) => {
 
       socials: props.data.contact.socials[0],
     },
-    onSubmit: values => {
-      updateUserProfileMutation()
+    onSubmit: async (values) => {
+      // upload the image
+      try {
+        const imageName = `user-${props.user.userId}.png`;
+        const imageData = await imageUpload(imageBlob, imageName);
+        setImageValue(imageData.Location);
+      } catch (error) {
+        console.log("error, image upload didn't work...")
+      } finally {
+        updateUserProfileMutation()
+      }
     }
   });
 
@@ -60,6 +73,7 @@ const ProfileForm = (props: any) => {
     variables: {
       userInput: {
         displayName: formik.values.displayName,
+        displayImage: imageValue,
         forename: formik.values.forename,
         familyName: formik.values.familyName,
         about: formik.values.about,
@@ -85,7 +99,12 @@ const ProfileForm = (props: any) => {
     <>
       <form onSubmit={formik.handleSubmit}>
         Profile Image
-        <ImageUpload />
+        <img src={imageValue} />
+        <ImageUpload
+          imageUrl={imageValue}
+          onImageChange={setImageBlob}
+          onNewDataUrl={setImageValue}
+        />
 
         <TextInputField
           id='displayName'

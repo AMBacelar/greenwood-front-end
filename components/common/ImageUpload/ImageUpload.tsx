@@ -12,11 +12,11 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
   }
 };
 
-const ImageUpload = () => {
+const ImageUpload = ({ imageUrl, onImageChange, onNewDataUrl }: any) => {
   var subtitle: HTMLHeadingElement | null;
 
   const imgRef = useRef(null);
@@ -24,8 +24,10 @@ const ImageUpload = () => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [upImg, setUpImg] = useState();
-  const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 1 });
+  const [crop, setCrop] = useState({ unit: 'px', maxWidth: 200, aspect: 1 });
   const [completedCrop, setCompletedCrop] = useState(null);
+
+  const [imageValue, setimageValue] = useState(imageUrl);
 
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
@@ -58,6 +60,13 @@ const ImageUpload = () => {
       crop.width,
       crop.height
     );
+
+    const dataURL = canvas.toDataURL();
+    const blobData = dataURItoBlob(dataURL);
+    if (blobData !== null) {
+      setimageValue(null);
+      onImageChange(blobData);
+    }
   }, [completedCrop]);
 
   const onSelectFile = (e) => {
@@ -91,15 +100,15 @@ const ImageUpload = () => {
     <div>
       <input type="file" accept="image/*" onChange={onSelectFile} />
       <button onClick={openModal}>Open modal</button>
-      <button onClick={() => setUpImg()}>Delete Image</button>
-      <canvas
-        ref={previewCanvasRef}
-        // Rounding is important so the canvas width and height matches/is a multiple for sharpness.
-        style={{
-          width: Math.round(completedCrop?.width ?? 0),
-          height: Math.round(completedCrop?.height ?? 0)
-        }}
-      />
+      <div>
+        {imageValue ? <img src={imageUrl} /> : <canvas
+          ref={previewCanvasRef}
+          style={{
+            maxWidth: 300,
+            maxHeight: 300
+          }}
+        />}
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -107,10 +116,9 @@ const ImageUpload = () => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-
         <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2>
         <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
+        <div>drag the section you want saved</div>
         <div className={styles.cropWrapper}>
           <ReactCrop
             src={upImg}
@@ -126,3 +134,19 @@ const ImageUpload = () => {
 }
 
 export default ImageUpload
+
+function dataURItoBlob(dataUrl: string) {
+  var arr = dataUrl.split(',');
+  if (!!arr[1]) {
+    var mime = arr[0].match(/:(.*?);/)[1];
+    var bstr = atob(arr[1]);
+    var n = bstr.length;
+    var u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+  }
+  return null;
+}
+
