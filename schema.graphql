@@ -221,7 +221,7 @@ type Mutation {
     email: String!
   ): LoginResponse
   refreshToken: RefreshTokenResponse!
-  userCreateBusiness(input: BusinessInput): Business
+  userCreateBusiness(businessInput: BusinessInput): Business
   userCreateReview(
     stars: Float!
     text: String
@@ -262,6 +262,11 @@ type HomePageResponse {
   featuredVideos: [Ownable]!
 }
 
+type getbusinessByUserIdResponse {
+  ok: Boolean
+  businesses: [Business]!
+}
+
 type Query {
   authenticate(
     fieldName: String!
@@ -272,6 +277,7 @@ type Query {
   refreshToken: RefreshTokenResponse!
   getTokens: LoginResponse!
   userCount: Int! @cypher(statement: "MATCH (u:User) RETURN COUNT(u)")
+  getBusinessByUserId: getbusinessByUserIdResponse
   ratingsCount: [RatingCount]
     @cypher(
       statement: "MATCH (r:Review) WITH r.stars AS stars, COUNT(*) AS count ORDER BY stars RETURN {stars: stars, count: count}"

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { NextPage, GetServerSideProps } from 'next';
-import { Sidebar } from 'components/dashboard/Sidebar';
+import { Sidebar, validStates } from 'components/dashboard/Sidebar';
 import styles from 'components/dashboard/wrapper.module.scss';
 import { AdminNavBar } from 'components/dashboard/AdminNavBar';
 import { Profile } from 'components/dashboard/Pages/Profile';
 import { useGetTokensQuery } from 'generated/graphql';
+import { Businesses } from 'components/dashboard/Pages/Businesses';
 
 const Page: NextPage<any, any> = (props) => {
   const [sidenavOpen, setSidenavOpen] = useState(true);
+  const [dashboardState, setDashboardState] = useState<validStates>(validStates.profile)
   const { data, loading, error } = useGetTokensQuery();
 
   if (loading) {
@@ -15,14 +17,25 @@ const Page: NextPage<any, any> = (props) => {
   } else if (error) {
     return <>error with query...</>;
   } else if (data) {
-    const user = data.getTokens.user
+    const user = data.getTokens.user;
+
+    const page = (dashboardState: validStates) => {
+      switch (dashboardState) {
+        case validStates.profile:
+          return <Profile user={user} />
+        case validStates.businesses:
+          return <Businesses />
+        default:
+          break;
+      }
+    }
 
     return (
       <div className={styles.wrapper}>
-        <Sidebar sidenavOpen={sidenavOpen} toggleSidenav={setSidenavOpen} />
+        <Sidebar sidenavOpen={sidenavOpen} toggleSidenav={setSidenavOpen} currentState={dashboardState} onChangeState={setDashboardState} />
         <div className={styles.page}>
           <AdminNavBar />
-          <Profile user={user} />
+          {page(dashboardState)}
           <div>Footer</div>
         </div>
       </div>

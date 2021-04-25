@@ -8,7 +8,7 @@
   "description": "The frontend next app for greenwood",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "gen-graph": "graphql-codegen --config codegen.yml"
@@ -60,10 +60,10 @@
     "subscriptions-transport-ws": "0.9.17"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "1.18.0",
-    "@graphql-codegen/typescript": "1.17.11",
-    "@graphql-codegen/typescript-operations": "1.17.8",
-    "@graphql-codegen/typescript-react-apollo": "2.0.7",
+    "@graphql-codegen/cli": "1.21.4",
+    "@graphql-codegen/typescript": "1.22.0",
+    "@graphql-codegen/typescript-operations": "1.17.16",
+    "@graphql-codegen/typescript-react-apollo": "2.2.4",
     "@types/classnames": "2.2.11",
     "@types/cookie": "0.4.0",
     "@types/cookie-session": "2.0.41",

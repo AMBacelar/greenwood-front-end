@@ -136,8 +136,6 @@ export const resolvers = {
     ) => {
       const token = context.req.cookies['sessionCookie'];
 
-      console.log('getTokens, 1:', token);
-
       const emptyUser = {
         displayName: '',
         userId: '',
@@ -166,6 +164,42 @@ export const resolvers = {
         return {
           accessToken: createAccessToken(user),
           user,
+          ok: true,
+        };
+      }
+    },
+    getBusinessByUserId: async (
+      _root: any,
+      _args: any,
+      context: any,
+      resolveInfo: GraphQLResolveInfo
+    ) => {
+      const token = context.req.cookies['sessionCookie'];
+
+      if (!token) {
+        return { ok: false, businesses: [] };
+      }
+
+      const findBusinesses = `
+      MATCH (user: User { userId: "${context.req.session.passport.user.userId}"})-[:MANAGES]->(b:Business)
+      RETURN b`;
+
+      let businesses;
+      try {
+        businesses = await runQuery(
+          findBusinesses,
+          context,
+          resolveInfo,
+          false
+        );
+      } catch (error) {
+        console.log('getBusinessByUserId: find businesses error', error);
+        if (!businesses) {
+          return { ok: false, businesses: [] };
+        }
+      } finally {
+        return {
+          businesses,
           ok: true,
         };
       }
@@ -208,7 +242,7 @@ export const resolvers = {
         // displayImage,
         // gallery,
         // bannerImage,
-      } = args.input;
+      } = args.businessInput;
       /**
        * first, create the business object
        * second, attack business to user object
@@ -223,8 +257,7 @@ export const resolvers = {
           remove: /[*+~.()'"!:@]/g,
         }
       )}", dateCreated: toInteger(${Date.now()}) })<-[r:MANAGES]-(u)
-        RETURN b
-       `;
+        RETURN b`;
       return await runQuery(createBusiness, context, resolveInfo);
     },
   },
