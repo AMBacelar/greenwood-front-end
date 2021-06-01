@@ -155,6 +155,7 @@ export const resolvers = {
       try {
         user = await runQuery(findUser, context, resolveInfo, false);
       } catch (error) {
+        console.log('so, there seems to be an error');
         console.log('GetTokens: find user error', error);
         if (!user) {
           return { ok: false, accessToken: '', user: emptyUser };
@@ -217,14 +218,16 @@ export const resolvers = {
         ? context.req.session.passport.user.userId
         : args.userInput.userId;
 
-      const updateUser = `match (u: User {userId: "${userId}"})-[r]->(c:Contact {contactId: "${args.userInput.contact.contactId}"})
+      const updateUser = `match (u: User {userId: "${userId}"})-[r]->(c:Contact {contactId: "${
+        args.userInput.contact.contactId
+      }"})
       set u.forename = "${args.userInput.forename}"
       set u.familyName = "${args.userInput.familyName}"
       set u.displayName = "${args.userInput.displayName}"
       set u.displayImage = "${args.userInput.displayImage}"
       set u.about = "${args.userInput.about}"
-      set c.telephone = ["${args.userInput.contact.telephone[0]}"]
-      set c.email = ["${args.userInput.contact.email[0]}"]
+      set c.telephone = "${JSON.stringify(args.userInput.contact.telephone)}"
+      set c.email = "${JSON.stringify(args.userInput.contact.email)}"
       set c.socials = []
       return u{ .*, contact: c{ .* }} as user`;
       return await runQuery(updateUser, context, resolveInfo, false);
@@ -250,14 +253,18 @@ export const resolvers = {
        */
       const createBusiness = `
        MATCH (u: User {userId: "${userId}"})
-       MERGE (b: Business:Contactable:Ownable:ContentMetaReference { name: "${name}", businessId: apoc.create.uuid(), description: "${description}", bannerColour: "${randomColor()}", slug: "${slugify(
-        name,
-        {
-          lower: true,
-          remove: /[*+~.()'"!:@]/g,
-        }
-      )}", dateCreated: toInteger(${Date.now()}) })<-[r:MANAGES]-(u)
-        RETURN b`;
+       MERGE (u)-[r:MANAGES]->(b: Business:Contactable:Ownable:ContentMetaReference { name: "${name}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid() })
+       SET b.businessId = apoc.create.uuid() 
+       SET b.description = "${description}" 
+       SET b.bannerColour = "${randomColor()}" 
+       SET b.slug = "${slugify(name, {
+         lower: true,
+         remove: /[*+~.()'"!:@]/g,
+       })}"
+       SET b.dateCreated = toInteger(${Date.now()})
+       SET c.email = "[]"
+       SET c.telephone = "[]"
+       RETURN b{ .*, managedBy: u{ .* }}`;
       return await runQuery(createBusiness, context, resolveInfo);
     },
   },
@@ -270,5 +277,19 @@ export const resolvers = {
     ) => {
       return Number(obj.dateCreated);
     },
+  },
+  Contact: {
+    // email: (
+    //   obj: any,
+    //   _args: any,
+    //   _context: any,
+    //   _resolveInfo: GraphQLResolveInfo
+    // ) => JSON.parse(obj.email),
+    // telephone: (
+    //   obj: any,
+    //   _args: any,
+    //   _context: any,
+    //   _resolveInfo: GraphQLResolveInfo
+    // ) => JSON.parse(obj.telephone),
   },
 };

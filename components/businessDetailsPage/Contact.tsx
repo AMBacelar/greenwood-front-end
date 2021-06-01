@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import styles from './Contact.module.module.scss';
+import styles from './Contact.module.scss';
 
 type Contact = {
   telephone: string[];
