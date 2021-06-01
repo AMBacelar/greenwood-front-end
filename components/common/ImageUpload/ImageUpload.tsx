@@ -16,7 +16,7 @@ const customStyles = {
   }
 };
 
-const ImageUpload = ({ imageUrl, onImageChange, onNewDataUrl }: any) => {
+const ImageUpload = ({ imageUrl, onImageChange }: any) => {
   var subtitle: HTMLHeadingElement | null;
 
   const imgRef = useRef(null);
