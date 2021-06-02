@@ -32,6 +32,8 @@ export const Businesses = () => {
 
     return (
       <div className={styles.wrapper}>
+        <button>Create Business</button> <br />
+        {JSON.stringify(data.Business, null, 0)}
         {cardArray}
       </div>
     )

@@ -4,6 +4,7 @@ import { createAccessToken, createRefreshToken } from './auth';
 import { sendRefreshToken } from './sendRefreshToken';
 import { verify } from 'jsonwebtoken';
 import { GraphQLResolveInfo } from 'graphql';
+import { nanoid } from 'nanoid';
 
 const buildSessionParams = (ctx: any) => {
   let paramObj = {
@@ -260,7 +261,7 @@ export const resolvers = {
        SET b.slug = "${slugify(name, {
          lower: true,
          remove: /[*+~.()'"!:@]/g,
-       })}"
+       })}-${nanoid(8)}"
        SET b.dateCreated = toInteger(${Date.now()})
        SET c.email = "[]"
        SET c.telephone = "[]"
