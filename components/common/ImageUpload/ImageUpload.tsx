@@ -16,7 +16,13 @@ const customStyles = {
   }
 };
 
-const ImageUpload = ({ imageUrl, onImageChange }: any) => {
+type Props = {
+  imageUrl: string,
+  onImageChange: Function,
+  aspectRatio?: number,
+}
+
+const ImageUpload = ({ imageUrl, onImageChange, aspectRatio = 1 }: Props) => {
   var subtitle: HTMLHeadingElement | null;
 
   const imgRef = useRef<HTMLImageElement | null>(null);
@@ -24,7 +30,7 @@ const ImageUpload = ({ imageUrl, onImageChange }: any) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [upImg, setUpImg] = useState();
-  const [crop, setCrop] = useState<ReactCrop.Crop>({ unit: 'px', aspect: 1 });
+  const [crop, setCrop] = useState<ReactCrop.Crop>({ unit: 'px', aspect: aspectRatio });
   const [completedCrop, setCompletedCrop] = useState(null);
 
   const [imageValue, setimageValue] = useState(imageUrl);
@@ -122,7 +128,7 @@ const ImageUpload = ({ imageUrl, onImageChange }: any) => {
         <div>drag the section you want saved</div>
         <div className={styles.cropWrapper}>
           <ReactCrop
-            maxWidth={200}
+            // maxWidth={200}
             src={upImg}
             onImageLoaded={onLoad}
             crop={crop}

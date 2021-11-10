@@ -219,16 +219,14 @@ export const resolvers = {
         ? context.req.session.passport.user.userId
         : args.userInput.userId;
 
-      const updateUser = `match (u: User {userId: "${userId}"})-[r]->(c:Contact {contactId: "${
-        args.userInput.contact.contactId
-      }"})
+      const updateUser = `match (u: User {userId: "${userId}"})-[r]->(c:Contact {contactId: "${args.userInput.contact.contactId}"})
       set u.forename = "${args.userInput.forename}"
       set u.familyName = "${args.userInput.familyName}"
       set u.displayName = "${args.userInput.displayName}"
       set u.displayImage = "${args.userInput.displayImage}"
       set u.about = "${args.userInput.about}"
-      set c.telephone = "${JSON.stringify(args.userInput.contact.telephone)}"
-      set c.email = "${JSON.stringify(args.userInput.contact.email)}"
+      set c.telephone = ['${args.userInput.contact.telephone}']
+      set c.email = ['${args.userInput.contact.email}']
       set c.socials = []
       return u{ .*, contact: c{ .* }} as user`;
       return await runQuery(updateUser, context, resolveInfo, false);
@@ -240,7 +238,6 @@ export const resolvers = {
       resolveInfo: GraphQLResolveInfo
     ) => {
       const {
-        userId,
         name,
         description,
         // displayImage,
@@ -252,8 +249,14 @@ export const resolvers = {
        * second, attack business to user object
        * third, connect auxilliary objects IF they exist
        */
+      const token = context.req.cookies['sessionCookie'];
+
+      if (!token) {
+        return { ok: false, business: {} };
+      }
+
       const createBusiness = `
-       MATCH (u: User {userId: "${userId}"})
+       MATCH (u: User {userId: "${context.req.session.passport.user.userId}"})
        MERGE (u)-[r:MANAGES]->(b: Business:Contactable:Ownable:ContentMetaReference { name: "${name}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid() })
        SET b.businessId = apoc.create.uuid() 
        SET b.description = "${description}" 

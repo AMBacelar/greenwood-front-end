@@ -128,7 +128,6 @@ export type BusinessCategoryBusinessesArgs = {
 
 export type BusinessInput = {
   businuessId?: Maybe<Scalars['ID']>;
-  userId: Scalars['ID'];
   name: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   displayImage?: Maybe<Scalars['String']>;

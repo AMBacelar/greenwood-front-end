@@ -181,7 +181,6 @@ input UserInput {
 
 input BusinessInput {
   businuessId: ID
-  userId: ID!
   name: String!
   description: String
   displayImage: String

@@ -60,6 +60,7 @@ const ProfileForm = (props: any) => {
       try {
         const imageName = `user-${props.user.userId}.png`;
         const imageData = await imageUpload(imageBlob, imageName);
+        console.log(imageData);
         setImageValue(imageData.Location);
       } catch (error) {
         console.log("error, image upload didn't work...")
