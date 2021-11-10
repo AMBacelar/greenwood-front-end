@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 
 import classNames from 'classnames';
 import noop from 'lodash/noop';
-import styles from './TextArea.scss';
+import styles from './TextArea.module.scss';
 import bowser from 'bowser';
 
 type TextAreaProps = {

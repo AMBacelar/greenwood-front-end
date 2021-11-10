@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
-import styles from './Layout.scss';
+import styles from './Layout.module.scss';
 import Footer from './Footer';
 import imageUrl from 'utils/imageUrl';
 import { useGetTokensQuery } from 'generated/graphql';
@@ -20,10 +20,11 @@ export interface Props {
   isHomePage?: boolean;
 }
 
-const HeaderBar = (props: Props) => {console.log(props.isHomePage);
+const HeaderBar = (props: Props) => {
+  console.log(props.isHomePage);
   if (props.isHomePage) {
-    return <Navbar fixed ='top'>{props.children}</Navbar>
-    
+    return <Navbar fixed='top'>{props.children}</Navbar>
+
   }
   return <Navbar>{props.children}</Navbar>
 }
@@ -94,39 +95,39 @@ export const Layout = (props: Props) => {
                       />
                     </Navbar.Brand>
                   </Link>
-                  <Navbar.Toggle aria-controls="responsive-navbar-nav" className={styles['nav-button']}/>
+                  <Navbar.Toggle aria-controls="responsive-navbar-nav" className={styles['nav-button']} />
                   <Nav className={styles['nav-right']}>
                     <div className={styles.navCollapsable}>
-                    <Nav.Item>
-                      <Link passHref href="/">
-                        <Nav.Link>The Catalogue</Nav.Link>
-                      </Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Link passHref href="/article">
-                        <Nav.Link>Blog</Nav.Link>
-                      </Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Link passHref href="/">
-                        <Nav.Link>The App</Nav.Link>
-                      </Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Link passHref href="/aboutus">
-                        <Nav.Link>About Us</Nav.Link>
-                      </Link>
-                    </Nav.Item>
+                      <Nav.Item>
+                        <Link passHref href="/">
+                          <Nav.Link>The Catalogue</Nav.Link>
+                        </Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Link passHref href="/article">
+                          <Nav.Link>Blog</Nav.Link>
+                        </Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Link passHref href="/">
+                          <Nav.Link>The App</Nav.Link>
+                        </Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Link passHref href="/aboutus">
+                          <Nav.Link>About Us</Nav.Link>
+                        </Link>
+                      </Nav.Item>
                     </div>
                     {data?.getTokens.ok ? <Nav.Item>
                       <Link passHref href="/dashboard">
                         <Nav.Link>Profile</Nav.Link>
                       </Link>
                     </Nav.Item> : <Nav.Item>
-                        <Link passHref href="/api/auth/google">
-                          <Nav.Link>Sign In</Nav.Link>
-                        </Link>
-                      </Nav.Item>}
+                      <Link passHref href="/api/auth/google">
+                        <Nav.Link>Sign In</Nav.Link>
+                      </Link>
+                    </Nav.Item>}
                   </Nav>
                 </div>
               </Container>
@@ -135,7 +136,7 @@ export const Layout = (props: Props) => {
         </div>
         {props.children}
         <Footer />
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };

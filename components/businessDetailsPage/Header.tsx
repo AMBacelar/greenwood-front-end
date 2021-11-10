@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import styles from './Header.scss';
+import styles from './Header.module.scss';
 
 export type Props = {
   avatarImage: string;

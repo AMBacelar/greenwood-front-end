@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import styles from "./LatestBusinesses.scss";
+import styles from "./LatestBusinesses.module.scss";
 import BusinessItem from "./BusinessItem";
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
   }>;
 }
 
-export default ({ businesses }: Props) => {
+const LatestBusinesses = ({ businesses }: Props) => {
   const renderedBusinesses = businesses.map((business, index) => (
     <BusinessItem
       key={index}
@@ -38,3 +38,5 @@ export default ({ businesses }: Props) => {
     </div>
   );
 };
+
+export default LatestBusinesses;

@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Link from 'next/link';
 
-import styles from './Footer.scss';
+import styles from './Footer.module.scss';
 import imageUrl from 'utils/imageUrl';
 
 export const Footer = () => (

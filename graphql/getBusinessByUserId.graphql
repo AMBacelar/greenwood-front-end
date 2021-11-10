@@ -1,0 +1,9 @@
+query getBusinessByUserId {
+  Business {
+    businessId
+    bannerColour
+    name
+    slug
+    dateCreated
+  }
+}

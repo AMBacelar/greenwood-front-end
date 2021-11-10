@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import noop from 'lodash/noop';
 import bowser from 'bowser';
-import styles from './TextInput.scss';
+import styles from './TextInput.module.scss';
 
 export type InputProps = {
   autocomplete?: string,

@@ -50,6 +50,9 @@ export const GET_BUSINESS_QUERY = gql`
       name
       slug
       dateCreated
+      contact {
+        telephone
+      }
     }
   }
 `;
@@ -90,7 +93,7 @@ interface Props {
 const Page: NextPage<Props, any> = (props) => {
 
   const { business } = props;
-  // console.log('props:',props);
+  // console.log('props:', props);
   return (
     <Layout
       title={business.displayName}
@@ -115,17 +118,17 @@ const Page: NextPage<Props, any> = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const apolloClient = initializeApollo();
-  await apolloClient.query({
+  const response = await apolloClient.query({
     query: GET_BUSINESS_QUERY,
     variables: { slug: ctx.query.slug },
   });
-  // console.log('slug result', apolloClient.cache.extract());
-
+  console.log('$$', response)
   // Pass data to the page via props
   return {
     props: {
       business: businesses[0],
-      initialApolloState: apolloClient.cache.extract(),
+      // business: response.data.Business[0],
+      // initialApolloState: apolloClient.cache.extract(),
     },
   };
 };

@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import imageUrl from '../../../utils/imageUrl';
 
-import styles from './Section2.scss';
+import styles from './Section2.module.scss';
 
 interface Props {
   featuredBlog: {
@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-export default ({ featuredBlog }: Props) => {
+const Section2 = ({ featuredBlog }: Props) => {
   const articleText = featuredBlog.blogText
     .split('\n')
     .map((substring, index) => (
@@ -61,3 +61,5 @@ export default ({ featuredBlog }: Props) => {
     </div>
   );
 };
+
+export default Section2;

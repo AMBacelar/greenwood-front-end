@@ -2,8 +2,12 @@ mutation UpdateUserProfile($userInput: UserInput) {
   updateUserProfile(userInput: $userInput) {
     userId
     displayName
+    displayImage
     forename
     familyName
     about
+    contact {
+      contactId
+    }
   }
 }

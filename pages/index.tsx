@@ -90,9 +90,10 @@ const featuredVideos = [
   },
 ];
 
-interface Props {}
+interface Props { }
 
 const HomePage: NextPage<Props, any> = () => {
+
   return (
     <Layout
       title={'The Greenwood Network'}

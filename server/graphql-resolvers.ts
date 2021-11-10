@@ -1,11 +1,10 @@
-import _ from 'lodash';
-
 import { randomColor } from 'utils/randomColour';
 import { slugify } from 'utils/createSlug';
 import { createAccessToken, createRefreshToken } from './auth';
 import { sendRefreshToken } from './sendRefreshToken';
 import { verify } from 'jsonwebtoken';
 import { GraphQLResolveInfo } from 'graphql';
+import { nanoid } from 'nanoid';
 
 const buildSessionParams = (ctx: any) => {
   let paramObj = {
@@ -51,7 +50,7 @@ const runQuery = async (
 
   let result;
 
-  result = await session.writeTransaction((tx: any) => tx.run(query));
+  result = await session.run(query);
   result = result.records[0].get(0);
   session.close();
   return built ? result.properties : result;
@@ -138,8 +137,6 @@ export const resolvers = {
     ) => {
       const token = context.req.cookies['sessionCookie'];
 
-      console.log('getTokens, 1:', token);
-
       const emptyUser = {
         displayName: '',
         userId: '',
@@ -172,6 +169,42 @@ export const resolvers = {
         };
       }
     },
+    getBusinessByUserId: async (
+      _root: any,
+      _args: any,
+      context: any,
+      resolveInfo: GraphQLResolveInfo
+    ) => {
+      const token = context.req.cookies['sessionCookie'];
+
+      if (!token) {
+        return { ok: false, businesses: [] };
+      }
+
+      const findBusinesses = `
+      MATCH (user: User { userId: "${context.req.session.passport.user.userId}"})-[:MANAGES]->(b:Business)
+      RETURN b`;
+
+      let businesses;
+      try {
+        businesses = await runQuery(
+          findBusinesses,
+          context,
+          resolveInfo,
+          false
+        );
+      } catch (error) {
+        console.log('getBusinessByUserId: find businesses error', error);
+        if (!businesses) {
+          return { ok: false, businesses: [] };
+        }
+      } finally {
+        return {
+          businesses,
+          ok: true,
+        };
+      }
+    },
   },
   Mutation: {
     ...authFunctions,
@@ -179,10 +212,23 @@ export const resolvers = {
       _root: any,
       args: any,
       context: any,
-      _resolveInfo: GraphQLResolveInfo
+      resolveInfo: GraphQLResolveInfo
     ) => {
-      console.log('get user Id:', context.req.session.passport.user.userId);
-      console.log('arguments', args.userInput);
+      const userId = context.req.session.passport
+        ? context.req.session.passport.user.userId
+        : args.userInput.userId;
+
+      const updateUser = `match (u: User {userId: "${userId}"})-[r]->(c:Contact {contactId: "${args.userInput.contact.contactId}"})
+      set u.forename = "${args.userInput.forename}"
+      set u.familyName = "${args.userInput.familyName}"
+      set u.displayName = "${args.userInput.displayName}"
+      set u.displayImage = "${args.userInput.displayImage}"
+      set u.about = "${args.userInput.about}"
+      set c.telephone = ['${args.userInput.contact.telephone}']
+      set c.email = ['${args.userInput.contact.email}']
+      set c.socials = []
+      return u{ .*, contact: c{ .* }} as user`;
+      return await runQuery(updateUser, context, resolveInfo, false);
     },
     userCreateBusiness: async (
       _root: any,
@@ -191,29 +237,37 @@ export const resolvers = {
       resolveInfo: GraphQLResolveInfo
     ) => {
       const {
-        userId,
         name,
         description,
         // displayImage,
         // gallery,
         // bannerImage,
-      } = args.input;
+      } = args.businessInput;
       /**
        * first, create the business object
        * second, attack business to user object
        * third, connect auxilliary objects IF they exist
        */
+      const token = context.req.cookies['sessionCookie'];
+
+      if (!token) {
+        return { ok: false, business: {} };
+      }
+
       const createBusiness = `
-       MATCH (u: User {userId: "${userId}"})
-       MERGE (b: Business:Contactable:Ownable:ContentMetaReference { name: "${name}", businessId: apoc.create.uuid(), description: "${description}", bannerColour: "${randomColor()}", slug: "${slugify(
-        name,
-        {
-          lower: true,
-          remove: /[*+~.()'"!:@]/g,
-        }
-      )}", dateCreated: toInteger(${Date.now()}) })<-[r:MANAGES]-(u)
-        RETURN b
-       `;
+       MATCH (u: User {userId: "${context.req.session.passport.user.userId}"})
+       MERGE (u)-[r:MANAGES]->(b: Business:Contactable:Ownable:ContentMetaReference { name: "${name}" })-[:HAS_CONTACT]->(c:Contact { contactId: apoc.create.uuid() })
+       SET b.businessId = apoc.create.uuid() 
+       SET b.description = "${description}" 
+       SET b.bannerColour = "${randomColor()}" 
+       SET b.slug = "${slugify(name, {
+         lower: true,
+         remove: /[*+~.()'"!:@]/g,
+       })}-${nanoid(8)}"
+       SET b.dateCreated = toInteger(${Date.now()})
+       SET c.email = "[]"
+       SET c.telephone = "[]"
+       RETURN b{ .*, managedBy: u{ .* }}`;
       return await runQuery(createBusiness, context, resolveInfo);
     },
   },
@@ -226,5 +280,19 @@ export const resolvers = {
     ) => {
       return Number(obj.dateCreated);
     },
+  },
+  Contact: {
+    // email: (
+    //   obj: any,
+    //   _args: any,
+    //   _context: any,
+    //   _resolveInfo: GraphQLResolveInfo
+    // ) => JSON.parse(obj.email),
+    // telephone: (
+    //   obj: any,
+    //   _args: any,
+    //   _context: any,
+    //   _resolveInfo: GraphQLResolveInfo
+    // ) => JSON.parse(obj.telephone),
   },
 };
