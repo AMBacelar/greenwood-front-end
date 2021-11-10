@@ -156,7 +156,6 @@ export const resolvers = {
       try {
         user = await runQuery(findUser, context, resolveInfo, false);
       } catch (error) {
-        console.log('so, there seems to be an error');
         console.log('GetTokens: find user error', error);
         if (!user) {
           return { ok: false, accessToken: '', user: emptyUser };

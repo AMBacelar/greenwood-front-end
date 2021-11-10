@@ -1,15 +1,61 @@
 .base {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
+  navbar {
+    top: 0;
+  }
+}
+.banner {
+  background-color: rgb(106, 139, 117);
+  height: 200px;
+}
+.banner__homepage {
+  position: sticky;
+  top: 0;
+}
+.navCollapsable{
+  display: flex;
 }
 .nav-right {
   float: right;
-  backdrop-filter: blur(10px);
   padding: 10px;
+  display: flex;
 }
 .logo {
-  width: 200px;
+  width: 85px;
 }
 .headerStyles {
   width: 100%;
   align-items: start;
+}
+
+.Navbar {
+  background-color: rgba($color: #ffffff, $alpha: 0.9);
+  box-shadow: 10px 10px 30px 1px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+@media screen and (max-width: 1024px) {
+  .Navbar {
+    background-color: #ffffff;
+    height: 68px;
+  }
+  .navCollapsable{
+    flex-direction: column;
+    display: none;
+  }
+  .nav-right {
+    margin-top: 5px;
+    padding-right: 0;
+  }
+  .logo {
+    width: 70px;
+    margin-top: 5px;
+    text-align: center
+  }
+  .nav-button {
+    display: initial !important;
+    align-self: flex-end;
+    float: right;
+    margin: 15px 0 15px 15px;
+  }
 }

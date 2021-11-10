@@ -30,7 +30,7 @@ const Section3 = ({ featuredBusinesses }: Props) => {
         <Row>
           <Col>
             <h2 className={styles.header}>
-              checkout some of the businesses that are ready to cater to you
+              Check out some of the businesses that are ready to cater to you
             </h2>
             <p className={styles.text}>
               These are just a few of many. Find whatever business suits your

@@ -22,2245 +22,6 @@ export type Scalars = {
 
 
 
-export type Address = {
-  __typename?: 'Address';
-  addressId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  addressLine1: Scalars['String'];
-  addressLine2?: Maybe<Scalars['String']>;
-  postCode: Scalars['String'];
-  location?: Maybe<_Neo4jPoint>;
-  showAddress: Scalars['Boolean'];
-  contact: Contact;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type AddressContactArgs = {
-  filter?: Maybe<_ContactFilter>;
-};
-
-export type AddressInput = {
-  addressId?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  addressLine1: Scalars['String'];
-  addressLine2?: Maybe<Scalars['String']>;
-  postCode: Scalars['String'];
-  location?: Maybe<_Neo4jPointInput>;
-  showAddress: Scalars['Boolean'];
-};
-
-export type Business = {
-  __typename?: 'Business';
-  businessId: Scalars['ID'];
-  name: Scalars['String'];
-  contact: Contact;
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  bannerImage?: Maybe<Scalars['String']>;
-  bannerColour?: Maybe<Scalars['String']>;
-  dateCreated?: Maybe<Scalars['Float']>;
-  slug?: Maybe<Scalars['String']>;
-  avgStars?: Maybe<Scalars['Float']>;
-  managedBy?: Maybe<Array<Maybe<User>>>;
-  reviews?: Maybe<Array<Maybe<Review>>>;
-  references: Array<Maybe<ContentMeta>>;
-  categories?: Maybe<Array<Maybe<BusinessCategory>>>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type BusinessContactArgs = {
-  filter?: Maybe<_ContactFilter>;
-};
-
-
-export type BusinessManagedByArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  filter?: Maybe<_UserFilter>;
-};
-
-
-export type BusinessReviewsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
-  filter?: Maybe<_ReviewFilter>;
-};
-
-
-export type BusinessReferencesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ContentMetaOrdering>>>;
-  filter?: Maybe<_ContentMetaFilter>;
-};
-
-
-export type BusinessCategoriesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_BusinessCategoryOrdering>>>;
-  filter?: Maybe<_BusinessCategoryFilter>;
-};
-
-export type BusinessCategory = {
-  __typename?: 'BusinessCategory';
-  businessCategoryId: Scalars['ID'];
-  name: Scalars['String'];
-  businesses?: Maybe<Array<Maybe<Business>>>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type BusinessCategoryBusinessesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
-  filter?: Maybe<_BusinessFilter>;
-};
-
-export type BusinessInput = {
-  businuessId?: Maybe<Scalars['ID']>;
-  name: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  bannerImage?: Maybe<Scalars['String']>;
-  contact?: Maybe<ContactInput>;
-};
-
-export type Contact = {
-  __typename?: 'Contact';
-  contactId: Scalars['ID'];
-  address: Array<Maybe<Address>>;
-  telephone: Array<Maybe<Scalars['String']>>;
-  email: Array<Maybe<Scalars['String']>>;
-  socials: Array<Maybe<SocialLink>>;
-  referencedBy: Contactable;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type ContactAddressArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_AddressOrdering>>>;
-  filter?: Maybe<_AddressFilter>;
-};
-
-
-export type ContactSocialsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_SocialLinkOrdering>>>;
-  filter?: Maybe<_SocialLinkFilter>;
-};
-
-export type ContactInput = {
-  contactId?: Maybe<Scalars['ID']>;
-  address?: Maybe<Array<Maybe<AddressInput>>>;
-  telephone: Array<Maybe<Scalars['String']>>;
-  email: Array<Maybe<Scalars['String']>>;
-  socials: Array<Maybe<SocialLinkInput>>;
-};
-
-export type Contactable = User | Business | Venue;
-
-export type Content = {
-  __typename?: 'Content';
-  contentId: Scalars['ID'];
-  title: Scalars['String'];
-  displayImage?: Maybe<Scalars['String']>;
-  hosts?: Maybe<Array<Maybe<User>>>;
-  guests?: Maybe<Array<Maybe<User>>>;
-  url?: Maybe<Scalars['String']>;
-  release?: Maybe<_Neo4jDateTime>;
-  summary?: Maybe<Scalars['String']>;
-  series?: Maybe<Array<Maybe<Series>>>;
-  reviews?: Maybe<Array<Maybe<Review>>>;
-  avgStars?: Maybe<Scalars['Float']>;
-  meta: Array<Maybe<ContentMeta>>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type ContentHostsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  filter?: Maybe<_UserFilter>;
-};
-
-
-export type ContentGuestsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  filter?: Maybe<_UserFilter>;
-};
-
-
-export type ContentSeriesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_SeriesOrdering>>>;
-  filter?: Maybe<_SeriesFilter>;
-};
-
-
-export type ContentReviewsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
-  filter?: Maybe<_ReviewFilter>;
-};
-
-
-export type ContentMetaArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ContentMetaOrdering>>>;
-  filter?: Maybe<_ContentMetaFilter>;
-};
-
-export type ContentMeta = {
-  __typename?: 'ContentMeta';
-  contentMetaId: Scalars['ID'];
-  role: Scalars['String'];
-  reference: ContentMetaReference;
-  content: Content;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type ContentMetaContentArgs = {
-  filter?: Maybe<_ContentFilter>;
-};
-
-export type ContentMetaReference = Business | User;
-
-export type Event = {
-  __typename?: 'Event';
-  eventId: Scalars['ID'];
-  name: Scalars['String'];
-  venue?: Maybe<Venue>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery: Array<Maybe<Scalars['String']>>;
-  managedBy?: Maybe<Array<Maybe<User>>>;
-  guests?: Maybe<Array<Maybe<User>>>;
-  start?: Maybe<_Neo4jDateTime>;
-  end?: Maybe<_Neo4jDateTime>;
-  url?: Maybe<Scalars['String']>;
-  series?: Maybe<Array<Maybe<Series>>>;
-  reviews?: Maybe<Array<Maybe<Review>>>;
-  avgStars?: Maybe<Scalars['Float']>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type EventVenueArgs = {
-  filter?: Maybe<_VenueFilter>;
-};
-
-
-export type EventManagedByArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  filter?: Maybe<_UserFilter>;
-};
-
-
-export type EventGuestsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  filter?: Maybe<_UserFilter>;
-};
-
-
-export type EventSeriesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_SeriesOrdering>>>;
-  filter?: Maybe<_SeriesFilter>;
-};
-
-
-export type EventReviewsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
-  filter?: Maybe<_ReviewFilter>;
-};
-
-export type HomePageResponse = {
-  __typename?: 'HomePageResponse';
-  latestBusinesses: Array<Maybe<Business>>;
-  featuredBlog?: Maybe<Ownable>;
-  featuredBusinesses: Array<Maybe<Business>>;
-  featuredVideos: Array<Maybe<Ownable>>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type HomePageResponseLatestBusinessesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
-  filter?: Maybe<_BusinessFilter>;
-};
-
-
-export type HomePageResponseFeaturedBusinessesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
-  filter?: Maybe<_BusinessFilter>;
-};
-
-
-export type HomePageResponseFeaturedVideosArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-export type LoginResponse = {
-  __typename?: 'LoginResponse';
-  accessToken?: Maybe<Scalars['String']>;
-  user?: Maybe<User>;
-  ok?: Maybe<Scalars['Boolean']>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type LoginResponseUserArgs = {
-  filter?: Maybe<_UserFilter>;
-};
-
-export type MixedMedia = Series | Event | Content;
-
-export type Mutation = {
-  __typename?: 'Mutation';
-  authenticate?: Maybe<LoginResponse>;
-  refreshToken: RefreshTokenResponse;
-  userCreateBusiness?: Maybe<Business>;
-  userCreateReview?: Maybe<Review>;
-  updateUserProfile?: Maybe<User>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_CONTACT relationship. */
-  AddUserContact?: Maybe<_AddUserContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_CONTACT relationship. */
-  RemoveUserContact?: Maybe<_RemoveUserContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_CONTACT relationship. */
-  MergeUserContact?: Maybe<_MergeUserContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the WROTE relationship. */
-  AddUserReviews?: Maybe<_AddUserReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the WROTE relationship. */
-  RemoveUserReviews?: Maybe<_RemoveUserReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the WROTE relationship. */
-  MergeUserReviews?: Maybe<_MergeUserReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the META_REFERENCE relationship. */
-  AddUserReferences?: Maybe<_AddUserReferencesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the META_REFERENCE relationship. */
-  RemoveUserReferences?: Maybe<_RemoveUserReferencesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the META_REFERENCE relationship. */
-  MergeUserReferences?: Maybe<_MergeUserReferencesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a User node. */
-  CreateUser?: Maybe<User>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a User node. */
-  UpdateUser?: Maybe<User>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a User node. */
-  DeleteUser?: Maybe<User>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a User node. */
-  MergeUser?: Maybe<User>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_ADDRESS relationship. */
-  AddAddressContact?: Maybe<_AddAddressContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_ADDRESS relationship. */
-  RemoveAddressContact?: Maybe<_RemoveAddressContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_ADDRESS relationship. */
-  MergeAddressContact?: Maybe<_MergeAddressContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Address node. */
-  CreateAddress?: Maybe<Address>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Address node. */
-  UpdateAddress?: Maybe<Address>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Address node. */
-  DeleteAddress?: Maybe<Address>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Address node. */
-  MergeAddress?: Maybe<Address>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_ADDRESS relationship. */
-  AddContactAddress?: Maybe<_AddContactAddressPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_ADDRESS relationship. */
-  RemoveContactAddress?: Maybe<_RemoveContactAddressPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_ADDRESS relationship. */
-  MergeContactAddress?: Maybe<_MergeContactAddressPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_SOCIAL relationship. */
-  AddContactSocials?: Maybe<_AddContactSocialsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_SOCIAL relationship. */
-  RemoveContactSocials?: Maybe<_RemoveContactSocialsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_SOCIAL relationship. */
-  MergeContactSocials?: Maybe<_MergeContactSocialsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Contact node. */
-  CreateContact?: Maybe<Contact>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Contact node. */
-  UpdateContact?: Maybe<Contact>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Contact node. */
-  DeleteContact?: Maybe<Contact>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Contact node. */
-  MergeContact?: Maybe<Contact>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_SOCIAL relationship. */
-  AddSocialLinkContact?: Maybe<_AddSocialLinkContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_SOCIAL relationship. */
-  RemoveSocialLinkContact?: Maybe<_RemoveSocialLinkContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_SOCIAL relationship. */
-  MergeSocialLinkContact?: Maybe<_MergeSocialLinkContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a SocialLink node. */
-  CreateSocialLink?: Maybe<SocialLink>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a SocialLink node. */
-  UpdateSocialLink?: Maybe<SocialLink>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a SocialLink node. */
-  DeleteSocialLink?: Maybe<SocialLink>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a SocialLink node. */
-  MergeSocialLink?: Maybe<SocialLink>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_CONTACT relationship. */
-  AddBusinessContact?: Maybe<_AddBusinessContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_CONTACT relationship. */
-  RemoveBusinessContact?: Maybe<_RemoveBusinessContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_CONTACT relationship. */
-  MergeBusinessContact?: Maybe<_MergeBusinessContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
-  AddBusinessManagedBy?: Maybe<_AddBusinessManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
-  RemoveBusinessManagedBy?: Maybe<_RemoveBusinessManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
-  MergeBusinessManagedBy?: Maybe<_MergeBusinessManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
-  AddBusinessReviews?: Maybe<_AddBusinessReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
-  RemoveBusinessReviews?: Maybe<_RemoveBusinessReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
-  MergeBusinessReviews?: Maybe<_MergeBusinessReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the META_REFERENCE relationship. */
-  AddBusinessReferences?: Maybe<_AddBusinessReferencesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the META_REFERENCE relationship. */
-  RemoveBusinessReferences?: Maybe<_RemoveBusinessReferencesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the META_REFERENCE relationship. */
-  MergeBusinessReferences?: Maybe<_MergeBusinessReferencesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the IN_BUSINESS_CATEGORY relationship. */
-  AddBusinessCategories?: Maybe<_AddBusinessCategoriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the IN_BUSINESS_CATEGORY relationship. */
-  RemoveBusinessCategories?: Maybe<_RemoveBusinessCategoriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the IN_BUSINESS_CATEGORY relationship. */
-  MergeBusinessCategories?: Maybe<_MergeBusinessCategoriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Business node. */
-  CreateBusiness?: Maybe<Business>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Business node. */
-  UpdateBusiness?: Maybe<Business>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Business node. */
-  DeleteBusiness?: Maybe<Business>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Business node. */
-  MergeBusiness?: Maybe<Business>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
-  AddSeriesManagedBy?: Maybe<_AddSeriesManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
-  RemoveSeriesManagedBy?: Maybe<_RemoveSeriesManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
-  MergeSeriesManagedBy?: Maybe<_MergeSeriesManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the PART_OF relationship. */
-  AddSeriesEvents?: Maybe<_AddSeriesEventsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the PART_OF relationship. */
-  RemoveSeriesEvents?: Maybe<_RemoveSeriesEventsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the PART_OF relationship. */
-  MergeSeriesEvents?: Maybe<_MergeSeriesEventsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the PART_OF relationship. */
-  AddSeriesContent?: Maybe<_AddSeriesContentPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the PART_OF relationship. */
-  RemoveSeriesContent?: Maybe<_RemoveSeriesContentPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the PART_OF relationship. */
-  MergeSeriesContent?: Maybe<_MergeSeriesContentPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
-  AddSeriesReviews?: Maybe<_AddSeriesReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
-  RemoveSeriesReviews?: Maybe<_RemoveSeriesReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
-  MergeSeriesReviews?: Maybe<_MergeSeriesReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Series node. */
-  CreateSeries?: Maybe<Series>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Series node. */
-  UpdateSeries?: Maybe<Series>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Series node. */
-  DeleteSeries?: Maybe<Series>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Series node. */
-  MergeSeries?: Maybe<Series>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
-  AddContentHosts?: Maybe<_AddContentHostsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
-  RemoveContentHosts?: Maybe<_RemoveContentHostsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
-  MergeContentHosts?: Maybe<_MergeContentHostsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the APPEARS_IN relationship. */
-  AddContentGuests?: Maybe<_AddContentGuestsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the APPEARS_IN relationship. */
-  RemoveContentGuests?: Maybe<_RemoveContentGuestsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the APPEARS_IN relationship. */
-  MergeContentGuests?: Maybe<_MergeContentGuestsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the PART_OF relationship. */
-  AddContentSeries?: Maybe<_AddContentSeriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the PART_OF relationship. */
-  RemoveContentSeries?: Maybe<_RemoveContentSeriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the PART_OF relationship. */
-  MergeContentSeries?: Maybe<_MergeContentSeriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
-  AddContentReviews?: Maybe<_AddContentReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
-  RemoveContentReviews?: Maybe<_RemoveContentReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
-  MergeContentReviews?: Maybe<_MergeContentReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_META relationship. */
-  AddContentMeta?: Maybe<_AddContentMetaPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_META relationship. */
-  RemoveContentMeta?: Maybe<_RemoveContentMetaPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_META relationship. */
-  MergeContentMeta?: Maybe<_MergeContentMetaPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Content node. */
-  CreateContent?: Maybe<Content>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Content node. */
-  UpdateContent?: Maybe<Content>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Content node. */
-  DeleteContent?: Maybe<Content>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Content node. */
-  MergeContent?: Maybe<Content>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_META relationship. */
-  AddContentMetaContent?: Maybe<_AddContentMetaContentPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_META relationship. */
-  RemoveContentMetaContent?: Maybe<_RemoveContentMetaContentPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_META relationship. */
-  MergeContentMetaContent?: Maybe<_MergeContentMetaContentPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a ContentMeta node. */
-  CreateContentMeta?: Maybe<ContentMeta>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a ContentMeta node. */
-  UpdateContentMeta?: Maybe<ContentMeta>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a ContentMeta node. */
-  DeleteContentMeta?: Maybe<ContentMeta>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the LOCATED_AT relationship. */
-  AddEventVenue?: Maybe<_AddEventVenuePayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the LOCATED_AT relationship. */
-  RemoveEventVenue?: Maybe<_RemoveEventVenuePayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the LOCATED_AT relationship. */
-  MergeEventVenue?: Maybe<_MergeEventVenuePayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
-  AddEventManagedBy?: Maybe<_AddEventManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
-  RemoveEventManagedBy?: Maybe<_RemoveEventManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
-  MergeEventManagedBy?: Maybe<_MergeEventManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the APPEARS_IN relationship. */
-  AddEventGuests?: Maybe<_AddEventGuestsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the APPEARS_IN relationship. */
-  RemoveEventGuests?: Maybe<_RemoveEventGuestsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the APPEARS_IN relationship. */
-  MergeEventGuests?: Maybe<_MergeEventGuestsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the PART_OF relationship. */
-  AddEventSeries?: Maybe<_AddEventSeriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the PART_OF relationship. */
-  RemoveEventSeries?: Maybe<_RemoveEventSeriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the PART_OF relationship. */
-  MergeEventSeries?: Maybe<_MergeEventSeriesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
-  AddEventReviews?: Maybe<_AddEventReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
-  RemoveEventReviews?: Maybe<_RemoveEventReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
-  MergeEventReviews?: Maybe<_MergeEventReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Event node. */
-  CreateEvent?: Maybe<Event>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Event node. */
-  UpdateEvent?: Maybe<Event>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Event node. */
-  DeleteEvent?: Maybe<Event>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Event node. */
-  MergeEvent?: Maybe<Event>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
-  AddVenueManagedBy?: Maybe<_AddVenueManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
-  RemoveVenueManagedBy?: Maybe<_RemoveVenueManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
-  MergeVenueManagedBy?: Maybe<_MergeVenueManagedByPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the LOCATED_AT relationship. */
-  AddVenueEvents?: Maybe<_AddVenueEventsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the LOCATED_AT relationship. */
-  RemoveVenueEvents?: Maybe<_RemoveVenueEventsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the LOCATED_AT relationship. */
-  MergeVenueEvents?: Maybe<_MergeVenueEventsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
-  AddVenueReviews?: Maybe<_AddVenueReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
-  RemoveVenueReviews?: Maybe<_RemoveVenueReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
-  MergeVenueReviews?: Maybe<_MergeVenueReviewsPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_CONTACT relationship. */
-  AddVenueContact?: Maybe<_AddVenueContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_CONTACT relationship. */
-  RemoveVenueContact?: Maybe<_RemoveVenueContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_CONTACT relationship. */
-  MergeVenueContact?: Maybe<_MergeVenueContactPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Venue node. */
-  CreateVenue?: Maybe<Venue>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Venue node. */
-  UpdateVenue?: Maybe<Venue>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Venue node. */
-  DeleteVenue?: Maybe<Venue>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Venue node. */
-  MergeVenue?: Maybe<Venue>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the WROTE relationship. */
-  AddReviewUser?: Maybe<_AddReviewUserPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the WROTE relationship. */
-  RemoveReviewUser?: Maybe<_RemoveReviewUserPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the WROTE relationship. */
-  MergeReviewUser?: Maybe<_MergeReviewUserPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Review node. */
-  CreateReview?: Maybe<Review>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Review node. */
-  UpdateReview?: Maybe<Review>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Review node. */
-  DeleteReview?: Maybe<Review>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Review node. */
-  MergeReview?: Maybe<Review>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the IN_BUSINESS_CATEGORY relationship. */
-  AddBusinessCategoryBusinesses?: Maybe<_AddBusinessCategoryBusinessesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the IN_BUSINESS_CATEGORY relationship. */
-  RemoveBusinessCategoryBusinesses?: Maybe<_RemoveBusinessCategoryBusinessesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the IN_BUSINESS_CATEGORY relationship. */
-  MergeBusinessCategoryBusinesses?: Maybe<_MergeBusinessCategoryBusinessesPayload>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a BusinessCategory node. */
-  CreateBusinessCategory?: Maybe<BusinessCategory>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a BusinessCategory node. */
-  UpdateBusinessCategory?: Maybe<BusinessCategory>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a BusinessCategory node. */
-  DeleteBusinessCategory?: Maybe<BusinessCategory>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a BusinessCategory node. */
-  MergeBusinessCategory?: Maybe<BusinessCategory>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a LoginResponse node. */
-  CreateLoginResponse?: Maybe<LoginResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a LoginResponse node. */
-  UpdateLoginResponse?: Maybe<LoginResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a LoginResponse node. */
-  DeleteLoginResponse?: Maybe<LoginResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a LoginResponse node. */
-  MergeLoginResponse?: Maybe<LoginResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a RefreshTokenResponse node. */
-  CreateRefreshTokenResponse?: Maybe<RefreshTokenResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a RefreshTokenResponse node. */
-  UpdateRefreshTokenResponse?: Maybe<RefreshTokenResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a RefreshTokenResponse node. */
-  DeleteRefreshTokenResponse?: Maybe<RefreshTokenResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a RefreshTokenResponse node. */
-  MergeRefreshTokenResponse?: Maybe<RefreshTokenResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a HomePageResponse node. */
-  CreateHomePageResponse?: Maybe<HomePageResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a HomePageResponse node. */
-  DeleteHomePageResponse?: Maybe<HomePageResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a HomePageResponse node. */
-  MergeHomePageResponse?: Maybe<HomePageResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a getbusinessByUserIdResponse node. */
-  CreategetbusinessByUserIdResponse?: Maybe<GetbusinessByUserIdResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a getbusinessByUserIdResponse node. */
-  DeletegetbusinessByUserIdResponse?: Maybe<GetbusinessByUserIdResponse>;
-  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a getbusinessByUserIdResponse node. */
-  MergegetbusinessByUserIdResponse?: Maybe<GetbusinessByUserIdResponse>;
-};
-
-
-export type MutationAuthenticateArgs = {
-  fieldName: Scalars['String'];
-  id: Scalars['String'];
-  displayName: Scalars['String'];
-  email: Scalars['String'];
-};
-
-
-export type MutationUserCreateBusinessArgs = {
-  businessInput?: Maybe<BusinessInput>;
-};
-
-
-export type MutationUserCreateReviewArgs = {
-  stars: Scalars['Float'];
-  text?: Maybe<Scalars['String']>;
-  targetId: Scalars['ID'];
-  userId: Scalars['ID'];
-  nodeName: Scalars['String'];
-};
-
-
-export type MutationUpdateUserProfileArgs = {
-  userInput?: Maybe<UserInput>;
-};
-
-
-export type MutationAddUserContactArgs = {
-  from: _UserInput;
-  to: _ContactInput;
-};
-
-
-export type MutationRemoveUserContactArgs = {
-  from: _UserInput;
-  to: _ContactInput;
-};
-
-
-export type MutationMergeUserContactArgs = {
-  from: _UserInput;
-  to: _ContactInput;
-};
-
-
-export type MutationAddUserReviewsArgs = {
-  from: _UserInput;
-  to: _ReviewInput;
-};
-
-
-export type MutationRemoveUserReviewsArgs = {
-  from: _UserInput;
-  to: _ReviewInput;
-};
-
-
-export type MutationMergeUserReviewsArgs = {
-  from: _UserInput;
-  to: _ReviewInput;
-};
-
-
-export type MutationAddUserReferencesArgs = {
-  from: _ContentMetaInput;
-  to: _UserInput;
-};
-
-
-export type MutationRemoveUserReferencesArgs = {
-  from: _ContentMetaInput;
-  to: _UserInput;
-};
-
-
-export type MutationMergeUserReferencesArgs = {
-  from: _ContentMetaInput;
-  to: _UserInput;
-};
-
-
-export type MutationCreateUserArgs = {
-  userId?: Maybe<Scalars['ID']>;
-  displayImage?: Maybe<Scalars['String']>;
-  forename?: Maybe<Scalars['String']>;
-  familyName?: Maybe<Scalars['String']>;
-  displayName: Scalars['String'];
-  googleId?: Maybe<Scalars['String']>;
-  about?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationUpdateUserArgs = {
-  userId: Scalars['ID'];
-  displayImage?: Maybe<Scalars['String']>;
-  forename?: Maybe<Scalars['String']>;
-  familyName?: Maybe<Scalars['String']>;
-  displayName?: Maybe<Scalars['String']>;
-  googleId?: Maybe<Scalars['String']>;
-  about?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteUserArgs = {
-  userId: Scalars['ID'];
-};
-
-
-export type MutationMergeUserArgs = {
-  userId: Scalars['ID'];
-  displayImage?: Maybe<Scalars['String']>;
-  forename?: Maybe<Scalars['String']>;
-  familyName?: Maybe<Scalars['String']>;
-  displayName?: Maybe<Scalars['String']>;
-  googleId?: Maybe<Scalars['String']>;
-  about?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationAddAddressContactArgs = {
-  from: _ContactInput;
-  to: _AddressInput;
-};
-
-
-export type MutationRemoveAddressContactArgs = {
-  from: _ContactInput;
-  to: _AddressInput;
-};
-
-
-export type MutationMergeAddressContactArgs = {
-  from: _ContactInput;
-  to: _AddressInput;
-};
-
-
-export type MutationCreateAddressArgs = {
-  addressId?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  addressLine1: Scalars['String'];
-  addressLine2?: Maybe<Scalars['String']>;
-  postCode: Scalars['String'];
-  location?: Maybe<_Neo4jPointInput>;
-  showAddress: Scalars['Boolean'];
-};
-
-
-export type MutationUpdateAddressArgs = {
-  addressId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  addressLine1?: Maybe<Scalars['String']>;
-  addressLine2?: Maybe<Scalars['String']>;
-  postCode?: Maybe<Scalars['String']>;
-  location?: Maybe<_Neo4jPointInput>;
-  showAddress?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationDeleteAddressArgs = {
-  addressId: Scalars['ID'];
-};
-
-
-export type MutationMergeAddressArgs = {
-  addressId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  addressLine1?: Maybe<Scalars['String']>;
-  addressLine2?: Maybe<Scalars['String']>;
-  postCode?: Maybe<Scalars['String']>;
-  location?: Maybe<_Neo4jPointInput>;
-  showAddress?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationAddContactAddressArgs = {
-  from: _ContactInput;
-  to: _AddressInput;
-};
-
-
-export type MutationRemoveContactAddressArgs = {
-  from: _ContactInput;
-  to: _AddressInput;
-};
-
-
-export type MutationMergeContactAddressArgs = {
-  from: _ContactInput;
-  to: _AddressInput;
-};
-
-
-export type MutationAddContactSocialsArgs = {
-  from: _ContactInput;
-  to: _SocialLinkInput;
-};
-
-
-export type MutationRemoveContactSocialsArgs = {
-  from: _ContactInput;
-  to: _SocialLinkInput;
-};
-
-
-export type MutationMergeContactSocialsArgs = {
-  from: _ContactInput;
-  to: _SocialLinkInput;
-};
-
-
-export type MutationCreateContactArgs = {
-  contactId?: Maybe<Scalars['ID']>;
-  telephone: Array<Maybe<Scalars['String']>>;
-  email: Array<Maybe<Scalars['String']>>;
-};
-
-
-export type MutationUpdateContactArgs = {
-  contactId: Scalars['ID'];
-  telephone?: Maybe<Array<Maybe<Scalars['String']>>>;
-  email?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type MutationDeleteContactArgs = {
-  contactId: Scalars['ID'];
-};
-
-
-export type MutationMergeContactArgs = {
-  contactId: Scalars['ID'];
-  telephone?: Maybe<Array<Maybe<Scalars['String']>>>;
-  email?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type MutationAddSocialLinkContactArgs = {
-  from: _ContactInput;
-  to: _SocialLinkInput;
-};
-
-
-export type MutationRemoveSocialLinkContactArgs = {
-  from: _ContactInput;
-  to: _SocialLinkInput;
-};
-
-
-export type MutationMergeSocialLinkContactArgs = {
-  from: _ContactInput;
-  to: _SocialLinkInput;
-};
-
-
-export type MutationCreateSocialLinkArgs = {
-  socialLinkId?: Maybe<Scalars['ID']>;
-  platform: Scalars['String'];
-  account: Scalars['String'];
-};
-
-
-export type MutationUpdateSocialLinkArgs = {
-  socialLinkId: Scalars['ID'];
-  platform?: Maybe<Scalars['String']>;
-  account?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteSocialLinkArgs = {
-  socialLinkId: Scalars['ID'];
-};
-
-
-export type MutationMergeSocialLinkArgs = {
-  socialLinkId: Scalars['ID'];
-  platform?: Maybe<Scalars['String']>;
-  account?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationAddBusinessContactArgs = {
-  from: _BusinessInput;
-  to: _ContactInput;
-};
-
-
-export type MutationRemoveBusinessContactArgs = {
-  from: _BusinessInput;
-  to: _ContactInput;
-};
-
-
-export type MutationMergeBusinessContactArgs = {
-  from: _BusinessInput;
-  to: _ContactInput;
-};
-
-
-export type MutationAddBusinessManagedByArgs = {
-  from: _UserInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationRemoveBusinessManagedByArgs = {
-  from: _UserInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationMergeBusinessManagedByArgs = {
-  from: _UserInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationAddBusinessReviewsArgs = {
-  from: _ReviewInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationRemoveBusinessReviewsArgs = {
-  from: _ReviewInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationMergeBusinessReviewsArgs = {
-  from: _ReviewInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationAddBusinessReferencesArgs = {
-  from: _ContentMetaInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationRemoveBusinessReferencesArgs = {
-  from: _ContentMetaInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationMergeBusinessReferencesArgs = {
-  from: _ContentMetaInput;
-  to: _BusinessInput;
-};
-
-
-export type MutationAddBusinessCategoriesArgs = {
-  from: _BusinessInput;
-  to: _BusinessCategoryInput;
-};
-
-
-export type MutationRemoveBusinessCategoriesArgs = {
-  from: _BusinessInput;
-  to: _BusinessCategoryInput;
-};
-
-
-export type MutationMergeBusinessCategoriesArgs = {
-  from: _BusinessInput;
-  to: _BusinessCategoryInput;
-};
-
-
-export type MutationCreateBusinessArgs = {
-  businessId?: Maybe<Scalars['ID']>;
-  name: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  bannerImage?: Maybe<Scalars['String']>;
-  bannerColour?: Maybe<Scalars['String']>;
-  dateCreated?: Maybe<Scalars['Float']>;
-  slug?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationUpdateBusinessArgs = {
-  businessId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  bannerImage?: Maybe<Scalars['String']>;
-  bannerColour?: Maybe<Scalars['String']>;
-  dateCreated?: Maybe<Scalars['Float']>;
-  slug?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteBusinessArgs = {
-  businessId: Scalars['ID'];
-};
-
-
-export type MutationMergeBusinessArgs = {
-  businessId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  bannerImage?: Maybe<Scalars['String']>;
-  bannerColour?: Maybe<Scalars['String']>;
-  dateCreated?: Maybe<Scalars['Float']>;
-  slug?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationAddSeriesManagedByArgs = {
-  from: _UserInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationRemoveSeriesManagedByArgs = {
-  from: _UserInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationMergeSeriesManagedByArgs = {
-  from: _UserInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationAddSeriesEventsArgs = {
-  from: _EventInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationRemoveSeriesEventsArgs = {
-  from: _EventInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationMergeSeriesEventsArgs = {
-  from: _EventInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationAddSeriesContentArgs = {
-  from: _ContentInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationRemoveSeriesContentArgs = {
-  from: _ContentInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationMergeSeriesContentArgs = {
-  from: _ContentInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationAddSeriesReviewsArgs = {
-  from: _ReviewInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationRemoveSeriesReviewsArgs = {
-  from: _ReviewInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationMergeSeriesReviewsArgs = {
-  from: _ReviewInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationCreateSeriesArgs = {
-  seriesId?: Maybe<Scalars['ID']>;
-  name: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationUpdateSeriesArgs = {
-  seriesId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteSeriesArgs = {
-  seriesId: Scalars['ID'];
-};
-
-
-export type MutationMergeSeriesArgs = {
-  seriesId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationAddContentHostsArgs = {
-  from: _UserInput;
-  to: _ContentInput;
-};
-
-
-export type MutationRemoveContentHostsArgs = {
-  from: _UserInput;
-  to: _ContentInput;
-};
-
-
-export type MutationMergeContentHostsArgs = {
-  from: _UserInput;
-  to: _ContentInput;
-};
-
-
-export type MutationAddContentGuestsArgs = {
-  from: _UserInput;
-  to: _ContentInput;
-};
-
-
-export type MutationRemoveContentGuestsArgs = {
-  from: _UserInput;
-  to: _ContentInput;
-};
-
-
-export type MutationMergeContentGuestsArgs = {
-  from: _UserInput;
-  to: _ContentInput;
-};
-
-
-export type MutationAddContentSeriesArgs = {
-  from: _ContentInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationRemoveContentSeriesArgs = {
-  from: _ContentInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationMergeContentSeriesArgs = {
-  from: _ContentInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationAddContentReviewsArgs = {
-  from: _ReviewInput;
-  to: _ContentInput;
-};
-
-
-export type MutationRemoveContentReviewsArgs = {
-  from: _ReviewInput;
-  to: _ContentInput;
-};
-
-
-export type MutationMergeContentReviewsArgs = {
-  from: _ReviewInput;
-  to: _ContentInput;
-};
-
-
-export type MutationAddContentMetaArgs = {
-  from: _ContentInput;
-  to: _ContentMetaInput;
-};
-
-
-export type MutationRemoveContentMetaArgs = {
-  from: _ContentInput;
-  to: _ContentMetaInput;
-};
-
-
-export type MutationMergeContentMetaArgs = {
-  from: _ContentInput;
-  to: _ContentMetaInput;
-};
-
-
-export type MutationCreateContentArgs = {
-  contentId?: Maybe<Scalars['ID']>;
-  title: Scalars['String'];
-  displayImage?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
-  release?: Maybe<_Neo4jDateTimeInput>;
-  summary?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationUpdateContentArgs = {
-  contentId: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
-  release?: Maybe<_Neo4jDateTimeInput>;
-  summary?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteContentArgs = {
-  contentId: Scalars['ID'];
-};
-
-
-export type MutationMergeContentArgs = {
-  contentId: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
-  release?: Maybe<_Neo4jDateTimeInput>;
-  summary?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationAddContentMetaContentArgs = {
-  from: _ContentInput;
-  to: _ContentMetaInput;
-};
-
-
-export type MutationRemoveContentMetaContentArgs = {
-  from: _ContentInput;
-  to: _ContentMetaInput;
-};
-
-
-export type MutationMergeContentMetaContentArgs = {
-  from: _ContentInput;
-  to: _ContentMetaInput;
-};
-
-
-export type MutationCreateContentMetaArgs = {
-  contentMetaId?: Maybe<Scalars['ID']>;
-  role: Scalars['String'];
-};
-
-
-export type MutationUpdateContentMetaArgs = {
-  contentMetaId: Scalars['ID'];
-  role?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteContentMetaArgs = {
-  contentMetaId: Scalars['ID'];
-};
-
-
-export type MutationAddEventVenueArgs = {
-  from: _EventInput;
-  to: _VenueInput;
-};
-
-
-export type MutationRemoveEventVenueArgs = {
-  from: _EventInput;
-  to: _VenueInput;
-};
-
-
-export type MutationMergeEventVenueArgs = {
-  from: _EventInput;
-  to: _VenueInput;
-};
-
-
-export type MutationAddEventManagedByArgs = {
-  from: _UserInput;
-  to: _EventInput;
-};
-
-
-export type MutationRemoveEventManagedByArgs = {
-  from: _UserInput;
-  to: _EventInput;
-};
-
-
-export type MutationMergeEventManagedByArgs = {
-  from: _UserInput;
-  to: _EventInput;
-};
-
-
-export type MutationAddEventGuestsArgs = {
-  from: _UserInput;
-  to: _EventInput;
-};
-
-
-export type MutationRemoveEventGuestsArgs = {
-  from: _UserInput;
-  to: _EventInput;
-};
-
-
-export type MutationMergeEventGuestsArgs = {
-  from: _UserInput;
-  to: _EventInput;
-};
-
-
-export type MutationAddEventSeriesArgs = {
-  from: _EventInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationRemoveEventSeriesArgs = {
-  from: _EventInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationMergeEventSeriesArgs = {
-  from: _EventInput;
-  to: _SeriesInput;
-};
-
-
-export type MutationAddEventReviewsArgs = {
-  from: _ReviewInput;
-  to: _EventInput;
-};
-
-
-export type MutationRemoveEventReviewsArgs = {
-  from: _ReviewInput;
-  to: _EventInput;
-};
-
-
-export type MutationMergeEventReviewsArgs = {
-  from: _ReviewInput;
-  to: _EventInput;
-};
-
-
-export type MutationCreateEventArgs = {
-  eventId?: Maybe<Scalars['ID']>;
-  name: Scalars['String'];
-  displayImage?: Maybe<Scalars['String']>;
-  gallery: Array<Maybe<Scalars['String']>>;
-  start?: Maybe<_Neo4jDateTimeInput>;
-  end?: Maybe<_Neo4jDateTimeInput>;
-  url?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationUpdateEventArgs = {
-  eventId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  start?: Maybe<_Neo4jDateTimeInput>;
-  end?: Maybe<_Neo4jDateTimeInput>;
-  url?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteEventArgs = {
-  eventId: Scalars['ID'];
-};
-
-
-export type MutationMergeEventArgs = {
-  eventId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  start?: Maybe<_Neo4jDateTimeInput>;
-  end?: Maybe<_Neo4jDateTimeInput>;
-  url?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationAddVenueManagedByArgs = {
-  from: _UserInput;
-  to: _VenueInput;
-};
-
-
-export type MutationRemoveVenueManagedByArgs = {
-  from: _UserInput;
-  to: _VenueInput;
-};
-
-
-export type MutationMergeVenueManagedByArgs = {
-  from: _UserInput;
-  to: _VenueInput;
-};
-
-
-export type MutationAddVenueEventsArgs = {
-  from: _EventInput;
-  to: _VenueInput;
-};
-
-
-export type MutationRemoveVenueEventsArgs = {
-  from: _EventInput;
-  to: _VenueInput;
-};
-
-
-export type MutationMergeVenueEventsArgs = {
-  from: _EventInput;
-  to: _VenueInput;
-};
-
-
-export type MutationAddVenueReviewsArgs = {
-  from: _ReviewInput;
-  to: _VenueInput;
-};
-
-
-export type MutationRemoveVenueReviewsArgs = {
-  from: _ReviewInput;
-  to: _VenueInput;
-};
-
-
-export type MutationMergeVenueReviewsArgs = {
-  from: _ReviewInput;
-  to: _VenueInput;
-};
-
-
-export type MutationAddVenueContactArgs = {
-  from: _VenueInput;
-  to: _ContactInput;
-};
-
-
-export type MutationRemoveVenueContactArgs = {
-  from: _VenueInput;
-  to: _ContactInput;
-};
-
-
-export type MutationMergeVenueContactArgs = {
-  from: _VenueInput;
-  to: _ContactInput;
-};
-
-
-export type MutationCreateVenueArgs = {
-  venueId?: Maybe<Scalars['ID']>;
-  name: Scalars['String'];
-  displayImage?: Maybe<Scalars['String']>;
-  gallery: Array<Maybe<Scalars['String']>>;
-};
-
-
-export type MutationUpdateVenueArgs = {
-  venueId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type MutationDeleteVenueArgs = {
-  venueId: Scalars['ID'];
-};
-
-
-export type MutationMergeVenueArgs = {
-  venueId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type MutationAddReviewUserArgs = {
-  from: _UserInput;
-  to: _ReviewInput;
-};
-
-
-export type MutationRemoveReviewUserArgs = {
-  from: _UserInput;
-  to: _ReviewInput;
-};
-
-
-export type MutationMergeReviewUserArgs = {
-  from: _UserInput;
-  to: _ReviewInput;
-};
-
-
-export type MutationCreateReviewArgs = {
-  reviewId?: Maybe<Scalars['ID']>;
-  stars: Scalars['Float'];
-  text?: Maybe<Scalars['String']>;
-  date?: Maybe<_Neo4jDateTimeInput>;
-};
-
-
-export type MutationUpdateReviewArgs = {
-  reviewId: Scalars['ID'];
-  stars?: Maybe<Scalars['Float']>;
-  text?: Maybe<Scalars['String']>;
-  date?: Maybe<_Neo4jDateTimeInput>;
-};
-
-
-export type MutationDeleteReviewArgs = {
-  reviewId: Scalars['ID'];
-};
-
-
-export type MutationMergeReviewArgs = {
-  reviewId: Scalars['ID'];
-  stars?: Maybe<Scalars['Float']>;
-  text?: Maybe<Scalars['String']>;
-  date?: Maybe<_Neo4jDateTimeInput>;
-};
-
-
-export type MutationAddBusinessCategoryBusinessesArgs = {
-  from: _BusinessInput;
-  to: _BusinessCategoryInput;
-};
-
-
-export type MutationRemoveBusinessCategoryBusinessesArgs = {
-  from: _BusinessInput;
-  to: _BusinessCategoryInput;
-};
-
-
-export type MutationMergeBusinessCategoryBusinessesArgs = {
-  from: _BusinessInput;
-  to: _BusinessCategoryInput;
-};
-
-
-export type MutationCreateBusinessCategoryArgs = {
-  businessCategoryId?: Maybe<Scalars['ID']>;
-  name: Scalars['String'];
-};
-
-
-export type MutationUpdateBusinessCategoryArgs = {
-  businessCategoryId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationDeleteBusinessCategoryArgs = {
-  businessCategoryId: Scalars['ID'];
-};
-
-
-export type MutationMergeBusinessCategoryArgs = {
-  businessCategoryId: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationCreateLoginResponseArgs = {
-  accessToken?: Maybe<Scalars['String']>;
-  ok?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUpdateLoginResponseArgs = {
-  accessToken: Scalars['String'];
-  ok?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationDeleteLoginResponseArgs = {
-  accessToken: Scalars['String'];
-};
-
-
-export type MutationMergeLoginResponseArgs = {
-  accessToken: Scalars['String'];
-  ok?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationCreateRefreshTokenResponseArgs = {
-  accessToken?: Maybe<Scalars['String']>;
-  ok?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUpdateRefreshTokenResponseArgs = {
-  accessToken: Scalars['String'];
-  ok?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationDeleteRefreshTokenResponseArgs = {
-  accessToken: Scalars['String'];
-};
-
-
-export type MutationMergeRefreshTokenResponseArgs = {
-  accessToken: Scalars['String'];
-  ok?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationCreategetbusinessByUserIdResponseArgs = {
-  ok?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationDeletegetbusinessByUserIdResponseArgs = {
-  ok: Scalars['Boolean'];
-};
-
-
-export type MutationMergegetbusinessByUserIdResponseArgs = {
-  ok: Scalars['Boolean'];
-};
-
-export type Ownable = Series | Event | Content | Venue | Business;
-
-export type Query = {
-  __typename?: 'Query';
-  authenticate?: Maybe<LoginResponse>;
-  refreshToken: RefreshTokenResponse;
-  getTokens: LoginResponse;
-  userCount: Scalars['Int'];
-  getBusinessByUserId?: Maybe<GetbusinessByUserIdResponse>;
-  ratingsCount?: Maybe<Array<Maybe<RatingCount>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for User type nodes. */
-  User?: Maybe<Array<Maybe<User>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Address type nodes. */
-  Address?: Maybe<Array<Maybe<Address>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Contactable type nodes. */
-  Contactable?: Maybe<Array<Maybe<Contactable>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Contact type nodes. */
-  Contact?: Maybe<Array<Maybe<Contact>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for SocialLink type nodes. */
-  SocialLink?: Maybe<Array<Maybe<SocialLink>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Ownable type nodes. */
-  Ownable?: Maybe<Array<Maybe<Ownable>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for MixedMedia type nodes. */
-  MixedMedia?: Maybe<Array<Maybe<MixedMedia>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Business type nodes. */
-  Business?: Maybe<Array<Maybe<Business>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Series type nodes. */
-  Series?: Maybe<Array<Maybe<Series>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Content type nodes. */
-  Content?: Maybe<Array<Maybe<Content>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for ContentMetaReference type nodes. */
-  ContentMetaReference?: Maybe<Array<Maybe<ContentMetaReference>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for ContentMeta type nodes. */
-  ContentMeta?: Maybe<Array<Maybe<ContentMeta>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Event type nodes. */
-  Event?: Maybe<Array<Maybe<Event>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Venue type nodes. */
-  Venue?: Maybe<Array<Maybe<Venue>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Review type nodes. */
-  Review?: Maybe<Array<Maybe<Review>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for BusinessCategory type nodes. */
-  BusinessCategory?: Maybe<Array<Maybe<BusinessCategory>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for LoginResponse type nodes. */
-  LoginResponse?: Maybe<Array<Maybe<LoginResponse>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for RefreshTokenResponse type nodes. */
-  RefreshTokenResponse?: Maybe<Array<Maybe<RefreshTokenResponse>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for HomePageResponse type nodes. */
-  HomePageResponse?: Maybe<Array<Maybe<HomePageResponse>>>;
-  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for getbusinessByUserIdResponse type nodes. */
-  getbusinessByUserIdResponse?: Maybe<Array<Maybe<GetbusinessByUserIdResponse>>>;
-};
-
-
-export type QueryAuthenticateArgs = {
-  fieldName: Scalars['String'];
-  id: Scalars['String'];
-  displayName: Scalars['String'];
-  email: Scalars['String'];
-  filter?: Maybe<_LoginResponseFilter>;
-};
-
-
-export type QueryRefreshTokenArgs = {
-  filter?: Maybe<_RefreshTokenResponseFilter>;
-};
-
-
-export type QueryGetTokensArgs = {
-  filter?: Maybe<_LoginResponseFilter>;
-};
-
-
-export type QueryGetBusinessByUserIdArgs = {
-  filter?: Maybe<_GetbusinessByUserIdResponseFilter>;
-};
-
-
-export type QueryUserArgs = {
-  userId?: Maybe<Scalars['ID']>;
-  displayImage?: Maybe<Scalars['String']>;
-  forename?: Maybe<Scalars['String']>;
-  familyName?: Maybe<Scalars['String']>;
-  displayName?: Maybe<Scalars['String']>;
-  googleId?: Maybe<Scalars['String']>;
-  about?: Maybe<Scalars['String']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  filter?: Maybe<_UserFilter>;
-};
-
-
-export type QueryAddressArgs = {
-  addressId?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  addressLine1?: Maybe<Scalars['String']>;
-  addressLine2?: Maybe<Scalars['String']>;
-  postCode?: Maybe<Scalars['String']>;
-  location?: Maybe<_Neo4jPointInput>;
-  showAddress?: Maybe<Scalars['Boolean']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_AddressOrdering>>>;
-  filter?: Maybe<_AddressFilter>;
-};
-
-
-export type QueryContactableArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryContactArgs = {
-  contactId?: Maybe<Scalars['ID']>;
-  telephone?: Maybe<Array<Maybe<Scalars['String']>>>;
-  email?: Maybe<Array<Maybe<Scalars['String']>>>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ContactOrdering>>>;
-  filter?: Maybe<_ContactFilter>;
-};
-
-
-export type QuerySocialLinkArgs = {
-  socialLinkId?: Maybe<Scalars['ID']>;
-  platform?: Maybe<Scalars['String']>;
-  account?: Maybe<Scalars['String']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_SocialLinkOrdering>>>;
-  filter?: Maybe<_SocialLinkFilter>;
-};
-
-
-export type QueryOwnableArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryMixedMediaArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryBusinessArgs = {
-  businessId?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  bannerImage?: Maybe<Scalars['String']>;
-  bannerColour?: Maybe<Scalars['String']>;
-  dateCreated?: Maybe<Scalars['Float']>;
-  slug?: Maybe<Scalars['String']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
-  filter?: Maybe<_BusinessFilter>;
-};
-
-
-export type QuerySeriesArgs = {
-  seriesId?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_SeriesOrdering>>>;
-  filter?: Maybe<_SeriesFilter>;
-};
-
-
-export type QueryContentArgs = {
-  contentId?: Maybe<Scalars['ID']>;
-  title?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
-  release?: Maybe<_Neo4jDateTimeInput>;
-  summary?: Maybe<Scalars['String']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ContentOrdering>>>;
-  filter?: Maybe<_ContentFilter>;
-};
-
-
-export type QueryContentMetaReferenceArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-
-export type QueryContentMetaArgs = {
-  contentMetaId?: Maybe<Scalars['ID']>;
-  role?: Maybe<Scalars['String']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ContentMetaOrdering>>>;
-  filter?: Maybe<_ContentMetaFilter>;
-};
-
-
-export type QueryEventArgs = {
-  eventId?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  start?: Maybe<_Neo4jDateTimeInput>;
-  end?: Maybe<_Neo4jDateTimeInput>;
-  url?: Maybe<Scalars['String']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_EventOrdering>>>;
-  filter?: Maybe<_EventFilter>;
-};
-
-
-export type QueryVenueArgs = {
-  venueId?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_VenueOrdering>>>;
-  filter?: Maybe<_VenueFilter>;
-};
-
-
-export type QueryReviewArgs = {
-  reviewId?: Maybe<Scalars['ID']>;
-  stars?: Maybe<Scalars['Float']>;
-  text?: Maybe<Scalars['String']>;
-  date?: Maybe<_Neo4jDateTimeInput>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
-  filter?: Maybe<_ReviewFilter>;
-};
-
-
-export type QueryBusinessCategoryArgs = {
-  businessCategoryId?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_BusinessCategoryOrdering>>>;
-  filter?: Maybe<_BusinessCategoryFilter>;
-};
-
-
-export type QueryLoginResponseArgs = {
-  accessToken?: Maybe<Scalars['String']>;
-  ok?: Maybe<Scalars['Boolean']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_LoginResponseOrdering>>>;
-  filter?: Maybe<_LoginResponseFilter>;
-};
-
-
-export type QueryRefreshTokenResponseArgs = {
-  accessToken?: Maybe<Scalars['String']>;
-  ok?: Maybe<Scalars['Boolean']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_RefreshTokenResponseOrdering>>>;
-  filter?: Maybe<_RefreshTokenResponseFilter>;
-};
-
-
-export type QueryHomePageResponseArgs = {
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_HomePageResponseOrdering>>>;
-  filter?: Maybe<_HomePageResponseFilter>;
-};
-
-
-export type QueryGetbusinessByUserIdResponseArgs = {
-  ok?: Maybe<Scalars['Boolean']>;
-  _id?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_GetbusinessByUserIdResponseOrdering>>>;
-  filter?: Maybe<_GetbusinessByUserIdResponseFilter>;
-};
-
-export type RatingCount = {
-  __typename?: 'RatingCount';
-  stars: Scalars['Float'];
-  count: Scalars['Int'];
-};
-
-export type RefreshTokenResponse = {
-  __typename?: 'RefreshTokenResponse';
-  accessToken?: Maybe<Scalars['String']>;
-  user?: Maybe<User>;
-  ok?: Maybe<Scalars['Boolean']>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type RefreshTokenResponseUserArgs = {
-  filter?: Maybe<_UserFilter>;
-};
-
-export type Review = {
-  __typename?: 'Review';
-  reviewId: Scalars['ID'];
-  stars: Scalars['Float'];
-  text?: Maybe<Scalars['String']>;
-  date?: Maybe<_Neo4jDateTime>;
-  item?: Maybe<Ownable>;
-  user?: Maybe<User>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type ReviewUserArgs = {
-  filter?: Maybe<_UserFilter>;
-};
-
-export type Series = {
-  __typename?: 'Series';
-  seriesId: Scalars['ID'];
-  name: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  managedBy?: Maybe<Array<Maybe<User>>>;
-  events?: Maybe<Array<Maybe<Event>>>;
-  content?: Maybe<Array<Maybe<Content>>>;
-  reviews?: Maybe<Array<Maybe<Review>>>;
-  avgStars?: Maybe<Scalars['Float']>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type SeriesManagedByArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  filter?: Maybe<_UserFilter>;
-};
-
-
-export type SeriesEventsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_EventOrdering>>>;
-  filter?: Maybe<_EventFilter>;
-};
-
-
-export type SeriesContentArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ContentOrdering>>>;
-  filter?: Maybe<_ContentFilter>;
-};
-
-
-export type SeriesReviewsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
-  filter?: Maybe<_ReviewFilter>;
-};
-
-export type SocialLink = {
-  __typename?: 'SocialLink';
-  socialLinkId: Scalars['ID'];
-  platform: Scalars['String'];
-  account: Scalars['String'];
-  contact: Contact;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type SocialLinkContactArgs = {
-  filter?: Maybe<_ContactFilter>;
-};
-
-export type SocialLinkInput = {
-  platform: Scalars['String'];
-  account: Scalars['String'];
-};
-
-export type User = {
-  __typename?: 'User';
-  userId: Scalars['ID'];
-  displayImage?: Maybe<Scalars['String']>;
-  forename?: Maybe<Scalars['String']>;
-  familyName?: Maybe<Scalars['String']>;
-  displayName: Scalars['String'];
-  googleId?: Maybe<Scalars['String']>;
-  about?: Maybe<Scalars['String']>;
-  contact: Contact;
-  reviews: Array<Maybe<Review>>;
-  references: Array<Maybe<ContentMeta>>;
-  manages: Array<Maybe<Ownable>>;
-  appearsIn: Array<Maybe<MixedMedia>>;
-  numReviews?: Maybe<Scalars['Int']>;
-  recommendations?: Maybe<Array<Maybe<Business>>>;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type UserContactArgs = {
-  filter?: Maybe<_ContactFilter>;
-};
-
-
-export type UserReviewsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
-  filter?: Maybe<_ReviewFilter>;
-};
-
-
-export type UserReferencesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ContentMetaOrdering>>>;
-  filter?: Maybe<_ContentMetaFilter>;
-};
-
-
-export type UserManagesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-
-export type UserAppearsInArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-};
-
-
-export type UserRecommendationsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
-};
-
-export type UserInput = {
-  userId?: Maybe<Scalars['ID']>;
-  displayImage?: Maybe<Scalars['String']>;
-  forename?: Maybe<Scalars['String']>;
-  familyName?: Maybe<Scalars['String']>;
-  displayName: Scalars['String'];
-  googleId?: Maybe<Scalars['String']>;
-  about?: Maybe<Scalars['String']>;
-  contact?: Maybe<ContactInput>;
-};
-
-export type Venue = {
-  __typename?: 'Venue';
-  venueId: Scalars['ID'];
-  name: Scalars['String'];
-  displayImage?: Maybe<Scalars['String']>;
-  gallery: Array<Maybe<Scalars['String']>>;
-  managedBy?: Maybe<Array<Maybe<User>>>;
-  events: Array<Maybe<Event>>;
-  reviews?: Maybe<Array<Maybe<Review>>>;
-  contact: Contact;
-  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
-  _id?: Maybe<Scalars['String']>;
-};
-
-
-export type VenueManagedByArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  filter?: Maybe<_UserFilter>;
-};
-
-
-export type VenueEventsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_EventOrdering>>>;
-  filter?: Maybe<_EventFilter>;
-};
-
-
-export type VenueReviewsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
-  filter?: Maybe<_ReviewFilter>;
-};
-
-
-export type VenueContactArgs = {
-  filter?: Maybe<_ContactFilter>;
-};
-
 export type _AddAddressContactPayload = {
   __typename?: '_AddAddressContactPayload';
   /** Field for the Contact node this HAS_ADDRESS [relationship](https://grandstack.io/docs/graphql-relationship-types) is coming from. */
@@ -2421,6 +182,95 @@ export type _AddEventVenuePayload = {
   to?: Maybe<Venue>;
 };
 
+export type _AddressFilter = {
+  addressId?: Maybe<Scalars['ID']>;
+  addressId_contains?: Maybe<Scalars['ID']>;
+  addressId_ends_with?: Maybe<Scalars['ID']>;
+  addressId_in?: Maybe<Array<Scalars['ID']>>;
+  addressId_not?: Maybe<Scalars['ID']>;
+  addressId_not_contains?: Maybe<Scalars['ID']>;
+  addressId_not_ends_with?: Maybe<Scalars['ID']>;
+  addressId_not_in?: Maybe<Array<Scalars['ID']>>;
+  addressId_not_starts_with?: Maybe<Scalars['ID']>;
+  addressId_starts_with?: Maybe<Scalars['ID']>;
+  addressLine1?: Maybe<Scalars['String']>;
+  addressLine1_contains?: Maybe<Scalars['String']>;
+  addressLine1_ends_with?: Maybe<Scalars['String']>;
+  addressLine1_in?: Maybe<Array<Scalars['String']>>;
+  addressLine1_not?: Maybe<Scalars['String']>;
+  addressLine1_not_contains?: Maybe<Scalars['String']>;
+  addressLine1_not_ends_with?: Maybe<Scalars['String']>;
+  addressLine1_not_in?: Maybe<Array<Scalars['String']>>;
+  addressLine1_not_starts_with?: Maybe<Scalars['String']>;
+  addressLine1_starts_with?: Maybe<Scalars['String']>;
+  addressLine2?: Maybe<Scalars['String']>;
+  addressLine2_contains?: Maybe<Scalars['String']>;
+  addressLine2_ends_with?: Maybe<Scalars['String']>;
+  addressLine2_in?: Maybe<Array<Scalars['String']>>;
+  addressLine2_not?: Maybe<Scalars['String']>;
+  addressLine2_not_contains?: Maybe<Scalars['String']>;
+  addressLine2_not_ends_with?: Maybe<Scalars['String']>;
+  addressLine2_not_in?: Maybe<Array<Scalars['String']>>;
+  addressLine2_not_starts_with?: Maybe<Scalars['String']>;
+  addressLine2_starts_with?: Maybe<Scalars['String']>;
+  AND?: Maybe<Array<_AddressFilter>>;
+  contact?: Maybe<_ContactFilter>;
+  contact_in?: Maybe<Array<_ContactFilter>>;
+  contact_not?: Maybe<_ContactFilter>;
+  contact_not_in?: Maybe<Array<_ContactFilter>>;
+  location?: Maybe<_Neo4jPointInput>;
+  location_distance?: Maybe<_Neo4jPointDistanceFilter>;
+  location_distance_gt?: Maybe<_Neo4jPointDistanceFilter>;
+  location_distance_gte?: Maybe<_Neo4jPointDistanceFilter>;
+  location_distance_lt?: Maybe<_Neo4jPointDistanceFilter>;
+  location_distance_lte?: Maybe<_Neo4jPointDistanceFilter>;
+  location_not?: Maybe<_Neo4jPointInput>;
+  name?: Maybe<Scalars['String']>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_ends_with?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Scalars['String']>>;
+  name_not?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  name_starts_with?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<_AddressFilter>>;
+  postCode?: Maybe<Scalars['String']>;
+  postCode_contains?: Maybe<Scalars['String']>;
+  postCode_ends_with?: Maybe<Scalars['String']>;
+  postCode_in?: Maybe<Array<Scalars['String']>>;
+  postCode_not?: Maybe<Scalars['String']>;
+  postCode_not_contains?: Maybe<Scalars['String']>;
+  postCode_not_ends_with?: Maybe<Scalars['String']>;
+  postCode_not_in?: Maybe<Array<Scalars['String']>>;
+  postCode_not_starts_with?: Maybe<Scalars['String']>;
+  postCode_starts_with?: Maybe<Scalars['String']>;
+  showAddress?: Maybe<Scalars['Boolean']>;
+  showAddress_not?: Maybe<Scalars['Boolean']>;
+};
+
+export type _AddressInput = {
+  addressId: Scalars['ID'];
+};
+
+export enum _AddressOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
+  AddressIdAsc = 'addressId_asc',
+  AddressIdDesc = 'addressId_desc',
+  AddressLine1Asc = 'addressLine1_asc',
+  AddressLine1Desc = 'addressLine1_desc',
+  AddressLine2Asc = 'addressLine2_asc',
+  AddressLine2Desc = 'addressLine2_desc',
+  NameAsc = 'name_asc',
+  NameDesc = 'name_desc',
+  PostCodeAsc = 'postCode_asc',
+  PostCodeDesc = 'postCode_desc',
+  ShowAddressAsc = 'showAddress_asc',
+  ShowAddressDesc = 'showAddress_desc'
+}
+
 export type _AddReviewUserPayload = {
   __typename?: '_AddReviewUserPayload';
   /** Field for the User node this WROTE [relationship](https://grandstack.io/docs/graphql-relationship-types) is coming from. */
@@ -2525,126 +375,171 @@ export type _AddVenueReviewsPayload = {
   to?: Maybe<Venue>;
 };
 
-export type _AddressFilter = {
-  AND?: Maybe<Array<_AddressFilter>>;
-  OR?: Maybe<Array<_AddressFilter>>;
-  addressId?: Maybe<Scalars['ID']>;
-  addressId_not?: Maybe<Scalars['ID']>;
-  addressId_in?: Maybe<Array<Scalars['ID']>>;
-  addressId_not_in?: Maybe<Array<Scalars['ID']>>;
-  addressId_contains?: Maybe<Scalars['ID']>;
-  addressId_not_contains?: Maybe<Scalars['ID']>;
-  addressId_starts_with?: Maybe<Scalars['ID']>;
-  addressId_not_starts_with?: Maybe<Scalars['ID']>;
-  addressId_ends_with?: Maybe<Scalars['ID']>;
-  addressId_not_ends_with?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  name_not?: Maybe<Scalars['String']>;
-  name_in?: Maybe<Array<Scalars['String']>>;
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  name_contains?: Maybe<Scalars['String']>;
-  name_not_contains?: Maybe<Scalars['String']>;
-  name_starts_with?: Maybe<Scalars['String']>;
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  name_ends_with?: Maybe<Scalars['String']>;
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  addressLine1?: Maybe<Scalars['String']>;
-  addressLine1_not?: Maybe<Scalars['String']>;
-  addressLine1_in?: Maybe<Array<Scalars['String']>>;
-  addressLine1_not_in?: Maybe<Array<Scalars['String']>>;
-  addressLine1_contains?: Maybe<Scalars['String']>;
-  addressLine1_not_contains?: Maybe<Scalars['String']>;
-  addressLine1_starts_with?: Maybe<Scalars['String']>;
-  addressLine1_not_starts_with?: Maybe<Scalars['String']>;
-  addressLine1_ends_with?: Maybe<Scalars['String']>;
-  addressLine1_not_ends_with?: Maybe<Scalars['String']>;
-  addressLine2?: Maybe<Scalars['String']>;
-  addressLine2_not?: Maybe<Scalars['String']>;
-  addressLine2_in?: Maybe<Array<Scalars['String']>>;
-  addressLine2_not_in?: Maybe<Array<Scalars['String']>>;
-  addressLine2_contains?: Maybe<Scalars['String']>;
-  addressLine2_not_contains?: Maybe<Scalars['String']>;
-  addressLine2_starts_with?: Maybe<Scalars['String']>;
-  addressLine2_not_starts_with?: Maybe<Scalars['String']>;
-  addressLine2_ends_with?: Maybe<Scalars['String']>;
-  addressLine2_not_ends_with?: Maybe<Scalars['String']>;
-  postCode?: Maybe<Scalars['String']>;
-  postCode_not?: Maybe<Scalars['String']>;
-  postCode_in?: Maybe<Array<Scalars['String']>>;
-  postCode_not_in?: Maybe<Array<Scalars['String']>>;
-  postCode_contains?: Maybe<Scalars['String']>;
-  postCode_not_contains?: Maybe<Scalars['String']>;
-  postCode_starts_with?: Maybe<Scalars['String']>;
-  postCode_not_starts_with?: Maybe<Scalars['String']>;
-  postCode_ends_with?: Maybe<Scalars['String']>;
-  postCode_not_ends_with?: Maybe<Scalars['String']>;
-  location?: Maybe<_Neo4jPointInput>;
-  location_not?: Maybe<_Neo4jPointInput>;
-  location_distance?: Maybe<_Neo4jPointDistanceFilter>;
-  location_distance_lt?: Maybe<_Neo4jPointDistanceFilter>;
-  location_distance_lte?: Maybe<_Neo4jPointDistanceFilter>;
-  location_distance_gt?: Maybe<_Neo4jPointDistanceFilter>;
-  location_distance_gte?: Maybe<_Neo4jPointDistanceFilter>;
-  showAddress?: Maybe<Scalars['Boolean']>;
-  showAddress_not?: Maybe<Scalars['Boolean']>;
-  contact?: Maybe<_ContactFilter>;
-  contact_not?: Maybe<_ContactFilter>;
-  contact_in?: Maybe<Array<_ContactFilter>>;
-  contact_not_in?: Maybe<Array<_ContactFilter>>;
+export type _ArticleCategoryFilter = {
+  AND?: Maybe<Array<_ArticleCategoryFilter>>;
+  key?: Maybe<Scalars['String']>;
+  key_contains?: Maybe<Scalars['String']>;
+  key_ends_with?: Maybe<Scalars['String']>;
+  key_in?: Maybe<Array<Scalars['String']>>;
+  key_not?: Maybe<Scalars['String']>;
+  key_not_contains?: Maybe<Scalars['String']>;
+  key_not_ends_with?: Maybe<Scalars['String']>;
+  key_not_in?: Maybe<Array<Scalars['String']>>;
+  key_not_starts_with?: Maybe<Scalars['String']>;
+  key_starts_with?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<_ArticleCategoryFilter>>;
+  value?: Maybe<Scalars['String']>;
+  value_contains?: Maybe<Scalars['String']>;
+  value_ends_with?: Maybe<Scalars['String']>;
+  value_in?: Maybe<Array<Scalars['String']>>;
+  value_not?: Maybe<Scalars['String']>;
+  value_not_contains?: Maybe<Scalars['String']>;
+  value_not_ends_with?: Maybe<Scalars['String']>;
+  value_not_in?: Maybe<Array<Scalars['String']>>;
+  value_not_starts_with?: Maybe<Scalars['String']>;
+  value_starts_with?: Maybe<Scalars['String']>;
 };
 
-export type _AddressInput = {
-  addressId: Scalars['ID'];
+export type _ArticleCategoryInput = {
+  key: Scalars['String'];
 };
 
-export enum _AddressOrdering {
-  AddressIdAsc = 'addressId_asc',
-  AddressIdDesc = 'addressId_desc',
-  NameAsc = 'name_asc',
-  NameDesc = 'name_desc',
-  AddressLine1Asc = 'addressLine1_asc',
-  AddressLine1Desc = 'addressLine1_desc',
-  AddressLine2Asc = 'addressLine2_asc',
-  AddressLine2Desc = 'addressLine2_desc',
-  PostCodeAsc = 'postCode_asc',
-  PostCodeDesc = 'postCode_desc',
-  ShowAddressAsc = 'showAddress_asc',
-  ShowAddressDesc = 'showAddress_desc',
+export enum _ArticleCategoryOrdering {
   IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  IdDesc = '_id_desc',
+  KeyAsc = 'key_asc',
+  KeyDesc = 'key_desc',
+  ValueAsc = 'value_asc',
+  ValueDesc = 'value_desc'
+}
+
+export type _ArticleFilter = {
+  AND?: Maybe<Array<_ArticleFilter>>;
+  articleId?: Maybe<Scalars['ID']>;
+  articleId_contains?: Maybe<Scalars['ID']>;
+  articleId_ends_with?: Maybe<Scalars['ID']>;
+  articleId_in?: Maybe<Array<Scalars['ID']>>;
+  articleId_not?: Maybe<Scalars['ID']>;
+  articleId_not_contains?: Maybe<Scalars['ID']>;
+  articleId_not_ends_with?: Maybe<Scalars['ID']>;
+  articleId_not_in?: Maybe<Array<Scalars['ID']>>;
+  articleId_not_starts_with?: Maybe<Scalars['ID']>;
+  articleId_starts_with?: Maybe<Scalars['ID']>;
+  articleImage?: Maybe<Scalars['String']>;
+  articleImage_contains?: Maybe<Scalars['String']>;
+  articleImage_ends_with?: Maybe<Scalars['String']>;
+  articleImage_in?: Maybe<Array<Scalars['String']>>;
+  articleImage_not?: Maybe<Scalars['String']>;
+  articleImage_not_contains?: Maybe<Scalars['String']>;
+  articleImage_not_ends_with?: Maybe<Scalars['String']>;
+  articleImage_not_in?: Maybe<Array<Scalars['String']>>;
+  articleImage_not_starts_with?: Maybe<Scalars['String']>;
+  articleImage_starts_with?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['String']>;
+  body_contains?: Maybe<Scalars['String']>;
+  body_ends_with?: Maybe<Scalars['String']>;
+  body_in?: Maybe<Array<Scalars['String']>>;
+  body_not?: Maybe<Scalars['String']>;
+  body_not_contains?: Maybe<Scalars['String']>;
+  body_not_ends_with?: Maybe<Scalars['String']>;
+  body_not_in?: Maybe<Array<Scalars['String']>>;
+  body_not_starts_with?: Maybe<Scalars['String']>;
+  body_starts_with?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  dateCreated_gt?: Maybe<Scalars['Float']>;
+  dateCreated_gte?: Maybe<Scalars['Float']>;
+  dateCreated_in?: Maybe<Array<Scalars['Float']>>;
+  dateCreated_lt?: Maybe<Scalars['Float']>;
+  dateCreated_lte?: Maybe<Scalars['Float']>;
+  dateCreated_not?: Maybe<Scalars['Float']>;
+  dateCreated_not_in?: Maybe<Array<Scalars['Float']>>;
+  OR?: Maybe<Array<_ArticleFilter>>;
+  summary?: Maybe<Scalars['String']>;
+  summary_contains?: Maybe<Scalars['String']>;
+  summary_ends_with?: Maybe<Scalars['String']>;
+  summary_in?: Maybe<Array<Scalars['String']>>;
+  summary_not?: Maybe<Scalars['String']>;
+  summary_not_contains?: Maybe<Scalars['String']>;
+  summary_not_ends_with?: Maybe<Scalars['String']>;
+  summary_not_in?: Maybe<Array<Scalars['String']>>;
+  summary_not_starts_with?: Maybe<Scalars['String']>;
+  summary_starts_with?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_ends_with?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Scalars['String']>>;
+  title_not?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  title_starts_with?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  url_contains?: Maybe<Scalars['String']>;
+  url_ends_with?: Maybe<Scalars['String']>;
+  url_in?: Maybe<Array<Scalars['String']>>;
+  url_not?: Maybe<Scalars['String']>;
+  url_not_contains?: Maybe<Scalars['String']>;
+  url_not_ends_with?: Maybe<Scalars['String']>;
+  url_not_in?: Maybe<Array<Scalars['String']>>;
+  url_not_starts_with?: Maybe<Scalars['String']>;
+  url_starts_with?: Maybe<Scalars['String']>;
+};
+
+export type _ArticleInput = {
+  articleId: Scalars['ID'];
+};
+
+export enum _ArticleOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
+  ArticleIdAsc = 'articleId_asc',
+  ArticleIdDesc = 'articleId_desc',
+  ArticleImageAsc = 'articleImage_asc',
+  ArticleImageDesc = 'articleImage_desc',
+  BodyAsc = 'body_asc',
+  BodyDesc = 'body_desc',
+  DateCreatedAsc = 'dateCreated_asc',
+  DateCreatedDesc = 'dateCreated_desc',
+  SummaryAsc = 'summary_asc',
+  SummaryDesc = 'summary_desc',
+  TitleAsc = 'title_asc',
+  TitleDesc = 'title_desc',
+  UrlAsc = 'url_asc',
+  UrlDesc = 'url_desc'
 }
 
 export type _BusinessCategoryFilter = {
   AND?: Maybe<Array<_BusinessCategoryFilter>>;
-  OR?: Maybe<Array<_BusinessCategoryFilter>>;
   businessCategoryId?: Maybe<Scalars['ID']>;
-  businessCategoryId_not?: Maybe<Scalars['ID']>;
-  businessCategoryId_in?: Maybe<Array<Scalars['ID']>>;
-  businessCategoryId_not_in?: Maybe<Array<Scalars['ID']>>;
   businessCategoryId_contains?: Maybe<Scalars['ID']>;
-  businessCategoryId_not_contains?: Maybe<Scalars['ID']>;
-  businessCategoryId_starts_with?: Maybe<Scalars['ID']>;
-  businessCategoryId_not_starts_with?: Maybe<Scalars['ID']>;
   businessCategoryId_ends_with?: Maybe<Scalars['ID']>;
+  businessCategoryId_in?: Maybe<Array<Scalars['ID']>>;
+  businessCategoryId_not?: Maybe<Scalars['ID']>;
+  businessCategoryId_not_contains?: Maybe<Scalars['ID']>;
   businessCategoryId_not_ends_with?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  name_not?: Maybe<Scalars['String']>;
-  name_in?: Maybe<Array<Scalars['String']>>;
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  name_contains?: Maybe<Scalars['String']>;
-  name_not_contains?: Maybe<Scalars['String']>;
-  name_starts_with?: Maybe<Scalars['String']>;
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  name_ends_with?: Maybe<Scalars['String']>;
-  name_not_ends_with?: Maybe<Scalars['String']>;
+  businessCategoryId_not_in?: Maybe<Array<Scalars['ID']>>;
+  businessCategoryId_not_starts_with?: Maybe<Scalars['ID']>;
+  businessCategoryId_starts_with?: Maybe<Scalars['ID']>;
   businesses?: Maybe<_BusinessFilter>;
-  businesses_not?: Maybe<_BusinessFilter>;
-  businesses_in?: Maybe<Array<_BusinessFilter>>;
-  businesses_not_in?: Maybe<Array<_BusinessFilter>>;
-  businesses_some?: Maybe<_BusinessFilter>;
-  businesses_none?: Maybe<_BusinessFilter>;
-  businesses_single?: Maybe<_BusinessFilter>;
   businesses_every?: Maybe<_BusinessFilter>;
+  businesses_in?: Maybe<Array<_BusinessFilter>>;
+  businesses_none?: Maybe<_BusinessFilter>;
+  businesses_not?: Maybe<_BusinessFilter>;
+  businesses_not_in?: Maybe<Array<_BusinessFilter>>;
+  businesses_single?: Maybe<_BusinessFilter>;
+  businesses_some?: Maybe<_BusinessFilter>;
+  name?: Maybe<Scalars['String']>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_ends_with?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Scalars['String']>>;
+  name_not?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  name_starts_with?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<_BusinessCategoryFilter>>;
 };
 
 export type _BusinessCategoryInput = {
@@ -2652,139 +547,139 @@ export type _BusinessCategoryInput = {
 };
 
 export enum _BusinessCategoryOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
   BusinessCategoryIdAsc = 'businessCategoryId_asc',
   BusinessCategoryIdDesc = 'businessCategoryId_desc',
   NameAsc = 'name_asc',
-  NameDesc = 'name_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  NameDesc = 'name_desc'
 }
 
 export type _BusinessFilter = {
   AND?: Maybe<Array<_BusinessFilter>>;
-  OR?: Maybe<Array<_BusinessFilter>>;
-  businessId?: Maybe<Scalars['ID']>;
-  businessId_not?: Maybe<Scalars['ID']>;
-  businessId_in?: Maybe<Array<Scalars['ID']>>;
-  businessId_not_in?: Maybe<Array<Scalars['ID']>>;
-  businessId_contains?: Maybe<Scalars['ID']>;
-  businessId_not_contains?: Maybe<Scalars['ID']>;
-  businessId_starts_with?: Maybe<Scalars['ID']>;
-  businessId_not_starts_with?: Maybe<Scalars['ID']>;
-  businessId_ends_with?: Maybe<Scalars['ID']>;
-  businessId_not_ends_with?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  name_not?: Maybe<Scalars['String']>;
-  name_in?: Maybe<Array<Scalars['String']>>;
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  name_contains?: Maybe<Scalars['String']>;
-  name_not_contains?: Maybe<Scalars['String']>;
-  name_starts_with?: Maybe<Scalars['String']>;
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  name_ends_with?: Maybe<Scalars['String']>;
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  contact?: Maybe<_ContactFilter>;
-  contact_not?: Maybe<_ContactFilter>;
-  contact_in?: Maybe<Array<_ContactFilter>>;
-  contact_not_in?: Maybe<Array<_ContactFilter>>;
-  description?: Maybe<Scalars['String']>;
-  description_not?: Maybe<Scalars['String']>;
-  description_in?: Maybe<Array<Scalars['String']>>;
-  description_not_in?: Maybe<Array<Scalars['String']>>;
-  description_contains?: Maybe<Scalars['String']>;
-  description_not_contains?: Maybe<Scalars['String']>;
-  description_starts_with?: Maybe<Scalars['String']>;
-  description_not_starts_with?: Maybe<Scalars['String']>;
-  description_ends_with?: Maybe<Scalars['String']>;
-  description_not_ends_with?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  displayImage_not?: Maybe<Scalars['String']>;
-  displayImage_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_contains?: Maybe<Scalars['String']>;
-  displayImage_not_contains?: Maybe<Scalars['String']>;
-  displayImage_starts_with?: Maybe<Scalars['String']>;
-  displayImage_not_starts_with?: Maybe<Scalars['String']>;
-  displayImage_ends_with?: Maybe<Scalars['String']>;
-  displayImage_not_ends_with?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Scalars['String']>>;
-  gallery_not?: Maybe<Array<Scalars['String']>>;
-  gallery_contains?: Maybe<Array<Scalars['String']>>;
-  gallery_not_contains?: Maybe<Array<Scalars['String']>>;
-  gallery_starts_with?: Maybe<Array<Scalars['String']>>;
-  gallery_not_starts_with?: Maybe<Array<Scalars['String']>>;
-  gallery_ends_with?: Maybe<Array<Scalars['String']>>;
-  gallery_not_ends_with?: Maybe<Array<Scalars['String']>>;
-  bannerImage?: Maybe<Scalars['String']>;
-  bannerImage_not?: Maybe<Scalars['String']>;
-  bannerImage_in?: Maybe<Array<Scalars['String']>>;
-  bannerImage_not_in?: Maybe<Array<Scalars['String']>>;
-  bannerImage_contains?: Maybe<Scalars['String']>;
-  bannerImage_not_contains?: Maybe<Scalars['String']>;
-  bannerImage_starts_with?: Maybe<Scalars['String']>;
-  bannerImage_not_starts_with?: Maybe<Scalars['String']>;
-  bannerImage_ends_with?: Maybe<Scalars['String']>;
-  bannerImage_not_ends_with?: Maybe<Scalars['String']>;
   bannerColour?: Maybe<Scalars['String']>;
-  bannerColour_not?: Maybe<Scalars['String']>;
-  bannerColour_in?: Maybe<Array<Scalars['String']>>;
-  bannerColour_not_in?: Maybe<Array<Scalars['String']>>;
   bannerColour_contains?: Maybe<Scalars['String']>;
-  bannerColour_not_contains?: Maybe<Scalars['String']>;
-  bannerColour_starts_with?: Maybe<Scalars['String']>;
-  bannerColour_not_starts_with?: Maybe<Scalars['String']>;
   bannerColour_ends_with?: Maybe<Scalars['String']>;
+  bannerColour_in?: Maybe<Array<Scalars['String']>>;
+  bannerColour_not?: Maybe<Scalars['String']>;
+  bannerColour_not_contains?: Maybe<Scalars['String']>;
   bannerColour_not_ends_with?: Maybe<Scalars['String']>;
+  bannerColour_not_in?: Maybe<Array<Scalars['String']>>;
+  bannerColour_not_starts_with?: Maybe<Scalars['String']>;
+  bannerColour_starts_with?: Maybe<Scalars['String']>;
+  bannerImage?: Maybe<Scalars['String']>;
+  bannerImage_contains?: Maybe<Scalars['String']>;
+  bannerImage_ends_with?: Maybe<Scalars['String']>;
+  bannerImage_in?: Maybe<Array<Scalars['String']>>;
+  bannerImage_not?: Maybe<Scalars['String']>;
+  bannerImage_not_contains?: Maybe<Scalars['String']>;
+  bannerImage_not_ends_with?: Maybe<Scalars['String']>;
+  bannerImage_not_in?: Maybe<Array<Scalars['String']>>;
+  bannerImage_not_starts_with?: Maybe<Scalars['String']>;
+  bannerImage_starts_with?: Maybe<Scalars['String']>;
+  businessId?: Maybe<Scalars['ID']>;
+  businessId_contains?: Maybe<Scalars['ID']>;
+  businessId_ends_with?: Maybe<Scalars['ID']>;
+  businessId_in?: Maybe<Array<Scalars['ID']>>;
+  businessId_not?: Maybe<Scalars['ID']>;
+  businessId_not_contains?: Maybe<Scalars['ID']>;
+  businessId_not_ends_with?: Maybe<Scalars['ID']>;
+  businessId_not_in?: Maybe<Array<Scalars['ID']>>;
+  businessId_not_starts_with?: Maybe<Scalars['ID']>;
+  businessId_starts_with?: Maybe<Scalars['ID']>;
+  categories?: Maybe<_BusinessCategoryFilter>;
+  categories_every?: Maybe<_BusinessCategoryFilter>;
+  categories_in?: Maybe<Array<_BusinessCategoryFilter>>;
+  categories_none?: Maybe<_BusinessCategoryFilter>;
+  categories_not?: Maybe<_BusinessCategoryFilter>;
+  categories_not_in?: Maybe<Array<_BusinessCategoryFilter>>;
+  categories_single?: Maybe<_BusinessCategoryFilter>;
+  categories_some?: Maybe<_BusinessCategoryFilter>;
+  contact?: Maybe<_ContactFilter>;
+  contact_in?: Maybe<Array<_ContactFilter>>;
+  contact_not?: Maybe<_ContactFilter>;
+  contact_not_in?: Maybe<Array<_ContactFilter>>;
   dateCreated?: Maybe<Scalars['Float']>;
-  dateCreated_not?: Maybe<Scalars['Float']>;
-  dateCreated_in?: Maybe<Array<Scalars['Float']>>;
-  dateCreated_not_in?: Maybe<Array<Scalars['Float']>>;
-  dateCreated_lt?: Maybe<Scalars['Float']>;
-  dateCreated_lte?: Maybe<Scalars['Float']>;
   dateCreated_gt?: Maybe<Scalars['Float']>;
   dateCreated_gte?: Maybe<Scalars['Float']>;
-  slug?: Maybe<Scalars['String']>;
-  slug_not?: Maybe<Scalars['String']>;
-  slug_in?: Maybe<Array<Scalars['String']>>;
-  slug_not_in?: Maybe<Array<Scalars['String']>>;
-  slug_contains?: Maybe<Scalars['String']>;
-  slug_not_contains?: Maybe<Scalars['String']>;
-  slug_starts_with?: Maybe<Scalars['String']>;
-  slug_not_starts_with?: Maybe<Scalars['String']>;
-  slug_ends_with?: Maybe<Scalars['String']>;
-  slug_not_ends_with?: Maybe<Scalars['String']>;
+  dateCreated_in?: Maybe<Array<Scalars['Float']>>;
+  dateCreated_lt?: Maybe<Scalars['Float']>;
+  dateCreated_lte?: Maybe<Scalars['Float']>;
+  dateCreated_not?: Maybe<Scalars['Float']>;
+  dateCreated_not_in?: Maybe<Array<Scalars['Float']>>;
+  description?: Maybe<Scalars['String']>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_ends_with?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Scalars['String']>>;
+  description_not?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  description_not_ends_with?: Maybe<Scalars['String']>;
+  description_not_in?: Maybe<Array<Scalars['String']>>;
+  description_not_starts_with?: Maybe<Scalars['String']>;
+  description_starts_with?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayImage_contains?: Maybe<Scalars['String']>;
+  displayImage_ends_with?: Maybe<Scalars['String']>;
+  displayImage_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not?: Maybe<Scalars['String']>;
+  displayImage_not_contains?: Maybe<Scalars['String']>;
+  displayImage_not_ends_with?: Maybe<Scalars['String']>;
+  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not_starts_with?: Maybe<Scalars['String']>;
+  displayImage_starts_with?: Maybe<Scalars['String']>;
+  gallery?: Maybe<Array<Scalars['String']>>;
+  gallery_contains?: Maybe<Array<Scalars['String']>>;
+  gallery_ends_with?: Maybe<Array<Scalars['String']>>;
+  gallery_not?: Maybe<Array<Scalars['String']>>;
+  gallery_not_contains?: Maybe<Array<Scalars['String']>>;
+  gallery_not_ends_with?: Maybe<Array<Scalars['String']>>;
+  gallery_not_starts_with?: Maybe<Array<Scalars['String']>>;
+  gallery_starts_with?: Maybe<Array<Scalars['String']>>;
   managedBy?: Maybe<_UserFilter>;
-  managedBy_not?: Maybe<_UserFilter>;
-  managedBy_in?: Maybe<Array<_UserFilter>>;
-  managedBy_not_in?: Maybe<Array<_UserFilter>>;
-  managedBy_some?: Maybe<_UserFilter>;
-  managedBy_none?: Maybe<_UserFilter>;
-  managedBy_single?: Maybe<_UserFilter>;
   managedBy_every?: Maybe<_UserFilter>;
-  reviews?: Maybe<_ReviewFilter>;
-  reviews_not?: Maybe<_ReviewFilter>;
-  reviews_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_some?: Maybe<_ReviewFilter>;
-  reviews_none?: Maybe<_ReviewFilter>;
-  reviews_single?: Maybe<_ReviewFilter>;
-  reviews_every?: Maybe<_ReviewFilter>;
+  managedBy_in?: Maybe<Array<_UserFilter>>;
+  managedBy_none?: Maybe<_UserFilter>;
+  managedBy_not?: Maybe<_UserFilter>;
+  managedBy_not_in?: Maybe<Array<_UserFilter>>;
+  managedBy_single?: Maybe<_UserFilter>;
+  managedBy_some?: Maybe<_UserFilter>;
+  name?: Maybe<Scalars['String']>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_ends_with?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Scalars['String']>>;
+  name_not?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  name_starts_with?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<_BusinessFilter>>;
   references?: Maybe<_ContentMetaFilter>;
-  references_not?: Maybe<_ContentMetaFilter>;
-  references_in?: Maybe<Array<_ContentMetaFilter>>;
-  references_not_in?: Maybe<Array<_ContentMetaFilter>>;
-  references_some?: Maybe<_ContentMetaFilter>;
-  references_none?: Maybe<_ContentMetaFilter>;
-  references_single?: Maybe<_ContentMetaFilter>;
   references_every?: Maybe<_ContentMetaFilter>;
-  categories?: Maybe<_BusinessCategoryFilter>;
-  categories_not?: Maybe<_BusinessCategoryFilter>;
-  categories_in?: Maybe<Array<_BusinessCategoryFilter>>;
-  categories_not_in?: Maybe<Array<_BusinessCategoryFilter>>;
-  categories_some?: Maybe<_BusinessCategoryFilter>;
-  categories_none?: Maybe<_BusinessCategoryFilter>;
-  categories_single?: Maybe<_BusinessCategoryFilter>;
-  categories_every?: Maybe<_BusinessCategoryFilter>;
+  references_in?: Maybe<Array<_ContentMetaFilter>>;
+  references_none?: Maybe<_ContentMetaFilter>;
+  references_not?: Maybe<_ContentMetaFilter>;
+  references_not_in?: Maybe<Array<_ContentMetaFilter>>;
+  references_single?: Maybe<_ContentMetaFilter>;
+  references_some?: Maybe<_ContentMetaFilter>;
+  reviews?: Maybe<_ReviewFilter>;
+  reviews_every?: Maybe<_ReviewFilter>;
+  reviews_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_none?: Maybe<_ReviewFilter>;
+  reviews_not?: Maybe<_ReviewFilter>;
+  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_single?: Maybe<_ReviewFilter>;
+  reviews_some?: Maybe<_ReviewFilter>;
+  slug?: Maybe<Scalars['String']>;
+  slug_contains?: Maybe<Scalars['String']>;
+  slug_ends_with?: Maybe<Scalars['String']>;
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  slug_not?: Maybe<Scalars['String']>;
+  slug_not_contains?: Maybe<Scalars['String']>;
+  slug_not_ends_with?: Maybe<Scalars['String']>;
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  slug_starts_with?: Maybe<Scalars['String']>;
 };
 
 export type _BusinessInput = {
@@ -2792,73 +687,73 @@ export type _BusinessInput = {
 };
 
 export enum _BusinessOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
+  AvgStarsAsc = 'avgStars_asc',
+  AvgStarsDesc = 'avgStars_desc',
+  BannerColourAsc = 'bannerColour_asc',
+  BannerColourDesc = 'bannerColour_desc',
+  BannerImageAsc = 'bannerImage_asc',
+  BannerImageDesc = 'bannerImage_desc',
   BusinessIdAsc = 'businessId_asc',
   BusinessIdDesc = 'businessId_desc',
-  NameAsc = 'name_asc',
-  NameDesc = 'name_desc',
+  DateCreatedAsc = 'dateCreated_asc',
+  DateCreatedDesc = 'dateCreated_desc',
   DescriptionAsc = 'description_asc',
   DescriptionDesc = 'description_desc',
   DisplayImageAsc = 'displayImage_asc',
   DisplayImageDesc = 'displayImage_desc',
-  BannerImageAsc = 'bannerImage_asc',
-  BannerImageDesc = 'bannerImage_desc',
-  BannerColourAsc = 'bannerColour_asc',
-  BannerColourDesc = 'bannerColour_desc',
-  DateCreatedAsc = 'dateCreated_asc',
-  DateCreatedDesc = 'dateCreated_desc',
+  NameAsc = 'name_asc',
+  NameDesc = 'name_desc',
   SlugAsc = 'slug_asc',
-  SlugDesc = 'slug_desc',
-  AvgStarsAsc = 'avgStars_asc',
-  AvgStarsDesc = 'avgStars_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  SlugDesc = 'slug_desc'
 }
 
 export type _ContactFilter = {
-  AND?: Maybe<Array<_ContactFilter>>;
-  OR?: Maybe<Array<_ContactFilter>>;
-  contactId?: Maybe<Scalars['ID']>;
-  contactId_not?: Maybe<Scalars['ID']>;
-  contactId_in?: Maybe<Array<Scalars['ID']>>;
-  contactId_not_in?: Maybe<Array<Scalars['ID']>>;
-  contactId_contains?: Maybe<Scalars['ID']>;
-  contactId_not_contains?: Maybe<Scalars['ID']>;
-  contactId_starts_with?: Maybe<Scalars['ID']>;
-  contactId_not_starts_with?: Maybe<Scalars['ID']>;
-  contactId_ends_with?: Maybe<Scalars['ID']>;
-  contactId_not_ends_with?: Maybe<Scalars['ID']>;
   address?: Maybe<_AddressFilter>;
-  address_not?: Maybe<_AddressFilter>;
-  address_in?: Maybe<Array<_AddressFilter>>;
-  address_not_in?: Maybe<Array<_AddressFilter>>;
-  address_some?: Maybe<_AddressFilter>;
-  address_none?: Maybe<_AddressFilter>;
-  address_single?: Maybe<_AddressFilter>;
   address_every?: Maybe<_AddressFilter>;
-  telephone?: Maybe<Array<Scalars['String']>>;
-  telephone_not?: Maybe<Array<Scalars['String']>>;
-  telephone_contains?: Maybe<Array<Scalars['String']>>;
-  telephone_not_contains?: Maybe<Array<Scalars['String']>>;
-  telephone_starts_with?: Maybe<Array<Scalars['String']>>;
-  telephone_not_starts_with?: Maybe<Array<Scalars['String']>>;
-  telephone_ends_with?: Maybe<Array<Scalars['String']>>;
-  telephone_not_ends_with?: Maybe<Array<Scalars['String']>>;
+  address_in?: Maybe<Array<_AddressFilter>>;
+  address_none?: Maybe<_AddressFilter>;
+  address_not?: Maybe<_AddressFilter>;
+  address_not_in?: Maybe<Array<_AddressFilter>>;
+  address_single?: Maybe<_AddressFilter>;
+  address_some?: Maybe<_AddressFilter>;
+  AND?: Maybe<Array<_ContactFilter>>;
+  contactId?: Maybe<Scalars['ID']>;
+  contactId_contains?: Maybe<Scalars['ID']>;
+  contactId_ends_with?: Maybe<Scalars['ID']>;
+  contactId_in?: Maybe<Array<Scalars['ID']>>;
+  contactId_not?: Maybe<Scalars['ID']>;
+  contactId_not_contains?: Maybe<Scalars['ID']>;
+  contactId_not_ends_with?: Maybe<Scalars['ID']>;
+  contactId_not_in?: Maybe<Array<Scalars['ID']>>;
+  contactId_not_starts_with?: Maybe<Scalars['ID']>;
+  contactId_starts_with?: Maybe<Scalars['ID']>;
   email?: Maybe<Array<Scalars['String']>>;
-  email_not?: Maybe<Array<Scalars['String']>>;
   email_contains?: Maybe<Array<Scalars['String']>>;
-  email_not_contains?: Maybe<Array<Scalars['String']>>;
-  email_starts_with?: Maybe<Array<Scalars['String']>>;
-  email_not_starts_with?: Maybe<Array<Scalars['String']>>;
   email_ends_with?: Maybe<Array<Scalars['String']>>;
+  email_not?: Maybe<Array<Scalars['String']>>;
+  email_not_contains?: Maybe<Array<Scalars['String']>>;
   email_not_ends_with?: Maybe<Array<Scalars['String']>>;
+  email_not_starts_with?: Maybe<Array<Scalars['String']>>;
+  email_starts_with?: Maybe<Array<Scalars['String']>>;
+  OR?: Maybe<Array<_ContactFilter>>;
   socials?: Maybe<_SocialLinkFilter>;
-  socials_not?: Maybe<_SocialLinkFilter>;
-  socials_in?: Maybe<Array<_SocialLinkFilter>>;
-  socials_not_in?: Maybe<Array<_SocialLinkFilter>>;
-  socials_some?: Maybe<_SocialLinkFilter>;
-  socials_none?: Maybe<_SocialLinkFilter>;
-  socials_single?: Maybe<_SocialLinkFilter>;
   socials_every?: Maybe<_SocialLinkFilter>;
+  socials_in?: Maybe<Array<_SocialLinkFilter>>;
+  socials_none?: Maybe<_SocialLinkFilter>;
+  socials_not?: Maybe<_SocialLinkFilter>;
+  socials_not_in?: Maybe<Array<_SocialLinkFilter>>;
+  socials_single?: Maybe<_SocialLinkFilter>;
+  socials_some?: Maybe<_SocialLinkFilter>;
+  telephone?: Maybe<Array<Scalars['String']>>;
+  telephone_contains?: Maybe<Array<Scalars['String']>>;
+  telephone_ends_with?: Maybe<Array<Scalars['String']>>;
+  telephone_not?: Maybe<Array<Scalars['String']>>;
+  telephone_not_contains?: Maybe<Array<Scalars['String']>>;
+  telephone_not_ends_with?: Maybe<Array<Scalars['String']>>;
+  telephone_not_starts_with?: Maybe<Array<Scalars['String']>>;
+  telephone_starts_with?: Maybe<Array<Scalars['String']>>;
 };
 
 export type _ContactInput = {
@@ -2866,113 +761,113 @@ export type _ContactInput = {
 };
 
 export enum _ContactOrdering {
-  ContactIdAsc = 'contactId_asc',
-  ContactIdDesc = 'contactId_desc',
   IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  IdDesc = '_id_desc',
+  ContactIdAsc = 'contactId_asc',
+  ContactIdDesc = 'contactId_desc'
 }
 
 export type _ContentFilter = {
   AND?: Maybe<Array<_ContentFilter>>;
-  OR?: Maybe<Array<_ContentFilter>>;
   contentId?: Maybe<Scalars['ID']>;
-  contentId_not?: Maybe<Scalars['ID']>;
-  contentId_in?: Maybe<Array<Scalars['ID']>>;
-  contentId_not_in?: Maybe<Array<Scalars['ID']>>;
   contentId_contains?: Maybe<Scalars['ID']>;
-  contentId_not_contains?: Maybe<Scalars['ID']>;
-  contentId_starts_with?: Maybe<Scalars['ID']>;
-  contentId_not_starts_with?: Maybe<Scalars['ID']>;
   contentId_ends_with?: Maybe<Scalars['ID']>;
+  contentId_in?: Maybe<Array<Scalars['ID']>>;
+  contentId_not?: Maybe<Scalars['ID']>;
+  contentId_not_contains?: Maybe<Scalars['ID']>;
   contentId_not_ends_with?: Maybe<Scalars['ID']>;
-  title?: Maybe<Scalars['String']>;
-  title_not?: Maybe<Scalars['String']>;
-  title_in?: Maybe<Array<Scalars['String']>>;
-  title_not_in?: Maybe<Array<Scalars['String']>>;
-  title_contains?: Maybe<Scalars['String']>;
-  title_not_contains?: Maybe<Scalars['String']>;
-  title_starts_with?: Maybe<Scalars['String']>;
-  title_not_starts_with?: Maybe<Scalars['String']>;
-  title_ends_with?: Maybe<Scalars['String']>;
-  title_not_ends_with?: Maybe<Scalars['String']>;
+  contentId_not_in?: Maybe<Array<Scalars['ID']>>;
+  contentId_not_starts_with?: Maybe<Scalars['ID']>;
+  contentId_starts_with?: Maybe<Scalars['ID']>;
   displayImage?: Maybe<Scalars['String']>;
-  displayImage_not?: Maybe<Scalars['String']>;
-  displayImage_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
   displayImage_contains?: Maybe<Scalars['String']>;
-  displayImage_not_contains?: Maybe<Scalars['String']>;
-  displayImage_starts_with?: Maybe<Scalars['String']>;
-  displayImage_not_starts_with?: Maybe<Scalars['String']>;
   displayImage_ends_with?: Maybe<Scalars['String']>;
+  displayImage_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not?: Maybe<Scalars['String']>;
+  displayImage_not_contains?: Maybe<Scalars['String']>;
   displayImage_not_ends_with?: Maybe<Scalars['String']>;
-  hosts?: Maybe<_UserFilter>;
-  hosts_not?: Maybe<_UserFilter>;
-  hosts_in?: Maybe<Array<_UserFilter>>;
-  hosts_not_in?: Maybe<Array<_UserFilter>>;
-  hosts_some?: Maybe<_UserFilter>;
-  hosts_none?: Maybe<_UserFilter>;
-  hosts_single?: Maybe<_UserFilter>;
-  hosts_every?: Maybe<_UserFilter>;
+  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not_starts_with?: Maybe<Scalars['String']>;
+  displayImage_starts_with?: Maybe<Scalars['String']>;
   guests?: Maybe<_UserFilter>;
-  guests_not?: Maybe<_UserFilter>;
-  guests_in?: Maybe<Array<_UserFilter>>;
-  guests_not_in?: Maybe<Array<_UserFilter>>;
-  guests_some?: Maybe<_UserFilter>;
-  guests_none?: Maybe<_UserFilter>;
-  guests_single?: Maybe<_UserFilter>;
   guests_every?: Maybe<_UserFilter>;
-  url?: Maybe<Scalars['String']>;
-  url_not?: Maybe<Scalars['String']>;
-  url_in?: Maybe<Array<Scalars['String']>>;
-  url_not_in?: Maybe<Array<Scalars['String']>>;
-  url_contains?: Maybe<Scalars['String']>;
-  url_not_contains?: Maybe<Scalars['String']>;
-  url_starts_with?: Maybe<Scalars['String']>;
-  url_not_starts_with?: Maybe<Scalars['String']>;
-  url_ends_with?: Maybe<Scalars['String']>;
-  url_not_ends_with?: Maybe<Scalars['String']>;
+  guests_in?: Maybe<Array<_UserFilter>>;
+  guests_none?: Maybe<_UserFilter>;
+  guests_not?: Maybe<_UserFilter>;
+  guests_not_in?: Maybe<Array<_UserFilter>>;
+  guests_single?: Maybe<_UserFilter>;
+  guests_some?: Maybe<_UserFilter>;
+  hosts?: Maybe<_UserFilter>;
+  hosts_every?: Maybe<_UserFilter>;
+  hosts_in?: Maybe<Array<_UserFilter>>;
+  hosts_none?: Maybe<_UserFilter>;
+  hosts_not?: Maybe<_UserFilter>;
+  hosts_not_in?: Maybe<Array<_UserFilter>>;
+  hosts_single?: Maybe<_UserFilter>;
+  hosts_some?: Maybe<_UserFilter>;
+  meta?: Maybe<_ContentMetaFilter>;
+  meta_every?: Maybe<_ContentMetaFilter>;
+  meta_in?: Maybe<Array<_ContentMetaFilter>>;
+  meta_none?: Maybe<_ContentMetaFilter>;
+  meta_not?: Maybe<_ContentMetaFilter>;
+  meta_not_in?: Maybe<Array<_ContentMetaFilter>>;
+  meta_single?: Maybe<_ContentMetaFilter>;
+  meta_some?: Maybe<_ContentMetaFilter>;
+  OR?: Maybe<Array<_ContentFilter>>;
   release?: Maybe<_Neo4jDateTimeInput>;
-  release_not?: Maybe<_Neo4jDateTimeInput>;
-  release_in?: Maybe<Array<_Neo4jDateTimeInput>>;
-  release_not_in?: Maybe<Array<_Neo4jDateTimeInput>>;
-  release_lt?: Maybe<_Neo4jDateTimeInput>;
-  release_lte?: Maybe<_Neo4jDateTimeInput>;
   release_gt?: Maybe<_Neo4jDateTimeInput>;
   release_gte?: Maybe<_Neo4jDateTimeInput>;
-  summary?: Maybe<Scalars['String']>;
-  summary_not?: Maybe<Scalars['String']>;
-  summary_in?: Maybe<Array<Scalars['String']>>;
-  summary_not_in?: Maybe<Array<Scalars['String']>>;
-  summary_contains?: Maybe<Scalars['String']>;
-  summary_not_contains?: Maybe<Scalars['String']>;
-  summary_starts_with?: Maybe<Scalars['String']>;
-  summary_not_starts_with?: Maybe<Scalars['String']>;
-  summary_ends_with?: Maybe<Scalars['String']>;
-  summary_not_ends_with?: Maybe<Scalars['String']>;
-  series?: Maybe<_SeriesFilter>;
-  series_not?: Maybe<_SeriesFilter>;
-  series_in?: Maybe<Array<_SeriesFilter>>;
-  series_not_in?: Maybe<Array<_SeriesFilter>>;
-  series_some?: Maybe<_SeriesFilter>;
-  series_none?: Maybe<_SeriesFilter>;
-  series_single?: Maybe<_SeriesFilter>;
-  series_every?: Maybe<_SeriesFilter>;
+  release_in?: Maybe<Array<_Neo4jDateTimeInput>>;
+  release_lt?: Maybe<_Neo4jDateTimeInput>;
+  release_lte?: Maybe<_Neo4jDateTimeInput>;
+  release_not?: Maybe<_Neo4jDateTimeInput>;
+  release_not_in?: Maybe<Array<_Neo4jDateTimeInput>>;
   reviews?: Maybe<_ReviewFilter>;
-  reviews_not?: Maybe<_ReviewFilter>;
-  reviews_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_some?: Maybe<_ReviewFilter>;
-  reviews_none?: Maybe<_ReviewFilter>;
-  reviews_single?: Maybe<_ReviewFilter>;
   reviews_every?: Maybe<_ReviewFilter>;
-  meta?: Maybe<_ContentMetaFilter>;
-  meta_not?: Maybe<_ContentMetaFilter>;
-  meta_in?: Maybe<Array<_ContentMetaFilter>>;
-  meta_not_in?: Maybe<Array<_ContentMetaFilter>>;
-  meta_some?: Maybe<_ContentMetaFilter>;
-  meta_none?: Maybe<_ContentMetaFilter>;
-  meta_single?: Maybe<_ContentMetaFilter>;
-  meta_every?: Maybe<_ContentMetaFilter>;
+  reviews_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_none?: Maybe<_ReviewFilter>;
+  reviews_not?: Maybe<_ReviewFilter>;
+  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_single?: Maybe<_ReviewFilter>;
+  reviews_some?: Maybe<_ReviewFilter>;
+  series?: Maybe<_SeriesFilter>;
+  series_every?: Maybe<_SeriesFilter>;
+  series_in?: Maybe<Array<_SeriesFilter>>;
+  series_none?: Maybe<_SeriesFilter>;
+  series_not?: Maybe<_SeriesFilter>;
+  series_not_in?: Maybe<Array<_SeriesFilter>>;
+  series_single?: Maybe<_SeriesFilter>;
+  series_some?: Maybe<_SeriesFilter>;
+  summary?: Maybe<Scalars['String']>;
+  summary_contains?: Maybe<Scalars['String']>;
+  summary_ends_with?: Maybe<Scalars['String']>;
+  summary_in?: Maybe<Array<Scalars['String']>>;
+  summary_not?: Maybe<Scalars['String']>;
+  summary_not_contains?: Maybe<Scalars['String']>;
+  summary_not_ends_with?: Maybe<Scalars['String']>;
+  summary_not_in?: Maybe<Array<Scalars['String']>>;
+  summary_not_starts_with?: Maybe<Scalars['String']>;
+  summary_starts_with?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_ends_with?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Scalars['String']>>;
+  title_not?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  title_starts_with?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  url_contains?: Maybe<Scalars['String']>;
+  url_ends_with?: Maybe<Scalars['String']>;
+  url_in?: Maybe<Array<Scalars['String']>>;
+  url_not?: Maybe<Scalars['String']>;
+  url_not_contains?: Maybe<Scalars['String']>;
+  url_not_ends_with?: Maybe<Scalars['String']>;
+  url_not_in?: Maybe<Array<Scalars['String']>>;
+  url_not_starts_with?: Maybe<Scalars['String']>;
+  url_starts_with?: Maybe<Scalars['String']>;
 };
 
 export type _ContentInput = {
@@ -2981,31 +876,31 @@ export type _ContentInput = {
 
 export type _ContentMetaFilter = {
   AND?: Maybe<Array<_ContentMetaFilter>>;
-  OR?: Maybe<Array<_ContentMetaFilter>>;
-  contentMetaId?: Maybe<Scalars['ID']>;
-  contentMetaId_not?: Maybe<Scalars['ID']>;
-  contentMetaId_in?: Maybe<Array<Scalars['ID']>>;
-  contentMetaId_not_in?: Maybe<Array<Scalars['ID']>>;
-  contentMetaId_contains?: Maybe<Scalars['ID']>;
-  contentMetaId_not_contains?: Maybe<Scalars['ID']>;
-  contentMetaId_starts_with?: Maybe<Scalars['ID']>;
-  contentMetaId_not_starts_with?: Maybe<Scalars['ID']>;
-  contentMetaId_ends_with?: Maybe<Scalars['ID']>;
-  contentMetaId_not_ends_with?: Maybe<Scalars['ID']>;
-  role?: Maybe<Scalars['String']>;
-  role_not?: Maybe<Scalars['String']>;
-  role_in?: Maybe<Array<Scalars['String']>>;
-  role_not_in?: Maybe<Array<Scalars['String']>>;
-  role_contains?: Maybe<Scalars['String']>;
-  role_not_contains?: Maybe<Scalars['String']>;
-  role_starts_with?: Maybe<Scalars['String']>;
-  role_not_starts_with?: Maybe<Scalars['String']>;
-  role_ends_with?: Maybe<Scalars['String']>;
-  role_not_ends_with?: Maybe<Scalars['String']>;
   content?: Maybe<_ContentFilter>;
-  content_not?: Maybe<_ContentFilter>;
   content_in?: Maybe<Array<_ContentFilter>>;
+  content_not?: Maybe<_ContentFilter>;
   content_not_in?: Maybe<Array<_ContentFilter>>;
+  contentMetaId?: Maybe<Scalars['ID']>;
+  contentMetaId_contains?: Maybe<Scalars['ID']>;
+  contentMetaId_ends_with?: Maybe<Scalars['ID']>;
+  contentMetaId_in?: Maybe<Array<Scalars['ID']>>;
+  contentMetaId_not?: Maybe<Scalars['ID']>;
+  contentMetaId_not_contains?: Maybe<Scalars['ID']>;
+  contentMetaId_not_ends_with?: Maybe<Scalars['ID']>;
+  contentMetaId_not_in?: Maybe<Array<Scalars['ID']>>;
+  contentMetaId_not_starts_with?: Maybe<Scalars['ID']>;
+  contentMetaId_starts_with?: Maybe<Scalars['ID']>;
+  OR?: Maybe<Array<_ContentMetaFilter>>;
+  role?: Maybe<Scalars['String']>;
+  role_contains?: Maybe<Scalars['String']>;
+  role_ends_with?: Maybe<Scalars['String']>;
+  role_in?: Maybe<Array<Scalars['String']>>;
+  role_not?: Maybe<Scalars['String']>;
+  role_not_contains?: Maybe<Scalars['String']>;
+  role_not_ends_with?: Maybe<Scalars['String']>;
+  role_not_in?: Maybe<Array<Scalars['String']>>;
+  role_not_starts_with?: Maybe<Scalars['String']>;
+  role_starts_with?: Maybe<Scalars['String']>;
 };
 
 export type _ContentMetaInput = {
@@ -3013,136 +908,136 @@ export type _ContentMetaInput = {
 };
 
 export enum _ContentMetaOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
   ContentMetaIdAsc = 'contentMetaId_asc',
   ContentMetaIdDesc = 'contentMetaId_desc',
   RoleAsc = 'role_asc',
-  RoleDesc = 'role_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  RoleDesc = 'role_desc'
 }
 
 export enum _ContentOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
+  AvgStarsAsc = 'avgStars_asc',
+  AvgStarsDesc = 'avgStars_desc',
   ContentIdAsc = 'contentId_asc',
   ContentIdDesc = 'contentId_desc',
-  TitleAsc = 'title_asc',
-  TitleDesc = 'title_desc',
   DisplayImageAsc = 'displayImage_asc',
   DisplayImageDesc = 'displayImage_desc',
-  UrlAsc = 'url_asc',
-  UrlDesc = 'url_desc',
   ReleaseAsc = 'release_asc',
   ReleaseDesc = 'release_desc',
   SummaryAsc = 'summary_asc',
   SummaryDesc = 'summary_desc',
-  AvgStarsAsc = 'avgStars_asc',
-  AvgStarsDesc = 'avgStars_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  TitleAsc = 'title_asc',
+  TitleDesc = 'title_desc',
+  UrlAsc = 'url_asc',
+  UrlDesc = 'url_desc'
 }
 
 export type _EventFilter = {
   AND?: Maybe<Array<_EventFilter>>;
-  OR?: Maybe<Array<_EventFilter>>;
-  eventId?: Maybe<Scalars['ID']>;
-  eventId_not?: Maybe<Scalars['ID']>;
-  eventId_in?: Maybe<Array<Scalars['ID']>>;
-  eventId_not_in?: Maybe<Array<Scalars['ID']>>;
-  eventId_contains?: Maybe<Scalars['ID']>;
-  eventId_not_contains?: Maybe<Scalars['ID']>;
-  eventId_starts_with?: Maybe<Scalars['ID']>;
-  eventId_not_starts_with?: Maybe<Scalars['ID']>;
-  eventId_ends_with?: Maybe<Scalars['ID']>;
-  eventId_not_ends_with?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  name_not?: Maybe<Scalars['String']>;
-  name_in?: Maybe<Array<Scalars['String']>>;
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  name_contains?: Maybe<Scalars['String']>;
-  name_not_contains?: Maybe<Scalars['String']>;
-  name_starts_with?: Maybe<Scalars['String']>;
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  name_ends_with?: Maybe<Scalars['String']>;
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  venue?: Maybe<_VenueFilter>;
-  venue_not?: Maybe<_VenueFilter>;
-  venue_in?: Maybe<Array<_VenueFilter>>;
-  venue_not_in?: Maybe<Array<_VenueFilter>>;
   displayImage?: Maybe<Scalars['String']>;
-  displayImage_not?: Maybe<Scalars['String']>;
-  displayImage_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
   displayImage_contains?: Maybe<Scalars['String']>;
-  displayImage_not_contains?: Maybe<Scalars['String']>;
-  displayImage_starts_with?: Maybe<Scalars['String']>;
-  displayImage_not_starts_with?: Maybe<Scalars['String']>;
   displayImage_ends_with?: Maybe<Scalars['String']>;
+  displayImage_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not?: Maybe<Scalars['String']>;
+  displayImage_not_contains?: Maybe<Scalars['String']>;
   displayImage_not_ends_with?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Scalars['String']>>;
-  gallery_not?: Maybe<Array<Scalars['String']>>;
-  gallery_contains?: Maybe<Array<Scalars['String']>>;
-  gallery_not_contains?: Maybe<Array<Scalars['String']>>;
-  gallery_starts_with?: Maybe<Array<Scalars['String']>>;
-  gallery_not_starts_with?: Maybe<Array<Scalars['String']>>;
-  gallery_ends_with?: Maybe<Array<Scalars['String']>>;
-  gallery_not_ends_with?: Maybe<Array<Scalars['String']>>;
-  managedBy?: Maybe<_UserFilter>;
-  managedBy_not?: Maybe<_UserFilter>;
-  managedBy_in?: Maybe<Array<_UserFilter>>;
-  managedBy_not_in?: Maybe<Array<_UserFilter>>;
-  managedBy_some?: Maybe<_UserFilter>;
-  managedBy_none?: Maybe<_UserFilter>;
-  managedBy_single?: Maybe<_UserFilter>;
-  managedBy_every?: Maybe<_UserFilter>;
-  guests?: Maybe<_UserFilter>;
-  guests_not?: Maybe<_UserFilter>;
-  guests_in?: Maybe<Array<_UserFilter>>;
-  guests_not_in?: Maybe<Array<_UserFilter>>;
-  guests_some?: Maybe<_UserFilter>;
-  guests_none?: Maybe<_UserFilter>;
-  guests_single?: Maybe<_UserFilter>;
-  guests_every?: Maybe<_UserFilter>;
-  start?: Maybe<_Neo4jDateTimeInput>;
-  start_not?: Maybe<_Neo4jDateTimeInput>;
-  start_in?: Maybe<Array<_Neo4jDateTimeInput>>;
-  start_not_in?: Maybe<Array<_Neo4jDateTimeInput>>;
-  start_lt?: Maybe<_Neo4jDateTimeInput>;
-  start_lte?: Maybe<_Neo4jDateTimeInput>;
-  start_gt?: Maybe<_Neo4jDateTimeInput>;
-  start_gte?: Maybe<_Neo4jDateTimeInput>;
+  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not_starts_with?: Maybe<Scalars['String']>;
+  displayImage_starts_with?: Maybe<Scalars['String']>;
   end?: Maybe<_Neo4jDateTimeInput>;
-  end_not?: Maybe<_Neo4jDateTimeInput>;
-  end_in?: Maybe<Array<_Neo4jDateTimeInput>>;
-  end_not_in?: Maybe<Array<_Neo4jDateTimeInput>>;
-  end_lt?: Maybe<_Neo4jDateTimeInput>;
-  end_lte?: Maybe<_Neo4jDateTimeInput>;
   end_gt?: Maybe<_Neo4jDateTimeInput>;
   end_gte?: Maybe<_Neo4jDateTimeInput>;
-  url?: Maybe<Scalars['String']>;
-  url_not?: Maybe<Scalars['String']>;
-  url_in?: Maybe<Array<Scalars['String']>>;
-  url_not_in?: Maybe<Array<Scalars['String']>>;
-  url_contains?: Maybe<Scalars['String']>;
-  url_not_contains?: Maybe<Scalars['String']>;
-  url_starts_with?: Maybe<Scalars['String']>;
-  url_not_starts_with?: Maybe<Scalars['String']>;
-  url_ends_with?: Maybe<Scalars['String']>;
-  url_not_ends_with?: Maybe<Scalars['String']>;
-  series?: Maybe<_SeriesFilter>;
-  series_not?: Maybe<_SeriesFilter>;
-  series_in?: Maybe<Array<_SeriesFilter>>;
-  series_not_in?: Maybe<Array<_SeriesFilter>>;
-  series_some?: Maybe<_SeriesFilter>;
-  series_none?: Maybe<_SeriesFilter>;
-  series_single?: Maybe<_SeriesFilter>;
-  series_every?: Maybe<_SeriesFilter>;
+  end_in?: Maybe<Array<_Neo4jDateTimeInput>>;
+  end_lt?: Maybe<_Neo4jDateTimeInput>;
+  end_lte?: Maybe<_Neo4jDateTimeInput>;
+  end_not?: Maybe<_Neo4jDateTimeInput>;
+  end_not_in?: Maybe<Array<_Neo4jDateTimeInput>>;
+  eventId?: Maybe<Scalars['ID']>;
+  eventId_contains?: Maybe<Scalars['ID']>;
+  eventId_ends_with?: Maybe<Scalars['ID']>;
+  eventId_in?: Maybe<Array<Scalars['ID']>>;
+  eventId_not?: Maybe<Scalars['ID']>;
+  eventId_not_contains?: Maybe<Scalars['ID']>;
+  eventId_not_ends_with?: Maybe<Scalars['ID']>;
+  eventId_not_in?: Maybe<Array<Scalars['ID']>>;
+  eventId_not_starts_with?: Maybe<Scalars['ID']>;
+  eventId_starts_with?: Maybe<Scalars['ID']>;
+  gallery?: Maybe<Array<Scalars['String']>>;
+  gallery_contains?: Maybe<Array<Scalars['String']>>;
+  gallery_ends_with?: Maybe<Array<Scalars['String']>>;
+  gallery_not?: Maybe<Array<Scalars['String']>>;
+  gallery_not_contains?: Maybe<Array<Scalars['String']>>;
+  gallery_not_ends_with?: Maybe<Array<Scalars['String']>>;
+  gallery_not_starts_with?: Maybe<Array<Scalars['String']>>;
+  gallery_starts_with?: Maybe<Array<Scalars['String']>>;
+  guests?: Maybe<_UserFilter>;
+  guests_every?: Maybe<_UserFilter>;
+  guests_in?: Maybe<Array<_UserFilter>>;
+  guests_none?: Maybe<_UserFilter>;
+  guests_not?: Maybe<_UserFilter>;
+  guests_not_in?: Maybe<Array<_UserFilter>>;
+  guests_single?: Maybe<_UserFilter>;
+  guests_some?: Maybe<_UserFilter>;
+  managedBy?: Maybe<_UserFilter>;
+  managedBy_every?: Maybe<_UserFilter>;
+  managedBy_in?: Maybe<Array<_UserFilter>>;
+  managedBy_none?: Maybe<_UserFilter>;
+  managedBy_not?: Maybe<_UserFilter>;
+  managedBy_not_in?: Maybe<Array<_UserFilter>>;
+  managedBy_single?: Maybe<_UserFilter>;
+  managedBy_some?: Maybe<_UserFilter>;
+  name?: Maybe<Scalars['String']>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_ends_with?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Scalars['String']>>;
+  name_not?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  name_starts_with?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<_EventFilter>>;
   reviews?: Maybe<_ReviewFilter>;
-  reviews_not?: Maybe<_ReviewFilter>;
-  reviews_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_some?: Maybe<_ReviewFilter>;
-  reviews_none?: Maybe<_ReviewFilter>;
-  reviews_single?: Maybe<_ReviewFilter>;
   reviews_every?: Maybe<_ReviewFilter>;
+  reviews_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_none?: Maybe<_ReviewFilter>;
+  reviews_not?: Maybe<_ReviewFilter>;
+  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_single?: Maybe<_ReviewFilter>;
+  reviews_some?: Maybe<_ReviewFilter>;
+  series?: Maybe<_SeriesFilter>;
+  series_every?: Maybe<_SeriesFilter>;
+  series_in?: Maybe<Array<_SeriesFilter>>;
+  series_none?: Maybe<_SeriesFilter>;
+  series_not?: Maybe<_SeriesFilter>;
+  series_not_in?: Maybe<Array<_SeriesFilter>>;
+  series_single?: Maybe<_SeriesFilter>;
+  series_some?: Maybe<_SeriesFilter>;
+  start?: Maybe<_Neo4jDateTimeInput>;
+  start_gt?: Maybe<_Neo4jDateTimeInput>;
+  start_gte?: Maybe<_Neo4jDateTimeInput>;
+  start_in?: Maybe<Array<_Neo4jDateTimeInput>>;
+  start_lt?: Maybe<_Neo4jDateTimeInput>;
+  start_lte?: Maybe<_Neo4jDateTimeInput>;
+  start_not?: Maybe<_Neo4jDateTimeInput>;
+  start_not_in?: Maybe<Array<_Neo4jDateTimeInput>>;
+  url?: Maybe<Scalars['String']>;
+  url_contains?: Maybe<Scalars['String']>;
+  url_ends_with?: Maybe<Scalars['String']>;
+  url_in?: Maybe<Array<Scalars['String']>>;
+  url_not?: Maybe<Scalars['String']>;
+  url_not_contains?: Maybe<Scalars['String']>;
+  url_not_ends_with?: Maybe<Scalars['String']>;
+  url_not_in?: Maybe<Array<Scalars['String']>>;
+  url_not_starts_with?: Maybe<Scalars['String']>;
+  url_starts_with?: Maybe<Scalars['String']>;
+  venue?: Maybe<_VenueFilter>;
+  venue_in?: Maybe<Array<_VenueFilter>>;
+  venue_not?: Maybe<_VenueFilter>;
+  venue_not_in?: Maybe<Array<_VenueFilter>>;
 };
 
 export type _EventInput = {
@@ -3150,22 +1045,40 @@ export type _EventInput = {
 };
 
 export enum _EventOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
+  AvgStarsAsc = 'avgStars_asc',
+  AvgStarsDesc = 'avgStars_desc',
+  DisplayImageAsc = 'displayImage_asc',
+  DisplayImageDesc = 'displayImage_desc',
+  EndAsc = 'end_asc',
+  EndDesc = 'end_desc',
   EventIdAsc = 'eventId_asc',
   EventIdDesc = 'eventId_desc',
   NameAsc = 'name_asc',
   NameDesc = 'name_desc',
-  DisplayImageAsc = 'displayImage_asc',
-  DisplayImageDesc = 'displayImage_desc',
   StartAsc = 'start_asc',
   StartDesc = 'start_desc',
-  EndAsc = 'end_asc',
-  EndDesc = 'end_desc',
   UrlAsc = 'url_asc',
-  UrlDesc = 'url_desc',
-  AvgStarsAsc = 'avgStars_asc',
-  AvgStarsDesc = 'avgStars_desc',
+  UrlDesc = 'url_desc'
+}
+
+export type _GetbusinessByUserIdResponseFilter = {
+  AND?: Maybe<Array<_GetbusinessByUserIdResponseFilter>>;
+  ok?: Maybe<Scalars['Boolean']>;
+  ok_not?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<_GetbusinessByUserIdResponseFilter>>;
+};
+
+export type _GetbusinessByUserIdResponseInput = {
+  ok: Scalars['Boolean'];
+};
+
+export enum _GetbusinessByUserIdResponseOrdering {
   IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  IdDesc = '_id_desc',
+  OkAsc = 'ok_asc',
+  OkDesc = 'ok_desc'
 }
 
 export type _HomePageResponseFilter = {
@@ -3179,20 +1092,20 @@ export enum _HomePageResponseOrdering {
 }
 
 export type _LoginResponseFilter = {
-  AND?: Maybe<Array<_LoginResponseFilter>>;
-  OR?: Maybe<Array<_LoginResponseFilter>>;
   accessToken?: Maybe<Scalars['String']>;
-  accessToken_not?: Maybe<Scalars['String']>;
-  accessToken_in?: Maybe<Array<Scalars['String']>>;
-  accessToken_not_in?: Maybe<Array<Scalars['String']>>;
   accessToken_contains?: Maybe<Scalars['String']>;
-  accessToken_not_contains?: Maybe<Scalars['String']>;
-  accessToken_starts_with?: Maybe<Scalars['String']>;
-  accessToken_not_starts_with?: Maybe<Scalars['String']>;
   accessToken_ends_with?: Maybe<Scalars['String']>;
+  accessToken_in?: Maybe<Array<Scalars['String']>>;
+  accessToken_not?: Maybe<Scalars['String']>;
+  accessToken_not_contains?: Maybe<Scalars['String']>;
   accessToken_not_ends_with?: Maybe<Scalars['String']>;
+  accessToken_not_in?: Maybe<Array<Scalars['String']>>;
+  accessToken_not_starts_with?: Maybe<Scalars['String']>;
+  accessToken_starts_with?: Maybe<Scalars['String']>;
+  AND?: Maybe<Array<_LoginResponseFilter>>;
   ok?: Maybe<Scalars['Boolean']>;
   ok_not?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<_LoginResponseFilter>>;
 };
 
 export type _LoginResponseInput = {
@@ -3200,12 +1113,12 @@ export type _LoginResponseInput = {
 };
 
 export enum _LoginResponseOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
   AccessTokenAsc = 'accessToken_asc',
   AccessTokenDesc = 'accessToken_desc',
   OkAsc = 'ok_asc',
-  OkDesc = 'ok_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  OkDesc = 'ok_desc'
 }
 
 export type _MergeAddressContactPayload = {
@@ -3475,183 +1388,183 @@ export type _MergeVenueReviewsPayload = {
 /** Generated Date object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries). */
 export type _Neo4jDate = {
   __typename?: '_Neo4jDate';
-  year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
   /** Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries) Date value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring) Cypher function. */
   formatted?: Maybe<Scalars['String']>;
+  month?: Maybe<Scalars['Int']>;
+  year?: Maybe<Scalars['Int']>;
 };
 
 /** Generated Date input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments). */
 export type _Neo4jDateInput = {
-  year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
   /** Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations) Date value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/date/#functions-date-create-string). */
   formatted?: Maybe<Scalars['String']>;
+  month?: Maybe<Scalars['Int']>;
+  year?: Maybe<Scalars['Int']>;
 };
 
 /** Generated DateTime object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries). */
 export type _Neo4jDateTime = {
   __typename?: '_Neo4jDateTime';
-  year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  millisecond?: Maybe<Scalars['Int']>;
-  microsecond?: Maybe<Scalars['Int']>;
-  nanosecond?: Maybe<Scalars['Int']>;
-  timezone?: Maybe<Scalars['String']>;
   /** Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries) DateTime value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring) Cypher function. */
   formatted?: Maybe<Scalars['String']>;
+  hour?: Maybe<Scalars['Int']>;
+  microsecond?: Maybe<Scalars['Int']>;
+  millisecond?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  nanosecond?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
+  timezone?: Maybe<Scalars['String']>;
+  year?: Maybe<Scalars['Int']>;
 };
 
 /** Generated DateTime input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments). */
 export type _Neo4jDateTimeInput = {
-  year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  millisecond?: Maybe<Scalars['Int']>;
-  microsecond?: Maybe<Scalars['Int']>;
-  nanosecond?: Maybe<Scalars['Int']>;
-  timezone?: Maybe<Scalars['String']>;
   /** Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations) DateTime value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/datetime/#functions-datetime-create-string). */
   formatted?: Maybe<Scalars['String']>;
+  hour?: Maybe<Scalars['Int']>;
+  microsecond?: Maybe<Scalars['Int']>;
+  millisecond?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  nanosecond?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
+  timezone?: Maybe<Scalars['String']>;
+  year?: Maybe<Scalars['Int']>;
 };
 
 /** Generated LocalDateTime object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries). */
 export type _Neo4jLocalDateTime = {
   __typename?: '_Neo4jLocalDateTime';
-  year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  millisecond?: Maybe<Scalars['Int']>;
-  microsecond?: Maybe<Scalars['Int']>;
-  nanosecond?: Maybe<Scalars['Int']>;
   /** Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries) LocalDateTime value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring) Cypher function. */
   formatted?: Maybe<Scalars['String']>;
+  hour?: Maybe<Scalars['Int']>;
+  microsecond?: Maybe<Scalars['Int']>;
+  millisecond?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  nanosecond?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
+  year?: Maybe<Scalars['Int']>;
 };
 
 /** Generated LocalDateTime input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments). */
 export type _Neo4jLocalDateTimeInput = {
-  year?: Maybe<Scalars['Int']>;
-  month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  millisecond?: Maybe<Scalars['Int']>;
-  microsecond?: Maybe<Scalars['Int']>;
-  nanosecond?: Maybe<Scalars['Int']>;
   /** Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations) LocalDateTime value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/localdatetime/#functions-localdatetime-create-string). */
   formatted?: Maybe<Scalars['String']>;
+  hour?: Maybe<Scalars['Int']>;
+  microsecond?: Maybe<Scalars['Int']>;
+  millisecond?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  nanosecond?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
+  year?: Maybe<Scalars['Int']>;
 };
 
 /** Generated LocalTime object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries). */
 export type _Neo4jLocalTime = {
   __typename?: '_Neo4jLocalTime';
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  millisecond?: Maybe<Scalars['Int']>;
-  microsecond?: Maybe<Scalars['Int']>;
-  nanosecond?: Maybe<Scalars['Int']>;
   /** Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries) LocalTime value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring) Cypher function. */
   formatted?: Maybe<Scalars['String']>;
+  hour?: Maybe<Scalars['Int']>;
+  microsecond?: Maybe<Scalars['Int']>;
+  millisecond?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  nanosecond?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
 };
 
 /** Generated LocalTime input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments). */
 export type _Neo4jLocalTimeInput = {
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  millisecond?: Maybe<Scalars['Int']>;
-  microsecond?: Maybe<Scalars['Int']>;
-  nanosecond?: Maybe<Scalars['Int']>;
   /** Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations) LocalTime value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/localtime/#functions-localtime-create-string). */
   formatted?: Maybe<Scalars['String']>;
+  hour?: Maybe<Scalars['Int']>;
+  microsecond?: Maybe<Scalars['Int']>;
+  millisecond?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  nanosecond?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
 };
 
 /** Generated Point object type for Neo4j [Spatial fields](https://grandstack.io/docs/graphql-spatial-types#using-point-in-queries). */
 export type _Neo4jPoint = {
   __typename?: '_Neo4jPoint';
+  crs?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['Float']>;
+  latitude?: Maybe<Scalars['Float']>;
+  longitude?: Maybe<Scalars['Float']>;
+  srid?: Maybe<Scalars['Int']>;
   x?: Maybe<Scalars['Float']>;
   y?: Maybe<Scalars['Float']>;
   z?: Maybe<Scalars['Float']>;
-  longitude?: Maybe<Scalars['Float']>;
-  latitude?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-  crs?: Maybe<Scalars['String']>;
-  srid?: Maybe<Scalars['Int']>;
 };
 
 export type _Neo4jPointDistanceFilter = {
-  point: _Neo4jPointInput;
   distance: Scalars['Float'];
+  point: _Neo4jPointInput;
 };
 
 /** Generated Point input object for Neo4j [Spatial field arguments](https://grandstack.io/docs/graphql-spatial-types/#point-query-arguments). */
 export type _Neo4jPointInput = {
+  crs?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['Float']>;
+  latitude?: Maybe<Scalars['Float']>;
+  longitude?: Maybe<Scalars['Float']>;
+  srid?: Maybe<Scalars['Int']>;
   x?: Maybe<Scalars['Float']>;
   y?: Maybe<Scalars['Float']>;
   z?: Maybe<Scalars['Float']>;
-  longitude?: Maybe<Scalars['Float']>;
-  latitude?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-  crs?: Maybe<Scalars['String']>;
-  srid?: Maybe<Scalars['Int']>;
 };
 
 /** Generated Time object type for Neo4j [Temporal fields](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries). */
 export type _Neo4jTime = {
   __typename?: '_Neo4jTime';
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  millisecond?: Maybe<Scalars['Int']>;
-  microsecond?: Maybe<Scalars['Int']>;
-  nanosecond?: Maybe<Scalars['Int']>;
-  timezone?: Maybe<Scalars['String']>;
   /** Outputs a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime#using-temporal-fields-in-queries) Time value as a String type by using the [toString](https://neo4j.com/docs/cypher-manual/current/functions/string/#functions-tostring) Cypher function. */
   formatted?: Maybe<Scalars['String']>;
+  hour?: Maybe<Scalars['Int']>;
+  microsecond?: Maybe<Scalars['Int']>;
+  millisecond?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  nanosecond?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
+  timezone?: Maybe<Scalars['String']>;
 };
 
 /** Generated Time input object for Neo4j [Temporal field arguments](https://grandstack.io/docs/graphql-temporal-types-datetime/#temporal-query-arguments). */
 export type _Neo4jTimeInput = {
-  hour?: Maybe<Scalars['Int']>;
-  minute?: Maybe<Scalars['Int']>;
-  second?: Maybe<Scalars['Int']>;
-  millisecond?: Maybe<Scalars['Int']>;
-  microsecond?: Maybe<Scalars['Int']>;
-  nanosecond?: Maybe<Scalars['Int']>;
-  timezone?: Maybe<Scalars['String']>;
   /** Creates a Neo4j [Temporal](https://grandstack.io/docs/graphql-temporal-types-datetime/#using-temporal-fields-in-mutations) Time value using a [String format](https://neo4j.com/docs/cypher-manual/current/functions/temporal/time/#functions-time-create-string). */
   formatted?: Maybe<Scalars['String']>;
+  hour?: Maybe<Scalars['Int']>;
+  microsecond?: Maybe<Scalars['Int']>;
+  millisecond?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  nanosecond?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
+  timezone?: Maybe<Scalars['String']>;
 };
 
 export type _RefreshTokenResponseFilter = {
-  AND?: Maybe<Array<_RefreshTokenResponseFilter>>;
-  OR?: Maybe<Array<_RefreshTokenResponseFilter>>;
   accessToken?: Maybe<Scalars['String']>;
-  accessToken_not?: Maybe<Scalars['String']>;
-  accessToken_in?: Maybe<Array<Scalars['String']>>;
-  accessToken_not_in?: Maybe<Array<Scalars['String']>>;
   accessToken_contains?: Maybe<Scalars['String']>;
-  accessToken_not_contains?: Maybe<Scalars['String']>;
-  accessToken_starts_with?: Maybe<Scalars['String']>;
-  accessToken_not_starts_with?: Maybe<Scalars['String']>;
   accessToken_ends_with?: Maybe<Scalars['String']>;
+  accessToken_in?: Maybe<Array<Scalars['String']>>;
+  accessToken_not?: Maybe<Scalars['String']>;
+  accessToken_not_contains?: Maybe<Scalars['String']>;
   accessToken_not_ends_with?: Maybe<Scalars['String']>;
+  accessToken_not_in?: Maybe<Array<Scalars['String']>>;
+  accessToken_not_starts_with?: Maybe<Scalars['String']>;
+  accessToken_starts_with?: Maybe<Scalars['String']>;
+  AND?: Maybe<Array<_RefreshTokenResponseFilter>>;
   ok?: Maybe<Scalars['Boolean']>;
   ok_not?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<_RefreshTokenResponseFilter>>;
 };
 
 export type _RefreshTokenResponseInput = {
@@ -3659,12 +1572,12 @@ export type _RefreshTokenResponseInput = {
 };
 
 export enum _RefreshTokenResponseOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
   AccessTokenAsc = 'accessToken_asc',
   AccessTokenDesc = 'accessToken_desc',
   OkAsc = 'ok_asc',
-  OkDesc = 'ok_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  OkDesc = 'ok_desc'
 }
 
 export enum _RelationDirections {
@@ -3938,46 +1851,46 @@ export type _RemoveVenueReviewsPayload = {
 
 export type _ReviewFilter = {
   AND?: Maybe<Array<_ReviewFilter>>;
-  OR?: Maybe<Array<_ReviewFilter>>;
-  reviewId?: Maybe<Scalars['ID']>;
-  reviewId_not?: Maybe<Scalars['ID']>;
-  reviewId_in?: Maybe<Array<Scalars['ID']>>;
-  reviewId_not_in?: Maybe<Array<Scalars['ID']>>;
-  reviewId_contains?: Maybe<Scalars['ID']>;
-  reviewId_not_contains?: Maybe<Scalars['ID']>;
-  reviewId_starts_with?: Maybe<Scalars['ID']>;
-  reviewId_not_starts_with?: Maybe<Scalars['ID']>;
-  reviewId_ends_with?: Maybe<Scalars['ID']>;
-  reviewId_not_ends_with?: Maybe<Scalars['ID']>;
-  stars?: Maybe<Scalars['Float']>;
-  stars_not?: Maybe<Scalars['Float']>;
-  stars_in?: Maybe<Array<Scalars['Float']>>;
-  stars_not_in?: Maybe<Array<Scalars['Float']>>;
-  stars_lt?: Maybe<Scalars['Float']>;
-  stars_lte?: Maybe<Scalars['Float']>;
-  stars_gt?: Maybe<Scalars['Float']>;
-  stars_gte?: Maybe<Scalars['Float']>;
-  text?: Maybe<Scalars['String']>;
-  text_not?: Maybe<Scalars['String']>;
-  text_in?: Maybe<Array<Scalars['String']>>;
-  text_not_in?: Maybe<Array<Scalars['String']>>;
-  text_contains?: Maybe<Scalars['String']>;
-  text_not_contains?: Maybe<Scalars['String']>;
-  text_starts_with?: Maybe<Scalars['String']>;
-  text_not_starts_with?: Maybe<Scalars['String']>;
-  text_ends_with?: Maybe<Scalars['String']>;
-  text_not_ends_with?: Maybe<Scalars['String']>;
   date?: Maybe<_Neo4jDateTimeInput>;
-  date_not?: Maybe<_Neo4jDateTimeInput>;
-  date_in?: Maybe<Array<_Neo4jDateTimeInput>>;
-  date_not_in?: Maybe<Array<_Neo4jDateTimeInput>>;
-  date_lt?: Maybe<_Neo4jDateTimeInput>;
-  date_lte?: Maybe<_Neo4jDateTimeInput>;
   date_gt?: Maybe<_Neo4jDateTimeInput>;
   date_gte?: Maybe<_Neo4jDateTimeInput>;
+  date_in?: Maybe<Array<_Neo4jDateTimeInput>>;
+  date_lt?: Maybe<_Neo4jDateTimeInput>;
+  date_lte?: Maybe<_Neo4jDateTimeInput>;
+  date_not?: Maybe<_Neo4jDateTimeInput>;
+  date_not_in?: Maybe<Array<_Neo4jDateTimeInput>>;
+  OR?: Maybe<Array<_ReviewFilter>>;
+  reviewId?: Maybe<Scalars['ID']>;
+  reviewId_contains?: Maybe<Scalars['ID']>;
+  reviewId_ends_with?: Maybe<Scalars['ID']>;
+  reviewId_in?: Maybe<Array<Scalars['ID']>>;
+  reviewId_not?: Maybe<Scalars['ID']>;
+  reviewId_not_contains?: Maybe<Scalars['ID']>;
+  reviewId_not_ends_with?: Maybe<Scalars['ID']>;
+  reviewId_not_in?: Maybe<Array<Scalars['ID']>>;
+  reviewId_not_starts_with?: Maybe<Scalars['ID']>;
+  reviewId_starts_with?: Maybe<Scalars['ID']>;
+  stars?: Maybe<Scalars['Float']>;
+  stars_gt?: Maybe<Scalars['Float']>;
+  stars_gte?: Maybe<Scalars['Float']>;
+  stars_in?: Maybe<Array<Scalars['Float']>>;
+  stars_lt?: Maybe<Scalars['Float']>;
+  stars_lte?: Maybe<Scalars['Float']>;
+  stars_not?: Maybe<Scalars['Float']>;
+  stars_not_in?: Maybe<Array<Scalars['Float']>>;
+  text?: Maybe<Scalars['String']>;
+  text_contains?: Maybe<Scalars['String']>;
+  text_ends_with?: Maybe<Scalars['String']>;
+  text_in?: Maybe<Array<Scalars['String']>>;
+  text_not?: Maybe<Scalars['String']>;
+  text_not_contains?: Maybe<Scalars['String']>;
+  text_not_ends_with?: Maybe<Scalars['String']>;
+  text_not_in?: Maybe<Array<Scalars['String']>>;
+  text_not_starts_with?: Maybe<Scalars['String']>;
+  text_starts_with?: Maybe<Scalars['String']>;
   user?: Maybe<_UserFilter>;
-  user_not?: Maybe<_UserFilter>;
   user_in?: Maybe<Array<_UserFilter>>;
+  user_not?: Maybe<_UserFilter>;
   user_not_in?: Maybe<Array<_UserFilter>>;
 };
 
@@ -3986,93 +1899,93 @@ export type _ReviewInput = {
 };
 
 export enum _ReviewOrdering {
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
+  DateAsc = 'date_asc',
+  DateDesc = 'date_desc',
   ReviewIdAsc = 'reviewId_asc',
   ReviewIdDesc = 'reviewId_desc',
   StarsAsc = 'stars_asc',
   StarsDesc = 'stars_desc',
   TextAsc = 'text_asc',
-  TextDesc = 'text_desc',
-  DateAsc = 'date_asc',
-  DateDesc = 'date_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  TextDesc = 'text_desc'
 }
 
 export type _SeriesFilter = {
   AND?: Maybe<Array<_SeriesFilter>>;
-  OR?: Maybe<Array<_SeriesFilter>>;
-  seriesId?: Maybe<Scalars['ID']>;
-  seriesId_not?: Maybe<Scalars['ID']>;
-  seriesId_in?: Maybe<Array<Scalars['ID']>>;
-  seriesId_not_in?: Maybe<Array<Scalars['ID']>>;
-  seriesId_contains?: Maybe<Scalars['ID']>;
-  seriesId_not_contains?: Maybe<Scalars['ID']>;
-  seriesId_starts_with?: Maybe<Scalars['ID']>;
-  seriesId_not_starts_with?: Maybe<Scalars['ID']>;
-  seriesId_ends_with?: Maybe<Scalars['ID']>;
-  seriesId_not_ends_with?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  name_not?: Maybe<Scalars['String']>;
-  name_in?: Maybe<Array<Scalars['String']>>;
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  name_contains?: Maybe<Scalars['String']>;
-  name_not_contains?: Maybe<Scalars['String']>;
-  name_starts_with?: Maybe<Scalars['String']>;
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  name_ends_with?: Maybe<Scalars['String']>;
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  description_not?: Maybe<Scalars['String']>;
-  description_in?: Maybe<Array<Scalars['String']>>;
-  description_not_in?: Maybe<Array<Scalars['String']>>;
-  description_contains?: Maybe<Scalars['String']>;
-  description_not_contains?: Maybe<Scalars['String']>;
-  description_starts_with?: Maybe<Scalars['String']>;
-  description_not_starts_with?: Maybe<Scalars['String']>;
-  description_ends_with?: Maybe<Scalars['String']>;
-  description_not_ends_with?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  displayImage_not?: Maybe<Scalars['String']>;
-  displayImage_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_contains?: Maybe<Scalars['String']>;
-  displayImage_not_contains?: Maybe<Scalars['String']>;
-  displayImage_starts_with?: Maybe<Scalars['String']>;
-  displayImage_not_starts_with?: Maybe<Scalars['String']>;
-  displayImage_ends_with?: Maybe<Scalars['String']>;
-  displayImage_not_ends_with?: Maybe<Scalars['String']>;
-  managedBy?: Maybe<_UserFilter>;
-  managedBy_not?: Maybe<_UserFilter>;
-  managedBy_in?: Maybe<Array<_UserFilter>>;
-  managedBy_not_in?: Maybe<Array<_UserFilter>>;
-  managedBy_some?: Maybe<_UserFilter>;
-  managedBy_none?: Maybe<_UserFilter>;
-  managedBy_single?: Maybe<_UserFilter>;
-  managedBy_every?: Maybe<_UserFilter>;
-  events?: Maybe<_EventFilter>;
-  events_not?: Maybe<_EventFilter>;
-  events_in?: Maybe<Array<_EventFilter>>;
-  events_not_in?: Maybe<Array<_EventFilter>>;
-  events_some?: Maybe<_EventFilter>;
-  events_none?: Maybe<_EventFilter>;
-  events_single?: Maybe<_EventFilter>;
-  events_every?: Maybe<_EventFilter>;
   content?: Maybe<_ContentFilter>;
-  content_not?: Maybe<_ContentFilter>;
-  content_in?: Maybe<Array<_ContentFilter>>;
-  content_not_in?: Maybe<Array<_ContentFilter>>;
-  content_some?: Maybe<_ContentFilter>;
-  content_none?: Maybe<_ContentFilter>;
-  content_single?: Maybe<_ContentFilter>;
   content_every?: Maybe<_ContentFilter>;
+  content_in?: Maybe<Array<_ContentFilter>>;
+  content_none?: Maybe<_ContentFilter>;
+  content_not?: Maybe<_ContentFilter>;
+  content_not_in?: Maybe<Array<_ContentFilter>>;
+  content_single?: Maybe<_ContentFilter>;
+  content_some?: Maybe<_ContentFilter>;
+  description?: Maybe<Scalars['String']>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_ends_with?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Scalars['String']>>;
+  description_not?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  description_not_ends_with?: Maybe<Scalars['String']>;
+  description_not_in?: Maybe<Array<Scalars['String']>>;
+  description_not_starts_with?: Maybe<Scalars['String']>;
+  description_starts_with?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayImage_contains?: Maybe<Scalars['String']>;
+  displayImage_ends_with?: Maybe<Scalars['String']>;
+  displayImage_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not?: Maybe<Scalars['String']>;
+  displayImage_not_contains?: Maybe<Scalars['String']>;
+  displayImage_not_ends_with?: Maybe<Scalars['String']>;
+  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not_starts_with?: Maybe<Scalars['String']>;
+  displayImage_starts_with?: Maybe<Scalars['String']>;
+  events?: Maybe<_EventFilter>;
+  events_every?: Maybe<_EventFilter>;
+  events_in?: Maybe<Array<_EventFilter>>;
+  events_none?: Maybe<_EventFilter>;
+  events_not?: Maybe<_EventFilter>;
+  events_not_in?: Maybe<Array<_EventFilter>>;
+  events_single?: Maybe<_EventFilter>;
+  events_some?: Maybe<_EventFilter>;
+  managedBy?: Maybe<_UserFilter>;
+  managedBy_every?: Maybe<_UserFilter>;
+  managedBy_in?: Maybe<Array<_UserFilter>>;
+  managedBy_none?: Maybe<_UserFilter>;
+  managedBy_not?: Maybe<_UserFilter>;
+  managedBy_not_in?: Maybe<Array<_UserFilter>>;
+  managedBy_single?: Maybe<_UserFilter>;
+  managedBy_some?: Maybe<_UserFilter>;
+  name?: Maybe<Scalars['String']>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_ends_with?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Scalars['String']>>;
+  name_not?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  name_starts_with?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<_SeriesFilter>>;
   reviews?: Maybe<_ReviewFilter>;
-  reviews_not?: Maybe<_ReviewFilter>;
-  reviews_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_some?: Maybe<_ReviewFilter>;
-  reviews_none?: Maybe<_ReviewFilter>;
-  reviews_single?: Maybe<_ReviewFilter>;
   reviews_every?: Maybe<_ReviewFilter>;
+  reviews_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_none?: Maybe<_ReviewFilter>;
+  reviews_not?: Maybe<_ReviewFilter>;
+  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_single?: Maybe<_ReviewFilter>;
+  reviews_some?: Maybe<_ReviewFilter>;
+  seriesId?: Maybe<Scalars['ID']>;
+  seriesId_contains?: Maybe<Scalars['ID']>;
+  seriesId_ends_with?: Maybe<Scalars['ID']>;
+  seriesId_in?: Maybe<Array<Scalars['ID']>>;
+  seriesId_not?: Maybe<Scalars['ID']>;
+  seriesId_not_contains?: Maybe<Scalars['ID']>;
+  seriesId_not_ends_with?: Maybe<Scalars['ID']>;
+  seriesId_not_in?: Maybe<Array<Scalars['ID']>>;
+  seriesId_not_starts_with?: Maybe<Scalars['ID']>;
+  seriesId_starts_with?: Maybe<Scalars['ID']>;
 };
 
 export type _SeriesInput = {
@@ -4080,57 +1993,57 @@ export type _SeriesInput = {
 };
 
 export enum _SeriesOrdering {
-  SeriesIdAsc = 'seriesId_asc',
-  SeriesIdDesc = 'seriesId_desc',
-  NameAsc = 'name_asc',
-  NameDesc = 'name_desc',
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
+  AvgStarsAsc = 'avgStars_asc',
+  AvgStarsDesc = 'avgStars_desc',
   DescriptionAsc = 'description_asc',
   DescriptionDesc = 'description_desc',
   DisplayImageAsc = 'displayImage_asc',
   DisplayImageDesc = 'displayImage_desc',
-  AvgStarsAsc = 'avgStars_asc',
-  AvgStarsDesc = 'avgStars_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  NameAsc = 'name_asc',
+  NameDesc = 'name_desc',
+  SeriesIdAsc = 'seriesId_asc',
+  SeriesIdDesc = 'seriesId_desc'
 }
 
 export type _SocialLinkFilter = {
-  AND?: Maybe<Array<_SocialLinkFilter>>;
-  OR?: Maybe<Array<_SocialLinkFilter>>;
-  socialLinkId?: Maybe<Scalars['ID']>;
-  socialLinkId_not?: Maybe<Scalars['ID']>;
-  socialLinkId_in?: Maybe<Array<Scalars['ID']>>;
-  socialLinkId_not_in?: Maybe<Array<Scalars['ID']>>;
-  socialLinkId_contains?: Maybe<Scalars['ID']>;
-  socialLinkId_not_contains?: Maybe<Scalars['ID']>;
-  socialLinkId_starts_with?: Maybe<Scalars['ID']>;
-  socialLinkId_not_starts_with?: Maybe<Scalars['ID']>;
-  socialLinkId_ends_with?: Maybe<Scalars['ID']>;
-  socialLinkId_not_ends_with?: Maybe<Scalars['ID']>;
-  platform?: Maybe<Scalars['String']>;
-  platform_not?: Maybe<Scalars['String']>;
-  platform_in?: Maybe<Array<Scalars['String']>>;
-  platform_not_in?: Maybe<Array<Scalars['String']>>;
-  platform_contains?: Maybe<Scalars['String']>;
-  platform_not_contains?: Maybe<Scalars['String']>;
-  platform_starts_with?: Maybe<Scalars['String']>;
-  platform_not_starts_with?: Maybe<Scalars['String']>;
-  platform_ends_with?: Maybe<Scalars['String']>;
-  platform_not_ends_with?: Maybe<Scalars['String']>;
   account?: Maybe<Scalars['String']>;
-  account_not?: Maybe<Scalars['String']>;
-  account_in?: Maybe<Array<Scalars['String']>>;
-  account_not_in?: Maybe<Array<Scalars['String']>>;
   account_contains?: Maybe<Scalars['String']>;
-  account_not_contains?: Maybe<Scalars['String']>;
-  account_starts_with?: Maybe<Scalars['String']>;
-  account_not_starts_with?: Maybe<Scalars['String']>;
   account_ends_with?: Maybe<Scalars['String']>;
+  account_in?: Maybe<Array<Scalars['String']>>;
+  account_not?: Maybe<Scalars['String']>;
+  account_not_contains?: Maybe<Scalars['String']>;
   account_not_ends_with?: Maybe<Scalars['String']>;
+  account_not_in?: Maybe<Array<Scalars['String']>>;
+  account_not_starts_with?: Maybe<Scalars['String']>;
+  account_starts_with?: Maybe<Scalars['String']>;
+  AND?: Maybe<Array<_SocialLinkFilter>>;
   contact?: Maybe<_ContactFilter>;
-  contact_not?: Maybe<_ContactFilter>;
   contact_in?: Maybe<Array<_ContactFilter>>;
+  contact_not?: Maybe<_ContactFilter>;
   contact_not_in?: Maybe<Array<_ContactFilter>>;
+  OR?: Maybe<Array<_SocialLinkFilter>>;
+  platform?: Maybe<Scalars['String']>;
+  platform_contains?: Maybe<Scalars['String']>;
+  platform_ends_with?: Maybe<Scalars['String']>;
+  platform_in?: Maybe<Array<Scalars['String']>>;
+  platform_not?: Maybe<Scalars['String']>;
+  platform_not_contains?: Maybe<Scalars['String']>;
+  platform_not_ends_with?: Maybe<Scalars['String']>;
+  platform_not_in?: Maybe<Array<Scalars['String']>>;
+  platform_not_starts_with?: Maybe<Scalars['String']>;
+  platform_starts_with?: Maybe<Scalars['String']>;
+  socialLinkId?: Maybe<Scalars['ID']>;
+  socialLinkId_contains?: Maybe<Scalars['ID']>;
+  socialLinkId_ends_with?: Maybe<Scalars['ID']>;
+  socialLinkId_in?: Maybe<Array<Scalars['ID']>>;
+  socialLinkId_not?: Maybe<Scalars['ID']>;
+  socialLinkId_not_contains?: Maybe<Scalars['ID']>;
+  socialLinkId_not_ends_with?: Maybe<Scalars['ID']>;
+  socialLinkId_not_in?: Maybe<Array<Scalars['ID']>>;
+  socialLinkId_not_starts_with?: Maybe<Scalars['ID']>;
+  socialLinkId_starts_with?: Maybe<Scalars['ID']>;
 };
 
 export type _SocialLinkInput = {
@@ -4138,109 +2051,109 @@ export type _SocialLinkInput = {
 };
 
 export enum _SocialLinkOrdering {
-  SocialLinkIdAsc = 'socialLinkId_asc',
-  SocialLinkIdDesc = 'socialLinkId_desc',
-  PlatformAsc = 'platform_asc',
-  PlatformDesc = 'platform_desc',
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
   AccountAsc = 'account_asc',
   AccountDesc = 'account_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  PlatformAsc = 'platform_asc',
+  PlatformDesc = 'platform_desc',
+  SocialLinkIdAsc = 'socialLinkId_asc',
+  SocialLinkIdDesc = 'socialLinkId_desc'
 }
 
 export type _UserFilter = {
-  AND?: Maybe<Array<_UserFilter>>;
-  OR?: Maybe<Array<_UserFilter>>;
-  userId?: Maybe<Scalars['ID']>;
-  userId_not?: Maybe<Scalars['ID']>;
-  userId_in?: Maybe<Array<Scalars['ID']>>;
-  userId_not_in?: Maybe<Array<Scalars['ID']>>;
-  userId_contains?: Maybe<Scalars['ID']>;
-  userId_not_contains?: Maybe<Scalars['ID']>;
-  userId_starts_with?: Maybe<Scalars['ID']>;
-  userId_not_starts_with?: Maybe<Scalars['ID']>;
-  userId_ends_with?: Maybe<Scalars['ID']>;
-  userId_not_ends_with?: Maybe<Scalars['ID']>;
-  displayImage?: Maybe<Scalars['String']>;
-  displayImage_not?: Maybe<Scalars['String']>;
-  displayImage_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_contains?: Maybe<Scalars['String']>;
-  displayImage_not_contains?: Maybe<Scalars['String']>;
-  displayImage_starts_with?: Maybe<Scalars['String']>;
-  displayImage_not_starts_with?: Maybe<Scalars['String']>;
-  displayImage_ends_with?: Maybe<Scalars['String']>;
-  displayImage_not_ends_with?: Maybe<Scalars['String']>;
-  forename?: Maybe<Scalars['String']>;
-  forename_not?: Maybe<Scalars['String']>;
-  forename_in?: Maybe<Array<Scalars['String']>>;
-  forename_not_in?: Maybe<Array<Scalars['String']>>;
-  forename_contains?: Maybe<Scalars['String']>;
-  forename_not_contains?: Maybe<Scalars['String']>;
-  forename_starts_with?: Maybe<Scalars['String']>;
-  forename_not_starts_with?: Maybe<Scalars['String']>;
-  forename_ends_with?: Maybe<Scalars['String']>;
-  forename_not_ends_with?: Maybe<Scalars['String']>;
-  familyName?: Maybe<Scalars['String']>;
-  familyName_not?: Maybe<Scalars['String']>;
-  familyName_in?: Maybe<Array<Scalars['String']>>;
-  familyName_not_in?: Maybe<Array<Scalars['String']>>;
-  familyName_contains?: Maybe<Scalars['String']>;
-  familyName_not_contains?: Maybe<Scalars['String']>;
-  familyName_starts_with?: Maybe<Scalars['String']>;
-  familyName_not_starts_with?: Maybe<Scalars['String']>;
-  familyName_ends_with?: Maybe<Scalars['String']>;
-  familyName_not_ends_with?: Maybe<Scalars['String']>;
-  displayName?: Maybe<Scalars['String']>;
-  displayName_not?: Maybe<Scalars['String']>;
-  displayName_in?: Maybe<Array<Scalars['String']>>;
-  displayName_not_in?: Maybe<Array<Scalars['String']>>;
-  displayName_contains?: Maybe<Scalars['String']>;
-  displayName_not_contains?: Maybe<Scalars['String']>;
-  displayName_starts_with?: Maybe<Scalars['String']>;
-  displayName_not_starts_with?: Maybe<Scalars['String']>;
-  displayName_ends_with?: Maybe<Scalars['String']>;
-  displayName_not_ends_with?: Maybe<Scalars['String']>;
-  googleId?: Maybe<Scalars['String']>;
-  googleId_not?: Maybe<Scalars['String']>;
-  googleId_in?: Maybe<Array<Scalars['String']>>;
-  googleId_not_in?: Maybe<Array<Scalars['String']>>;
-  googleId_contains?: Maybe<Scalars['String']>;
-  googleId_not_contains?: Maybe<Scalars['String']>;
-  googleId_starts_with?: Maybe<Scalars['String']>;
-  googleId_not_starts_with?: Maybe<Scalars['String']>;
-  googleId_ends_with?: Maybe<Scalars['String']>;
-  googleId_not_ends_with?: Maybe<Scalars['String']>;
   about?: Maybe<Scalars['String']>;
-  about_not?: Maybe<Scalars['String']>;
-  about_in?: Maybe<Array<Scalars['String']>>;
-  about_not_in?: Maybe<Array<Scalars['String']>>;
   about_contains?: Maybe<Scalars['String']>;
-  about_not_contains?: Maybe<Scalars['String']>;
-  about_starts_with?: Maybe<Scalars['String']>;
-  about_not_starts_with?: Maybe<Scalars['String']>;
   about_ends_with?: Maybe<Scalars['String']>;
+  about_in?: Maybe<Array<Scalars['String']>>;
+  about_not?: Maybe<Scalars['String']>;
+  about_not_contains?: Maybe<Scalars['String']>;
   about_not_ends_with?: Maybe<Scalars['String']>;
+  about_not_in?: Maybe<Array<Scalars['String']>>;
+  about_not_starts_with?: Maybe<Scalars['String']>;
+  about_starts_with?: Maybe<Scalars['String']>;
+  AND?: Maybe<Array<_UserFilter>>;
   contact?: Maybe<_ContactFilter>;
-  contact_not?: Maybe<_ContactFilter>;
   contact_in?: Maybe<Array<_ContactFilter>>;
+  contact_not?: Maybe<_ContactFilter>;
   contact_not_in?: Maybe<Array<_ContactFilter>>;
-  reviews?: Maybe<_ReviewFilter>;
-  reviews_not?: Maybe<_ReviewFilter>;
-  reviews_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_some?: Maybe<_ReviewFilter>;
-  reviews_none?: Maybe<_ReviewFilter>;
-  reviews_single?: Maybe<_ReviewFilter>;
-  reviews_every?: Maybe<_ReviewFilter>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayImage_contains?: Maybe<Scalars['String']>;
+  displayImage_ends_with?: Maybe<Scalars['String']>;
+  displayImage_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not?: Maybe<Scalars['String']>;
+  displayImage_not_contains?: Maybe<Scalars['String']>;
+  displayImage_not_ends_with?: Maybe<Scalars['String']>;
+  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not_starts_with?: Maybe<Scalars['String']>;
+  displayImage_starts_with?: Maybe<Scalars['String']>;
+  displayName?: Maybe<Scalars['String']>;
+  displayName_contains?: Maybe<Scalars['String']>;
+  displayName_ends_with?: Maybe<Scalars['String']>;
+  displayName_in?: Maybe<Array<Scalars['String']>>;
+  displayName_not?: Maybe<Scalars['String']>;
+  displayName_not_contains?: Maybe<Scalars['String']>;
+  displayName_not_ends_with?: Maybe<Scalars['String']>;
+  displayName_not_in?: Maybe<Array<Scalars['String']>>;
+  displayName_not_starts_with?: Maybe<Scalars['String']>;
+  displayName_starts_with?: Maybe<Scalars['String']>;
+  familyName?: Maybe<Scalars['String']>;
+  familyName_contains?: Maybe<Scalars['String']>;
+  familyName_ends_with?: Maybe<Scalars['String']>;
+  familyName_in?: Maybe<Array<Scalars['String']>>;
+  familyName_not?: Maybe<Scalars['String']>;
+  familyName_not_contains?: Maybe<Scalars['String']>;
+  familyName_not_ends_with?: Maybe<Scalars['String']>;
+  familyName_not_in?: Maybe<Array<Scalars['String']>>;
+  familyName_not_starts_with?: Maybe<Scalars['String']>;
+  familyName_starts_with?: Maybe<Scalars['String']>;
+  forename?: Maybe<Scalars['String']>;
+  forename_contains?: Maybe<Scalars['String']>;
+  forename_ends_with?: Maybe<Scalars['String']>;
+  forename_in?: Maybe<Array<Scalars['String']>>;
+  forename_not?: Maybe<Scalars['String']>;
+  forename_not_contains?: Maybe<Scalars['String']>;
+  forename_not_ends_with?: Maybe<Scalars['String']>;
+  forename_not_in?: Maybe<Array<Scalars['String']>>;
+  forename_not_starts_with?: Maybe<Scalars['String']>;
+  forename_starts_with?: Maybe<Scalars['String']>;
+  googleId?: Maybe<Scalars['String']>;
+  googleId_contains?: Maybe<Scalars['String']>;
+  googleId_ends_with?: Maybe<Scalars['String']>;
+  googleId_in?: Maybe<Array<Scalars['String']>>;
+  googleId_not?: Maybe<Scalars['String']>;
+  googleId_not_contains?: Maybe<Scalars['String']>;
+  googleId_not_ends_with?: Maybe<Scalars['String']>;
+  googleId_not_in?: Maybe<Array<Scalars['String']>>;
+  googleId_not_starts_with?: Maybe<Scalars['String']>;
+  googleId_starts_with?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<_UserFilter>>;
   references?: Maybe<_ContentMetaFilter>;
-  references_not?: Maybe<_ContentMetaFilter>;
-  references_in?: Maybe<Array<_ContentMetaFilter>>;
-  references_not_in?: Maybe<Array<_ContentMetaFilter>>;
-  references_some?: Maybe<_ContentMetaFilter>;
-  references_none?: Maybe<_ContentMetaFilter>;
-  references_single?: Maybe<_ContentMetaFilter>;
   references_every?: Maybe<_ContentMetaFilter>;
+  references_in?: Maybe<Array<_ContentMetaFilter>>;
+  references_none?: Maybe<_ContentMetaFilter>;
+  references_not?: Maybe<_ContentMetaFilter>;
+  references_not_in?: Maybe<Array<_ContentMetaFilter>>;
+  references_single?: Maybe<_ContentMetaFilter>;
+  references_some?: Maybe<_ContentMetaFilter>;
+  reviews?: Maybe<_ReviewFilter>;
+  reviews_every?: Maybe<_ReviewFilter>;
+  reviews_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_none?: Maybe<_ReviewFilter>;
+  reviews_not?: Maybe<_ReviewFilter>;
+  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_single?: Maybe<_ReviewFilter>;
+  reviews_some?: Maybe<_ReviewFilter>;
+  userId?: Maybe<Scalars['ID']>;
+  userId_contains?: Maybe<Scalars['ID']>;
+  userId_ends_with?: Maybe<Scalars['ID']>;
+  userId_in?: Maybe<Array<Scalars['ID']>>;
+  userId_not?: Maybe<Scalars['ID']>;
+  userId_not_contains?: Maybe<Scalars['ID']>;
+  userId_not_ends_with?: Maybe<Scalars['ID']>;
+  userId_not_in?: Maybe<Array<Scalars['ID']>>;
+  userId_not_starts_with?: Maybe<Scalars['ID']>;
+  userId_starts_with?: Maybe<Scalars['ID']>;
 };
 
 export type _UserInput = {
@@ -4248,95 +2161,95 @@ export type _UserInput = {
 };
 
 export enum _UserOrdering {
-  UserIdAsc = 'userId_asc',
-  UserIdDesc = 'userId_desc',
-  DisplayImageAsc = 'displayImage_asc',
-  DisplayImageDesc = 'displayImage_desc',
-  ForenameAsc = 'forename_asc',
-  ForenameDesc = 'forename_desc',
-  FamilyNameAsc = 'familyName_asc',
-  FamilyNameDesc = 'familyName_desc',
-  DisplayNameAsc = 'displayName_asc',
-  DisplayNameDesc = 'displayName_desc',
-  GoogleIdAsc = 'googleId_asc',
-  GoogleIdDesc = 'googleId_desc',
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
   AboutAsc = 'about_asc',
   AboutDesc = 'about_desc',
+  DisplayImageAsc = 'displayImage_asc',
+  DisplayImageDesc = 'displayImage_desc',
+  DisplayNameAsc = 'displayName_asc',
+  DisplayNameDesc = 'displayName_desc',
+  FamilyNameAsc = 'familyName_asc',
+  FamilyNameDesc = 'familyName_desc',
+  ForenameAsc = 'forename_asc',
+  ForenameDesc = 'forename_desc',
+  GoogleIdAsc = 'googleId_asc',
+  GoogleIdDesc = 'googleId_desc',
   NumReviewsAsc = 'numReviews_asc',
   NumReviewsDesc = 'numReviews_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  UserIdAsc = 'userId_asc',
+  UserIdDesc = 'userId_desc'
 }
 
 export type _VenueFilter = {
   AND?: Maybe<Array<_VenueFilter>>;
-  OR?: Maybe<Array<_VenueFilter>>;
-  venueId?: Maybe<Scalars['ID']>;
-  venueId_not?: Maybe<Scalars['ID']>;
-  venueId_in?: Maybe<Array<Scalars['ID']>>;
-  venueId_not_in?: Maybe<Array<Scalars['ID']>>;
-  venueId_contains?: Maybe<Scalars['ID']>;
-  venueId_not_contains?: Maybe<Scalars['ID']>;
-  venueId_starts_with?: Maybe<Scalars['ID']>;
-  venueId_not_starts_with?: Maybe<Scalars['ID']>;
-  venueId_ends_with?: Maybe<Scalars['ID']>;
-  venueId_not_ends_with?: Maybe<Scalars['ID']>;
-  name?: Maybe<Scalars['String']>;
-  name_not?: Maybe<Scalars['String']>;
-  name_in?: Maybe<Array<Scalars['String']>>;
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  name_contains?: Maybe<Scalars['String']>;
-  name_not_contains?: Maybe<Scalars['String']>;
-  name_starts_with?: Maybe<Scalars['String']>;
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  name_ends_with?: Maybe<Scalars['String']>;
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  displayImage?: Maybe<Scalars['String']>;
-  displayImage_not?: Maybe<Scalars['String']>;
-  displayImage_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
-  displayImage_contains?: Maybe<Scalars['String']>;
-  displayImage_not_contains?: Maybe<Scalars['String']>;
-  displayImage_starts_with?: Maybe<Scalars['String']>;
-  displayImage_not_starts_with?: Maybe<Scalars['String']>;
-  displayImage_ends_with?: Maybe<Scalars['String']>;
-  displayImage_not_ends_with?: Maybe<Scalars['String']>;
-  gallery?: Maybe<Array<Scalars['String']>>;
-  gallery_not?: Maybe<Array<Scalars['String']>>;
-  gallery_contains?: Maybe<Array<Scalars['String']>>;
-  gallery_not_contains?: Maybe<Array<Scalars['String']>>;
-  gallery_starts_with?: Maybe<Array<Scalars['String']>>;
-  gallery_not_starts_with?: Maybe<Array<Scalars['String']>>;
-  gallery_ends_with?: Maybe<Array<Scalars['String']>>;
-  gallery_not_ends_with?: Maybe<Array<Scalars['String']>>;
-  managedBy?: Maybe<_UserFilter>;
-  managedBy_not?: Maybe<_UserFilter>;
-  managedBy_in?: Maybe<Array<_UserFilter>>;
-  managedBy_not_in?: Maybe<Array<_UserFilter>>;
-  managedBy_some?: Maybe<_UserFilter>;
-  managedBy_none?: Maybe<_UserFilter>;
-  managedBy_single?: Maybe<_UserFilter>;
-  managedBy_every?: Maybe<_UserFilter>;
-  events?: Maybe<_EventFilter>;
-  events_not?: Maybe<_EventFilter>;
-  events_in?: Maybe<Array<_EventFilter>>;
-  events_not_in?: Maybe<Array<_EventFilter>>;
-  events_some?: Maybe<_EventFilter>;
-  events_none?: Maybe<_EventFilter>;
-  events_single?: Maybe<_EventFilter>;
-  events_every?: Maybe<_EventFilter>;
-  reviews?: Maybe<_ReviewFilter>;
-  reviews_not?: Maybe<_ReviewFilter>;
-  reviews_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
-  reviews_some?: Maybe<_ReviewFilter>;
-  reviews_none?: Maybe<_ReviewFilter>;
-  reviews_single?: Maybe<_ReviewFilter>;
-  reviews_every?: Maybe<_ReviewFilter>;
   contact?: Maybe<_ContactFilter>;
-  contact_not?: Maybe<_ContactFilter>;
   contact_in?: Maybe<Array<_ContactFilter>>;
+  contact_not?: Maybe<_ContactFilter>;
   contact_not_in?: Maybe<Array<_ContactFilter>>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayImage_contains?: Maybe<Scalars['String']>;
+  displayImage_ends_with?: Maybe<Scalars['String']>;
+  displayImage_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not?: Maybe<Scalars['String']>;
+  displayImage_not_contains?: Maybe<Scalars['String']>;
+  displayImage_not_ends_with?: Maybe<Scalars['String']>;
+  displayImage_not_in?: Maybe<Array<Scalars['String']>>;
+  displayImage_not_starts_with?: Maybe<Scalars['String']>;
+  displayImage_starts_with?: Maybe<Scalars['String']>;
+  events?: Maybe<_EventFilter>;
+  events_every?: Maybe<_EventFilter>;
+  events_in?: Maybe<Array<_EventFilter>>;
+  events_none?: Maybe<_EventFilter>;
+  events_not?: Maybe<_EventFilter>;
+  events_not_in?: Maybe<Array<_EventFilter>>;
+  events_single?: Maybe<_EventFilter>;
+  events_some?: Maybe<_EventFilter>;
+  gallery?: Maybe<Array<Scalars['String']>>;
+  gallery_contains?: Maybe<Array<Scalars['String']>>;
+  gallery_ends_with?: Maybe<Array<Scalars['String']>>;
+  gallery_not?: Maybe<Array<Scalars['String']>>;
+  gallery_not_contains?: Maybe<Array<Scalars['String']>>;
+  gallery_not_ends_with?: Maybe<Array<Scalars['String']>>;
+  gallery_not_starts_with?: Maybe<Array<Scalars['String']>>;
+  gallery_starts_with?: Maybe<Array<Scalars['String']>>;
+  managedBy?: Maybe<_UserFilter>;
+  managedBy_every?: Maybe<_UserFilter>;
+  managedBy_in?: Maybe<Array<_UserFilter>>;
+  managedBy_none?: Maybe<_UserFilter>;
+  managedBy_not?: Maybe<_UserFilter>;
+  managedBy_not_in?: Maybe<Array<_UserFilter>>;
+  managedBy_single?: Maybe<_UserFilter>;
+  managedBy_some?: Maybe<_UserFilter>;
+  name?: Maybe<Scalars['String']>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_ends_with?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Scalars['String']>>;
+  name_not?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  name_starts_with?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<_VenueFilter>>;
+  reviews?: Maybe<_ReviewFilter>;
+  reviews_every?: Maybe<_ReviewFilter>;
+  reviews_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_none?: Maybe<_ReviewFilter>;
+  reviews_not?: Maybe<_ReviewFilter>;
+  reviews_not_in?: Maybe<Array<_ReviewFilter>>;
+  reviews_single?: Maybe<_ReviewFilter>;
+  reviews_some?: Maybe<_ReviewFilter>;
+  venueId?: Maybe<Scalars['ID']>;
+  venueId_contains?: Maybe<Scalars['ID']>;
+  venueId_ends_with?: Maybe<Scalars['ID']>;
+  venueId_in?: Maybe<Array<Scalars['ID']>>;
+  venueId_not?: Maybe<Scalars['ID']>;
+  venueId_not_contains?: Maybe<Scalars['ID']>;
+  venueId_not_ends_with?: Maybe<Scalars['ID']>;
+  venueId_not_in?: Maybe<Array<Scalars['ID']>>;
+  venueId_not_starts_with?: Maybe<Scalars['ID']>;
+  venueId_starts_with?: Maybe<Scalars['ID']>;
 };
 
 export type _VenueInput = {
@@ -4344,48 +2257,2420 @@ export type _VenueInput = {
 };
 
 export enum _VenueOrdering {
-  VenueIdAsc = 'venueId_asc',
-  VenueIdDesc = 'venueId_desc',
-  NameAsc = 'name_asc',
-  NameDesc = 'name_desc',
+  IdAsc = '_id_asc',
+  IdDesc = '_id_desc',
   DisplayImageAsc = 'displayImage_asc',
   DisplayImageDesc = 'displayImage_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
+  NameAsc = 'name_asc',
+  NameDesc = 'name_desc',
+  VenueIdAsc = 'venueId_asc',
+  VenueIdDesc = 'venueId_desc'
 }
 
-export type _GetbusinessByUserIdResponseFilter = {
-  AND?: Maybe<Array<_GetbusinessByUserIdResponseFilter>>;
-  OR?: Maybe<Array<_GetbusinessByUserIdResponseFilter>>;
-  ok?: Maybe<Scalars['Boolean']>;
-  ok_not?: Maybe<Scalars['Boolean']>;
+export type Address = {
+  __typename?: 'Address';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  addressId: Scalars['ID'];
+  addressLine1: Scalars['String'];
+  addressLine2?: Maybe<Scalars['String']>;
+  contact: Contact;
+  location?: Maybe<_Neo4jPoint>;
+  name?: Maybe<Scalars['String']>;
+  postCode: Scalars['String'];
+  showAddress: Scalars['Boolean'];
 };
 
-export type _GetbusinessByUserIdResponseInput = {
-  ok: Scalars['Boolean'];
+
+export type AddressContactArgs = {
+  filter?: Maybe<_ContactFilter>;
 };
 
-export enum _GetbusinessByUserIdResponseOrdering {
-  OkAsc = 'ok_asc',
-  OkDesc = 'ok_desc',
-  IdAsc = '_id_asc',
-  IdDesc = '_id_desc'
-}
+export type AddressInput = {
+  addressId?: Maybe<Scalars['ID']>;
+  addressLine1: Scalars['String'];
+  addressLine2?: Maybe<Scalars['String']>;
+  location?: Maybe<_Neo4jPointInput>;
+  name?: Maybe<Scalars['String']>;
+  postCode: Scalars['String'];
+  showAddress: Scalars['Boolean'];
+};
+
+export type Article = {
+  __typename?: 'Article';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  articleId: Scalars['ID'];
+  articleImage?: Maybe<Scalars['String']>;
+  author: User;
+  body: Scalars['String'];
+  categories?: Maybe<Array<Maybe<ArticleCategory>>>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  summary?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  url: Scalars['String'];
+};
+
+
+export type ArticleAuthorArgs = {
+  filter?: Maybe<_UserFilter>;
+};
+
+
+export type ArticleCategoriesArgs = {
+  filter?: Maybe<_ArticleCategoryFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ArticleCategoryOrdering>>>;
+};
+
+export type ArticleCategory = {
+  __typename?: 'ArticleCategory';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  key: Scalars['String'];
+  parentCategory?: Maybe<ArticleCategory>;
+  value: Scalars['String'];
+};
+
+
+export type ArticleCategoryParentCategoryArgs = {
+  filter?: Maybe<_ArticleCategoryFilter>;
+};
+
+export type Business = {
+  __typename?: 'Business';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  avgStars?: Maybe<Scalars['Float']>;
+  bannerColour?: Maybe<Scalars['String']>;
+  bannerImage?: Maybe<Scalars['String']>;
+  businessId: Scalars['ID'];
+  categories?: Maybe<Array<Maybe<BusinessCategory>>>;
+  contact: Contact;
+  dateCreated?: Maybe<Scalars['Float']>;
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  managedBy?: Maybe<Array<Maybe<User>>>;
+  name: Scalars['String'];
+  references: Array<Maybe<ContentMeta>>;
+  reviews?: Maybe<Array<Maybe<Review>>>;
+  slug?: Maybe<Scalars['String']>;
+};
+
+
+export type BusinessCategoriesArgs = {
+  filter?: Maybe<_BusinessCategoryFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_BusinessCategoryOrdering>>>;
+};
+
+
+export type BusinessContactArgs = {
+  filter?: Maybe<_ContactFilter>;
+};
+
+
+export type BusinessManagedByArgs = {
+  filter?: Maybe<_UserFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+};
+
+
+export type BusinessReferencesArgs = {
+  filter?: Maybe<_ContentMetaFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ContentMetaOrdering>>>;
+};
+
+
+export type BusinessReviewsArgs = {
+  filter?: Maybe<_ReviewFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
+};
+
+export type BusinessCategory = {
+  __typename?: 'BusinessCategory';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  businessCategoryId: Scalars['ID'];
+  businesses?: Maybe<Array<Maybe<Business>>>;
+  name: Scalars['String'];
+};
+
+
+export type BusinessCategoryBusinessesArgs = {
+  filter?: Maybe<_BusinessFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
+};
+
+export type BusinessInput = {
+  bannerImage?: Maybe<Scalars['String']>;
+  businuessId?: Maybe<Scalars['ID']>;
+  contact?: Maybe<ContactInput>;
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name: Scalars['String'];
+  userId: Scalars['ID'];
+};
+
+export type Contact = {
+  __typename?: 'Contact';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  address: Array<Maybe<Address>>;
+  contactId: Scalars['ID'];
+  email: Array<Maybe<Scalars['String']>>;
+  referencedBy: Contactable;
+  socials: Array<Maybe<SocialLink>>;
+  telephone: Array<Maybe<Scalars['String']>>;
+};
+
+
+export type ContactAddressArgs = {
+  filter?: Maybe<_AddressFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_AddressOrdering>>>;
+};
+
+
+export type ContactSocialsArgs = {
+  filter?: Maybe<_SocialLinkFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_SocialLinkOrdering>>>;
+};
+
+export type Contactable = Business | User | Venue;
+
+export type ContactInput = {
+  address?: Maybe<Array<Maybe<AddressInput>>>;
+  contactId?: Maybe<Scalars['ID']>;
+  email: Array<Maybe<Scalars['String']>>;
+  socials: Array<Maybe<SocialLinkInput>>;
+  telephone: Array<Maybe<Scalars['String']>>;
+};
+
+export type Content = {
+  __typename?: 'Content';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  avgStars?: Maybe<Scalars['Float']>;
+  contentId: Scalars['ID'];
+  displayImage?: Maybe<Scalars['String']>;
+  guests?: Maybe<Array<Maybe<User>>>;
+  hosts?: Maybe<Array<Maybe<User>>>;
+  meta: Array<Maybe<ContentMeta>>;
+  release?: Maybe<_Neo4jDateTime>;
+  reviews?: Maybe<Array<Maybe<Review>>>;
+  series?: Maybe<Array<Maybe<Series>>>;
+  summary?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentGuestsArgs = {
+  filter?: Maybe<_UserFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+};
+
+
+export type ContentHostsArgs = {
+  filter?: Maybe<_UserFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+};
+
+
+export type ContentMetaArgs = {
+  filter?: Maybe<_ContentMetaFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ContentMetaOrdering>>>;
+};
+
+
+export type ContentReviewsArgs = {
+  filter?: Maybe<_ReviewFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
+};
+
+
+export type ContentSeriesArgs = {
+  filter?: Maybe<_SeriesFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_SeriesOrdering>>>;
+};
+
+export type ContentMeta = {
+  __typename?: 'ContentMeta';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  content: Content;
+  contentMetaId: Scalars['ID'];
+  reference: ContentMetaReference;
+  role: Scalars['String'];
+};
+
+
+export type ContentMetaContentArgs = {
+  filter?: Maybe<_ContentFilter>;
+};
+
+export type ContentMetaReference = Business | User;
+
+export type Event = {
+  __typename?: 'Event';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  avgStars?: Maybe<Scalars['Float']>;
+  displayImage?: Maybe<Scalars['String']>;
+  end?: Maybe<_Neo4jDateTime>;
+  eventId: Scalars['ID'];
+  gallery: Array<Maybe<Scalars['String']>>;
+  guests?: Maybe<Array<Maybe<User>>>;
+  managedBy?: Maybe<Array<Maybe<User>>>;
+  name: Scalars['String'];
+  reviews?: Maybe<Array<Maybe<Review>>>;
+  series?: Maybe<Array<Maybe<Series>>>;
+  start?: Maybe<_Neo4jDateTime>;
+  url?: Maybe<Scalars['String']>;
+  venue?: Maybe<Venue>;
+};
+
+
+export type EventGuestsArgs = {
+  filter?: Maybe<_UserFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+};
+
+
+export type EventManagedByArgs = {
+  filter?: Maybe<_UserFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+};
+
+
+export type EventReviewsArgs = {
+  filter?: Maybe<_ReviewFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
+};
+
+
+export type EventSeriesArgs = {
+  filter?: Maybe<_SeriesFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_SeriesOrdering>>>;
+};
+
+
+export type EventVenueArgs = {
+  filter?: Maybe<_VenueFilter>;
+};
 
 export type GetbusinessByUserIdResponse = {
   __typename?: 'getbusinessByUserIdResponse';
-  ok?: Maybe<Scalars['Boolean']>;
-  businesses: Array<Maybe<Business>>;
   /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
   _id?: Maybe<Scalars['String']>;
+  businesses: Array<Maybe<Business>>;
+  ok?: Maybe<Scalars['Boolean']>;
 };
 
 
 export type GetbusinessByUserIdResponseBusinessesArgs = {
+  filter?: Maybe<_BusinessFilter>;
   first?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
+};
+
+export type HomePageResponse = {
+  __typename?: 'HomePageResponse';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  featuredBlog?: Maybe<Ownable>;
+  featuredBusinesses: Array<Maybe<Business>>;
+  featuredVideos: Array<Maybe<Ownable>>;
+  latestBusinesses: Array<Maybe<Business>>;
+};
+
+
+export type HomePageResponseFeaturedBusinessesArgs = {
   filter?: Maybe<_BusinessFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
+};
+
+
+export type HomePageResponseFeaturedVideosArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type HomePageResponseLatestBusinessesArgs = {
+  filter?: Maybe<_BusinessFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
+};
+
+export type LoginResponse = {
+  __typename?: 'LoginResponse';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  accessToken?: Maybe<Scalars['String']>;
+  ok?: Maybe<Scalars['Boolean']>;
+  user?: Maybe<User>;
+};
+
+
+export type LoginResponseUserArgs = {
+  filter?: Maybe<_UserFilter>;
+};
+
+export type MixedMedia = Content | Event | Series;
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_ADDRESS relationship. */
+  AddAddressContact?: Maybe<_AddAddressContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the IN_BUSINESS_CATEGORY relationship. */
+  AddBusinessCategories?: Maybe<_AddBusinessCategoriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the IN_BUSINESS_CATEGORY relationship. */
+  AddBusinessCategoryBusinesses?: Maybe<_AddBusinessCategoryBusinessesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_CONTACT relationship. */
+  AddBusinessContact?: Maybe<_AddBusinessContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
+  AddBusinessManagedBy?: Maybe<_AddBusinessManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the META_REFERENCE relationship. */
+  AddBusinessReferences?: Maybe<_AddBusinessReferencesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
+  AddBusinessReviews?: Maybe<_AddBusinessReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_ADDRESS relationship. */
+  AddContactAddress?: Maybe<_AddContactAddressPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_SOCIAL relationship. */
+  AddContactSocials?: Maybe<_AddContactSocialsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the APPEARS_IN relationship. */
+  AddContentGuests?: Maybe<_AddContentGuestsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
+  AddContentHosts?: Maybe<_AddContentHostsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_META relationship. */
+  AddContentMeta?: Maybe<_AddContentMetaPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_META relationship. */
+  AddContentMetaContent?: Maybe<_AddContentMetaContentPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
+  AddContentReviews?: Maybe<_AddContentReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the PART_OF relationship. */
+  AddContentSeries?: Maybe<_AddContentSeriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the APPEARS_IN relationship. */
+  AddEventGuests?: Maybe<_AddEventGuestsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
+  AddEventManagedBy?: Maybe<_AddEventManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
+  AddEventReviews?: Maybe<_AddEventReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the PART_OF relationship. */
+  AddEventSeries?: Maybe<_AddEventSeriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the LOCATED_AT relationship. */
+  AddEventVenue?: Maybe<_AddEventVenuePayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the WROTE relationship. */
+  AddReviewUser?: Maybe<_AddReviewUserPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the PART_OF relationship. */
+  AddSeriesContent?: Maybe<_AddSeriesContentPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the PART_OF relationship. */
+  AddSeriesEvents?: Maybe<_AddSeriesEventsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
+  AddSeriesManagedBy?: Maybe<_AddSeriesManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
+  AddSeriesReviews?: Maybe<_AddSeriesReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_SOCIAL relationship. */
+  AddSocialLinkContact?: Maybe<_AddSocialLinkContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_CONTACT relationship. */
+  AddUserContact?: Maybe<_AddUserContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the META_REFERENCE relationship. */
+  AddUserReferences?: Maybe<_AddUserReferencesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the WROTE relationship. */
+  AddUserReviews?: Maybe<_AddUserReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the HAS_CONTACT relationship. */
+  AddVenueContact?: Maybe<_AddVenueContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the LOCATED_AT relationship. */
+  AddVenueEvents?: Maybe<_AddVenueEventsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the MANAGES relationship. */
+  AddVenueManagedBy?: Maybe<_AddVenueManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-relationships) the REVIEWS relationship. */
+  AddVenueReviews?: Maybe<_AddVenueReviewsPayload>;
+  authenticate?: Maybe<LoginResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Address node. */
+  CreateAddress?: Maybe<Address>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Article node. */
+  CreateArticle?: Maybe<Article>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a ArticleCategory node. */
+  CreateArticleCategory?: Maybe<ArticleCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Business node. */
+  CreateBusiness?: Maybe<Business>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a BusinessCategory node. */
+  CreateBusinessCategory?: Maybe<BusinessCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Contact node. */
+  CreateContact?: Maybe<Contact>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Content node. */
+  CreateContent?: Maybe<Content>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a ContentMeta node. */
+  CreateContentMeta?: Maybe<ContentMeta>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Event node. */
+  CreateEvent?: Maybe<Event>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a getbusinessByUserIdResponse node. */
+  CreategetbusinessByUserIdResponse?: Maybe<GetbusinessByUserIdResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a HomePageResponse node. */
+  CreateHomePageResponse?: Maybe<HomePageResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a LoginResponse node. */
+  CreateLoginResponse?: Maybe<LoginResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a RefreshTokenResponse node. */
+  CreateRefreshTokenResponse?: Maybe<RefreshTokenResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Review node. */
+  CreateReview?: Maybe<Review>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Series node. */
+  CreateSeries?: Maybe<Series>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a SocialLink node. */
+  CreateSocialLink?: Maybe<SocialLink>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a User node. */
+  CreateUser?: Maybe<User>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#create) for [creating](https://neo4j.com/docs/cypher-manual/4.1/clauses/create/#create-nodes) a Venue node. */
+  CreateVenue?: Maybe<Venue>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Address node. */
+  DeleteAddress?: Maybe<Address>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Article node. */
+  DeleteArticle?: Maybe<Article>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a ArticleCategory node. */
+  DeleteArticleCategory?: Maybe<ArticleCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Business node. */
+  DeleteBusiness?: Maybe<Business>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a BusinessCategory node. */
+  DeleteBusinessCategory?: Maybe<BusinessCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Contact node. */
+  DeleteContact?: Maybe<Contact>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Content node. */
+  DeleteContent?: Maybe<Content>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a ContentMeta node. */
+  DeleteContentMeta?: Maybe<ContentMeta>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Event node. */
+  DeleteEvent?: Maybe<Event>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a getbusinessByUserIdResponse node. */
+  DeletegetbusinessByUserIdResponse?: Maybe<GetbusinessByUserIdResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a HomePageResponse node. */
+  DeleteHomePageResponse?: Maybe<HomePageResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a LoginResponse node. */
+  DeleteLoginResponse?: Maybe<LoginResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a RefreshTokenResponse node. */
+  DeleteRefreshTokenResponse?: Maybe<RefreshTokenResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Review node. */
+  DeleteReview?: Maybe<Review>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Series node. */
+  DeleteSeries?: Maybe<Series>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a SocialLink node. */
+  DeleteSocialLink?: Maybe<SocialLink>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a User node. */
+  DeleteUser?: Maybe<User>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#delete) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-single-node) a Venue node. */
+  DeleteVenue?: Maybe<Venue>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Address node. */
+  MergeAddress?: Maybe<Address>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_ADDRESS relationship. */
+  MergeAddressContact?: Maybe<_MergeAddressContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Article node. */
+  MergeArticle?: Maybe<Article>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a ArticleCategory node. */
+  MergeArticleCategory?: Maybe<ArticleCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Business node. */
+  MergeBusiness?: Maybe<Business>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the IN_BUSINESS_CATEGORY relationship. */
+  MergeBusinessCategories?: Maybe<_MergeBusinessCategoriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a BusinessCategory node. */
+  MergeBusinessCategory?: Maybe<BusinessCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the IN_BUSINESS_CATEGORY relationship. */
+  MergeBusinessCategoryBusinesses?: Maybe<_MergeBusinessCategoryBusinessesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_CONTACT relationship. */
+  MergeBusinessContact?: Maybe<_MergeBusinessContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
+  MergeBusinessManagedBy?: Maybe<_MergeBusinessManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the META_REFERENCE relationship. */
+  MergeBusinessReferences?: Maybe<_MergeBusinessReferencesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
+  MergeBusinessReviews?: Maybe<_MergeBusinessReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Contact node. */
+  MergeContact?: Maybe<Contact>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_ADDRESS relationship. */
+  MergeContactAddress?: Maybe<_MergeContactAddressPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_SOCIAL relationship. */
+  MergeContactSocials?: Maybe<_MergeContactSocialsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Content node. */
+  MergeContent?: Maybe<Content>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the APPEARS_IN relationship. */
+  MergeContentGuests?: Maybe<_MergeContentGuestsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
+  MergeContentHosts?: Maybe<_MergeContentHostsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_META relationship. */
+  MergeContentMeta?: Maybe<_MergeContentMetaPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_META relationship. */
+  MergeContentMetaContent?: Maybe<_MergeContentMetaContentPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
+  MergeContentReviews?: Maybe<_MergeContentReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the PART_OF relationship. */
+  MergeContentSeries?: Maybe<_MergeContentSeriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Event node. */
+  MergeEvent?: Maybe<Event>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the APPEARS_IN relationship. */
+  MergeEventGuests?: Maybe<_MergeEventGuestsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
+  MergeEventManagedBy?: Maybe<_MergeEventManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
+  MergeEventReviews?: Maybe<_MergeEventReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the PART_OF relationship. */
+  MergeEventSeries?: Maybe<_MergeEventSeriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the LOCATED_AT relationship. */
+  MergeEventVenue?: Maybe<_MergeEventVenuePayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a getbusinessByUserIdResponse node. */
+  MergegetbusinessByUserIdResponse?: Maybe<GetbusinessByUserIdResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a HomePageResponse node. */
+  MergeHomePageResponse?: Maybe<HomePageResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a LoginResponse node. */
+  MergeLoginResponse?: Maybe<LoginResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a RefreshTokenResponse node. */
+  MergeRefreshTokenResponse?: Maybe<RefreshTokenResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Review node. */
+  MergeReview?: Maybe<Review>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the WROTE relationship. */
+  MergeReviewUser?: Maybe<_MergeReviewUserPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Series node. */
+  MergeSeries?: Maybe<Series>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the PART_OF relationship. */
+  MergeSeriesContent?: Maybe<_MergeSeriesContentPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the PART_OF relationship. */
+  MergeSeriesEvents?: Maybe<_MergeSeriesEventsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
+  MergeSeriesManagedBy?: Maybe<_MergeSeriesManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
+  MergeSeriesReviews?: Maybe<_MergeSeriesReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a SocialLink node. */
+  MergeSocialLink?: Maybe<SocialLink>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_SOCIAL relationship. */
+  MergeSocialLinkContact?: Maybe<_MergeSocialLinkContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a User node. */
+  MergeUser?: Maybe<User>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_CONTACT relationship. */
+  MergeUserContact?: Maybe<_MergeUserContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the META_REFERENCE relationship. */
+  MergeUserReferences?: Maybe<_MergeUserReferencesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the WROTE relationship. */
+  MergeUserReviews?: Maybe<_MergeUserReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#merge) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-node-derived) a Venue node. */
+  MergeVenue?: Maybe<Venue>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the HAS_CONTACT relationship. */
+  MergeVenueContact?: Maybe<_MergeVenueContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the LOCATED_AT relationship. */
+  MergeVenueEvents?: Maybe<_MergeVenueEventsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the MANAGES relationship. */
+  MergeVenueManagedBy?: Maybe<_MergeVenueManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##merge-relationship) for [merging](https://neo4j.com/docs/cypher-manual/4.1/clauses/merge/#query-merge-relationships) the REVIEWS relationship. */
+  MergeVenueReviews?: Maybe<_MergeVenueReviewsPayload>;
+  refreshToken: RefreshTokenResponse;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_ADDRESS relationship. */
+  RemoveAddressContact?: Maybe<_RemoveAddressContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the IN_BUSINESS_CATEGORY relationship. */
+  RemoveBusinessCategories?: Maybe<_RemoveBusinessCategoriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the IN_BUSINESS_CATEGORY relationship. */
+  RemoveBusinessCategoryBusinesses?: Maybe<_RemoveBusinessCategoryBusinessesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_CONTACT relationship. */
+  RemoveBusinessContact?: Maybe<_RemoveBusinessContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
+  RemoveBusinessManagedBy?: Maybe<_RemoveBusinessManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the META_REFERENCE relationship. */
+  RemoveBusinessReferences?: Maybe<_RemoveBusinessReferencesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
+  RemoveBusinessReviews?: Maybe<_RemoveBusinessReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_ADDRESS relationship. */
+  RemoveContactAddress?: Maybe<_RemoveContactAddressPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_SOCIAL relationship. */
+  RemoveContactSocials?: Maybe<_RemoveContactSocialsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the APPEARS_IN relationship. */
+  RemoveContentGuests?: Maybe<_RemoveContentGuestsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
+  RemoveContentHosts?: Maybe<_RemoveContentHostsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_META relationship. */
+  RemoveContentMeta?: Maybe<_RemoveContentMetaPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_META relationship. */
+  RemoveContentMetaContent?: Maybe<_RemoveContentMetaContentPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
+  RemoveContentReviews?: Maybe<_RemoveContentReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the PART_OF relationship. */
+  RemoveContentSeries?: Maybe<_RemoveContentSeriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the APPEARS_IN relationship. */
+  RemoveEventGuests?: Maybe<_RemoveEventGuestsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
+  RemoveEventManagedBy?: Maybe<_RemoveEventManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
+  RemoveEventReviews?: Maybe<_RemoveEventReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the PART_OF relationship. */
+  RemoveEventSeries?: Maybe<_RemoveEventSeriesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the LOCATED_AT relationship. */
+  RemoveEventVenue?: Maybe<_RemoveEventVenuePayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the WROTE relationship. */
+  RemoveReviewUser?: Maybe<_RemoveReviewUserPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the PART_OF relationship. */
+  RemoveSeriesContent?: Maybe<_RemoveSeriesContentPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the PART_OF relationship. */
+  RemoveSeriesEvents?: Maybe<_RemoveSeriesEventsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
+  RemoveSeriesManagedBy?: Maybe<_RemoveSeriesManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
+  RemoveSeriesReviews?: Maybe<_RemoveSeriesReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_SOCIAL relationship. */
+  RemoveSocialLinkContact?: Maybe<_RemoveSocialLinkContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_CONTACT relationship. */
+  RemoveUserContact?: Maybe<_RemoveUserContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the META_REFERENCE relationship. */
+  RemoveUserReferences?: Maybe<_RemoveUserReferencesPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the WROTE relationship. */
+  RemoveUserReviews?: Maybe<_RemoveUserReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the HAS_CONTACT relationship. */
+  RemoveVenueContact?: Maybe<_RemoveVenueContactPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the LOCATED_AT relationship. */
+  RemoveVenueEvents?: Maybe<_RemoveVenueEventsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the MANAGES relationship. */
+  RemoveVenueManagedBy?: Maybe<_RemoveVenueManagedByPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/##add--remove-relationship) for [deleting](https://neo4j.com/docs/cypher-manual/4.1/clauses/delete/#delete-delete-relationships-only) the REVIEWS relationship. */
+  RemoveVenueReviews?: Maybe<_RemoveVenueReviewsPayload>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Address node. */
+  UpdateAddress?: Maybe<Address>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Article node. */
+  UpdateArticle?: Maybe<Article>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a ArticleCategory node. */
+  UpdateArticleCategory?: Maybe<ArticleCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Business node. */
+  UpdateBusiness?: Maybe<Business>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a BusinessCategory node. */
+  UpdateBusinessCategory?: Maybe<BusinessCategory>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Contact node. */
+  UpdateContact?: Maybe<Contact>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Content node. */
+  UpdateContent?: Maybe<Content>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a ContentMeta node. */
+  UpdateContentMeta?: Maybe<ContentMeta>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Event node. */
+  UpdateEvent?: Maybe<Event>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a LoginResponse node. */
+  UpdateLoginResponse?: Maybe<LoginResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a RefreshTokenResponse node. */
+  UpdateRefreshTokenResponse?: Maybe<RefreshTokenResponse>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Review node. */
+  UpdateReview?: Maybe<Review>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Series node. */
+  UpdateSeries?: Maybe<Series>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a SocialLink node. */
+  UpdateSocialLink?: Maybe<SocialLink>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a User node. */
+  UpdateUser?: Maybe<User>;
+  updateUserProfile?: Maybe<User>;
+  /** [Generated mutation](https://grandstack.io/docs/graphql-schema-generation-augmentation/#update) for [updating](https://neo4j.com/docs/cypher-manual/4.1/clauses/set/#set-update-a-property) a Venue node. */
+  UpdateVenue?: Maybe<Venue>;
+  userCreateBusiness?: Maybe<Business>;
+  userCreateReview?: Maybe<Review>;
+};
+
+
+export type MutationAddAddressContactArgs = {
+  from: _ContactInput;
+  to: _AddressInput;
+};
+
+
+export type MutationAddBusinessCategoriesArgs = {
+  from: _BusinessInput;
+  to: _BusinessCategoryInput;
+};
+
+
+export type MutationAddBusinessCategoryBusinessesArgs = {
+  from: _BusinessInput;
+  to: _BusinessCategoryInput;
+};
+
+
+export type MutationAddBusinessContactArgs = {
+  from: _BusinessInput;
+  to: _ContactInput;
+};
+
+
+export type MutationAddBusinessManagedByArgs = {
+  from: _UserInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationAddBusinessReferencesArgs = {
+  from: _ContentMetaInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationAddBusinessReviewsArgs = {
+  from: _ReviewInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationAddContactAddressArgs = {
+  from: _ContactInput;
+  to: _AddressInput;
+};
+
+
+export type MutationAddContactSocialsArgs = {
+  from: _ContactInput;
+  to: _SocialLinkInput;
+};
+
+
+export type MutationAddContentGuestsArgs = {
+  from: _UserInput;
+  to: _ContentInput;
+};
+
+
+export type MutationAddContentHostsArgs = {
+  from: _UserInput;
+  to: _ContentInput;
+};
+
+
+export type MutationAddContentMetaArgs = {
+  from: _ContentInput;
+  to: _ContentMetaInput;
+};
+
+
+export type MutationAddContentMetaContentArgs = {
+  from: _ContentInput;
+  to: _ContentMetaInput;
+};
+
+
+export type MutationAddContentReviewsArgs = {
+  from: _ReviewInput;
+  to: _ContentInput;
+};
+
+
+export type MutationAddContentSeriesArgs = {
+  from: _ContentInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationAddEventGuestsArgs = {
+  from: _UserInput;
+  to: _EventInput;
+};
+
+
+export type MutationAddEventManagedByArgs = {
+  from: _UserInput;
+  to: _EventInput;
+};
+
+
+export type MutationAddEventReviewsArgs = {
+  from: _ReviewInput;
+  to: _EventInput;
+};
+
+
+export type MutationAddEventSeriesArgs = {
+  from: _EventInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationAddEventVenueArgs = {
+  from: _EventInput;
+  to: _VenueInput;
+};
+
+
+export type MutationAddReviewUserArgs = {
+  from: _UserInput;
+  to: _ReviewInput;
+};
+
+
+export type MutationAddSeriesContentArgs = {
+  from: _ContentInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationAddSeriesEventsArgs = {
+  from: _EventInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationAddSeriesManagedByArgs = {
+  from: _UserInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationAddSeriesReviewsArgs = {
+  from: _ReviewInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationAddSocialLinkContactArgs = {
+  from: _ContactInput;
+  to: _SocialLinkInput;
+};
+
+
+export type MutationAddUserContactArgs = {
+  from: _UserInput;
+  to: _ContactInput;
+};
+
+
+export type MutationAddUserReferencesArgs = {
+  from: _ContentMetaInput;
+  to: _UserInput;
+};
+
+
+export type MutationAddUserReviewsArgs = {
+  from: _UserInput;
+  to: _ReviewInput;
+};
+
+
+export type MutationAddVenueContactArgs = {
+  from: _VenueInput;
+  to: _ContactInput;
+};
+
+
+export type MutationAddVenueEventsArgs = {
+  from: _EventInput;
+  to: _VenueInput;
+};
+
+
+export type MutationAddVenueManagedByArgs = {
+  from: _UserInput;
+  to: _VenueInput;
+};
+
+
+export type MutationAddVenueReviewsArgs = {
+  from: _ReviewInput;
+  to: _VenueInput;
+};
+
+
+export type MutationAuthenticateArgs = {
+  displayName: Scalars['String'];
+  email: Scalars['String'];
+  fieldName: Scalars['String'];
+  id: Scalars['String'];
+};
+
+
+export type MutationCreateAddressArgs = {
+  addressId?: Maybe<Scalars['ID']>;
+  addressLine1: Scalars['String'];
+  addressLine2?: Maybe<Scalars['String']>;
+  location?: Maybe<_Neo4jPointInput>;
+  name?: Maybe<Scalars['String']>;
+  postCode: Scalars['String'];
+  showAddress: Scalars['Boolean'];
+};
+
+
+export type MutationCreateArticleArgs = {
+  articleId?: Maybe<Scalars['ID']>;
+  articleImage?: Maybe<Scalars['String']>;
+  body: Scalars['String'];
+  dateCreated?: Maybe<Scalars['Float']>;
+  summary?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  url: Scalars['String'];
+};
+
+
+export type MutationCreateArticleCategoryArgs = {
+  key: Scalars['String'];
+  value: Scalars['String'];
+};
+
+
+export type MutationCreateBusinessArgs = {
+  bannerColour?: Maybe<Scalars['String']>;
+  bannerImage?: Maybe<Scalars['String']>;
+  businessId?: Maybe<Scalars['ID']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name: Scalars['String'];
+  slug?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationCreateBusinessCategoryArgs = {
+  businessCategoryId?: Maybe<Scalars['ID']>;
+  name: Scalars['String'];
+};
+
+
+export type MutationCreateContactArgs = {
+  contactId?: Maybe<Scalars['ID']>;
+  email: Array<Maybe<Scalars['String']>>;
+  telephone: Array<Maybe<Scalars['String']>>;
+};
+
+
+export type MutationCreateContentArgs = {
+  contentId?: Maybe<Scalars['ID']>;
+  displayImage?: Maybe<Scalars['String']>;
+  release?: Maybe<_Neo4jDateTimeInput>;
+  summary?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationCreateContentMetaArgs = {
+  contentMetaId?: Maybe<Scalars['ID']>;
+  role: Scalars['String'];
+};
+
+
+export type MutationCreateEventArgs = {
+  displayImage?: Maybe<Scalars['String']>;
+  end?: Maybe<_Neo4jDateTimeInput>;
+  eventId?: Maybe<Scalars['ID']>;
+  gallery: Array<Maybe<Scalars['String']>>;
+  name: Scalars['String'];
+  start?: Maybe<_Neo4jDateTimeInput>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationCreategetbusinessByUserIdResponseArgs = {
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateLoginResponseArgs = {
+  accessToken?: Maybe<Scalars['String']>;
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateRefreshTokenResponseArgs = {
+  accessToken?: Maybe<Scalars['String']>;
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateReviewArgs = {
+  date?: Maybe<_Neo4jDateTimeInput>;
+  reviewId?: Maybe<Scalars['ID']>;
+  stars: Scalars['Float'];
+  text?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationCreateSeriesArgs = {
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  seriesId?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationCreateSocialLinkArgs = {
+  account: Scalars['String'];
+  platform: Scalars['String'];
+  socialLinkId?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationCreateUserArgs = {
+  about?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  familyName?: Maybe<Scalars['String']>;
+  forename?: Maybe<Scalars['String']>;
+  googleId?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationCreateVenueArgs = {
+  displayImage?: Maybe<Scalars['String']>;
+  gallery: Array<Maybe<Scalars['String']>>;
+  name: Scalars['String'];
+  venueId?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteAddressArgs = {
+  addressId: Scalars['ID'];
+};
+
+
+export type MutationDeleteArticleArgs = {
+  articleId: Scalars['ID'];
+};
+
+
+export type MutationDeleteArticleCategoryArgs = {
+  key: Scalars['String'];
+};
+
+
+export type MutationDeleteBusinessArgs = {
+  businessId: Scalars['ID'];
+};
+
+
+export type MutationDeleteBusinessCategoryArgs = {
+  businessCategoryId: Scalars['ID'];
+};
+
+
+export type MutationDeleteContactArgs = {
+  contactId: Scalars['ID'];
+};
+
+
+export type MutationDeleteContentArgs = {
+  contentId: Scalars['ID'];
+};
+
+
+export type MutationDeleteContentMetaArgs = {
+  contentMetaId: Scalars['ID'];
+};
+
+
+export type MutationDeleteEventArgs = {
+  eventId: Scalars['ID'];
+};
+
+
+export type MutationDeletegetbusinessByUserIdResponseArgs = {
+  ok: Scalars['Boolean'];
+};
+
+
+export type MutationDeleteLoginResponseArgs = {
+  accessToken: Scalars['String'];
+};
+
+
+export type MutationDeleteRefreshTokenResponseArgs = {
+  accessToken: Scalars['String'];
+};
+
+
+export type MutationDeleteReviewArgs = {
+  reviewId: Scalars['ID'];
+};
+
+
+export type MutationDeleteSeriesArgs = {
+  seriesId: Scalars['ID'];
+};
+
+
+export type MutationDeleteSocialLinkArgs = {
+  socialLinkId: Scalars['ID'];
+};
+
+
+export type MutationDeleteUserArgs = {
+  userId: Scalars['ID'];
+};
+
+
+export type MutationDeleteVenueArgs = {
+  venueId: Scalars['ID'];
+};
+
+
+export type MutationMergeAddressArgs = {
+  addressId: Scalars['ID'];
+  addressLine1?: Maybe<Scalars['String']>;
+  addressLine2?: Maybe<Scalars['String']>;
+  location?: Maybe<_Neo4jPointInput>;
+  name?: Maybe<Scalars['String']>;
+  postCode?: Maybe<Scalars['String']>;
+  showAddress?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationMergeAddressContactArgs = {
+  from: _ContactInput;
+  to: _AddressInput;
+};
+
+
+export type MutationMergeArticleArgs = {
+  articleId: Scalars['ID'];
+  articleImage?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  summary?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationMergeArticleCategoryArgs = {
+  key: Scalars['String'];
+  value?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationMergeBusinessArgs = {
+  bannerColour?: Maybe<Scalars['String']>;
+  bannerImage?: Maybe<Scalars['String']>;
+  businessId: Scalars['ID'];
+  dateCreated?: Maybe<Scalars['Float']>;
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationMergeBusinessCategoriesArgs = {
+  from: _BusinessInput;
+  to: _BusinessCategoryInput;
+};
+
+
+export type MutationMergeBusinessCategoryArgs = {
+  businessCategoryId: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationMergeBusinessCategoryBusinessesArgs = {
+  from: _BusinessInput;
+  to: _BusinessCategoryInput;
+};
+
+
+export type MutationMergeBusinessContactArgs = {
+  from: _BusinessInput;
+  to: _ContactInput;
+};
+
+
+export type MutationMergeBusinessManagedByArgs = {
+  from: _UserInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationMergeBusinessReferencesArgs = {
+  from: _ContentMetaInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationMergeBusinessReviewsArgs = {
+  from: _ReviewInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationMergeContactArgs = {
+  contactId: Scalars['ID'];
+  email?: Maybe<Array<Maybe<Scalars['String']>>>;
+  telephone?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type MutationMergeContactAddressArgs = {
+  from: _ContactInput;
+  to: _AddressInput;
+};
+
+
+export type MutationMergeContactSocialsArgs = {
+  from: _ContactInput;
+  to: _SocialLinkInput;
+};
+
+
+export type MutationMergeContentArgs = {
+  contentId: Scalars['ID'];
+  displayImage?: Maybe<Scalars['String']>;
+  release?: Maybe<_Neo4jDateTimeInput>;
+  summary?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationMergeContentGuestsArgs = {
+  from: _UserInput;
+  to: _ContentInput;
+};
+
+
+export type MutationMergeContentHostsArgs = {
+  from: _UserInput;
+  to: _ContentInput;
+};
+
+
+export type MutationMergeContentMetaArgs = {
+  from: _ContentInput;
+  to: _ContentMetaInput;
+};
+
+
+export type MutationMergeContentMetaContentArgs = {
+  from: _ContentInput;
+  to: _ContentMetaInput;
+};
+
+
+export type MutationMergeContentReviewsArgs = {
+  from: _ReviewInput;
+  to: _ContentInput;
+};
+
+
+export type MutationMergeContentSeriesArgs = {
+  from: _ContentInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationMergeEventArgs = {
+  displayImage?: Maybe<Scalars['String']>;
+  end?: Maybe<_Neo4jDateTimeInput>;
+  eventId: Scalars['ID'];
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  start?: Maybe<_Neo4jDateTimeInput>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationMergeEventGuestsArgs = {
+  from: _UserInput;
+  to: _EventInput;
+};
+
+
+export type MutationMergeEventManagedByArgs = {
+  from: _UserInput;
+  to: _EventInput;
+};
+
+
+export type MutationMergeEventReviewsArgs = {
+  from: _ReviewInput;
+  to: _EventInput;
+};
+
+
+export type MutationMergeEventSeriesArgs = {
+  from: _EventInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationMergeEventVenueArgs = {
+  from: _EventInput;
+  to: _VenueInput;
+};
+
+
+export type MutationMergegetbusinessByUserIdResponseArgs = {
+  ok: Scalars['Boolean'];
+};
+
+
+export type MutationMergeLoginResponseArgs = {
+  accessToken: Scalars['String'];
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationMergeRefreshTokenResponseArgs = {
+  accessToken: Scalars['String'];
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationMergeReviewArgs = {
+  date?: Maybe<_Neo4jDateTimeInput>;
+  reviewId: Scalars['ID'];
+  stars?: Maybe<Scalars['Float']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationMergeReviewUserArgs = {
+  from: _UserInput;
+  to: _ReviewInput;
+};
+
+
+export type MutationMergeSeriesArgs = {
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  seriesId: Scalars['ID'];
+};
+
+
+export type MutationMergeSeriesContentArgs = {
+  from: _ContentInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationMergeSeriesEventsArgs = {
+  from: _EventInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationMergeSeriesManagedByArgs = {
+  from: _UserInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationMergeSeriesReviewsArgs = {
+  from: _ReviewInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationMergeSocialLinkArgs = {
+  account?: Maybe<Scalars['String']>;
+  platform?: Maybe<Scalars['String']>;
+  socialLinkId: Scalars['ID'];
+};
+
+
+export type MutationMergeSocialLinkContactArgs = {
+  from: _ContactInput;
+  to: _SocialLinkInput;
+};
+
+
+export type MutationMergeUserArgs = {
+  about?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayName?: Maybe<Scalars['String']>;
+  familyName?: Maybe<Scalars['String']>;
+  forename?: Maybe<Scalars['String']>;
+  googleId?: Maybe<Scalars['String']>;
+  userId: Scalars['ID'];
+};
+
+
+export type MutationMergeUserContactArgs = {
+  from: _UserInput;
+  to: _ContactInput;
+};
+
+
+export type MutationMergeUserReferencesArgs = {
+  from: _ContentMetaInput;
+  to: _UserInput;
+};
+
+
+export type MutationMergeUserReviewsArgs = {
+  from: _UserInput;
+  to: _ReviewInput;
+};
+
+
+export type MutationMergeVenueArgs = {
+  displayImage?: Maybe<Scalars['String']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  venueId: Scalars['ID'];
+};
+
+
+export type MutationMergeVenueContactArgs = {
+  from: _VenueInput;
+  to: _ContactInput;
+};
+
+
+export type MutationMergeVenueEventsArgs = {
+  from: _EventInput;
+  to: _VenueInput;
+};
+
+
+export type MutationMergeVenueManagedByArgs = {
+  from: _UserInput;
+  to: _VenueInput;
+};
+
+
+export type MutationMergeVenueReviewsArgs = {
+  from: _ReviewInput;
+  to: _VenueInput;
+};
+
+
+export type MutationRemoveAddressContactArgs = {
+  from: _ContactInput;
+  to: _AddressInput;
+};
+
+
+export type MutationRemoveBusinessCategoriesArgs = {
+  from: _BusinessInput;
+  to: _BusinessCategoryInput;
+};
+
+
+export type MutationRemoveBusinessCategoryBusinessesArgs = {
+  from: _BusinessInput;
+  to: _BusinessCategoryInput;
+};
+
+
+export type MutationRemoveBusinessContactArgs = {
+  from: _BusinessInput;
+  to: _ContactInput;
+};
+
+
+export type MutationRemoveBusinessManagedByArgs = {
+  from: _UserInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationRemoveBusinessReferencesArgs = {
+  from: _ContentMetaInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationRemoveBusinessReviewsArgs = {
+  from: _ReviewInput;
+  to: _BusinessInput;
+};
+
+
+export type MutationRemoveContactAddressArgs = {
+  from: _ContactInput;
+  to: _AddressInput;
+};
+
+
+export type MutationRemoveContactSocialsArgs = {
+  from: _ContactInput;
+  to: _SocialLinkInput;
+};
+
+
+export type MutationRemoveContentGuestsArgs = {
+  from: _UserInput;
+  to: _ContentInput;
+};
+
+
+export type MutationRemoveContentHostsArgs = {
+  from: _UserInput;
+  to: _ContentInput;
+};
+
+
+export type MutationRemoveContentMetaArgs = {
+  from: _ContentInput;
+  to: _ContentMetaInput;
+};
+
+
+export type MutationRemoveContentMetaContentArgs = {
+  from: _ContentInput;
+  to: _ContentMetaInput;
+};
+
+
+export type MutationRemoveContentReviewsArgs = {
+  from: _ReviewInput;
+  to: _ContentInput;
+};
+
+
+export type MutationRemoveContentSeriesArgs = {
+  from: _ContentInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationRemoveEventGuestsArgs = {
+  from: _UserInput;
+  to: _EventInput;
+};
+
+
+export type MutationRemoveEventManagedByArgs = {
+  from: _UserInput;
+  to: _EventInput;
+};
+
+
+export type MutationRemoveEventReviewsArgs = {
+  from: _ReviewInput;
+  to: _EventInput;
+};
+
+
+export type MutationRemoveEventSeriesArgs = {
+  from: _EventInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationRemoveEventVenueArgs = {
+  from: _EventInput;
+  to: _VenueInput;
+};
+
+
+export type MutationRemoveReviewUserArgs = {
+  from: _UserInput;
+  to: _ReviewInput;
+};
+
+
+export type MutationRemoveSeriesContentArgs = {
+  from: _ContentInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationRemoveSeriesEventsArgs = {
+  from: _EventInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationRemoveSeriesManagedByArgs = {
+  from: _UserInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationRemoveSeriesReviewsArgs = {
+  from: _ReviewInput;
+  to: _SeriesInput;
+};
+
+
+export type MutationRemoveSocialLinkContactArgs = {
+  from: _ContactInput;
+  to: _SocialLinkInput;
+};
+
+
+export type MutationRemoveUserContactArgs = {
+  from: _UserInput;
+  to: _ContactInput;
+};
+
+
+export type MutationRemoveUserReferencesArgs = {
+  from: _ContentMetaInput;
+  to: _UserInput;
+};
+
+
+export type MutationRemoveUserReviewsArgs = {
+  from: _UserInput;
+  to: _ReviewInput;
+};
+
+
+export type MutationRemoveVenueContactArgs = {
+  from: _VenueInput;
+  to: _ContactInput;
+};
+
+
+export type MutationRemoveVenueEventsArgs = {
+  from: _EventInput;
+  to: _VenueInput;
+};
+
+
+export type MutationRemoveVenueManagedByArgs = {
+  from: _UserInput;
+  to: _VenueInput;
+};
+
+
+export type MutationRemoveVenueReviewsArgs = {
+  from: _ReviewInput;
+  to: _VenueInput;
+};
+
+
+export type MutationUpdateAddressArgs = {
+  addressId: Scalars['ID'];
+  addressLine1?: Maybe<Scalars['String']>;
+  addressLine2?: Maybe<Scalars['String']>;
+  location?: Maybe<_Neo4jPointInput>;
+  name?: Maybe<Scalars['String']>;
+  postCode?: Maybe<Scalars['String']>;
+  showAddress?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateArticleArgs = {
+  articleId: Scalars['ID'];
+  articleImage?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  summary?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateArticleCategoryArgs = {
+  key: Scalars['String'];
+  value?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateBusinessArgs = {
+  bannerColour?: Maybe<Scalars['String']>;
+  bannerImage?: Maybe<Scalars['String']>;
+  businessId: Scalars['ID'];
+  dateCreated?: Maybe<Scalars['Float']>;
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateBusinessCategoryArgs = {
+  businessCategoryId: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateContactArgs = {
+  contactId: Scalars['ID'];
+  email?: Maybe<Array<Maybe<Scalars['String']>>>;
+  telephone?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type MutationUpdateContentArgs = {
+  contentId: Scalars['ID'];
+  displayImage?: Maybe<Scalars['String']>;
+  release?: Maybe<_Neo4jDateTimeInput>;
+  summary?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateContentMetaArgs = {
+  contentMetaId: Scalars['ID'];
+  role?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateEventArgs = {
+  displayImage?: Maybe<Scalars['String']>;
+  end?: Maybe<_Neo4jDateTimeInput>;
+  eventId: Scalars['ID'];
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  start?: Maybe<_Neo4jDateTimeInput>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateLoginResponseArgs = {
+  accessToken: Scalars['String'];
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateRefreshTokenResponseArgs = {
+  accessToken: Scalars['String'];
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateReviewArgs = {
+  date?: Maybe<_Neo4jDateTimeInput>;
+  reviewId: Scalars['ID'];
+  stars?: Maybe<Scalars['Float']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateSeriesArgs = {
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  seriesId: Scalars['ID'];
+};
+
+
+export type MutationUpdateSocialLinkArgs = {
+  account?: Maybe<Scalars['String']>;
+  platform?: Maybe<Scalars['String']>;
+  socialLinkId: Scalars['ID'];
+};
+
+
+export type MutationUpdateUserArgs = {
+  about?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayName?: Maybe<Scalars['String']>;
+  familyName?: Maybe<Scalars['String']>;
+  forename?: Maybe<Scalars['String']>;
+  googleId?: Maybe<Scalars['String']>;
+  userId: Scalars['ID'];
+};
+
+
+export type MutationUpdateUserProfileArgs = {
+  userInput?: Maybe<UserInput>;
+};
+
+
+export type MutationUpdateVenueArgs = {
+  displayImage?: Maybe<Scalars['String']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  venueId: Scalars['ID'];
+};
+
+
+export type MutationUserCreateBusinessArgs = {
+  businessInput?: Maybe<BusinessInput>;
+};
+
+
+export type MutationUserCreateReviewArgs = {
+  nodeName: Scalars['String'];
+  stars: Scalars['Float'];
+  targetId: Scalars['ID'];
+  text?: Maybe<Scalars['String']>;
+  userId: Scalars['ID'];
+};
+
+export type Ownable = Business | Content | Event | Series | Venue;
+
+export type Query = {
+  __typename?: 'Query';
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Address type nodes. */
+  Address?: Maybe<Array<Maybe<Address>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Article type nodes. */
+  Article?: Maybe<Array<Maybe<Article>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for ArticleCategory type nodes. */
+  ArticleCategory?: Maybe<Array<Maybe<ArticleCategory>>>;
+  authenticate?: Maybe<LoginResponse>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Business type nodes. */
+  Business?: Maybe<Array<Maybe<Business>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for BusinessCategory type nodes. */
+  BusinessCategory?: Maybe<Array<Maybe<BusinessCategory>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Contact type nodes. */
+  Contact?: Maybe<Array<Maybe<Contact>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Contactable type nodes. */
+  Contactable?: Maybe<Array<Maybe<Contactable>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Content type nodes. */
+  Content?: Maybe<Array<Maybe<Content>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for ContentMeta type nodes. */
+  ContentMeta?: Maybe<Array<Maybe<ContentMeta>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for ContentMetaReference type nodes. */
+  ContentMetaReference?: Maybe<Array<Maybe<ContentMetaReference>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Event type nodes. */
+  Event?: Maybe<Array<Maybe<Event>>>;
+  getBusinessByUserId?: Maybe<GetbusinessByUserIdResponse>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for getbusinessByUserIdResponse type nodes. */
+  getbusinessByUserIdResponse?: Maybe<Array<Maybe<GetbusinessByUserIdResponse>>>;
+  getTokens: LoginResponse;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for HomePageResponse type nodes. */
+  HomePageResponse?: Maybe<Array<Maybe<HomePageResponse>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for LoginResponse type nodes. */
+  LoginResponse?: Maybe<Array<Maybe<LoginResponse>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for MixedMedia type nodes. */
+  MixedMedia?: Maybe<Array<Maybe<MixedMedia>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Ownable type nodes. */
+  Ownable?: Maybe<Array<Maybe<Ownable>>>;
+  ratingsCount?: Maybe<Array<Maybe<RatingCount>>>;
+  refreshToken: RefreshTokenResponse;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for RefreshTokenResponse type nodes. */
+  RefreshTokenResponse?: Maybe<Array<Maybe<RefreshTokenResponse>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Review type nodes. */
+  Review?: Maybe<Array<Maybe<Review>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Series type nodes. */
+  Series?: Maybe<Array<Maybe<Series>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for SocialLink type nodes. */
+  SocialLink?: Maybe<Array<Maybe<SocialLink>>>;
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for User type nodes. */
+  User?: Maybe<Array<Maybe<User>>>;
+  userCount: Scalars['Int'];
+  /** [Generated query](https://grandstack.io/docs/graphql-schema-generation-augmentation#generated-queries) for Venue type nodes. */
+  Venue?: Maybe<Array<Maybe<Venue>>>;
+};
+
+
+export type QueryAddressArgs = {
+  _id?: Maybe<Scalars['String']>;
+  addressId?: Maybe<Scalars['ID']>;
+  addressLine1?: Maybe<Scalars['String']>;
+  addressLine2?: Maybe<Scalars['String']>;
+  filter?: Maybe<_AddressFilter>;
+  first?: Maybe<Scalars['Int']>;
+  location?: Maybe<_Neo4jPointInput>;
+  name?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_AddressOrdering>>>;
+  postCode?: Maybe<Scalars['String']>;
+  showAddress?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type QueryArticleArgs = {
+  _id?: Maybe<Scalars['String']>;
+  articleId?: Maybe<Scalars['ID']>;
+  articleImage?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['String']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  filter?: Maybe<_ArticleFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ArticleOrdering>>>;
+  summary?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryArticleCategoryArgs = {
+  _id?: Maybe<Scalars['String']>;
+  filter?: Maybe<_ArticleCategoryFilter>;
+  first?: Maybe<Scalars['Int']>;
+  key?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ArticleCategoryOrdering>>>;
+  value?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryAuthenticateArgs = {
+  displayName: Scalars['String'];
+  email: Scalars['String'];
+  fieldName: Scalars['String'];
+  filter?: Maybe<_LoginResponseFilter>;
+  id: Scalars['String'];
+};
+
+
+export type QueryBusinessArgs = {
+  _id?: Maybe<Scalars['String']>;
+  bannerColour?: Maybe<Scalars['String']>;
+  bannerImage?: Maybe<Scalars['String']>;
+  businessId?: Maybe<Scalars['ID']>;
+  dateCreated?: Maybe<Scalars['Float']>;
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  filter?: Maybe<_BusinessFilter>;
+  first?: Maybe<Scalars['Int']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
+  slug?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryBusinessCategoryArgs = {
+  _id?: Maybe<Scalars['String']>;
+  businessCategoryId?: Maybe<Scalars['ID']>;
+  filter?: Maybe<_BusinessCategoryFilter>;
+  first?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_BusinessCategoryOrdering>>>;
+};
+
+
+export type QueryContactArgs = {
+  _id?: Maybe<Scalars['String']>;
+  contactId?: Maybe<Scalars['ID']>;
+  email?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_ContactFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ContactOrdering>>>;
+  telephone?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type QueryContactableArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryContentArgs = {
+  _id?: Maybe<Scalars['String']>;
+  contentId?: Maybe<Scalars['ID']>;
+  displayImage?: Maybe<Scalars['String']>;
+  filter?: Maybe<_ContentFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ContentOrdering>>>;
+  release?: Maybe<_Neo4jDateTimeInput>;
+  summary?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContentMetaArgs = {
+  _id?: Maybe<Scalars['String']>;
+  contentMetaId?: Maybe<Scalars['ID']>;
+  filter?: Maybe<_ContentMetaFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ContentMetaOrdering>>>;
+  role?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContentMetaReferenceArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryEventArgs = {
+  _id?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  end?: Maybe<_Neo4jDateTimeInput>;
+  eventId?: Maybe<Scalars['ID']>;
+  filter?: Maybe<_EventFilter>;
+  first?: Maybe<Scalars['Int']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_EventOrdering>>>;
+  start?: Maybe<_Neo4jDateTimeInput>;
+  url?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetBusinessByUserIdArgs = {
+  filter?: Maybe<_GetbusinessByUserIdResponseFilter>;
+};
+
+
+export type QueryGetbusinessByUserIdResponseArgs = {
+  _id?: Maybe<Scalars['String']>;
+  filter?: Maybe<_GetbusinessByUserIdResponseFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  ok?: Maybe<Scalars['Boolean']>;
+  orderBy?: Maybe<Array<Maybe<_GetbusinessByUserIdResponseOrdering>>>;
+};
+
+
+export type QueryGetTokensArgs = {
+  filter?: Maybe<_LoginResponseFilter>;
+};
+
+
+export type QueryHomePageResponseArgs = {
+  _id?: Maybe<Scalars['String']>;
+  filter?: Maybe<_HomePageResponseFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_HomePageResponseOrdering>>>;
+};
+
+
+export type QueryLoginResponseArgs = {
+  _id?: Maybe<Scalars['String']>;
+  accessToken?: Maybe<Scalars['String']>;
+  filter?: Maybe<_LoginResponseFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  ok?: Maybe<Scalars['Boolean']>;
+  orderBy?: Maybe<Array<Maybe<_LoginResponseOrdering>>>;
+};
+
+
+export type QueryMixedMediaArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryOwnableArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryRefreshTokenArgs = {
+  filter?: Maybe<_RefreshTokenResponseFilter>;
+};
+
+
+export type QueryRefreshTokenResponseArgs = {
+  _id?: Maybe<Scalars['String']>;
+  accessToken?: Maybe<Scalars['String']>;
+  filter?: Maybe<_RefreshTokenResponseFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  ok?: Maybe<Scalars['Boolean']>;
+  orderBy?: Maybe<Array<Maybe<_RefreshTokenResponseOrdering>>>;
+};
+
+
+export type QueryReviewArgs = {
+  _id?: Maybe<Scalars['String']>;
+  date?: Maybe<_Neo4jDateTimeInput>;
+  filter?: Maybe<_ReviewFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
+  reviewId?: Maybe<Scalars['ID']>;
+  stars?: Maybe<Scalars['Float']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySeriesArgs = {
+  _id?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  filter?: Maybe<_SeriesFilter>;
+  first?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_SeriesOrdering>>>;
+  seriesId?: Maybe<Scalars['ID']>;
+};
+
+
+export type QuerySocialLinkArgs = {
+  _id?: Maybe<Scalars['String']>;
+  account?: Maybe<Scalars['String']>;
+  filter?: Maybe<_SocialLinkFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_SocialLinkOrdering>>>;
+  platform?: Maybe<Scalars['String']>;
+  socialLinkId?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryUserArgs = {
+  _id?: Maybe<Scalars['String']>;
+  about?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayName?: Maybe<Scalars['String']>;
+  familyName?: Maybe<Scalars['String']>;
+  filter?: Maybe<_UserFilter>;
+  first?: Maybe<Scalars['Int']>;
+  forename?: Maybe<Scalars['String']>;
+  googleId?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+  userId?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryVenueArgs = {
+  _id?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  filter?: Maybe<_VenueFilter>;
+  first?: Maybe<Scalars['Int']>;
+  gallery?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name?: Maybe<Scalars['String']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_VenueOrdering>>>;
+  venueId?: Maybe<Scalars['ID']>;
+};
+
+export type RatingCount = {
+  __typename?: 'RatingCount';
+  count: Scalars['Int'];
+  stars: Scalars['Float'];
+};
+
+export type RefreshTokenResponse = {
+  __typename?: 'RefreshTokenResponse';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  accessToken?: Maybe<Scalars['String']>;
+  ok?: Maybe<Scalars['Boolean']>;
+  user?: Maybe<User>;
+};
+
+
+export type RefreshTokenResponseUserArgs = {
+  filter?: Maybe<_UserFilter>;
+};
+
+export type Review = {
+  __typename?: 'Review';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  date?: Maybe<_Neo4jDateTime>;
+  item?: Maybe<Ownable>;
+  reviewId: Scalars['ID'];
+  stars: Scalars['Float'];
+  text?: Maybe<Scalars['String']>;
+  user?: Maybe<User>;
+};
+
+
+export type ReviewUserArgs = {
+  filter?: Maybe<_UserFilter>;
+};
+
+export type Series = {
+  __typename?: 'Series';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  avgStars?: Maybe<Scalars['Float']>;
+  content?: Maybe<Array<Maybe<Content>>>;
+  description?: Maybe<Scalars['String']>;
+  displayImage?: Maybe<Scalars['String']>;
+  events?: Maybe<Array<Maybe<Event>>>;
+  managedBy?: Maybe<Array<Maybe<User>>>;
+  name: Scalars['String'];
+  reviews?: Maybe<Array<Maybe<Review>>>;
+  seriesId: Scalars['ID'];
+};
+
+
+export type SeriesContentArgs = {
+  filter?: Maybe<_ContentFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ContentOrdering>>>;
+};
+
+
+export type SeriesEventsArgs = {
+  filter?: Maybe<_EventFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_EventOrdering>>>;
+};
+
+
+export type SeriesManagedByArgs = {
+  filter?: Maybe<_UserFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+};
+
+
+export type SeriesReviewsArgs = {
+  filter?: Maybe<_ReviewFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
+};
+
+export type SocialLink = {
+  __typename?: 'SocialLink';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  account: Scalars['String'];
+  contact: Contact;
+  platform: Scalars['String'];
+  socialLinkId: Scalars['ID'];
+};
+
+
+export type SocialLinkContactArgs = {
+  filter?: Maybe<_ContactFilter>;
+};
+
+export type SocialLinkInput = {
+  account: Scalars['String'];
+  platform: Scalars['String'];
+};
+
+export type User = {
+  __typename?: 'User';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  about?: Maybe<Scalars['String']>;
+  appearsIn: Array<Maybe<MixedMedia>>;
+  contact: Contact;
+  displayImage?: Maybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  familyName?: Maybe<Scalars['String']>;
+  forename?: Maybe<Scalars['String']>;
+  googleId?: Maybe<Scalars['String']>;
+  manages: Array<Maybe<Ownable>>;
+  numReviews?: Maybe<Scalars['Int']>;
+  recommendations?: Maybe<Array<Maybe<Business>>>;
+  references: Array<Maybe<ContentMeta>>;
+  reviews: Array<Maybe<Review>>;
+  userId: Scalars['ID'];
+};
+
+
+export type UserAppearsInArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type UserContactArgs = {
+  filter?: Maybe<_ContactFilter>;
+};
+
+
+export type UserManagesArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type UserRecommendationsArgs = {
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_BusinessOrdering>>>;
+};
+
+
+export type UserReferencesArgs = {
+  filter?: Maybe<_ContentMetaFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ContentMetaOrdering>>>;
+};
+
+
+export type UserReviewsArgs = {
+  filter?: Maybe<_ReviewFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
+};
+
+export type UserInput = {
+  about?: Maybe<Scalars['String']>;
+  contact?: Maybe<ContactInput>;
+  displayImage?: Maybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  familyName?: Maybe<Scalars['String']>;
+  forename?: Maybe<Scalars['String']>;
+  googleId?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['ID']>;
+};
+
+export type Venue = {
+  __typename?: 'Venue';
+  /** Generated field for querying the Neo4j [system id](https://neo4j.com/docs/cypher-manual/current/functions/scalar/#functions-id) of this node. */
+  _id?: Maybe<Scalars['String']>;
+  contact: Contact;
+  displayImage?: Maybe<Scalars['String']>;
+  events: Array<Maybe<Event>>;
+  gallery: Array<Maybe<Scalars['String']>>;
+  managedBy?: Maybe<Array<Maybe<User>>>;
+  name: Scalars['String'];
+  reviews?: Maybe<Array<Maybe<Review>>>;
+  venueId: Scalars['ID'];
+};
+
+
+export type VenueContactArgs = {
+  filter?: Maybe<_ContactFilter>;
+};
+
+
+export type VenueEventsArgs = {
+  filter?: Maybe<_EventFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_EventOrdering>>>;
+};
+
+
+export type VenueManagedByArgs = {
+  filter?: Maybe<_UserFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+};
+
+
+export type VenueReviewsArgs = {
+  filter?: Maybe<_ReviewFilter>;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ReviewOrdering>>>;
 };
 
 export type AuthenticateQueryVariables = Exact<{

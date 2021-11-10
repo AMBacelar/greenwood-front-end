@@ -12,15 +12,16 @@
   top: 30vh;
 }
 .content {
-  backdrop-filter: blur(10px);
-  color: white;
+  background-color: rgba($color: #ffffff, $alpha: 0.9);
+  box-shadow: 10px 10px 30px 1px rgba(0, 0, 0, 0.3);
+  color: #333333;
   padding: 20px;
   margin-bottom: 30px;
-  p {
-    font-weight: 600;
-  }
+ 
   h1 {
-    font-weight: 600;
+    font-weight: 800;
+    font-size: 2.5em;
+    margin: 0.2em 0em;
   }
 }
 .latest-businesses {
@@ -30,8 +31,30 @@
 }
 .cta {
   background-color: white;
+  border: none;
   border-radius: 50px;
   color: rgb(106, 139, 117);
-  font-size: 1.3rem;
-  padding: 8px 16px;
+  font-size: 0.8rem;
+  padding: 14px 22px;
+  &:hover {
+    background-color: rgb(233, 241, 236);
+  }
+  &:focus{
+    outline: none;
+  }
+  &:after{
+    content: url(/static/images/ic_keyboard_arrow_right_48px.svg);
+    float: right;
+    margin-left: 8px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .latest-businesses{
+    position: inherit;
+  }
+  .content {
+    h1 {
+      font-size: 1.2em;
+    }
+  }
 }

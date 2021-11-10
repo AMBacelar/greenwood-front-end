@@ -10,12 +10,23 @@ import styles from './Layout.module.scss';
 import Footer from './Footer';
 import imageUrl from 'utils/imageUrl';
 import { useGetTokensQuery } from 'generated/graphql';
+import classNames from 'classnames'
 
 export interface Props {
   title?: string;
   description?: string;
   children?: React.ReactNode;
   image?: string;
+  isHomePage?: boolean;
+}
+
+const HeaderBar = (props: Props) => {
+  console.log(props.isHomePage);
+  if (props.isHomePage) {
+    return <Navbar fixed='top'>{props.children}</Navbar>
+
+  }
+  return <Navbar>{props.children}</Navbar>
 }
 
 export const Layout = (props: Props) => {
@@ -28,9 +39,9 @@ export const Layout = (props: Props) => {
   if (loading) {
     console.log('query is loading');
   }
-  // if (error) {
-  //   console.log('unauthorized:', error);
-  // }
+  if (error) {
+    console.log('unauthorized:', error);
+  }
   if (data) {
     console.log('Layout result is:', data);
   }
@@ -70,52 +81,62 @@ export const Layout = (props: Props) => {
         />
       </Head>
       <div className={styles.base}>
-        <header>
-          <Navbar fixed="top">
-            <Container>
-              <div className={styles.headerStyles}>
-                <Link passHref href="/">
-                  <Navbar.Brand as={'a'}>
-                    <img
-                      alt="Greenwood branding"
-                      className={styles.logo}
-                      src={imageUrl('/logo_white.png')}
-                    />
-                  </Navbar.Brand>
-                </Link>
-                <Nav className={styles['nav-right']}>
-                  <Nav.Item>
-                    <Link passHref href="/">
-                      <Nav.Link>The Catalogue</Nav.Link>
-                    </Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Link passHref href="/a">
-                      <Nav.Link>Blog</Nav.Link>
-                    </Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Link passHref href="/">
-                      <Nav.Link>The App</Nav.Link>
-                    </Link>
-                  </Nav.Item>
-                  {data?.getTokens.ok ? <Nav.Item>
-                    <Link passHref href="/dashboard">
-                      <Nav.Link>Profile</Nav.Link>
-                    </Link>
-                  </Nav.Item> : <Nav.Item>
-                    <Link passHref href="/api/auth/google">
-                      <Nav.Link>Sign In</Nav.Link>
-                    </Link>
-                  </Nav.Item>}
-                </Nav>
-              </div>
-            </Container>
-          </Navbar>
-        </header>
+        <div>
+          <header>
+            <Navbar className={styles.Navbar}>
+              <Container>
+                <div className={styles.headerStyles}>
+                  <Link passHref href="/">
+                    <Navbar.Brand as={'a'}>
+                      <img
+                        alt="Greenwood branding"
+                        className={styles.logo}
+                        src="/static/images/logo_navbar.svg"
+                      />
+                    </Navbar.Brand>
+                  </Link>
+                  <Navbar.Toggle aria-controls="responsive-navbar-nav" className={styles['nav-button']} />
+                  <Nav className={styles['nav-right']}>
+                    <div className={styles.navCollapsable}>
+                      <Nav.Item>
+                        <Link passHref href="/">
+                          <Nav.Link>The Catalogue</Nav.Link>
+                        </Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Link passHref href="/article">
+                          <Nav.Link>Blog</Nav.Link>
+                        </Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Link passHref href="/">
+                          <Nav.Link>The App</Nav.Link>
+                        </Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Link passHref href="/aboutus">
+                          <Nav.Link>About Us</Nav.Link>
+                        </Link>
+                      </Nav.Item>
+                    </div>
+                    {data?.getTokens.ok ? <Nav.Item>
+                      <Link passHref href="/dashboard">
+                        <Nav.Link>Profile</Nav.Link>
+                      </Link>
+                    </Nav.Item> : <Nav.Item>
+                      <Link passHref href="/api/auth/google">
+                        <Nav.Link>Sign In</Nav.Link>
+                      </Link>
+                    </Nav.Item>}
+                  </Nav>
+                </div>
+              </Container>
+            </Navbar>
+          </header>
+        </div>
         {props.children}
         <Footer />
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };

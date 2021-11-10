@@ -9,7 +9,6 @@
 }
 .text {
   margin: 0 auto 20px;
-  width: 670px;
   text-align: center;
   font-size: 16px;
 }
@@ -23,4 +22,9 @@
   width: 32%;
   margin: 1%;
   cursor: pointer;
+}
+@media screen and (max-width: 768px){
+  .text {
+    font-size: 10px;
+  }
 }

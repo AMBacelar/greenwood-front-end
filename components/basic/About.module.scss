@@ -1,0 +1,57 @@
+.newsletterwrapper{
+  padding: 0px 120px;
+  margin: 0 1em 1em 1em;
+  .content{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0;
+    padding: 10px;
+  }
+}
+.branding {
+  text-align: center;
+}
+.contentLogo {
+  height: 250px;
+}
+.subscribe {
+  color: rgb(255, 255, 255);
+  background-color: rgb(106, 139, 117);
+  border-color: rgb(106, 139, 117);
+}
+.content {
+  background-color: rgba($color: #718a77, $alpha: 0.9);
+  box-shadow: 10px 10px 30px 1px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  padding: 20px;
+  margin-bottom: 30px;
+  margin-top: 1em;
+  text-align: justify;
+}
+
+@media screen and (max-width: 768px) {
+  .newsletterwrapper{
+    padding: 0px;
+    margin: 0 1em 1em 1em;
+    .content{
+      font-size: 11px;
+    }
+  }
+  .content{
+    font-size: 12px;
+  }
+  .contentLogo {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .content{
+    font-size: 11px;
+    padding: 10px;
+  }
+  .contentLogo {
+    height: 120px;
+  }
+}
