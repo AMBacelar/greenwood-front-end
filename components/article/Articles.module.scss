@@ -7,6 +7,10 @@
 .pageInfo {
   padding: 30px 400px;
   text-align: center;
+  h2 {
+    text-transform: uppercase;
+    font-weight: 800;
+  }
 }
 .container {
   max-width: fit-content;
@@ -16,18 +20,18 @@
   gap: 5%;
 }
 .card {
-  background-color: #E2F0E6;
+  background-color: #e2f0e6;
   padding: 30px;
   box-shadow: 5px 10px 10px #888888;
   max-width: 492px;
   min-width: 350px;
 }
-.cardInfo{
+.cardInfo {
   overflow: hidden;
-}
-h2 {
-  text-transform: uppercase;
-  font-weight: 800;
+  h2 {
+    text-transform: uppercase;
+    font-weight: 800;
+  }
 }
 .title {
   font-size: 16px;
@@ -77,7 +81,7 @@ h2 {
   .card {
     margin-bottom: 120px;
   }
-  h2 {
+  .card-info h2 {
     font-size: 1.4rem;
   }
   .content {
@@ -85,6 +89,9 @@ h2 {
   }
   .pageInfo {
     padding: 30px;
+    h2 {
+      font-size: 1.4rem;
+    }
   }
 }
 @media screen and (max-width: 768px) {

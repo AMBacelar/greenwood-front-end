@@ -1,12 +1,12 @@
-import styles from "./Conditions";
+import styles from "./Conditions.module.scss";
 
 
 const Conditions = () => {
-    return (
-      <div className={styles.wrapper}>
+  return (
+    <div className={styles.wrapper}>
 
-      </div>
-    );
-  };
-  
-  export default Conditions;
+    </div>
+  );
+};
+
+export default Conditions;

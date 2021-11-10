@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import styles from "./About.scss";
+import styles from "./About.module.scss";
 
 const About = () => {
   return (

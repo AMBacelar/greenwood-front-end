@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Articles.scss";
+import styles from "./Articles.module.scss";
 import Link from "next/link";
 import type { Article } from "../../generated/graphql";
 import { Col, Container, Row } from "react-bootstrap";
@@ -10,7 +10,7 @@ type Props = {
 
 export const Articles = ({ article }: Props) => {
   const listOfArticles = article.map((a) => (
-    <Col className={styles.container}>
+    <Col key={a.articleId} className={styles.container}>
       <div className={styles.card}>
         <div className={styles.cardInfo}>
           <h2 className={styles.title}>{a.title}</h2>

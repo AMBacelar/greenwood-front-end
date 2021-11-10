@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Article.scss";
+import styles from "./Article.module.scss";
 import type { Article } from "../../generated/graphql";
 import { Col, Container, Row } from "react-bootstrap";
 
@@ -14,11 +14,11 @@ export const ArticleCard = ({ article }: Props) => {
       <Container>
         <Row>
           <Col>
-          <div className={styles.card}>
-            <div className={styles.content}>
-              <h2>{article.title}</h2>
-              <div className={styles.content}>{article.body}</div>
-            </div>
+            <div className={styles.card}>
+              <div className={styles.content}>
+                <h2>{article.title}</h2>
+                {article.body}
+              </div>
             </div>
           </Col>
         </Row>
