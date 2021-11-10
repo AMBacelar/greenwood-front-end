@@ -1,9 +1,6 @@
 // const withSass = require('@zeit/next-sass');
 
 module.exports = {
-  future: {
-    webpack5: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

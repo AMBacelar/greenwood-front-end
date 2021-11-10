@@ -22,24 +22,26 @@ const BusinessItem = (
 ) => {
   return (
     <Col xs={12} md={4}>
-      <Link href={`/business/${slug}`}>
-        <div className={styles.wrapper}>
-          <Row>
-            <Col xs={4}>
-              <img
-                className={styles.thumb}
-                src={imageUrl(thumbnailImage)}
-                alt=""
-              />
-            </Col>
-            <Col xs={8}>
-              <div className={styles.info}>
-                <h4>{displayName}</h4>
-                <p>{shortDescription}</p>
-              </div>
-            </Col>
-          </Row>
-        </div>
+      <Link passHref href={`/business/${slug}`}>
+        <a>
+          <div className={styles.wrapper}>
+            <Row>
+              <Col xs={4}>
+                <img
+                  className={styles.thumb}
+                  src={imageUrl(thumbnailImage)}
+                  alt=""
+                />
+              </Col>
+              <Col xs={8}>
+                <div className={styles.info}>
+                  <h4>{displayName}</h4>
+                  <p>{shortDescription}</p>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </a>
       </Link>
     </Col>
   );

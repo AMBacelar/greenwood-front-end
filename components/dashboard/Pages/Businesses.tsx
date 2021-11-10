@@ -28,7 +28,10 @@ export const Businesses = () => {
     const BusinessCard = (business: Business, key: number) => {
       const dateCreated = new Date(business.dateCreated!).toString();
       return (
-        <div key={key} onClick={() => router.push(`/dashboard/business/${business.businessId}`)}>
+        <div
+          key={key}
+        // onClick={() => router.push(`/dashboard/business/${business.businessId}`)}
+        >
           <h1>{business.name}</h1>
           <p>{business.description}</p>
           <p>{dateCreated}</p>
@@ -41,7 +44,6 @@ export const Businesses = () => {
     return (
       <div className={styles.wrapper}>
         <button onClick={() => setShowNewBusinessForm(!showNewBusinessForm)}>Create Business</button> <br />
-        {JSON.stringify(data.Business, null, 2)}
         {cardArray}
         {showNewBusinessForm && <NewBusinessForm />}
       </div>

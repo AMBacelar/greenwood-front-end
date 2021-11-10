@@ -93,7 +93,7 @@ interface Props {
 const Page: NextPage<Props, any> = (props) => {
 
   const { business } = props;
-  console.log('props:', props);
+  // console.log('props:', props);
   return (
     <Layout
       title={business.displayName}
@@ -122,11 +122,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     query: GET_BUSINESS_QUERY,
     variables: { slug: ctx.query.slug },
   });
+  console.log('$$', response)
   // Pass data to the page via props
   return {
     props: {
-      business: response.data.Business[0],
-      initialApolloState: apolloClient.cache.extract(),
+      business: businesses[0],
+      // business: response.data.Business[0],
+      // initialApolloState: apolloClient.cache.extract(),
     },
   };
 };
