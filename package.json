@@ -37,7 +37,7 @@
     "cookie-session": "1.4.0",
     "cors": "2.8.5",
     "dotenv": "8.2.0",
-    "express": "4.17.3",
+    "express": "4.20.0",
     "formik": "2.2.5",
     "glamor": "2.17.9",
     "graphql": "15.3.0",
